@@ -127,7 +127,7 @@ def test_checked_in_release_is_harbor_and_website_complete() -> None:
     task_dirs = sorted((DEFAULT_OUTPUT / "harbor" / "tasks").iterdir())
     assert len(task_dirs) == 100
     dataset = tomllib.loads((DEFAULT_OUTPUT / "harbor" / "dataset.toml").read_text())
-    assert dataset["dataset"]["name"] == "blobfishai/erpbench-100"
+    assert dataset["dataset"]["name"] == "blobfishai/erpbench-100-suite"
     assert len(dataset["tasks"]) == 100
     expected_digests = {entry["name"].split("/", 1)[1]: entry["digest"] for entry in dataset["tasks"]}
     for task_dir in (task_dirs[0], task_dirs[49], task_dirs[-1]):

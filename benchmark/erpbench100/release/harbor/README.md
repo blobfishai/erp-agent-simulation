@@ -5,7 +5,7 @@ ERPBench-100 is a 100-task, deterministic ERP agent benchmark over ten synthetic
 ## Run
 
 ```bash
-harbor run -d blobfishai/erpbench-100 -a <agent> -m <provider/model>
+harbor run -d blobfishai/erpbench-100-suite -a <agent> -m <provider/model>
 ```
 
 ## Metric

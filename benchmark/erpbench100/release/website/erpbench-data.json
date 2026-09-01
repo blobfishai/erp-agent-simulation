@@ -96,7 +96,7 @@
       },
       {
         "name": "Harbor package SHA-256",
-        "value": "f2ea1bca48564624fcc10ac70163be0d0335ba1679b10b59f31bab8141ba140a"
+        "value": "c24d160e25113c1cb53635886c4a07f0a8204b52c992c8c1683ba17e3035071f"
       },
       {
         "name": "Hugging Face commit",
@@ -110,7 +110,7 @@
     "deterministicVerifier": true,
     "links": {
       "blobfishPage": "https://blobfish.ai/benchmarks/erpbench-100",
-      "harbor": "https://hub.harborframework.com/datasets/blobfishai/erpbench-100/latest",
+      "harbor": "https://hub.harborframework.com/datasets/blobfishai/erpbench-100-suite/latest",
       "huggingFace": "https://huggingface.co/datasets/SamuelChien821/erpbench-100",
       "source": "https://github.com/blobfishai/erp-agent-simulation/tree/main/benchmark/erpbench100"
     },

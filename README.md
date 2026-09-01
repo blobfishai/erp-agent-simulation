@@ -77,7 +77,7 @@ python3.12 -m benchmark.erpbench100.release
 Run the published Harbor suite with any supported agent/model pair:
 
 ```bash
-harbor run -d blobfishai/erpbench-100@v1.0.0 \
+harbor run -d blobfishai/erpbench-100-suite@v1.0.0 \
   -a <agent> -m <provider/model>
 ```
 
@@ -88,7 +88,7 @@ exact build and publication commands.
 
 - Explorer: https://blobfish.ai/benchmarks/erpbench-100
 - Hugging Face: https://huggingface.co/datasets/SamuelChien821/erpbench-100
-- Harbor: https://hub.harborframework.com/datasets/blobfishai/erpbench-100/latest
+- Harbor: https://hub.harborframework.com/datasets/blobfishai/erpbench-100-suite/latest
 - Source: https://github.com/blobfishai/erp-agent-simulation/tree/main/benchmark/erpbench100
 
 ## Clean-room boundary

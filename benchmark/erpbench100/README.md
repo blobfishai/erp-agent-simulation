@@ -34,7 +34,7 @@ harbor publish benchmark/erpbench100/release/harbor --no-tasks --public -t v1.0.
 
 - Explorer: https://blobfish.ai/benchmarks/erpbench-100
 - Hugging Face: https://huggingface.co/datasets/SamuelChien821/erpbench-100
-- Harbor: https://hub.harborframework.com/datasets/blobfishai/erpbench-100/latest
+- Harbor: https://hub.harborframework.com/datasets/blobfishai/erpbench-100-suite/latest
 
 ## Clean-room boundary
 

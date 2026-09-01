@@ -1,6 +1,6 @@
 # Generated ERPBench-100 Harbor dataset
 [dataset]
-name = "blobfishai/erpbench-100"
+name = "blobfishai/erpbench-100-suite"
 version = "1.0.0"
 description = "100 executable Oracle-Fusion-shaped ERP workflows with deterministic ERPScore grading"
 keywords = ["erp", "oracle-fusion", "order-to-cash", "procure-to-pay", "agents", "stateful", "deterministic"]
