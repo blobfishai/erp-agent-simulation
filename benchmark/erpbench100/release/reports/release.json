@@ -1,5 +1,5 @@
 {
-  "artifact_bytes_before_release_report": 109538245,
+  "artifact_bytes_before_release_report": 109592345,
   "artifact_file_count_before_release_report": 7147,
   "assets_per_task": {
     "max": 28,
@@ -12,8 +12,8 @@
     "min": 34
   },
   "family_count": 10,
-  "harbor_root_sha256": "2c924c391e87bd74fcab21562eab6bf431756160e723c35cc7230b4b95df18d1",
-  "harbor_task_bytes": 76277976,
+  "harbor_root_sha256": "d4afea4580e3695c679460a7f139ab38b10056560101b2d4869a3796b582ab59",
+  "harbor_task_bytes": 76332076,
   "harbor_task_files": 5500,
   "huggingface_commit": "f83f74faa59e29d4a56406078444012b47a84a6d",
   "huggingface_payload_manifest_sha256": "58dc05910d0eebb04cec986828c9950a8d25fff940a7d8563219321fe3c1ce5d",
@@ -31,7 +31,7 @@
   },
   "pre_satisfied_tasks": [],
   "qualification_passed": true,
-  "root_sha256_before_release_report": "80aa05a23942eeca74c4512b91170db139d3840f11e8e807ae9d923600956e24",
+  "root_sha256_before_release_report": "8a9982ef00934a0ae485dc8e0941319dc93a4478b79f63378d8b5d6ce84bae8b",
   "rows_per_task_snapshot": 146,
   "schema_version": "erpbench.build.v1",
   "source_asset_count": 460,

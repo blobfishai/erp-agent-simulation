@@ -10,8 +10,8 @@
     "min": 34
   },
   "family_count": 10,
-  "harbor_root_sha256": "2c924c391e87bd74fcab21562eab6bf431756160e723c35cc7230b4b95df18d1",
-  "harbor_task_bytes": 76277976,
+  "harbor_root_sha256": "d4afea4580e3695c679460a7f139ab38b10056560101b2d4869a3796b582ab59",
+  "harbor_task_bytes": 76332076,
   "harbor_task_files": 5500,
   "huggingface_commit": "f83f74faa59e29d4a56406078444012b47a84a6d",
   "huggingface_payload_manifest_sha256": "58dc05910d0eebb04cec986828c9950a8d25fff940a7d8563219321fe3c1ce5d",

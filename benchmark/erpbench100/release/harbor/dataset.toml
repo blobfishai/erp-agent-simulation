@@ -9,400 +9,400 @@ name = "Blobfish AI"
 
 [[tasks]]
 name = "blobfishai/erpbench-001"
-digest = "sha256:aceff87dffc14c77ef801e4272567a2ae2fe33e91f2848433c92aec45a61084c"
+digest = "sha256:7fa504d1655681fcc2d56e70beb1da5f36942e2446239015934e967cfbea14b2"
 
 [[tasks]]
 name = "blobfishai/erpbench-002"
-digest = "sha256:51517f0ea4943ade24a5713472ab8396bc831beabaccffe1940f2e293bbe74c7"
+digest = "sha256:54c4370c74c93a7579be7e0fc13889ad570cbcfe4397eb9eea5146d134df961d"
 
 [[tasks]]
 name = "blobfishai/erpbench-003"
-digest = "sha256:3e63defa45b9e7a22f81c094ebe9e0b09a98b6178f9cba69af2a82d0f80b4c1d"
+digest = "sha256:24ea44097cecf1716f087066f723e1bf4d5f6ee6d707f77a74c5c8724d683424"
 
 [[tasks]]
 name = "blobfishai/erpbench-004"
-digest = "sha256:8e56cbdc737c409ac5f213d4fb8c7bf56c3e9cff5e42226e3edcd56587064389"
+digest = "sha256:7edc26f4704cde8f96ea65387c7365b7b833656417d06d6f3f1a650ee1508d40"
 
 [[tasks]]
 name = "blobfishai/erpbench-005"
-digest = "sha256:8728dcee33564ba57a41b98b096aef4a95ab81a883b1c4ac4df83b8bae56c226"
+digest = "sha256:a1c805e044ae8f6384bd46be57c9e52ab59151253c0dbc636a4ea1c7a2ab70df"
 
 [[tasks]]
 name = "blobfishai/erpbench-006"
-digest = "sha256:11d108729e0ce7d501f98b0d8e5ee9a5d1c2570a6e2719088f439a8285162955"
+digest = "sha256:530ecf37cc5947508d32f553348aac0c31322d0dec5a118b63022bea61d72d04"
 
 [[tasks]]
 name = "blobfishai/erpbench-007"
-digest = "sha256:9cb07d696815cf1676ad54f274ffbb7a3805b48ca8783c1599af2ed8ec35d062"
+digest = "sha256:90025dccfac1eff97c4ceae52344de8d50b110cea646e08ac286d700910a2119"
 
 [[tasks]]
 name = "blobfishai/erpbench-008"
-digest = "sha256:c77320f74647182f7722dc251347ce4cf04a76eaa93487f60a1c8c7731542178"
+digest = "sha256:d6c82ae252f38417425860604a9894a626d23bffb8954562bf32b80c725ea95d"
 
 [[tasks]]
 name = "blobfishai/erpbench-009"
-digest = "sha256:45448f227e2af7faf688956ef8ba4a1ed8f148076674940faefa4fc3d6ffb168"
+digest = "sha256:7b2406c215ee2072e4aea3c2935d7034a399eedb105e8cd31750c9ddb6aa2507"
 
 [[tasks]]
 name = "blobfishai/erpbench-010"
-digest = "sha256:39acee407dbdef6eca85275228284052b874a9dcb236d58d01100fc1a3537393"
+digest = "sha256:729430b12018f2b0c497d91dacfa0aff25a9e626d3d3d7dcd415556337332f46"
 
 [[tasks]]
 name = "blobfishai/erpbench-011"
-digest = "sha256:ea21e158acde5ed0782298b0a1b51fff9be7f7c866d9ace36c2e3dc85e36de77"
+digest = "sha256:1f74b5d9d12c61dfdd1a5a6b2399cf922c87096b0b729bce7d033d6ea0e98a3e"
 
 [[tasks]]
 name = "blobfishai/erpbench-012"
-digest = "sha256:6fa3b8341c8fc5f11e49ae840d37f7a943e7b02a7c672e1d86be303726da414e"
+digest = "sha256:ffb92ac555221f1a91d2a13e23bd603a41f09f5fdba06fab82beace2077fa8d2"
 
 [[tasks]]
 name = "blobfishai/erpbench-013"
-digest = "sha256:00b27ea2c5541424cb15e721e49c78b8c2b93375b20004c9bb48f073110063a7"
+digest = "sha256:9cc274506abe3d37523f212f0478a794a89ea0d437599fb98d22560e9ed48df1"
 
 [[tasks]]
 name = "blobfishai/erpbench-014"
-digest = "sha256:4ed4d3ddd777463bf7e700a6cecec5437cc59c3fea71ebe3636299f0154d2ea1"
+digest = "sha256:3bf402fd6f2c411363197d7131e33497e47b172e1a1f40da34f9b7809badeef5"
 
 [[tasks]]
 name = "blobfishai/erpbench-015"
-digest = "sha256:623d4f0b350b322c4c5ed8c910eefa0ecb58ac150946f4c49fb835936ab8304b"
+digest = "sha256:37ac762d85b444e0d54c6f54d9ecb1b93d8ee28e0e5c91905a896d4f8407ff7a"
 
 [[tasks]]
 name = "blobfishai/erpbench-016"
-digest = "sha256:818eb21a2120472935699be07f1036a77dbbdf17dbd5b29b7eb451946a008d3f"
+digest = "sha256:3a969f802bd6efab30067d847e1a94b783ce25e10628ea332a5fe6fd7e85f54f"
 
 [[tasks]]
 name = "blobfishai/erpbench-017"
-digest = "sha256:2309b41ae08473d98e83a1f50bc9f7940b6706078b435fac91da79166b5e3806"
+digest = "sha256:4ab0fae800528fbce47e53bdd059ebcb1346e25ccfa2debb931799339724f340"
 
 [[tasks]]
 name = "blobfishai/erpbench-018"
-digest = "sha256:228d65be473641df11678bc0e0f289f132e330c426b88d5c2c51b7891aba4bad"
+digest = "sha256:4ec960990efc018093ea6688add17071e5fc84fc25f00bf19cea9596168954d3"
 
 [[tasks]]
 name = "blobfishai/erpbench-019"
-digest = "sha256:d0bc4bd245cc38c09f0ffda49e0d4027250f78fbacd53864d92439b774832274"
+digest = "sha256:ac5583aa3fccbd82fbab3b832d549a68289a9a85c47fa21f968edcab8884ef7f"
 
 [[tasks]]
 name = "blobfishai/erpbench-020"
-digest = "sha256:dc3b2fb9f574f7a6aac49380302232a2bc9f0cb541cd1ec98013333363da2539"
+digest = "sha256:4146e0f45aed5dddf186cef3004391b2275eb99fb2a1d6d464b5e25c66309d7c"
 
 [[tasks]]
 name = "blobfishai/erpbench-021"
-digest = "sha256:d0a932387cb2ceaf4048f397dba3b9fa37bf586dfe0e4a2ac34f4b4d880d0499"
+digest = "sha256:cabcd64776ae547f6dd050f7b3f47263c83e92f58aa6642822c340cecde25c50"
 
 [[tasks]]
 name = "blobfishai/erpbench-022"
-digest = "sha256:43efbcde9165fdf99404e5fe726f7b4b0a9326b7d721f407a5c8d5f6cabd7718"
+digest = "sha256:4522a08a97f45c859227a34d472b8734ae428e80a530ebdc0b4ba10cd1ce2d1a"
 
 [[tasks]]
 name = "blobfishai/erpbench-023"
-digest = "sha256:ce92dc6855d199ef4c1f7a64c8d7998c20f5ab24fc14777df0ac251382c111c2"
+digest = "sha256:8b61a95e34ac8154d0183d2b445afb471f2dc3b39536166a06f3ca427f8b0a49"
 
 [[tasks]]
 name = "blobfishai/erpbench-024"
-digest = "sha256:c5559c561e1520c9b2c83c1be8cb7aa8dc0b06cbe262922e51a3d6c8dc6bc501"
+digest = "sha256:eda547b7b48533ed5de0a389bf58179473fa0b79eb8f329440f6558069109cca"
 
 [[tasks]]
 name = "blobfishai/erpbench-025"
-digest = "sha256:2986344cb969b5430da9451ba12b110aa8170e8e1add005e5aeac37b3901c2b0"
+digest = "sha256:1e3b843443f85d377e7d7eda19d42bc53ef25bc6c8a215e4da3b7834863109e1"
 
 [[tasks]]
 name = "blobfishai/erpbench-026"
-digest = "sha256:0652905dde5500d1a781c46455e7ff412ea7946a3afb8ef7b8ac91c79ed78ad4"
+digest = "sha256:226c0f076b5288c01ddfa943d7339e293524ba15981e665ab4da1e3a5277a287"
 
 [[tasks]]
 name = "blobfishai/erpbench-027"
-digest = "sha256:9e53af76289cd3d5b6bb571d5dc5c7f5d80351489fa604ba78bfb77359b69c7a"
+digest = "sha256:8d0cfc0a22263c0138f841f3cf33bd0300d424d7e7e210b7ed0cd1fd952bcbc7"
 
 [[tasks]]
 name = "blobfishai/erpbench-028"
-digest = "sha256:927b9bb803b9837870e9cbef9da783aae3ad436a757b7dc465b0e4fe3c13e70b"
+digest = "sha256:406420581a279569ed040f9de02f046b7ae90c284f1ed18e99907d2b3906b443"
 
 [[tasks]]
 name = "blobfishai/erpbench-029"
-digest = "sha256:e3411ced5c139e293ed91238636e7825198063169e00c20e2275536d4ae6003a"
+digest = "sha256:574a7bdd44def6ced857666037f8d1e3669556081065264cc4e9381331cc017c"
 
 [[tasks]]
 name = "blobfishai/erpbench-030"
-digest = "sha256:183aa2f41fa3e9f01c9fc7e08c5637d4b84ea9bdcee3c978c914ffbd59ccadf1"
+digest = "sha256:8d511aca121c06ac6e212984eeadee653c1abe4a425ecc328fad3aebffcdf907"
 
 [[tasks]]
 name = "blobfishai/erpbench-031"
-digest = "sha256:7e47eff9fcd02e5c01ce004740d60df352944787fda57539cf4641333e80439f"
+digest = "sha256:3cb54dd7e51e1f8799e2c3e75679319143a8d4a10397fee85ade22bf9449d9f7"
 
 [[tasks]]
 name = "blobfishai/erpbench-032"
-digest = "sha256:912b340d59bc47e0f5f2e6788a41c83821fd6939ed452f8813feb88887d074c1"
+digest = "sha256:d96b8e4b41b4761cf93a726b68c3d22b53e291ff4454c94d08d21c6723d12202"
 
 [[tasks]]
 name = "blobfishai/erpbench-033"
-digest = "sha256:4fbbf52f43b9cece82e38f9431d1b93c25d51ae021a7e7fe3be1828bcd8936a2"
+digest = "sha256:319c89e06bb4c4c7e15d4afd01bfc18de7aca846cab59737f22a2dfbae2bec87"
 
 [[tasks]]
 name = "blobfishai/erpbench-034"
-digest = "sha256:c88a2fb034980cd946fc37fa75aea8438271b62b14db4579646a2f491f9e9dfb"
+digest = "sha256:c70ffe8fd8ca3338cec4c33b6b40b3395f12d45e86bacfa44cde2bf1a3be88ec"
 
 [[tasks]]
 name = "blobfishai/erpbench-035"
-digest = "sha256:3f0d29d114a8c0ebe00a28ea55a2dc37d3fcba373ce94315580e7f9c33710a16"
+digest = "sha256:4da73e5354f52a402beb9b20ccac1f42c37782361a2d7f16ad3606b8d474a662"
 
 [[tasks]]
 name = "blobfishai/erpbench-036"
-digest = "sha256:541292bb526e8173c7f9cd964a724cd060ec9d8d299e681c576f8eec39bb0a05"
+digest = "sha256:016a811eb4b5d99e388e103a4671bb48d3b4bfb9b050d45f92e9dbc5a1aeb3b7"
 
 [[tasks]]
 name = "blobfishai/erpbench-037"
-digest = "sha256:d32ba447d533fb05e0f07d9dec52c3ca0e613ececfa5c6893c9df2d08af36b68"
+digest = "sha256:a152becc4b96c8b777e94f05d8bdda0da835a09a6d3d902aa3bb81dcf92d3e49"
 
 [[tasks]]
 name = "blobfishai/erpbench-038"
-digest = "sha256:154ffc34622b845076aa523a39e7f7d84faecf382f91fae6f747115bc177a810"
+digest = "sha256:02d39da216c560654615743df740f7e4f91014092a04ef5ddccfd0bcfff53eb8"
 
 [[tasks]]
 name = "blobfishai/erpbench-039"
-digest = "sha256:a5cdbd3c159d0999b9392c84096e2fdddb74f89b706b76a8bd1446f0d72bbebe"
+digest = "sha256:5c44178e63a7521fcaf1b60b85b43701617c66bd298a879f42ef58cd926ac00a"
 
 [[tasks]]
 name = "blobfishai/erpbench-040"
-digest = "sha256:39b6e9fd52debdff31997ad6580a20031321385348d9cc32b93ee94c85d65d9c"
+digest = "sha256:064366b14295131df5836ad626f0920cc164ac3be4ebb34f944199a5f2269ff9"
 
 [[tasks]]
 name = "blobfishai/erpbench-041"
-digest = "sha256:33c1d051e26130a97106454f8ebac7397e10accf95d79f38b28597fbaa1d39ed"
+digest = "sha256:8a531050399b71d2692e8aae7605db67f5c648024986a719f7abfbc92afd3263"
 
 [[tasks]]
 name = "blobfishai/erpbench-042"
-digest = "sha256:fe8cc6758f62b47eebfeec5298a07041b50e406633ab6011bdb89dd3e2de5006"
+digest = "sha256:c42916d34a6ce5632798be443fac1d362316e0b891c6499a4e7208dd79679395"
 
 [[tasks]]
 name = "blobfishai/erpbench-043"
-digest = "sha256:60e3d659bc21ef610bb1af690b0dbbfb40e2a820d7118f07586ec5271c4d6cd4"
+digest = "sha256:296f6daf9aa4c8d940145729d381a3ead29377af419424c564f26f0634270110"
 
 [[tasks]]
 name = "blobfishai/erpbench-044"
-digest = "sha256:6faf9069c304e738c2481073e85a359c07466138c6cd4f80160f434f5173baf3"
+digest = "sha256:8e5fad9e6269af7c074be5f8ce193b17fb52544e5cd42c62f7b5d38f96c69cc2"
 
 [[tasks]]
 name = "blobfishai/erpbench-045"
-digest = "sha256:aa950460add3ccdcc09d4db6e17e0dbfe239e2ee876be7533a4d591dd43ec777"
+digest = "sha256:b9d58a4abeb2e0b21ceb08b231cef403b29ff3cbc96614090f048234fa3e20d5"
 
 [[tasks]]
 name = "blobfishai/erpbench-046"
-digest = "sha256:972e47a89f1683b63e070ecfe94cb86dc6aceabcbc25f8e7ae275796a0fb527d"
+digest = "sha256:db8ffcc362bab61dce77581a04f5a0fd5bba2d52f28d354c53061ca66d205791"
 
 [[tasks]]
 name = "blobfishai/erpbench-047"
-digest = "sha256:ac5df95e6ff2d81217e26b7b4a149c1094ee57d9117f8baa3ee264d0e1187352"
+digest = "sha256:c1a364da6c075192b480d725db3ac9a6ac361801231c0ded77a7a0ba6b6575f2"
 
 [[tasks]]
 name = "blobfishai/erpbench-048"
-digest = "sha256:c1c4fe1c94f927976dd9da8c145d6de3a6f1819e8f54dc7a363bcef51b84242d"
+digest = "sha256:1d5d1417e1bfc7a3f5e89ad10f68ede1a41829abce2411cc617fb3b70d8b39d2"
 
 [[tasks]]
 name = "blobfishai/erpbench-049"
-digest = "sha256:06f111d144031fb53804721ea0337db3398a5f9dae7b27d82d77ae4559ef05fb"
+digest = "sha256:8676cfb2c6f31fb893031e17b879e0e25d65207c1595f583be776bbace3a73d2"
 
 [[tasks]]
 name = "blobfishai/erpbench-050"
-digest = "sha256:1b5bc279ff73afc9e0a51a8a3b7472f8ddb334a3ac87b8b2132f2874c9d77c9c"
+digest = "sha256:3c9731a08e8a3f332fca061d9306a1624ed4aa742896fe893f22df2b8af31855"
 
 [[tasks]]
 name = "blobfishai/erpbench-051"
-digest = "sha256:b8d26689653ee6942bbff1dc381f7c1e4d0ca2a6934e874a8d96f2328e1708a7"
+digest = "sha256:5b4e8c95169f5e48c921b8fe485c7045372314440e4fb52395d4433def2af6d0"
 
 [[tasks]]
 name = "blobfishai/erpbench-052"
-digest = "sha256:a23b432e966ca7e7b6c88a526ff1be3e6d9689bb5b60693a93acec7b578982b2"
+digest = "sha256:4d2a2df7af64e485a9811fa9879dca09cd538b1439b520de1a23c15703433dcc"
 
 [[tasks]]
 name = "blobfishai/erpbench-053"
-digest = "sha256:d7d6380eea2252a9a34a1cb0bc86f610b802afb29402c980159e33ad155078db"
+digest = "sha256:8fdc5076800f76cbac73f664d08bc11a0e86740b3fdfe34031c87d7a7d02333b"
 
 [[tasks]]
 name = "blobfishai/erpbench-054"
-digest = "sha256:4103f448b304ca4bd459b4d9c09fa45d7a11e397c878b6901dd2ad5541032c2d"
+digest = "sha256:9e3735b10365951e754c025e364d3110c5eff52cc28e1720e60b6d83f3d637fa"
 
 [[tasks]]
 name = "blobfishai/erpbench-055"
-digest = "sha256:ddcd5c21057798fa7796c5048d397b7c461ccec39d2ca060effbdd2ed80d27e8"
+digest = "sha256:a8cb7385b2135120c4eada63ce905d360528e0c003e7647fb2eefb27e049a3dd"
 
 [[tasks]]
 name = "blobfishai/erpbench-056"
-digest = "sha256:108851520d891f940454e091a07d30beea8b9a7ed89cbb15bd7c1a8b39252cb5"
+digest = "sha256:3adae7b03045459a6c7d039407fd3be73fbce198c9b0eb6debface7a51154861"
 
 [[tasks]]
 name = "blobfishai/erpbench-057"
-digest = "sha256:e7da71779f3e79331e0444659a5f7a01a85d37a822945bd63d27155f198e9db8"
+digest = "sha256:4edd449ac6388b7d03dffddde1f2156350316424a6c2ca2643eab5ab41d3911d"
 
 [[tasks]]
 name = "blobfishai/erpbench-058"
-digest = "sha256:49da4f8319f6d39afbfe156f5fffc5b02ff4f9cfd4abec02c006560d63cae0d1"
+digest = "sha256:e77d8033a7cc6d0ca29731f3d36954f9315a1c1b53c4aa3d7a2a2c3f8c40acaf"
 
 [[tasks]]
 name = "blobfishai/erpbench-059"
-digest = "sha256:c6b42c18404838d057d9e224589b3e6a7c11b7b72bd25b53332e5476e8e96921"
+digest = "sha256:ccd43170c48b577a28568bf8cde750ecc24bb53fc85f7169ca150d3b8f8fa134"
 
 [[tasks]]
 name = "blobfishai/erpbench-060"
-digest = "sha256:abe46e773fcf053b8a654140961dcbd451ff6ad4f82f7603c6ab26118ccead38"
+digest = "sha256:8a3a0c33007ed630618f37b96427e04aec27156bc5dfa6e75c15859994d55c3c"
 
 [[tasks]]
 name = "blobfishai/erpbench-061"
-digest = "sha256:b8a6a0983dc3a952ecdf2c2b20b4e82313018a0af9ba3fd2e894acd19647cfba"
+digest = "sha256:013d49a46fa27705f8e0c3dfdf793a2538c9ef40af446986c5b53c3c558c9856"
 
 [[tasks]]
 name = "blobfishai/erpbench-062"
-digest = "sha256:2f93bca322d74dca778858b4d407836a4d95a8e104fe8aee4e32fcc019e9b017"
+digest = "sha256:14ae64bac4d21011a66e164476729865df087253580cad6333733c438826073b"
 
 [[tasks]]
 name = "blobfishai/erpbench-063"
-digest = "sha256:c322488464924650d1b863c8b8051595308d5d847bcd8003319ba2c0c871c85e"
+digest = "sha256:4f7effd908a65fca8f6e8afe43715fcd2e80ba349643688e85fbb877f9eb1ec6"
 
 [[tasks]]
 name = "blobfishai/erpbench-064"
-digest = "sha256:549b600de22059522f7e2fb725abc3ecdc318ddd923a81b8841e44366a728ff7"
+digest = "sha256:80ed5161937deef43370523f17f55f6b23b97dea5064fb5381049d70f40d4b5a"
 
 [[tasks]]
 name = "blobfishai/erpbench-065"
-digest = "sha256:d09da89514c9f12aa4d2fff3243f50940d469e1ab6fe71f7fc37a945f8cb87d5"
+digest = "sha256:0d47db665489e60f2c4c8427f97f34d2f4b38e030e9b9b5cdc389408afe9f2a9"
 
 [[tasks]]
 name = "blobfishai/erpbench-066"
-digest = "sha256:20837783a71b96b7d8697c208b95b43610f95f50e7aaa168dfb1fb8a9369c3f3"
+digest = "sha256:ff1660a1410ac538cd5124700e63f369de01dc77eaa4b5b924408be8d8bb8f35"
 
 [[tasks]]
 name = "blobfishai/erpbench-067"
-digest = "sha256:a88f52169ca08419c1c89edc17cbb73b890aea8d3ff411ddaa3ca4b87b0e4efa"
+digest = "sha256:14acf7b9150df0415acf68844dd3089a6f9a0757fe54bfb9f0102e1a82dec3d6"
 
 [[tasks]]
 name = "blobfishai/erpbench-068"
-digest = "sha256:f889e66fa796800e6dd573fb9eec5f270a98ab576d4143f4d5545cf78ea2b595"
+digest = "sha256:a139fdcaddb3bc2eec724457bddd60022a4bcc7aef617417b9ab966aa5b36470"
 
 [[tasks]]
 name = "blobfishai/erpbench-069"
-digest = "sha256:9994741e579f37e8b0e1044a85b548f408dc245ccebb5126bfc2e84f234cbb3f"
+digest = "sha256:a6c9727fafb8c3e87d44e89d8d0ee6724c2812960b651f9fd4b98cd3a11e80de"
 
 [[tasks]]
 name = "blobfishai/erpbench-070"
-digest = "sha256:14d1c954c030d5d6f95ae0cb9affb8e7e359ba3d1b85bd075cd4b7089655485e"
+digest = "sha256:7346d74b3498a44ef8454d76181a9cca0aef8cddeeef92fb764d0be574d70812"
 
 [[tasks]]
 name = "blobfishai/erpbench-071"
-digest = "sha256:511744b9a9ca9f104ad95298158bd20e08c3e65ccc6b31122a92cfe3ace4a88c"
+digest = "sha256:6b00237d7b53d11687cf32fb0a7ddeafd74a0d7a8d1ec6609ba7ae1ca5330e42"
 
 [[tasks]]
 name = "blobfishai/erpbench-072"
-digest = "sha256:08233ebf130a63cf98b3768144668beffbd89e4a850a9e1c717e52beec9aee25"
+digest = "sha256:1a808cfbf560eb20f37e893e273fd925f0966f1a36894d02c937a8809fe793b9"
 
 [[tasks]]
 name = "blobfishai/erpbench-073"
-digest = "sha256:06db69f03f684b47c965ed0db57f0f5342bb474b686a5f9175442ef955008788"
+digest = "sha256:d3cab9fe3ba0bdbc012c5890306b93a6d89c6ab3f7166a6f0c2dea889e0f4541"
 
 [[tasks]]
 name = "blobfishai/erpbench-074"
-digest = "sha256:b741a195662fee363ec79201651187be4d3cc2d35ea3e0f14a36165647480a97"
+digest = "sha256:b6d34c73f468e8e10d45f8ed883bc2167f54cd44f98f8a2b51646e70e3d51c79"
 
 [[tasks]]
 name = "blobfishai/erpbench-075"
-digest = "sha256:8ad2ece08ef59ad23a0de9f1d544f9928786b1acaf7b17a403ee317cf11c489c"
+digest = "sha256:4cbc9142ef867158daf01fe44be017c49e320c46332d79ecac5f734d3a72f998"
 
 [[tasks]]
 name = "blobfishai/erpbench-076"
-digest = "sha256:c4d70c2a1b63bd23b88671c6561c6c5f3bec01cc52f46587a46692193deb029e"
+digest = "sha256:1460e089fcacb6bc032bdb20c4c5eb793e210af51f53558713f1b21ca90fcf24"
 
 [[tasks]]
 name = "blobfishai/erpbench-077"
-digest = "sha256:25761c9c38ec542658fef48a25678fc2efe6b41aa1b5e0975ec39294ee4c1873"
+digest = "sha256:0c3911b25b7041b4285725482e3dc53add874ce709c326c4ff7a40b636ffe299"
 
 [[tasks]]
 name = "blobfishai/erpbench-078"
-digest = "sha256:8a8b8eadac7d59e320f1793d1ad1311b529d1027796b32e8a9736351915f0b42"
+digest = "sha256:2f5fe4eb84f79b8319e9879a7d781a2efc27f532da912bfc08d48fbe144c1d6b"
 
 [[tasks]]
 name = "blobfishai/erpbench-079"
-digest = "sha256:3df3b355ca5af22722b7b0349c5bfd7a21941bb42c2545af26a17bb4e46921c1"
+digest = "sha256:f693d16820bb8b1e1fc44199de1da9bf0f9705f9287efdcd6f60ad2a15686014"
 
 [[tasks]]
 name = "blobfishai/erpbench-080"
-digest = "sha256:bfb807edb425489ceac7f25f73c0e171f782dc798210314899e0f194a1ff2fec"
+digest = "sha256:3bc00652c56814336de6869999e2d087575cf0c01ef93f721ff22ffa2666c161"
 
 [[tasks]]
 name = "blobfishai/erpbench-081"
-digest = "sha256:c0922300cdb4fda7d1d1fcfd42703cce4eeb6cb1ab01da6502aab70aa64130fe"
+digest = "sha256:7396d14ad7128447e7cffb49353a6542b2ad50ee59ec2b3c5ea03666721bf487"
 
 [[tasks]]
 name = "blobfishai/erpbench-082"
-digest = "sha256:4a379ef827e85358cfadc981754bbfac766077c8c8ba624f5b3900bf13d7bfac"
+digest = "sha256:1dada5f419937c9297ac7e54d4bc01bfbfda3213c59a76f695470cf74ddbb2f6"
 
 [[tasks]]
 name = "blobfishai/erpbench-083"
-digest = "sha256:a6ee13594d0274cf4ba1df8ac1f1b77b5845d653d8e2e2b6af8e196f21125754"
+digest = "sha256:4c02ffccca19668e242b897ec329265b121a5006670a2f728661f7e340814bcf"
 
 [[tasks]]
 name = "blobfishai/erpbench-084"
-digest = "sha256:1a81aab0f32db41e81031dfa5ed1dacfdfd41f669a85a355b77c1cea8fd759b5"
+digest = "sha256:f5673dd78dd98f8a1929e5f9c9a60d7a8818871dbce08ec181881504c50e9e38"
 
 [[tasks]]
 name = "blobfishai/erpbench-085"
-digest = "sha256:3bceeb470d5f126bff7fe5859380b2e33b0d78d1b4df90b82eddcee79a36ddc0"
+digest = "sha256:78373e3408478559631d0f1a6186bc0b028c29a1638dcff51fa491136b7da341"
 
 [[tasks]]
 name = "blobfishai/erpbench-086"
-digest = "sha256:ac275dac343fe18475e35b22922d574364eb6b1738d2e1f159f3c3aa70eb8ac5"
+digest = "sha256:a94bdf683242fe3cc0e1f8b28d5e53e5bbf330fb4b9c6d8f1c9d2a7b1b1e2550"
 
 [[tasks]]
 name = "blobfishai/erpbench-087"
-digest = "sha256:7b816d3f4d4e803ac95f3344eed146ba821ad386165ce952aea75e1214d7d9e5"
+digest = "sha256:6cceea8e84614e3f831a2def64410f1b4dc018ec16087daedfdc014fdd57a728"
 
 [[tasks]]
 name = "blobfishai/erpbench-088"
-digest = "sha256:5d52217b8644c9c6969c63b5ce7ec7102948c5da0488562f94f9e1f97aab593c"
+digest = "sha256:7d82e4337b28a4cc13af892833962758be9141ca555dab09f2f6e9d61c6077ac"
 
 [[tasks]]
 name = "blobfishai/erpbench-089"
-digest = "sha256:b4123f2b1f4354fd2c6016ac4aa201fd8f0460e70f87a34a785c81140b6bc6e8"
+digest = "sha256:f5c8f80a6714737b6bf806b966b940ecdd6800483bdc44a38307660a765ddd2c"
 
 [[tasks]]
 name = "blobfishai/erpbench-090"
-digest = "sha256:540a0e491a586181947616c16cac4952233e6d32d5617dae9d39d5ca7e75eaf9"
+digest = "sha256:897aac21ddb85580163fffd0415f51f1936584e8b0f2a10945f90e6f2be51647"
 
 [[tasks]]
 name = "blobfishai/erpbench-091"
-digest = "sha256:9a7f650b67fc9e6f13b0f43f16a16c07eefa0bba5432cb2e4fdb23957507891f"
+digest = "sha256:7b8cfd865340cec100ed9e6a683207e43a2ec5dfd75e757d585fad573c5dedcd"
 
 [[tasks]]
 name = "blobfishai/erpbench-092"
-digest = "sha256:eaa19270aa206c042e6af5733338969da6e745a6511c389da344176f23503d7f"
+digest = "sha256:f0b3a5b69875d0d59aa3f01cba5fea0994f0dac1cd9b8a4995a01871c3fc585e"
 
 [[tasks]]
 name = "blobfishai/erpbench-093"
-digest = "sha256:6cfe5288138c5d6ccea7f8dba3708df74bdf7416d9d99b9c88c3024df623cfe4"
+digest = "sha256:a71175aacea67510ecd1592ad36ebf53996715504cf213534e846ed7eec52934"
 
 [[tasks]]
 name = "blobfishai/erpbench-094"
-digest = "sha256:bd0034a94ea6ab0aea37c85d182b8a9d3c4b414aa78bf636c778f9a9439778d9"
+digest = "sha256:0dfdea2f34c408f222e9e82c68b1ab30e71e0b1c519554991a725e74ee6532d6"
 
 [[tasks]]
 name = "blobfishai/erpbench-095"
-digest = "sha256:7ab555c7af657784125c06e7c8ad836207f81380540daf2ce6fcc7204580e6b7"
+digest = "sha256:d3c80f65a1722f7cae4766f2c76521e8edd9d1e7ad5ac7e017dfae95348a9951"
 
 [[tasks]]
 name = "blobfishai/erpbench-096"
-digest = "sha256:08cbaf73bf4dca983b5c8533de01fdf9c28e03cd0b69165a6104774139a99822"
+digest = "sha256:c2699c7373bc0d8d7b530f60b03bb045ea5f332fd7e1e77c32236dfd50e3b6f0"
 
 [[tasks]]
 name = "blobfishai/erpbench-097"
-digest = "sha256:69c49239be483ed4593c450b56175d5d07c4cd7d77579be9a2afcfae1e2992be"
+digest = "sha256:41126d160b711f935ecd0f068fa22dafe8c28568e68426e4fc690851cd645a1b"
 
 [[tasks]]
 name = "blobfishai/erpbench-098"
-digest = "sha256:114e99d2feb1faaaf0b89a74e042ec4c64eb7e0926dee04aa4d035821cc74617"
+digest = "sha256:6c493d65530a382515928af4bf088d80d750a5d369be9b25fa16a7a0d331c08f"
 
 [[tasks]]
 name = "blobfishai/erpbench-099"
-digest = "sha256:020cce520b93ee71c3b271ce46bbe4d2b0de2cdd6702353317384c9ac0447056"
+digest = "sha256:db130222dbc69bb00675d895d590e3143b14eec6891486b7ca0ead617262d67b"
 
 [[tasks]]
 name = "blobfishai/erpbench-100"
-digest = "sha256:6d677a249adb0b85db50af9734c5f4b3ea5a509f592c3a44d0c8cd840ee26665"
+digest = "sha256:61e1e27684b0035af58742c1661b76bba82881a0fe1fe8b3b2b8c4353ecbe2f2"
