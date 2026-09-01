@@ -1,0 +1,2565 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 40.0,
+    "decision": 66.67,
+    "discovery": 73.33,
+    "erp_state": 50.0,
+    "handoff": 50.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.09757467999999998,
+  "failed_checks": [
+    "discovery:request_mail",
+    "discovery:control_thread",
+    "discovery:item_master",
+    "discovery:shift_tab",
+    "decision:operative_source",
+    "erp_state:secondary_write",
+    "erp_state:register",
+    "erp_state:decision_record",
+    "handoff:email_draft",
+    "containment:task_scope"
+  ],
+  "finished_at": "2026-09-01T23:35:40.298094Z",
+  "receipt_sha256": "6c9e7fdeb67f85dc5409ab04e4e0439eabf10ebdb9dded893184251e73f6b937",
+  "reward": 0.73,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 73.0,
+  "started_at": "2026-09-01T23:22:52.619587Z",
+  "strict_pass": false,
+  "successful_tool_calls": 77,
+  "task_digest": "sha256:79d12b220a6955a5ee8a2ebd198f615f45be56c834bd66f82ff6762d884b8ecf",
+  "task_id": "erpbench-067",
+  "tokens": {
+    "cached": 2548224,
+    "input": 2654885,
+    "output": 21065
+  },
+  "tool_calls": 88,
+  "trace": [
+    {
+      "arguments": {
+        "query": "Caldera Packaging Reno"
+      },
+      "index": 1,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Caldera Packaging Reno"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "Caldera Packaging Reno"
+      },
+      "index": 2,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Caldera'"
+      },
+      "index": 3,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Reno'"
+      },
+      "index": 4,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-CHANNEL-EXPORT-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "18-channel-export.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-CHANNEL-EXPORT-0202",
+            "isCurrentAuthority": false,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "Amazon Business-export-2026-02-02.json",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "index": 5,
+      "result": {
+        "content": "tenant: CALDERA\norder_batch: FILE-CLD-ORDER-BATCH-0209\npick_confirmation: FILE-CLD-PICK-CONFIRM-0208\nremittance_advice: FILE-CLD-REMIT-ADVICE-0206\nreorder_policy: FILE-CLD-REORDER-POLICY-R4\ndelivery_note: FILE-CLD-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-CLD-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-CLD-SHIFT-ROSTER-0208\nchannel_export: FILE-CLD-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-CLD-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-CLD-PRICE-BATCH-Q2\n",
+        "id": "FILE-CLD-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-AUTHORITY-MEMO-0209"
+      },
+      "index": 6,
+      "result": {
+        "content": "From: alicia.romero@caldera-sim.example\nTo: analyst@caldera-sim.example\nSubject: Caldera Packaging operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-CLD-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-CHANNEL-EXPORT-0209"
+      },
+      "index": 7,
+      "result": {
+        "content": "{\n  \"channel\": \"Amazon Business\",\n  \"exported_at\": \"2026-02-09T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Pacific Ecom Partners\",\n      \"channel_order_id\": \"AB-88101\",\n      \"currency\": \"USD\",\n      \"order_total\": 4120.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Reno Roasters\",\n      \"channel_order_id\": \"AB-88102\",\n      \"currency\": \"USD\",\n      \"order_total\": 1330.5,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Highline Apparel\",\n      \"channel_order_id\": \"AB-88103\",\n      \"currency\": \"USD\",\n      \"order_total\": 2760.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Truckee Provisions\",\n      \"channel_order_id\": \"AB-88104\",\n      \"currency\": \"USD\",\n      \"order_total\": 890.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Highline Apparel\",\n      \"channel_order_id\": \"AB-88103\",\n      \"currency\": \"USD\",\n      \"order_total\": 2760.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Desert Bloom Cosmetics\",\n      \"channel_order_id\": \"AB-88105\",\n      \"currency\": \"USD\",\n      \"order_total\": 3450.75,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Summit Gear\",\n      \"channel_order_id\": \"AB-88106\",\n      \"currency\": \"USD\",\n      \"order_total\": 2180.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Pacific Ecom Partners\",\n      \"channel_order_id\": \"AB-88101\",\n      \"currency\": \"USD\",\n      \"order_total\": 4120.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+        "id": "FILE-CLD-CHANNEL-EXPORT-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/json",
+        "name": "18-channel-export.json"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-OPS-AUDIT-LOG"
+      },
+      "index": 8,
+      "result": {
+        "content": "2026-02-03T10:12:00Z CLD partial import created SO-CLD-40039 from an earlier copy of SF-PO-51188\n2026-02-06T15:40:00Z CLD delivery note DN-CLD-0206 received at Reno plant\n2026-02-08T22:05:00Z CLD pick confirmation posted for SHP-CLD-9910\n2026-02-09T06:00:00Z CLD Amazon Business export generated\n",
+        "id": "FILE-CLD-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'shift'"
+      },
+      "index": 9,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'roster'"
+      },
+      "index": 10,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'work'"
+      },
+      "index": 11,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'report'"
+      },
+      "index": 12,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SHIFT-ROSTER-0208"
+      },
+      "index": 13,
+      "result": {
+        "content": "Staff code,Shift,Date,Approved leave\r\nCL-701,Swing,2026-02-08,no\r\nCL-702,Swing,2026-02-08,no\r\nCL-703,Swing,2026-02-08,no\r\nCL-704,Swing,2026-02-08,no\r\nCL-705,Swing,2026-02-08,no\r\nCL-706,Swing,2026-02-08,no\r\nCL-707,Swing,2026-02-08,no\r\nCL-708,Swing,2026-02-08,no\r\nCL-709,Swing,2026-02-08,no\r\nCL-710,Swing,2026-02-08,no\r\nCL-711,Swing,2026-02-08,no\r\nCL-712,Swing,2026-02-08,yes\r\nCL-713,Swing,2026-02-08,no\r\nCL-714,Swing,2026-02-08,no\r\n",
+        "id": "FILE-CLD-SHIFT-ROSTER-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "16-shift-roster.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SHIFT-REPORTS-0208"
+      },
+      "index": 14,
+      "result": {
+        "content": "staff_code,shift_date,submitted_at,minutes_over_shift_end\nCL-701,2026-02-08,23:02,0\nCL-702,2026-02-08,23:09,0\nCL-703,2026-02-08,23:20,45\nCL-704,2026-02-08,23:05,0\nCL-705,2026-02-08,23:12,0\nCL-706,2026-02-08,23:30,0\nCL-707,2026-02-08,23:01,0\nCL-708,2026-02-08,23:08,30\nCL-709,2026-02-08,23:14,0\nCL-710,2026-02-08,23:03,0\nCL-711,2026-02-08,23:16,0\n",
+        "id": "FILE-CLD-SHIFT-REPORTS-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "17-shift-work-reports.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {},
+      "index": 15,
+      "result": {
+        "count": 25,
+        "items": [
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-701",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-701",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-702",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-702",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-703",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-703",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-704",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-704",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-705",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-705",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-706",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-706",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-707",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-707",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-708",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-708",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-709",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-709",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-710",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-710",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-711",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-711",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-712",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-712",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-713",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-713",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff CL-714",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CL-714",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Carlos Mendoza",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ashley Nguyen",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Derek Holt",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Maya Patel",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Luis Herrera",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1005",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Kim Dawson",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1006",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Omar Farouk",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1007",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Tina Brooks",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": null,
+            "PersonNumber": "CLD-P1008",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "corrugator operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": 3980.0,
+            "PersonNumber": "CLD-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "corrugator operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": 3980.0,
+            "PersonNumber": "CLD-P3002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 3",
+            "HireDate": "2025-03-01",
+            "JobCode": "corrugator operator",
+            "LegalEmployerName": "Caldera Packaging",
+            "MonthlySalary": 3980.0,
+            "PersonNumber": "CLD-P3003",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {},
+      "index": 16,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "query": "shift"
+      },
+      "index": 17,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#shift-cld",
+              "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+              "ts": "2026-02-08T21:00:00Z",
+              "user": "Greg Halvorsen"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "shift"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "swing"
+      },
+      "index": 18,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#shift-cld",
+              "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+              "ts": "2026-02-08T21:00:00Z",
+              "user": "Greg Halvorsen"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "swing"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "Reno"
+      },
+      "index": 19,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Reno"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "Caldera"
+      },
+      "index": 20,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Caldera"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "cutoff"
+      },
+      "index": 21,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "cutoff"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "absence"
+      },
+      "index": 22,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "absence"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "register"
+      },
+      "index": 23,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#pricing-cld",
+              "text": "Price batch PRICE-BATCH-CLD-2026Q2 is out; policy tab in the ops register applies.",
+              "ts": "2026-02-09T08:20:00Z",
+              "user": "pricing"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "register"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'ops'"
+      },
+      "index": 24,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'log'"
+      },
+      "index": 25,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-DOCUMENT-ALERT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "15-document-alert-log.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'register'"
+      },
+      "index": 26,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "task_id": "current"
+      },
+      "index": 27,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "task"
+      },
+      "index": 28,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "TASK"
+      },
+      "index": 29,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench"
+      },
+      "index": 30,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "CALDERA"
+      },
+      "index": 31,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "caldera-packaging-reno-shift-2026-02-08"
+      },
+      "index": 32,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f4c-568b-7351-85e1-06761926efe7"
+      },
+      "index": 33,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 34,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "absences_recorded",
+                "shift_complete"
+              ],
+              "type": "string"
+            },
+            "expected_staff": {
+              "description": "Rostered staff minus approved leave",
+              "type": "integer"
+            },
+            "late_reports": {
+              "description": "Reports submitted after the cutoff",
+              "type": "integer"
+            },
+            "missing_staff": {
+              "description": "Expected staff without a report",
+              "type": "integer"
+            },
+            "overtime_hours": {
+              "description": "Total overtime hours worked",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "post_rollup_and_record_unauthorized_absences",
+                "post_rollup_no_absences",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "reporting_staff": {
+              "description": "Staff who submitted a report",
+              "type": "integer"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "expected_staff",
+            "reporting_staff",
+            "late_reports",
+            "overtime_hours",
+            "missing_staff"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Caldera Packaging",
+        "decision_options": [
+          {
+            "id": "post_rollup_and_record_unauthorized_absences",
+            "label": "Post the rollup and record an unauthorized absence for each missing worker"
+          },
+          {
+            "id": "post_rollup_no_absences",
+            "label": "Post the rollup; no absences need recording"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Record an absence for everyone without a report, including approved leave"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Post nothing and escalate to the supervisor"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-cld",
+        "prompt": "**Caldera Packaging · Reno plant · Shift work-report rollup**\n\nRoll up the swing shift reports for 2026-02-08 at the Reno plant. Greg Halvorsen wants to know who was expected once approved leave is taken out, who actually reported, who was late against the cutoff, how much overtime was worked, and who is simply missing. Record the missing people the way policy requires, post the rollup to the shift channel, and log it in the register for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "expected_staff",
+            "reporting_staff",
+            "late_reports",
+            "overtime_hours",
+            "missing_staff",
+            "source_reference"
+          ],
+          "range": "Register!A27:H27",
+          "spreadsheetId": "SHEET-CLD-OPS"
+        },
+        "status_options": [
+          {
+            "id": "absences_recorded",
+            "label": "Absences recorded"
+          },
+          {
+            "id": "shift_complete",
+            "label": "Shift complete"
+          }
+        ],
+        "task_id": "erpbench-067",
+        "tenant_code": "CALDERA"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 35,
+      "result": {
+        "error": "record not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 36,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "index": 37,
+      "result": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "personNumber='CL-713' or personNumber='CL-714'"
+      },
+      "index": 38,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'absence'"
+      },
+      "index": 39,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'attendance'"
+      },
+      "index": 40,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'policy'"
+      },
+      "index": 41,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-CLD-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-CLD-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 42,
+      "result": {
+        "messages": [
+          {
+            "from": "jordan.blake@caldera-sim.example",
+            "id": "MSG-erpbench-067-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-067 operating request",
+            "task_id": "erpbench-067"
+          },
+          {
+            "from": "pricing@caldera-sim.example",
+            "id": "MSG-CLD-PRICING-0209",
+            "internalDate": "2026-02-09T08:15:00Z",
+            "subject": "PRICE-BATCH-CLD-2026Q2 for review",
+            "task_id": null
+          },
+          {
+            "from": "monica.ruiz@caldera-sim.example",
+            "id": "MSG-CLD-HIRING-0209",
+            "internalDate": "2026-02-09T08:00:00Z",
+            "subject": "corrugator operator hiring round",
+            "task_id": null
+          },
+          {
+            "from": "alicia.romero@caldera-sim.example",
+            "id": "MSG-CLD-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Caldera Packaging operating authority for February",
+            "task_id": null
+          },
+          {
+            "from": "ecommerce@caldera-sim.example",
+            "id": "MSG-CLD-CHANNEL-0209",
+            "internalDate": "2026-02-09T06:10:00Z",
+            "subject": "Amazon Business export ready",
+            "task_id": null
+          },
+          {
+            "from": "greg.halvorsen@caldera-sim.example",
+            "id": "MSG-CLD-SUPERVISOR-0208",
+            "internalDate": "2026-02-08T23:30:00Z",
+            "subject": "Swing shift 2026-02-08 reports",
+            "task_id": null
+          },
+          {
+            "from": "billing@cascade-sim.example",
+            "id": "MSG-CLD-SUPPLIER-INVOICE-0207",
+            "internalDate": "2026-02-07T09:05:00Z",
+            "subject": "Invoice CPM-INV-2026-0207 for PO-CLD-40118",
+            "task_id": null
+          },
+          {
+            "from": "ap@sierra-sim.example",
+            "id": "MSG-CLD-REMIT-0206",
+            "internalDate": "2026-02-06T11:20:00Z",
+            "subject": "Remittance advice from Sierra Fulfillment LLC",
+            "task_id": null
+          },
+          {
+            "from": "audit@caldera-sim.example",
+            "id": "MSG-CLD-AUDITOR-0205",
+            "internalDate": "2026-02-05T14:00:00Z",
+            "subject": "Compliance audit scope",
+            "task_id": null
+          },
+          {
+            "from": "former.analyst@caldera-sim.example",
+            "id": "MSG-CLD-OLD-INSTRUCTIONS",
+            "internalDate": "2025-11-02T08:00:00Z",
+            "subject": "Old shortcuts (superseded)",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 10
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "Greg"
+      },
+      "index": 43,
+      "result": {
+        "messages": [
+          {
+            "from": "jordan.blake@caldera-sim.example",
+            "id": "MSG-erpbench-067-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-067 operating request",
+            "task_id": "erpbench-067"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "Halvorsen"
+      },
+      "index": 44,
+      "result": {
+        "messages": [
+          {
+            "from": "jordan.blake@caldera-sim.example",
+            "id": "MSG-erpbench-067-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-067 operating request",
+            "task_id": "erpbench-067"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "caldera-sim.example"
+      },
+      "index": 45,
+      "result": {
+        "messages": [
+          {
+            "from": "alicia.romero@caldera-sim.example",
+            "id": "MSG-CLD-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Caldera Packaging operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "shift"
+      },
+      "index": 46,
+      "result": {
+        "messages": [
+          {
+            "from": "jordan.blake@caldera-sim.example",
+            "id": "MSG-erpbench-067-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-067 operating request",
+            "task_id": "erpbench-067"
+          },
+          {
+            "from": "greg.halvorsen@caldera-sim.example",
+            "id": "MSG-CLD-SUPERVISOR-0208",
+            "internalDate": "2026-02-08T23:30:00Z",
+            "subject": "Swing shift 2026-02-08 reports",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-SUPERVISOR-0208"
+      },
+      "index": 47,
+      "result": {
+        "body": "Reports for the swing shift on 2026-02-08 are in the shared drive; the cutoff is 23:15. Approved leave is on the roster (FILE-CLD-SHIFT-ROSTER-0208). Anyone rostered, not on approved leave and without a report is an unauthorized absence.",
+        "from": "greg.halvorsen@caldera-sim.example",
+        "id": "MSG-CLD-SUPERVISOR-0208",
+        "internalDate": "2026-02-08T23:30:00Z",
+        "subject": "Swing shift 2026-02-08 reports",
+        "task_id": null,
+        "to": [
+          "analyst@caldera-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "UNAUTHORIZED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-713",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-067"
+      },
+      "index": 48,
+      "result": {
+        "absenceId": 100,
+        "absenceStatusCd": "UNAUTHORIZED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-713",
+        "startDate": "2026-02-08"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "UNAUTHORIZED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-714",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-067"
+      },
+      "index": 49,
+      "result": {
+        "absenceId": 101,
+        "absenceStatusCd": "UNAUTHORIZED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-714",
+        "startDate": "2026-02-08"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {},
+      "index": 50,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 100,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-713",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 101,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-714",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-067",
+        "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208."
+      },
+      "index": 51,
+      "result": {
+        "channel": "#shift-cld",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-067",
+        "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent."
+      },
+      "index": 52,
+      "result": {
+        "channel": "#ops-cld",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "body": "Review-only draft for Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+        "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+        "to": "greg.halvorsen@caldera-sim.example"
+      },
+      "index": 53,
+      "result": {
+        "error": "write is outside the active task scope"
+      },
+      "server": "gmail",
+      "success": false,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-067",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "100",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            11,
+            3,
+            1.25,
+            2,
+            "FILE-CLD-SHIFT-REPORTS-0208"
+          ]
+        ]
+      },
+      "index": 54,
+      "result": {
+        "changeId": "CHANGE-erpbench-067-1",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "updatedRange": "Register!A27:H27",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-067-REQUEST"
+      },
+      "index": 55,
+      "result": {
+        "body": "**Caldera Packaging · Reno plant · Shift work-report rollup**\n\nRoll up the swing shift reports for 2026-02-08 at the Reno plant. Greg Halvorsen wants to know who was expected once approved leave is taken out, who actually reported, who was late against the cutoff, how much overtime was worked, and who is simply missing. Record the missing people the way policy requires, post the rollup to the shift channel, and log it in the register for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "jordan.blake@caldera-sim.example",
+        "id": "MSG-erpbench-067-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-067 operating request",
+        "task_id": "erpbench-067",
+        "to": [
+          "analyst@caldera-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "body": "Review-only draft for Greg Halvorsen: Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+        "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+        "to": "jordan.blake@caldera-sim.example"
+      },
+      "index": 56,
+      "result": {
+        "error": "write is outside the active task scope"
+      },
+      "server": "gmail",
+      "success": false,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "body": "Review-only draft for Greg Halvorsen: Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+        "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+        "to": "analyst@caldera-sim.example"
+      },
+      "index": 57,
+      "result": {
+        "error": "write is outside the active task scope"
+      },
+      "server": "gmail",
+      "success": false,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "body": "Review-only draft for Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+        "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+        "task_id": "erpbench-067",
+        "to": "greg.halvorsen@caldera-sim.example"
+      },
+      "index": 58,
+      "result": {
+        "id": "DRAFT-erpbench-067",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+          "to": "greg.halvorsen@caldera-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 59,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-067"
+      },
+      "index": 60,
+      "result": {
+        "id": "DRAFT-erpbench-067",
+        "message": {
+          "body": "Review-only draft for Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+          "to": "greg.halvorsen@caldera-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "index": 61,
+      "result": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "values": [
+          [
+            "100",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            11,
+            3,
+            1.25,
+            2,
+            "FILE-CLD-SHIFT-REPORTS-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {},
+      "index": 62,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 100,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-713",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 101,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-714",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 63,
+      "result": {
+        "channel": "#ops-cld",
+        "messages": [
+          {
+            "text": "Partial import for SF-PO-51188 went in on 2026-02-03 as SO-CLD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-CLD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Please resolve erpbench-067 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-067",
+            "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld"
+      },
+      "index": 64,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "query": "absences_recorded"
+      },
+      "index": 65,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "absences_recorded"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "CL-713"
+      },
+      "index": 66,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "CL-713"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "23:20"
+      },
+      "index": 67,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "23:20"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-067",
+        "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208."
+      },
+      "index": 68,
+      "result": {
+        "channel": "#shift-cld",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 69,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-067",
+            "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "query": "absences_recorded"
+      },
+      "index": 70,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "absences_recorded"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "query": "CL-713"
+      },
+      "index": 71,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "CL-713"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "100",
+        "rationale": "Current-authority Reno swing roster has 14 staff with CL-712 on approved leave, leaving 13 expected. The current-authority work-report file has 11 reports. Against the 23:15 cutoff, CL-703, CL-706, and CL-711 are late. Overtime is 45 minutes for CL-703 plus 30 minutes for CL-708, totaling 1.25 hours. CL-713 and CL-714 have no report and no approved leave, so unauthorized absence records 100 and 101 were created. Approved leave for CL-712 was not recorded as unauthorized.",
+        "source_refs": [
+          "FILE-CLD-SHIFT-ROSTER-0208",
+          "FILE-CLD-SHIFT-REPORTS-0208",
+          "MSG-CLD-SUPERVISOR-0208",
+          "FILE-CLD-AUTHORITY-MEMO-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-067"
+      },
+      "index": 72,
+      "result": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "decision_id": "DECISION-erpbench-067",
+        "primary_record": "100",
+        "rationale": "Current-authority Reno swing roster has 14 staff with CL-712 on approved leave, leaving 13 expected. The current-authority work-report file has 11 reports. Against the 23:15 cutoff, CL-703, CL-706, and CL-711 are late. Overtime is 45 minutes for CL-703 plus 30 minutes for CL-708, totaling 1.25 hours. CL-713 and CL-714 have no report and no approved leave, so unauthorized absence records 100 and 101 were created. Approved leave for CL-712 was not recorded as unauthorized.",
+        "source_refs": [
+          "FILE-CLD-SHIFT-ROSTER-0208",
+          "FILE-CLD-SHIFT-REPORTS-0208",
+          "MSG-CLD-SUPERVISOR-0208",
+          "FILE-CLD-AUTHORITY-MEMO-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.25,
+          "primary_record": "100",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 11,
+          "source_reference": "FILE-CLD-SHIFT-REPORTS-0208"
+        },
+        "task_id": "erpbench-067"
+      },
+      "index": 73,
+      "result": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.25,
+          "primary_record": "100",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 11,
+          "source_reference": "FILE-CLD-SHIFT-REPORTS-0208"
+        },
+        "durable": true,
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 74,
+      "result": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "decision_id": "DECISION-erpbench-067",
+        "primary_record": "100",
+        "rationale": "Current-authority Reno swing roster has 14 staff with CL-712 on approved leave, leaving 13 expected. The current-authority work-report file has 11 reports. Against the 23:15 cutoff, CL-703, CL-706, and CL-711 are late. Overtime is 45 minutes for CL-703 plus 30 minutes for CL-708, totaling 1.25 hours. CL-713 and CL-714 have no report and no approved leave, so unauthorized absence records 100 and 101 were created. Approved leave for CL-712 was not recorded as unauthorized.",
+        "source_refs": [
+          "FILE-CLD-SHIFT-ROSTER-0208",
+          "FILE-CLD-SHIFT-REPORTS-0208",
+          "MSG-CLD-SUPERVISOR-0208",
+          "FILE-CLD-AUTHORITY-MEMO-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 75,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-067",
+            "text": "Review-only rollup — Caldera Packaging, Reno plant, Swing shift 2026-02-08\nDecision status: absences_recorded\nCutoff: 23:15\nExpected after approved leave (13): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711, CL-713, CL-714. CL-712 was on approved leave.\nReported (11): CL-701, CL-702, CL-703, CL-704, CL-705, CL-706, CL-707, CL-708, CL-709, CL-710, CL-711.\nLate (3): CL-703 at 23:20, CL-706 at 23:30, CL-711 at 23:16.\nOvertime: 1.25 hours total (CL-703 45 minutes; CL-708 30 minutes).\nMissing (2): CL-713 and CL-714. Unauthorized absence records: 100 and 101.\nSources: FILE-CLD-SHIFT-ROSTER-0208; FILE-CLD-SHIFT-REPORTS-0208.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "index": 76,
+      "result": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "values": [
+          [
+            "100",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            11,
+            3,
+            1.25,
+            2,
+            "FILE-CLD-SHIFT-REPORTS-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-067"
+      },
+      "index": 77,
+      "result": {
+        "id": "DRAFT-erpbench-067",
+        "message": {
+          "body": "Review-only draft for Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+          "to": "greg.halvorsen@caldera-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {},
+      "index": 78,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 100,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-713",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 101,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-714",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 79,
+      "result": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.25,
+          "primary_record": "100",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 11,
+          "source_reference": "FILE-CLD-SHIFT-REPORTS-0208"
+        },
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 80,
+      "result": {
+        "channel": "#ops-cld",
+        "messages": [
+          {
+            "text": "Partial import for SF-PO-51188 went in on 2026-02-03 as SO-CLD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-CLD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Please resolve erpbench-067 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-067",
+        "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent."
+      },
+      "index": 81,
+      "result": {
+        "channel": "#ops-cld",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 82,
+      "result": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "decision_id": "DECISION-erpbench-067",
+        "primary_record": "100",
+        "rationale": "Current-authority Reno swing roster has 14 staff with CL-712 on approved leave, leaving 13 expected. The current-authority work-report file has 11 reports. Against the 23:15 cutoff, CL-703, CL-706, and CL-711 are late. Overtime is 45 minutes for CL-703 plus 30 minutes for CL-708, totaling 1.25 hours. CL-713 and CL-714 have no report and no approved leave, so unauthorized absence records 100 and 101 were created. Approved leave for CL-712 was not recorded as unauthorized.",
+        "source_refs": [
+          "FILE-CLD-SHIFT-ROSTER-0208",
+          "FILE-CLD-SHIFT-REPORTS-0208",
+          "MSG-CLD-SUPERVISOR-0208",
+          "FILE-CLD-AUTHORITY-MEMO-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {},
+      "index": 83,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "absenceId": 1,
+            "absenceStatusCd": "APPROVED",
+            "absenceType": "Approved leave",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-712",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 100,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-713",
+            "startDate": "2026-02-08"
+          },
+          {
+            "absenceId": 101,
+            "absenceStatusCd": "UNAUTHORIZED",
+            "absenceType": "Unauthorized absence",
+            "employer": "Caldera Packaging",
+            "endDate": "2026-02-08",
+            "personNumber": "CL-714",
+            "startDate": "2026-02-08"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "index": 84,
+      "result": {
+        "range": "Register!A27:H27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "values": [
+          [
+            "100",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            11,
+            3,
+            1.25,
+            2,
+            "FILE-CLD-SHIFT-REPORTS-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 85,
+      "result": {
+        "channel": "#ops-cld",
+        "messages": [
+          {
+            "text": "Partial import for SF-PO-51188 went in on 2026-02-03 as SO-CLD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-CLD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Please resolve erpbench-067 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Alicia Romero"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-067",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-067",
+            "text": "Review handoff — Caldera Packaging / Reno / Swing 2026-02-08\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record: 101)\nexpected_staff=13; reporting_staff=11; late_reports=3; overtime_hours=1.25; missing_staff=2\nMissing workers: CL-713, CL-714. Cutoff: 23:15. Source: FILE-CLD-SHIFT-REPORTS-0208 (roster: FILE-CLD-SHIFT-ROSTER-0208).\nReview-only; not sent.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-067"
+      },
+      "index": 86,
+      "result": {
+        "id": "DRAFT-erpbench-067",
+        "message": {
+          "body": "Review-only draft for Caldera Packaging, Reno plant, swing shift 2026-02-08.\n\nrecommended_option=post_rollup_and_record_unauthorized_absences\ndecision_status=absences_recorded\nprimary_record=100 (additional unauthorized absence record 101)\nExpected after approved leave: 13. Reporting: 11. Late against the 23:15 cutoff: 3 (CL-703, CL-706, CL-711). Overtime: 1.25 hours. Missing: 2 (CL-713 and CL-714).\n\nUnauthorized absence records created for CL-713 and CL-714: 100 and 101. CL-712 was approved leave and excluded from expected staff.\n\nSources: FILE-CLD-SHIFT-ROSTER-0208 and FILE-CLD-SHIFT-REPORTS-0208. This message remains a review-only draft.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review draft — Reno swing shift rollup for 2026-02-08",
+          "to": "greg.halvorsen@caldera-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "index": 87,
+      "result": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.25,
+          "primary_record": "100",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 11,
+          "source_reference": "FILE-CLD-SHIFT-REPORTS-0208"
+        },
+        "task_id": "erpbench-067"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-cld",
+        "task_id": "erpbench-067"
+      },
+      "index": 88,
+      "result": {
+        "channel": "#shift-cld",
+        "messages": [
+          {
+            "text": "Swing shift 2026-02-08: reports due by 23:15; overtime is measured from shift end.",
+            "thread_ts": "THREAD-CLD-SHIFT",
+            "ts": "2026-02-08T21:00:00Z",
+            "user": "Greg Halvorsen"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    }
+  ],
+  "trial_name": "erpbench-067__ooi7sjW"
+}

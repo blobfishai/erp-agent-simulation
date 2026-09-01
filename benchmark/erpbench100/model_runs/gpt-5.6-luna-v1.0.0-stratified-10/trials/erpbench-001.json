@@ -1,0 +1,1605 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 40.0,
+    "decision": 100.0,
+    "discovery": 73.33,
+    "erp_state": 100.0,
+    "handoff": 100.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.04092471999999999,
+  "failed_checks": [
+    "discovery:authority_memo",
+    "discovery:control_thread",
+    "discovery:ops_register",
+    "discovery:superseded_prices",
+    "containment:task_scope"
+  ],
+  "finished_at": "2026-09-01T23:40:40.030890Z",
+  "receipt_sha256": "30f5ba921b42909275f7219b5852df9c03f5ac69ae279fb4cc66e2cff5e45524",
+  "reward": 0.93,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 93.0,
+  "started_at": "2026-09-01T23:33:28.071969Z",
+  "strict_pass": false,
+  "successful_tool_calls": 43,
+  "task_digest": "sha256:ae0d10c164da8a9fd56a7182cafcd3e62acb2420b311588d10af0b5a01f6534d",
+  "task_id": "erpbench-001",
+  "tokens": {
+    "cached": 868096,
+    "input": 927494,
+    "output": 9736
+  },
+  "tool_calls": 44,
+  "trace": [
+    {
+      "arguments": {
+        "task_id": "CA-PO-77310"
+      },
+      "index": 1,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "query": "CA-PO-77310"
+      },
+      "index": 2,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#ops-nbr",
+              "text": "Partial import for CA-PO-77310 went in on 2026-02-03 as SO-NBR-40039; the rest of the lines are still pending.",
+              "ts": "2026-02-03T10:20:00Z",
+              "user": "Marcus Lee"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "CA-PO-77310"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "CA-PO-77310"
+      },
+      "index": 3,
+      "result": {
+        "messages": [
+          {
+            "from": "dana.whitfield@northbridge-sim.example",
+            "id": "MSG-erpbench-001-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-001 operating request",
+            "task_id": "erpbench-001"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'CA-PO-77310'"
+      },
+      "index": 4,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-NBR-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-NBR-ORDER-BATCH-0203",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "02-prior-partial-import.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-NBR-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Cascade'"
+      },
+      "index": 5,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-NBR-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-NBR-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "index": 6,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "accepted_lines": {
+              "description": "Spreadsheet lines imported",
+              "type": "integer"
+            },
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "submitted",
+                "awaiting_credit_release"
+              ],
+              "type": "string"
+            },
+            "duplicate_lines": {
+              "description": "Lines already imported on the earlier partial import",
+              "type": "integer"
+            },
+            "imported_units": {
+              "description": "Total quantity on the imported lines",
+              "type": "integer"
+            },
+            "order_total": {
+              "description": "Imported order value at current list prices",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "import_accepted_lines_and_submit",
+                "import_accepted_lines_and_hold_submission",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "rejected_lines": {
+              "description": "Spreadsheet lines not imported (duplicates and inactive items)",
+              "type": "integer"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "accepted_lines",
+            "rejected_lines",
+            "imported_units",
+            "order_total",
+            "duplicate_lines"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Northbridge Fastener Works",
+        "decision_options": [
+          {
+            "id": "import_accepted_lines_and_submit",
+            "label": "Import the accepted lines at current list prices and submit the order"
+          },
+          {
+            "id": "import_accepted_lines_and_hold_submission",
+            "label": "Import the accepted lines but hold submission for credit release"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Import every spreadsheet line at the spreadsheet prices"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Stop and escalate the whole batch without importing"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-nbr",
+        "prompt": "**Northbridge Fastener Works · Toledo plant · Customer order import**\n\nCascade Assembly Inc. sent their consolidated CA-PO-77310 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Dana Whitfield ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "accepted_lines",
+            "rejected_lines",
+            "imported_units",
+            "order_total",
+            "duplicate_lines",
+            "source_reference"
+          ],
+          "range": "Register!A21:H21",
+          "spreadsheetId": "SHEET-NBR-OPS"
+        },
+        "status_options": [
+          {
+            "id": "submitted",
+            "label": "Order submitted"
+          },
+          {
+            "id": "awaiting_credit_release",
+            "label": "Order held awaiting credit release"
+          }
+        ],
+        "task_id": "erpbench-001",
+        "tenant_code": "NORTHBRIDGE"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-001-REQUEST"
+      },
+      "index": 7,
+      "result": {
+        "body": "**Northbridge Fastener Works · Toledo plant · Customer order import**\n\nCascade Assembly Inc. sent their consolidated CA-PO-77310 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Dana Whitfield ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "dana.whitfield@northbridge-sim.example",
+        "id": "MSG-erpbench-001-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-001 operating request",
+        "task_id": "erpbench-001",
+        "to": [
+          "analyst@northbridge-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-ORDER-BATCH-0209"
+      },
+      "index": 8,
+      "result": {
+        "id": "FILE-NBR-ORDER-BATCH-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "01-consolidated-order-batch.xlsx",
+        "size": 545,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-ORDER-BATCH-0203"
+      },
+      "index": 9,
+      "result": {
+        "id": "FILE-NBR-ORDER-BATCH-0203",
+        "isCurrentAuthority": false,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "modifiedTime": "2026-02-03T10:00:00Z",
+        "name": "02-prior-partial-import.xlsx",
+        "size": 166,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-OPS-AUDIT-LOG"
+      },
+      "index": 10,
+      "result": {
+        "id": "FILE-NBR-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "26-ops-audit.log",
+        "size": 290,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-CREDIT-POLICY-R6"
+      },
+      "index": 11,
+      "result": {
+        "id": "FILE-NBR-CREDIT-POLICY-R6",
+        "isCurrentAuthority": true,
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "08-credit-policy.md",
+        "size": 447,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-ORDER-BATCH-0209"
+      },
+      "index": 12,
+      "result": {
+        "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,CA-PO-77310,FST-M8-40,\"M8 x 40 hex bolt, zinc\",1200,0.89\r\n2,CA-PO-77310,FST-M10-60,\"M10 x 60 hex bolt, zinc\",800,1.4\r\n3,CA-PO-77310,NUT-M8-NYL,M8 nylon lock nut,640,0.2\r\n4,CA-PO-77310,WSH-M10-SS,\"M10 flat washer, stainless\",300,0.12\r\n5,CA-PO-77310,FST-M8-40,\"M8 x 40 hex bolt, zinc\",450,0.89\r\n6,CA-PO-77310,ANC-12-100,12 x 100 wedge anchor,220,2.6\r\n7,CA-PO-77310,FST-M6-20-OLD,M6 x 20 hex bolt (discontinued),150,0.55\r\n8,CA-PO-77310,NUT-M8-NYL,M8 nylon lock nut,500,0.2\r\n",
+        "id": "FILE-NBR-ORDER-BATCH-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "01-consolidated-order-batch.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-OPS-AUDIT-LOG"
+      },
+      "index": 13,
+      "result": {
+        "content": "2026-02-03T10:12:00Z NBR partial import created SO-NBR-40039 from an earlier copy of CA-PO-77310\n2026-02-06T15:40:00Z NBR delivery note DN-NBR-0206 received at Toledo plant\n2026-02-08T22:05:00Z NBR pick confirmation posted for SHP-NBR-4471\n2026-02-09T06:00:00Z NBR Shopify export generated\n",
+        "id": "FILE-NBR-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-CREDIT-POLICY-R6"
+      },
+      "index": 14,
+      "result": {
+        "content": "# Northbridge Fastener Works credit policy (revision 6, effective 2026-01-15)\n\n- Credit limit for Cascade Assembly Inc.: 180000.00 USD.\n- Recommend a credit hold when past-due receivables exceed 25% of the credit limit after all identified receipts are applied.\n- Credit holds are approved only by Priya Natarajan; analysts recommend, they do not apply holds.\n- Receipts are applied only to the invoices named on the customer's remittance advice.\n",
+        "id": "FILE-NBR-CREDIT-POLICY-R6",
+        "isCurrentAuthority": true,
+        "mimeType": "text/markdown",
+        "name": "08-credit-policy.md"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-REMIT-ADVICE-0206"
+      },
+      "index": 15,
+      "result": {
+        "content": "Cascade Assembly Inc. — remittance advice\nPayee: Northbridge Fastener Works\nPayment date: 2026-02-06   Method: Wire\nAmount paid: 41180.00 USD\nInvoices covered by this payment:\n  INV-NBR-51120  18400.00\n  INV-NBR-51231  22780.00\nInvoices not included in this remittance are disputed or scheduled separately.\n",
+        "id": "FILE-NBR-REMIT-ADVICE-0206",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "name": "06-remittance-advice.pdf"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-NBR-40039"
+      },
+      "index": 16,
+      "result": {
+        "BuyingPartyName": "Cascade Assembly Inc.",
+        "BuyingPartyNumber": "CUST-10412",
+        "CreatedBy": "ops_lead",
+        "CreationDate": "2026-02-03T10:12:00Z",
+        "CustomerPONumber": "CA-PO-77310",
+        "LastUpdateDate": "2026-02-03T10:12:00Z",
+        "OrderKey": "SO-NBR-40039",
+        "OrderNumber": "SO-NBR-40039",
+        "OrderTotal": 473.0,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0203",
+        "SourceTransactionSystem": "OPS",
+        "StatusCode": "Awaiting Shipping",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 450,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 500,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='CA-PO-77310'"
+      },
+      "index": 17,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "BuyingPartyName": "Cascade Assembly Inc.",
+            "BuyingPartyNumber": "CUST-10412",
+            "CreatedBy": "ops_lead",
+            "CreationDate": "2026-02-03T10:12:00Z",
+            "CustomerPONumber": "CA-PO-77310",
+            "LastUpdateDate": "2026-02-03T10:12:00Z",
+            "OrderKey": "SO-NBR-40039",
+            "OrderNumber": "SO-NBR-40039",
+            "OrderTotal": 473.0,
+            "RequestedFulfillmentOrganizationCode": "NBR1",
+            "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0203",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Awaiting Shipping",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 2
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {},
+      "index": 18,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "ItemDescription": "12 x 100 wedge anchor",
+            "ItemId": 300031,
+            "ItemNumber": "ANC-12-100",
+            "ItemStatusValue": "Active",
+            "ListPrice": 2.45,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "M10 x 60 hex bolt, zinc",
+            "ItemId": 300010,
+            "ItemNumber": "FST-M10-60",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.32,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "M6 x 20 hex bolt (discontinued)",
+            "ItemId": 300038,
+            "ItemNumber": "FST-M6-20-OLD",
+            "ItemStatusValue": "Inactive",
+            "ListPrice": 0.52,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "M8 x 40 hex bolt, zinc",
+            "ItemId": 300003,
+            "ItemNumber": "FST-M8-40",
+            "ItemStatusValue": "Active",
+            "ListPrice": 0.84,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "M8 nylon lock nut",
+            "ItemId": 300017,
+            "ItemNumber": "NUT-M8-NYL",
+            "ItemStatusValue": "Active",
+            "ListPrice": 0.19,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "M10 flat washer, stainless",
+            "ItemId": 300024,
+            "ItemNumber": "WSH-M10-SS",
+            "ItemStatusValue": "Active",
+            "ListPrice": 0.11,
+            "OrganizationCode": "NBR1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {},
+      "index": 19,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "BalanceDue": 18400.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900003,
+            "DueDate": "2026-01-06",
+            "EnteredAmount": 18400.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51120"
+          },
+          {
+            "BalanceDue": 9650.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900014,
+            "DueDate": "2026-01-19",
+            "EnteredAmount": 9650.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51188"
+          },
+          {
+            "BalanceDue": 22780.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900025,
+            "DueDate": "2026-01-31",
+            "EnteredAmount": 22780.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51231"
+          },
+          {
+            "BalanceDue": 14300.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900036,
+            "DueDate": "2026-02-15",
+            "EnteredAmount": 14300.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51302"
+          },
+          {
+            "BalanceDue": 3200.0,
+            "BillToCustomerNumber": "CUST-NBR-DECOY1",
+            "CustomerTransactionId": 999003,
+            "DueDate": "2026-02-19",
+            "EnteredAmount": 3200.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-20",
+            "TransactionNumber": "INV-NBR-DECOY"
+          },
+          {
+            "BalanceDue": 7920.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900047,
+            "DueDate": "2026-02-27",
+            "EnteredAmount": 7920.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51377"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {},
+      "index": 20,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "BusinessUnit": "Northbridge Manufacturing",
+            "Currency": "USD",
+            "CustomerAccountNumber": "CUST-10412",
+            "ReceiptAmount": 4400.0,
+            "ReceiptDate": "2026-01-22",
+            "ReceiptMethod": "Wire",
+            "ReceiptNumber": "RCPT-NBR-PRIOR",
+            "StandardReceiptId": 930003,
+            "Status": "Applied",
+            "remittanceReferences": [
+              {
+                "ApplyAmount": 4400.0,
+                "ReferenceNumber": "INV-NBR-PRIOR",
+                "ReferenceType": "INVOICE"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "q": "OrderNumber='CA-PO-77310'"
+      },
+      "index": 21,
+      "result": {
+        "count": 0,
+        "items": []
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "index": 22,
+      "result": {
+        "AccountId": "CUST-10412",
+        "AsOfDate": "2026-02-09",
+        "CreditHoldFlag": false,
+        "CreditLimit": 180000.0,
+        "CustomerName": "Cascade Assembly Inc.",
+        "OpenReceivablesAmount": 73050.0,
+        "OpenTransactions": 5,
+        "PastDueAmount": 50830.0,
+        "PaymentTerms": "Net 30"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Northbridge Manufacturing",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-10412",
+        "ReceiptAmount": 41180,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "Wire",
+        "ReceiptNumber": "RCPT-NBR-REMIT-0206",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 18400,
+            "ReferenceNumber": "INV-NBR-51120",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 22780,
+            "ReferenceNumber": "INV-NBR-51231",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-001"
+      },
+      "index": 23,
+      "result": {
+        "BusinessUnit": "Northbridge Manufacturing",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-10412",
+        "ReceiptAmount": 41180.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "Wire",
+        "ReceiptNumber": "RCPT-NBR-REMIT-0206",
+        "StandardReceiptId": 950051,
+        "Status": "Applied",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 18400,
+            "ReferenceNumber": "INV-NBR-51120",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 22780,
+            "ReferenceNumber": "INV-NBR-51231",
+            "ReferenceType": "INVOICE"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-10412'"
+      },
+      "index": 24,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "BusinessUnit": "Northbridge Manufacturing",
+            "Currency": "USD",
+            "CustomerAccountNumber": "CUST-10412",
+            "ReceiptAmount": 4400.0,
+            "ReceiptDate": "2026-01-22",
+            "ReceiptMethod": "Wire",
+            "ReceiptNumber": "RCPT-NBR-PRIOR",
+            "StandardReceiptId": 930003,
+            "Status": "Applied",
+            "remittanceReferences": [
+              {
+                "ApplyAmount": 4400.0,
+                "ReferenceNumber": "INV-NBR-PRIOR",
+                "ReferenceType": "INVOICE"
+              }
+            ]
+          },
+          {
+            "BusinessUnit": "Northbridge Manufacturing",
+            "Currency": "USD",
+            "CustomerAccountNumber": "CUST-10412",
+            "ReceiptAmount": 41180.0,
+            "ReceiptDate": "2026-02-06",
+            "ReceiptMethod": "Wire",
+            "ReceiptNumber": "RCPT-NBR-REMIT-0206",
+            "StandardReceiptId": 950051,
+            "Status": "Applied",
+            "remittanceReferences": [
+              {
+                "ApplyAmount": 18400,
+                "ReferenceNumber": "INV-NBR-51120",
+                "ReferenceType": "INVOICE"
+              },
+              {
+                "ApplyAmount": 22780,
+                "ReferenceNumber": "INV-NBR-51231",
+                "ReferenceType": "INVOICE"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-10412'"
+      },
+      "index": 25,
+      "result": {
+        "count": 5,
+        "items": [
+          {
+            "BalanceDue": 0.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900003,
+            "DueDate": "2026-01-06",
+            "EnteredAmount": 18400.0,
+            "InvoiceStatus": "Closed",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51120"
+          },
+          {
+            "BalanceDue": 9650.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900014,
+            "DueDate": "2026-01-19",
+            "EnteredAmount": 9650.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51188"
+          },
+          {
+            "BalanceDue": 0.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900025,
+            "DueDate": "2026-01-31",
+            "EnteredAmount": 22780.0,
+            "InvoiceStatus": "Closed",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51231"
+          },
+          {
+            "BalanceDue": 14300.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900036,
+            "DueDate": "2026-02-15",
+            "EnteredAmount": 14300.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51302"
+          },
+          {
+            "BalanceDue": 7920.0,
+            "BillToCustomerNumber": "CUST-10412",
+            "CustomerTransactionId": 900047,
+            "DueDate": "2026-02-27",
+            "EnteredAmount": 7920.0,
+            "InvoiceStatus": "Open",
+            "TransactionDate": "2026-01-05",
+            "TransactionNumber": "INV-NBR-51377"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "index": 26,
+      "result": {
+        "AccountId": "CUST-10412",
+        "AsOfDate": "2026-02-09",
+        "CreditHoldFlag": false,
+        "CreditLimit": 180000.0,
+        "CustomerName": "Cascade Assembly Inc.",
+        "OpenReceivablesAmount": 31870.0,
+        "OpenTransactions": 3,
+        "PastDueAmount": 9650.0,
+        "PaymentTerms": "Net 30"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Cascade Assembly Inc.",
+        "BuyingPartyNumber": "CUST-10412",
+        "CustomerPONumber": "CA-PO-77310",
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 1200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M10-60",
+            "UnitListPrice": 1.32
+          },
+          {
+            "OrderedQuantity": 640,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "WSH-M10-SS",
+            "UnitListPrice": 0.11
+          },
+          {
+            "OrderedQuantity": 220,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANC-12-100",
+            "UnitListPrice": 2.45
+          }
+        ],
+        "task_id": "erpbench-001"
+      },
+      "index": 27,
+      "result": {
+        "BuyingPartyName": "Cascade Assembly Inc.",
+        "BuyingPartyNumber": "CUST-10412",
+        "CreatedBy": "analyst",
+        "CreationDate": "2026-02-09T09:00:00Z",
+        "CustomerPONumber": "CA-PO-77310",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "OrderKey": "SO-NBR-50011",
+        "OrderNumber": "SO-NBR-50011",
+        "OrderTotal": 2757.6,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "StatusCode": "Booked",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 1200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M10-60",
+            "UnitListPrice": 1.32
+          },
+          {
+            "OrderedQuantity": 640,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "WSH-M10-SS",
+            "UnitListPrice": 0.11
+          },
+          {
+            "OrderedQuantity": 220,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANC-12-100",
+            "UnitListPrice": 2.45
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-NBR-50011"
+      },
+      "index": 28,
+      "result": {
+        "BuyingPartyName": "Cascade Assembly Inc.",
+        "BuyingPartyNumber": "CUST-10412",
+        "CreatedBy": "analyst",
+        "CreationDate": "2026-02-09T09:00:00Z",
+        "CustomerPONumber": "CA-PO-77310",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "OrderKey": "SO-NBR-50011",
+        "OrderNumber": "SO-NBR-50011",
+        "OrderTotal": 2757.6,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "StatusCode": "Booked",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 1200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M10-60",
+            "UnitListPrice": 1.32
+          },
+          {
+            "OrderedQuantity": 640,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "WSH-M10-SS",
+            "UnitListPrice": 0.11
+          },
+          {
+            "OrderedQuantity": 220,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANC-12-100",
+            "UnitListPrice": 2.45
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "index": 29,
+      "result": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='CA-PO-77310'"
+      },
+      "index": 30,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "BuyingPartyName": "Cascade Assembly Inc.",
+            "BuyingPartyNumber": "CUST-10412",
+            "CreatedBy": "ops_lead",
+            "CreationDate": "2026-02-03T10:12:00Z",
+            "CustomerPONumber": "CA-PO-77310",
+            "LastUpdateDate": "2026-02-03T10:12:00Z",
+            "OrderKey": "SO-NBR-40039",
+            "OrderNumber": "SO-NBR-40039",
+            "OrderTotal": 473.0,
+            "RequestedFulfillmentOrganizationCode": "NBR1",
+            "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0203",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Awaiting Shipping",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 2
+          },
+          {
+            "BuyingPartyName": "Cascade Assembly Inc.",
+            "BuyingPartyNumber": "CUST-10412",
+            "CreatedBy": "analyst",
+            "CreationDate": "2026-02-09T09:00:00Z",
+            "CustomerPONumber": "CA-PO-77310",
+            "LastUpdateDate": "2026-02-09T09:00:00Z",
+            "OrderKey": "SO-NBR-50011",
+            "OrderNumber": "SO-NBR-50011",
+            "OrderTotal": 2757.6,
+            "RequestedFulfillmentOrganizationCode": "NBR1",
+            "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Booked",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 5
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-001",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-NBR-50011",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            3160,
+            2757.6,
+            2,
+            "FILE-NBR-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "index": 31,
+      "result": {
+        "changeId": "CHANGE-erpbench-001-1",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "updatedRange": "Register!A21:H21",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "index": 32,
+      "result": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "values": [
+          [
+            "SO-NBR-50011",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            3160,
+            2757.6,
+            2,
+            "FILE-NBR-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "body": "Hi Dana,\n\nCA-PO-77310 has been processed under decision option import_accepted_lines_and_submit.\n\nPrimary ERP record: SO-NBR-50011 (Booked; submitted).\nAccepted: 5 lines, 3,160 units.\nRejected: 3 lines — 2 duplicates already on SO-NBR-40039 and 1 inactive item (FST-M6-20-OLD).\nOrder total at current NBR1 list prices: $2,757.60.\n\nFor credit review, the $41,180 remittance was applied to INV-NBR-51120 and INV-NBR-51231. Cascade's remaining past-due balance is $9,650, below the $45,000 policy trigger, with no credit hold.\n\nThe import is logged in Register!A21:H21. This email is saved as a review-only draft and has not been sent.\n\nBest,\nNorthbridge Operations",
+        "subject": "Re: CA-PO-77310 confirmation — SO-NBR-50011",
+        "task_id": "erpbench-001",
+        "to": "dana.whitfield@northbridge-sim.example"
+      },
+      "index": 33,
+      "result": {
+        "id": "DRAFT-erpbench-001",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Re: CA-PO-77310 confirmation — SO-NBR-50011",
+          "to": "dana.whitfield@northbridge-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-001",
+        "text": "Review handoff — CA-PO-77310: decision_status=submitted; recommended_option=import_accepted_lines_and_submit; primary_record=SO-NBR-50011 (Booked, submitted). Accepted 5 lines / rejected 3 (2 duplicates already on SO-NBR-40039, 1 inactive); imported_units=3,160; order_total=$2,757.60. Credit: $41,180 remittance applied to INV-NBR-51120 and INV-NBR-51231; past_due=$9,650, below the $45,000 policy trigger. Register!A21:H21 updated. Outbound status: draft_for_review."
+      },
+      "index": 34,
+      "result": {
+        "channel": "#ops-nbr",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review handoff — CA-PO-77310: decision_status=submitted; recommended_option=import_accepted_lines_and_submit; primary_record=SO-NBR-50011 (Booked, submitted). Accepted 5 lines / rejected 3 (2 duplicates already on SO-NBR-40039, 1 inactive); imported_units=3,160; order_total=$2,757.60. Credit: $41,180 remittance applied to INV-NBR-51120 and INV-NBR-51231; past_due=$9,650, below the $45,000 policy trigger. Register!A21:H21 updated. Outbound status: draft_for_review."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-NBR-50011",
+        "rationale": "The current-authority batch has 8 rows. Rows 5 and 8 duplicate quantities already imported on SO-NBR-40039, and FST-M6-20-OLD is inactive. The remaining 5 active lines were imported at current NBR1 list prices for 3,160 units and $2,757.60. The $41,180 remittance was applied to the two invoices named on the advice; account readback shows $9,650 past due versus the $45,000 policy trigger (25% of the $180,000 limit), with no credit hold, so the order was submitted.",
+        "source_refs": [
+          "FILE-NBR-ORDER-BATCH-0209",
+          "SO-NBR-40039",
+          "NBR1-current-item-list",
+          "FILE-NBR-CREDIT-POLICY-R6",
+          "FILE-NBR-REMIT-ADVICE-0206",
+          "RCPT-NBR-REMIT-0206",
+          "SO-NBR-50011",
+          "FILE-NBR-OPS-AUDIT-LOG"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-001"
+      },
+      "index": 35,
+      "result": {
+        "decision": "import_accepted_lines_and_submit",
+        "decision_id": "DECISION-erpbench-001",
+        "primary_record": "SO-NBR-50011",
+        "rationale": "The current-authority batch has 8 rows. Rows 5 and 8 duplicate quantities already imported on SO-NBR-40039, and FST-M6-20-OLD is inactive. The remaining 5 active lines were imported at current NBR1 list prices for 3,160 units and $2,757.60. The $41,180 remittance was applied to the two invoices named on the advice; account readback shows $9,650 past due versus the $45,000 policy trigger (25% of the $180,000 limit), with no credit hold, so the order was submitted.",
+        "source_refs": [
+          "FILE-NBR-ORDER-BATCH-0209",
+          "SO-NBR-40039",
+          "NBR1-current-item-list",
+          "FILE-NBR-CREDIT-POLICY-R6",
+          "FILE-NBR-REMIT-ADVICE-0206",
+          "RCPT-NBR-REMIT-0206",
+          "SO-NBR-50011",
+          "FILE-NBR-OPS-AUDIT-LOG"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-001"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "index": 36,
+      "result": {
+        "decision": "import_accepted_lines_and_submit",
+        "decision_id": "DECISION-erpbench-001",
+        "primary_record": "SO-NBR-50011",
+        "rationale": "The current-authority batch has 8 rows. Rows 5 and 8 duplicate quantities already imported on SO-NBR-40039, and FST-M6-20-OLD is inactive. The remaining 5 active lines were imported at current NBR1 list prices for 3,160 units and $2,757.60. The $41,180 remittance was applied to the two invoices named on the advice; account readback shows $9,650 past due versus the $45,000 policy trigger (25% of the $180,000 limit), with no credit hold, so the order was submitted.",
+        "source_refs": [
+          "FILE-NBR-ORDER-BATCH-0209",
+          "SO-NBR-40039",
+          "NBR1-current-item-list",
+          "FILE-NBR-CREDIT-POLICY-R6",
+          "FILE-NBR-REMIT-ADVICE-0206",
+          "RCPT-NBR-REMIT-0206",
+          "SO-NBR-50011",
+          "FILE-NBR-OPS-AUDIT-LOG"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-001"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-NBR-50011"
+      },
+      "index": 37,
+      "result": {
+        "BuyingPartyName": "Cascade Assembly Inc.",
+        "BuyingPartyNumber": "CUST-10412",
+        "CreatedBy": "analyst",
+        "CreationDate": "2026-02-09T09:00:00Z",
+        "CustomerPONumber": "CA-PO-77310",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "OrderKey": "SO-NBR-50011",
+        "OrderNumber": "SO-NBR-50011",
+        "OrderTotal": 2757.6,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "StatusCode": "Booked",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 1200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M10-60",
+            "UnitListPrice": 1.32
+          },
+          {
+            "OrderedQuantity": 640,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "WSH-M10-SS",
+            "UnitListPrice": 0.11
+          },
+          {
+            "OrderedQuantity": 220,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANC-12-100",
+            "UnitListPrice": 2.45
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-001"
+      },
+      "index": 38,
+      "result": {
+        "channel": "#ops-nbr",
+        "messages": [
+          {
+            "text": "Partial import for CA-PO-77310 went in on 2026-02-03 as SO-NBR-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-NBR-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Marcus Lee"
+          },
+          {
+            "text": "Please resolve erpbench-001 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-001",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Marcus Lee"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-001",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-001",
+            "text": "Review handoff — CA-PO-77310: decision_status=submitted; recommended_option=import_accepted_lines_and_submit; primary_record=SO-NBR-50011 (Booked, submitted). Accepted 5 lines / rejected 3 (2 duplicates already on SO-NBR-40039, 1 inactive); imported_units=3,160; order_total=$2,757.60. Credit: $41,180 remittance applied to INV-NBR-51120 and INV-NBR-51231; past_due=$9,650, below the $45,000 policy trigger. Register!A21:H21 updated. Outbound status: draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-001"
+      },
+      "index": 39,
+      "result": {
+        "id": "DRAFT-erpbench-001",
+        "message": {
+          "body": "Hi Dana,\n\nCA-PO-77310 has been processed under decision option import_accepted_lines_and_submit.\n\nPrimary ERP record: SO-NBR-50011 (Booked; submitted).\nAccepted: 5 lines, 3,160 units.\nRejected: 3 lines — 2 duplicates already on SO-NBR-40039 and 1 inactive item (FST-M6-20-OLD).\nOrder total at current NBR1 list prices: $2,757.60.\n\nFor credit review, the $41,180 remittance was applied to INV-NBR-51120 and INV-NBR-51231. Cascade's remaining past-due balance is $9,650, below the $45,000 policy trigger, with no credit hold.\n\nThe import is logged in Register!A21:H21. This email is saved as a review-only draft and has not been sent.\n\nBest,\nNorthbridge Operations",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Re: CA-PO-77310 confirmation — SO-NBR-50011",
+          "to": "dana.whitfield@northbridge-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "index": 40,
+      "result": {
+        "range": "Register!A21:H21",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "values": [
+          [
+            "SO-NBR-50011",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            3160,
+            2757.6,
+            2,
+            "FILE-NBR-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-10412'"
+      },
+      "index": 41,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "BusinessUnit": "Northbridge Manufacturing",
+            "Currency": "USD",
+            "CustomerAccountNumber": "CUST-10412",
+            "ReceiptAmount": 4400.0,
+            "ReceiptDate": "2026-01-22",
+            "ReceiptMethod": "Wire",
+            "ReceiptNumber": "RCPT-NBR-PRIOR",
+            "StandardReceiptId": 930003,
+            "Status": "Applied",
+            "remittanceReferences": [
+              {
+                "ApplyAmount": 4400.0,
+                "ReferenceNumber": "INV-NBR-PRIOR",
+                "ReferenceType": "INVOICE"
+              }
+            ]
+          },
+          {
+            "BusinessUnit": "Northbridge Manufacturing",
+            "Currency": "USD",
+            "CustomerAccountNumber": "CUST-10412",
+            "ReceiptAmount": 41180.0,
+            "ReceiptDate": "2026-02-06",
+            "ReceiptMethod": "Wire",
+            "ReceiptNumber": "RCPT-NBR-REMIT-0206",
+            "StandardReceiptId": 950051,
+            "Status": "Applied",
+            "remittanceReferences": [
+              {
+                "ApplyAmount": 18400,
+                "ReferenceNumber": "INV-NBR-51120",
+                "ReferenceType": "INVOICE"
+              },
+              {
+                "ApplyAmount": 22780,
+                "ReferenceNumber": "INV-NBR-51231",
+                "ReferenceType": "INVOICE"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "index": 42,
+      "result": {
+        "AccountId": "CUST-10412",
+        "AsOfDate": "2026-02-09",
+        "CreditHoldFlag": false,
+        "CreditLimit": 180000.0,
+        "CustomerName": "Cascade Assembly Inc.",
+        "OpenReceivablesAmount": 31870.0,
+        "OpenTransactions": 3,
+        "PastDueAmount": 9650.0,
+        "PaymentTerms": "Net 30"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 3160,
+          "order_total": 2757.6,
+          "primary_record": "SO-NBR-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-NBR-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-001"
+      },
+      "index": 43,
+      "result": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 3160,
+          "order_total": 2757.6,
+          "primary_record": "SO-NBR-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-NBR-ORDER-BATCH-0209"
+        },
+        "durable": true,
+        "task_id": "erpbench-001"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "index": 44,
+      "result": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 3160,
+          "order_total": 2757.6,
+          "primary_record": "SO-NBR-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-NBR-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-001"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "trial_name": "erpbench-001__8J2RXi8"
+}

@@ -1,0 +1,2012 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 66.67,
+    "erp_state": 70.0,
+    "handoff": 50.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.09167028,
+  "failed_checks": [
+    "discovery:item_master",
+    "discovery:stale_checklist",
+    "discovery:compliance_tab",
+    "discovery:auditor_mail",
+    "discovery:hr_thread",
+    "erp_state:register",
+    "erp_state:decision_record",
+    "handoff:email_draft"
+  ],
+  "finished_at": "2026-09-01T23:04:49.871689Z",
+  "receipt_sha256": "6495ffc32480c9837522264ec3fa9d17aec3d32e50bd714bc6d419653c18991d",
+  "reward": 0.84,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 84.0,
+  "started_at": "2026-09-01T22:54:19.845385Z",
+  "strict_pass": false,
+  "successful_tool_calls": 48,
+  "task_digest": "sha256:6f277143e0e53577812e0cc585554492a9fb71a4022c9595b51506083a269978",
+  "task_id": "erpbench-056",
+  "tokens": {
+    "cached": 2390784,
+    "input": 2511675,
+    "output": 16397
+  },
+  "tool_calls": 53,
+  "trace": [
+    {
+      "arguments": {},
+      "index": 1,
+      "result": {
+        "error": "'task_id'"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f31-4e88-7b00-9f07-4b1a7b6ecc33"
+      },
+      "index": 2,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f31-4eba-7c61-8349-f39d52dbc53d"
+      },
+      "index": 3,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 4,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "blocked_workers": {
+              "description": "Workers blocked by a failed mandatory check",
+              "type": "integer"
+            },
+            "checks_verified": {
+              "description": "Pending checks verified",
+              "type": "integer"
+            },
+            "days_to_earliest_expiry": {
+              "description": "Days until the earliest expiring document",
+              "type": "integer"
+            },
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "compliance_cleared",
+                "placements_blocked"
+              ],
+              "type": "string"
+            },
+            "expiring_within_30": {
+              "description": "Documents expiring within 30 days",
+              "type": "integer"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "alert_expiring_and_verify_pending",
+                "alert_expiring_and_block_failed_checks",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            },
+            "unalerted_expiring": {
+              "description": "Expiring documents that had not been alerted",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "expiring_within_30",
+            "unalerted_expiring",
+            "blocked_workers",
+            "checks_verified",
+            "days_to_earliest_expiry"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Alderwood Furniture",
+        "decision_options": [
+          {
+            "id": "alert_expiring_and_verify_pending",
+            "label": "Alert on expiring documents and verify the pending checks"
+          },
+          {
+            "id": "alert_expiring_and_block_failed_checks",
+            "label": "Alert on expiring documents, verify pending checks and block workers with failed checks"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Mark every document alerted and every check verified"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Change nothing and escalate the audit"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-ald",
+        "prompt": "**Alderwood Furniture · Binh Duong factory · Worker document compliance**\n\nThe compliance audit is next week. Find every worker document that expires within the next thirty days that nobody has been alerted about, work out who is blocked by a failed mandatory check, clear the dossier checks that can be verified from the file, and record the alerts. Enter the outcome in the compliance log and prepare the update for Tran Minh Chau to review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "expiring_within_30",
+            "unalerted_expiring",
+            "blocked_workers",
+            "checks_verified",
+            "days_to_earliest_expiry",
+            "source_reference"
+          ],
+          "range": "Register!A26:H26",
+          "spreadsheetId": "SHEET-ALD-OPS"
+        },
+        "status_options": [
+          {
+            "id": "compliance_cleared",
+            "label": "Compliance cleared"
+          },
+          {
+            "id": "placements_blocked",
+            "label": "Placements blocked"
+          }
+        ],
+        "task_id": "erpbench-056",
+        "tenant_code": "ALDERWOOD"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "index": 5,
+      "result": {
+        "count": 30,
+        "items": [
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-601",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-601",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-602",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-602",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-603",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-603",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-604",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-604",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-605",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-605",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-606",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-606",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-607",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-607",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-608",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-608",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-609",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-609",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-610",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-610",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-611",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-611",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-612",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-612",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-613",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-613",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-614",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-614",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-615",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-615",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-616",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-616",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-617",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-617",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-618",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-618",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-619",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-619",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff AL-620",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "AL-620",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Dang Van Hung",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Bui Thi Ngoc",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Hoang Van Nam",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ly Thi Thu",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Do Minh Tuan",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1005",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Vu Thi Hanh",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1006",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ngo Van Phuc",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": null,
+            "PersonNumber": "ALD-P1007",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "finishing technician",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": 520.0,
+            "PersonNumber": "ALD-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "finishing technician",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": 520.0,
+            "PersonNumber": "ALD-P3002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 3",
+            "HireDate": "2025-03-01",
+            "JobCode": "finishing technician",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MonthlySalary": 520.0,
+            "PersonNumber": "ALD-P3003",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Alderwood'"
+      },
+      "index": 6,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-ALD-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "index": 7,
+      "result": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "Alderwood"
+      },
+      "index": 8,
+      "result": {
+        "messages": [
+          {
+            "from": "pham.quang.huy@alderwood-sim.example",
+            "id": "MSG-erpbench-056-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-056 operating request",
+            "task_id": "erpbench-056"
+          },
+          {
+            "from": "nguyen.thanh.tam@alderwood-sim.example",
+            "id": "MSG-ALD-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Alderwood Furniture operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "index": 9,
+      "result": {
+        "channel": "#ops-ald",
+        "messages": [
+          {
+            "text": "Partial import for HLS-PO-2026-031 went in on 2026-02-03 as SO-ALD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-ALD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Please resolve erpbench-056 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "index": 10,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-19",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1001",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-03-07",
+            "DocumentRecordId": 400016,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1002",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-14",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-28",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1004",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-05",
+            "DocumentRecordId": 400055,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "ALD-P1005",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-05-08",
+            "DocumentRecordId": 400068,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-02-24",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1007",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Binh Duong'"
+      },
+      "index": 11,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-ALD-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "index": 12,
+      "result": {
+        "content": "tenant: ALDERWOOD\norder_batch: FILE-ALD-ORDER-BATCH-0209\npick_confirmation: FILE-ALD-PICK-CONFIRM-0208\nremittance_advice: FILE-ALD-REMIT-ADVICE-0206\nreorder_policy: FILE-ALD-REORDER-POLICY-R4\ndelivery_note: FILE-ALD-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-ALD-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-ALD-SHIFT-ROSTER-0208\nchannel_export: FILE-ALD-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-ALD-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-ALD-PRICE-BATCH-Q2\n",
+        "id": "FILE-ALD-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-AUTHORITY-MEMO-0209"
+      },
+      "index": 13,
+      "result": {
+        "content": "From: nguyen.thanh.tam@alderwood-sim.example\nTo: analyst@alderwood-sim.example\nSubject: Alderwood Furniture operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-ALD-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-OPS-AUDIT-LOG"
+      },
+      "index": 14,
+      "result": {
+        "content": "2026-02-03T10:12:00Z ALD partial import created SO-ALD-40039 from an earlier copy of HLS-PO-2026-031\n2026-02-06T15:40:00Z ALD delivery note DN-ALD-0206 received at Binh Duong factory\n2026-02-08T22:05:00Z ALD pick confirmation posted for SHP-ALD-7702\n2026-02-09T06:00:00Z ALD Wayfair export generated\n",
+        "id": "FILE-ALD-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'worker'"
+      },
+      "index": 15,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'compliance'"
+      },
+      "index": 16,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'document'"
+      },
+      "index": 17,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-DOCUMENT-ALERT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "15-document-alert-log.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-ALD-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+      },
+      "index": 18,
+      "result": {
+        "content": "Person,Person number,Document,Expires,Days remaining,Mandatory check,Check pending\r\nDang Van Hung,ALD-P1001,Woodworking safety card,2026-02-19,10,pass,no\r\nBui Thi Ngoc,ALD-P1002,Health check,2026-03-07,26,pass,yes\r\nHoang Van Nam,ALD-P1003,Forklift licence,2026-03-14,33,pass,no\r\nLy Thi Thu,ALD-P1004,Work permit,2026-02-28,19,pass,no\r\nDo Minh Tuan,ALD-P1005,Woodworking safety card,2026-03-05,24,fail,no\r\nVu Thi Hanh,ALD-P1006,Health check,2026-05-08,88,pass,no\r\nNgo Van Phuc,ALD-P1007,Safety induction,2026-02-24,15,pass,yes\r\n",
+        "id": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "14-compliance-checklist.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SHIFT-ROSTER-0208"
+      },
+      "index": 19,
+      "result": {
+        "content": "Staff code,Shift,Date,Approved leave\r\nAL-601,Day,2026-02-08,no\r\nAL-602,Day,2026-02-08,no\r\nAL-603,Day,2026-02-08,no\r\nAL-604,Day,2026-02-08,no\r\nAL-605,Day,2026-02-08,no\r\nAL-606,Day,2026-02-08,no\r\nAL-607,Day,2026-02-08,no\r\nAL-608,Day,2026-02-08,no\r\nAL-609,Day,2026-02-08,no\r\nAL-610,Day,2026-02-08,no\r\nAL-611,Day,2026-02-08,no\r\nAL-612,Day,2026-02-08,no\r\nAL-613,Day,2026-02-08,no\r\nAL-614,Day,2026-02-08,no\r\nAL-615,Day,2026-02-08,no\r\nAL-616,Day,2026-02-08,no\r\nAL-617,Day,2026-02-08,yes\r\nAL-618,Day,2026-02-08,yes\r\nAL-619,Day,2026-02-08,no\r\nAL-620,Day,2026-02-08,no\r\n",
+        "id": "FILE-ALD-SHIFT-ROSTER-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "16-shift-roster.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-DOCUMENT-ALERT-LOG"
+      },
+      "index": 20,
+      "result": {
+        "content": "person_number,document,alerted_on,alerted_by\nALD-P1004,Work permit,2026-01-28,Tran Minh Chau\n",
+        "id": "FILE-ALD-DOCUMENT-ALERT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "15-document-alert-log.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-CHANNEL-EXPORT-0209"
+      },
+      "index": 21,
+      "result": {
+        "content": "{\n  \"channel\": \"Wayfair\",\n  \"exported_at\": \"2026-02-09T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Casa Verde Interiors\",\n      \"channel_order_id\": \"WF-20901\",\n      \"currency\": \"USD\",\n      \"order_total\": 6840.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Northwind Homes\",\n      \"channel_order_id\": \"WF-20902\",\n      \"currency\": \"USD\",\n      \"order_total\": 3960.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Elm Street Design\",\n      \"channel_order_id\": \"WF-20903\",\n      \"currency\": \"USD\",\n      \"order_total\": 2520.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Harbor House\",\n      \"channel_order_id\": \"WF-20904\",\n      \"currency\": \"USD\",\n      \"order_total\": 5100.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Northwind Homes\",\n      \"channel_order_id\": \"WF-20902\",\n      \"currency\": \"USD\",\n      \"order_total\": 3960.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Maple & Co\",\n      \"channel_order_id\": \"WF-20905\",\n      \"currency\": \"USD\",\n      \"order_total\": 1890.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Fernway Rentals\",\n      \"channel_order_id\": \"WF-20906\",\n      \"currency\": \"USD\",\n      \"order_total\": 4380.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Loft 27\",\n      \"channel_order_id\": \"WF-20907\",\n      \"currency\": \"USD\",\n      \"order_total\": 2310.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+        "id": "FILE-ALD-CHANNEL-EXPORT-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/json",
+        "name": "18-channel-export.json"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-056-REQUEST"
+      },
+      "index": 22,
+      "result": {
+        "body": "**Alderwood Furniture · Binh Duong factory · Worker document compliance**\n\nThe compliance audit is next week. Find every worker document that expires within the next thirty days that nobody has been alerted about, work out who is blocked by a failed mandatory check, clear the dossier checks that can be verified from the file, and record the alerts. Enter the outcome in the compliance log and prepare the update for Tran Minh Chau to review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "pham.quang.huy@alderwood-sim.example",
+        "id": "MSG-erpbench-056-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-056 operating request",
+        "task_id": "erpbench-056",
+        "to": [
+          "analyst@alderwood-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "Tran Minh Chau"
+      },
+      "index": 23,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Tran Minh Chau"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "index": 24,
+      "result": {
+        "body": "From: nguyen.thanh.tam@alderwood-sim.example\nTo: analyst@alderwood-sim.example\nSubject: Alderwood Furniture operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "from": "nguyen.thanh.tam@alderwood-sim.example",
+        "id": "MSG-ALD-AUTHORITY-0209",
+        "internalDate": "2026-02-09T07:30:00Z",
+        "subject": "Alderwood Furniture operating authority for February",
+        "task_id": null,
+        "to": [
+          "analyst@alderwood-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "q": "\"Tran Minh Chau\""
+      },
+      "index": 25,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "from:(tran.minh.chau)"
+      },
+      "index": 26,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 27,
+      "result": {
+        "error": "record not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 28,
+      "result": {
+        "error": "record not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:H28",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "index": 29,
+      "result": {
+        "range": "Register!A24:H28",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-056"
+      },
+      "index": 30,
+      "result": {
+        "CheckPending": false,
+        "DateTo": "2026-02-19",
+        "DocumentRecordId": 400003,
+        "DocumentType": "Woodworking safety card",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "LegalEmployerName": "Alderwood Furniture",
+        "MandatoryCheckOutcome": "pass",
+        "PersonNumber": "ALD-P1001",
+        "Status": "ALERTED",
+        "VerifiedFlag": false
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-056"
+      },
+      "index": 31,
+      "result": {
+        "CheckPending": false,
+        "DateTo": "2026-03-07",
+        "DocumentRecordId": 400016,
+        "DocumentType": "Health check",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "LegalEmployerName": "Alderwood Furniture",
+        "MandatoryCheckOutcome": "pass",
+        "PersonNumber": "ALD-P1002",
+        "Status": "ALERTED",
+        "VerifiedFlag": true
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-056"
+      },
+      "index": 32,
+      "result": {
+        "CheckPending": false,
+        "DateTo": "2026-03-05",
+        "DocumentRecordId": 400055,
+        "DocumentType": "Woodworking safety card",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "LegalEmployerName": "Alderwood Furniture",
+        "MandatoryCheckOutcome": "fail",
+        "PersonNumber": "ALD-P1005",
+        "Status": "ALERTED",
+        "VerifiedFlag": false
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-056"
+      },
+      "index": 33,
+      "result": {
+        "CheckPending": false,
+        "DateTo": "2026-02-24",
+        "DocumentRecordId": 400081,
+        "DocumentType": "Safety induction",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "LegalEmployerName": "Alderwood Furniture",
+        "MandatoryCheckOutcome": "pass",
+        "PersonNumber": "ALD-P1007",
+        "Status": "ALERTED",
+        "VerifiedFlag": true
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "index": 34,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-19",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1001",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-07",
+            "DocumentRecordId": 400016,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1002",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-14",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-28",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1004",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-05",
+            "DocumentRecordId": 400055,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "ALD-P1005",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-05-08",
+            "DocumentRecordId": 400068,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-24",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1007",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "body": "Tran Minh Chau,\n\nFor review — Alderwood Furniture, Binh Duong factory, task erpbench-056 (as of 2026-02-09 09:00 UTC).\n\nDecision: alert_expiring_and_block_failed_checks\nStatus: placements_blocked\nPrimary ERP record: 400055\n\nOutcome:\n• 5 documents expire within the next 30 days; 4 were unalerted and are now ALERTED: ALD-P1001 / 400003, ALD-P1002 / 400016, ALD-P1005 / 400055, and ALD-P1007 / 400081.\n• Earliest expiry is 2026-02-19 (10 days).\n• 2 pending checks supported by the current checklist were verified: ALD-P1002 (Health check) and ALD-P1007 (Safety induction).\n• Do Minh Tuan (ALD-P1005) has a failed mandatory check and is blocked from placement; the failed check remains unverified.\n\nThe compliance register row is recorded at Register!A26:H26 in SHEET-ALD-OPS. Sources: FILE-ALD-COMPLIANCE-CHECKLIST-0209 (current authority) and FILE-ALD-DOCUMENT-ALERT-LOG; the authority memo confirms earlier versions are superseded.\n\nThis message is saved for review and has not been sent.",
+        "subject": "Alderwood Furniture Binh Duong compliance audit update — erpbench-056 — review",
+        "task_id": "erpbench-056",
+        "to": "tran.minh.chau@alderwood-sim.example"
+      },
+      "index": 35,
+      "result": {
+        "id": "DRAFT-erpbench-056",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Alderwood Furniture Binh Duong compliance audit update — erpbench-056 — review",
+          "to": "tran.minh.chau@alderwood-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-056",
+        "text": "Alderwood Furniture · Binh Duong compliance review · erpbench-056\nDecision status: placements_blocked\nDecision: alert_expiring_and_block_failed_checks\nPrimary ERP record: 400055\n5 documents expire within 30 days; 4 previously unalerted documents are now ALERTED; 2 pending pass checks verified; 1 worker (ALD-P1005 / Do Minh Tuan) remains blocked by a failed mandatory check.\nEarliest expiry: 10 days. Register: SHEET-ALD-OPS / Register!A26:H26. Handoff remains draft_for_review."
+      },
+      "index": 36,
+      "result": {
+        "channel": "#ops-ald",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Alderwood Furniture · Binh Duong compliance review · erpbench-056\nDecision status: placements_blocked\nDecision: alert_expiring_and_block_failed_checks\nPrimary ERP record: 400055\n5 documents expire within 30 days; 4 previously unalerted documents are now ALERTED; 2 pending pass checks verified; 1 worker (ALD-P1005 / Do Minh Tuan) remains blocked by a failed mandatory check.\nEarliest expiry: 10 days. Register: SHEET-ALD-OPS / Register!A26:H26. Handoff remains draft_for_review."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-056"
+      },
+      "index": 37,
+      "result": {
+        "id": "DRAFT-erpbench-056",
+        "message": {
+          "body": "Tran Minh Chau,\n\nFor review — Alderwood Furniture, Binh Duong factory, task erpbench-056 (as of 2026-02-09 09:00 UTC).\n\nDecision: alert_expiring_and_block_failed_checks\nStatus: placements_blocked\nPrimary ERP record: 400055\n\nOutcome:\n• 5 documents expire within the next 30 days; 4 were unalerted and are now ALERTED: ALD-P1001 / 400003, ALD-P1002 / 400016, ALD-P1005 / 400055, and ALD-P1007 / 400081.\n• Earliest expiry is 2026-02-19 (10 days).\n• 2 pending checks supported by the current checklist were verified: ALD-P1002 (Health check) and ALD-P1007 (Safety induction).\n• Do Minh Tuan (ALD-P1005) has a failed mandatory check and is blocked from placement; the failed check remains unverified.\n\nThe compliance register row is recorded at Register!A26:H26 in SHEET-ALD-OPS. Sources: FILE-ALD-COMPLIANCE-CHECKLIST-0209 (current authority) and FILE-ALD-DOCUMENT-ALERT-LOG; the authority memo confirms earlier versions are superseded.\n\nThis message is saved for review and has not been sent.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Alderwood Furniture Binh Duong compliance audit update — erpbench-056 — review",
+          "to": "tran.minh.chau@alderwood-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-056"
+      },
+      "index": 38,
+      "result": {
+        "channel": "#ops-ald",
+        "messages": [
+          {
+            "text": "Partial import for HLS-PO-2026-031 went in on 2026-02-03 as SO-ALD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-ALD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Please resolve erpbench-056 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-056",
+            "text": "Alderwood Furniture · Binh Duong compliance review · erpbench-056\nDecision status: placements_blocked\nDecision: alert_expiring_and_block_failed_checks\nPrimary ERP record: 400055\n5 documents expire within 30 days; 4 previously unalerted documents are now ALERTED; 2 pending pass checks verified; 1 worker (ALD-P1005 / Do Minh Tuan) remains blocked by a failed mandatory check.\nEarliest expiry: 10 days. Register: SHEET-ALD-OPS / Register!A26:H26. Handoff remains draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-056",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "400055",
+            "alert_expiring_and_block_failed_checks",
+            5,
+            4,
+            1,
+            2,
+            10,
+            "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "index": 39,
+      "result": {
+        "changeId": "CHANGE-erpbench-056-1",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "updatedRange": "Register!A26:H26",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "index": 40,
+      "result": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "values": [
+          [
+            "400055",
+            "alert_expiring_and_block_failed_checks",
+            5,
+            4,
+            1,
+            2,
+            10,
+            "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "400055",
+        "rationale": "The current-authority compliance checklist dated 2026-02-09 shows 5 documents expiring within 30 days, with 4 not present in the current alert log. Those 4 document records are now ALERTED. Two pending checks are documented as pass (ALD-P1002 Health check and ALD-P1007 Safety induction) and now read back as verified; ALD-P1005 (Do Minh Tuan) has a failed mandatory check, so one worker is blocked from placement and remains unverified. Earliest expiry is 2026-02-19, 10 days from the as-of time.",
+        "source_refs": [
+          "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "FILE-ALD-DOCUMENT-ALERT-LOG",
+          "FILE-ALD-AUTHORITY-MEMO-0209",
+          "FILE-ALD-SOURCE-MAP"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-056"
+      },
+      "index": 41,
+      "result": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "decision_id": "DECISION-erpbench-056",
+        "primary_record": "400055",
+        "rationale": "The current-authority compliance checklist dated 2026-02-09 shows 5 documents expiring within 30 days, with 4 not present in the current alert log. Those 4 document records are now ALERTED. Two pending checks are documented as pass (ALD-P1002 Health check and ALD-P1007 Safety induction) and now read back as verified; ALD-P1005 (Do Minh Tuan) has a failed mandatory check, so one worker is blocked from placement and remains unverified. Earliest expiry is 2026-02-19, 10 days from the as-of time.",
+        "source_refs": [
+          "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "FILE-ALD-DOCUMENT-ALERT-LOG",
+          "FILE-ALD-AUTHORITY-MEMO-0209",
+          "FILE-ALD-SOURCE-MAP"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-056"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "index": 42,
+      "result": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "values": [
+          [
+            "400055",
+            "alert_expiring_and_block_failed_checks",
+            5,
+            4,
+            1,
+            2,
+            10,
+            "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 43,
+      "result": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "decision_id": "DECISION-erpbench-056",
+        "primary_record": "400055",
+        "rationale": "The current-authority compliance checklist dated 2026-02-09 shows 5 documents expiring within 30 days, with 4 not present in the current alert log. Those 4 document records are now ALERTED. Two pending checks are documented as pass (ALD-P1002 Health check and ALD-P1007 Safety induction) and now read back as verified; ALD-P1005 (Do Minh Tuan) has a failed mandatory check, so one worker is blocked from placement and remains unverified. Earliest expiry is 2026-02-19, 10 days from the as-of time.",
+        "source_refs": [
+          "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "FILE-ALD-DOCUMENT-ALERT-LOG",
+          "FILE-ALD-AUTHORITY-MEMO-0209",
+          "FILE-ALD-SOURCE-MAP"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-056"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-056"
+      },
+      "index": 44,
+      "result": {
+        "id": "DRAFT-erpbench-056",
+        "message": {
+          "body": "Tran Minh Chau,\n\nFor review — Alderwood Furniture, Binh Duong factory, task erpbench-056 (as of 2026-02-09 09:00 UTC).\n\nDecision: alert_expiring_and_block_failed_checks\nStatus: placements_blocked\nPrimary ERP record: 400055\n\nOutcome:\n• 5 documents expire within the next 30 days; 4 were unalerted and are now ALERTED: ALD-P1001 / 400003, ALD-P1002 / 400016, ALD-P1005 / 400055, and ALD-P1007 / 400081.\n• Earliest expiry is 2026-02-19 (10 days).\n• 2 pending checks supported by the current checklist were verified: ALD-P1002 (Health check) and ALD-P1007 (Safety induction).\n• Do Minh Tuan (ALD-P1005) has a failed mandatory check and is blocked from placement; the failed check remains unverified.\n\nThe compliance register row is recorded at Register!A26:H26 in SHEET-ALD-OPS. Sources: FILE-ALD-COMPLIANCE-CHECKLIST-0209 (current authority) and FILE-ALD-DOCUMENT-ALERT-LOG; the authority memo confirms earlier versions are superseded.\n\nThis message is saved for review and has not been sent.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Alderwood Furniture Binh Duong compliance audit update — erpbench-056 — review",
+          "to": "tran.minh.chau@alderwood-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-056"
+      },
+      "index": 45,
+      "result": {
+        "channel": "#ops-ald",
+        "messages": [
+          {
+            "text": "Partial import for HLS-PO-2026-031 went in on 2026-02-03 as SO-ALD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-ALD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Please resolve erpbench-056 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-056",
+            "text": "Alderwood Furniture · Binh Duong compliance review · erpbench-056\nDecision status: placements_blocked\nDecision: alert_expiring_and_block_failed_checks\nPrimary ERP record: 400055\n5 documents expire within 30 days; 4 previously unalerted documents are now ALERTED; 2 pending pass checks verified; 1 worker (ALD-P1005 / Do Minh Tuan) remains blocked by a failed mandatory check.\nEarliest expiry: 10 days. Register: SHEET-ALD-OPS / Register!A26:H26. Handoff remains draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "index": 46,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-19",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1001",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-07",
+            "DocumentRecordId": 400016,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1002",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-14",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-28",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1004",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-05",
+            "DocumentRecordId": 400055,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "ALD-P1005",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-05-08",
+            "DocumentRecordId": 400068,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-24",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1007",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 10,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 5,
+          "primary_record": "400055",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 4
+        },
+        "task_id": "erpbench-056"
+      },
+      "index": 47,
+      "result": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 10,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 5,
+          "primary_record": "400055",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 4
+        },
+        "durable": true,
+        "task_id": "erpbench-056"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "index": 48,
+      "result": {
+        "range": "Register!A26:H26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "values": [
+          [
+            "400055",
+            "alert_expiring_and_block_failed_checks",
+            5,
+            4,
+            1,
+            2,
+            10,
+            "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-056"
+      },
+      "index": 49,
+      "result": {
+        "id": "DRAFT-erpbench-056",
+        "message": {
+          "body": "Tran Minh Chau,\n\nFor review — Alderwood Furniture, Binh Duong factory, task erpbench-056 (as of 2026-02-09 09:00 UTC).\n\nDecision: alert_expiring_and_block_failed_checks\nStatus: placements_blocked\nPrimary ERP record: 400055\n\nOutcome:\n• 5 documents expire within the next 30 days; 4 were unalerted and are now ALERTED: ALD-P1001 / 400003, ALD-P1002 / 400016, ALD-P1005 / 400055, and ALD-P1007 / 400081.\n• Earliest expiry is 2026-02-19 (10 days).\n• 2 pending checks supported by the current checklist were verified: ALD-P1002 (Health check) and ALD-P1007 (Safety induction).\n• Do Minh Tuan (ALD-P1005) has a failed mandatory check and is blocked from placement; the failed check remains unverified.\n\nThe compliance register row is recorded at Register!A26:H26 in SHEET-ALD-OPS. Sources: FILE-ALD-COMPLIANCE-CHECKLIST-0209 (current authority) and FILE-ALD-DOCUMENT-ALERT-LOG; the authority memo confirms earlier versions are superseded.\n\nThis message is saved for review and has not been sent.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Alderwood Furniture Binh Duong compliance audit update — erpbench-056 — review",
+          "to": "tran.minh.chau@alderwood-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-056"
+      },
+      "index": 50,
+      "result": {
+        "channel": "#ops-ald",
+        "messages": [
+          {
+            "text": "Partial import for HLS-PO-2026-031 went in on 2026-02-03 as SO-ALD-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-ALD-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Please resolve erpbench-056 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nguyen Thanh Tam"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-056",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-056",
+            "text": "Alderwood Furniture · Binh Duong compliance review · erpbench-056\nDecision status: placements_blocked\nDecision: alert_expiring_and_block_failed_checks\nPrimary ERP record: 400055\n5 documents expire within 30 days; 4 previously unalerted documents are now ALERTED; 2 pending pass checks verified; 1 worker (ALD-P1005 / Do Minh Tuan) remains blocked by a failed mandatory check.\nEarliest expiry: 10 days. Register: SHEET-ALD-OPS / Register!A26:H26. Handoff remains draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 51,
+      "result": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 10,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 5,
+          "primary_record": "400055",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 4
+        },
+        "task_id": "erpbench-056"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "index": 52,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-19",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1001",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-07",
+            "DocumentRecordId": 400016,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1002",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-14",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-28",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1004",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-05",
+            "DocumentRecordId": 400055,
+            "DocumentType": "Woodworking safety card",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "ALD-P1005",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-05-08",
+            "DocumentRecordId": 400068,
+            "DocumentType": "Health check",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-24",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Alderwood Furniture",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "ALD-P1007",
+            "Status": "ALERTED",
+            "VerifiedFlag": true
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "index": 53,
+      "result": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "decision_id": "DECISION-erpbench-056",
+        "primary_record": "400055",
+        "rationale": "The current-authority compliance checklist dated 2026-02-09 shows 5 documents expiring within 30 days, with 4 not present in the current alert log. Those 4 document records are now ALERTED. Two pending checks are documented as pass (ALD-P1002 Health check and ALD-P1007 Safety induction) and now read back as verified; ALD-P1005 (Do Minh Tuan) has a failed mandatory check, so one worker is blocked from placement and remains unverified. Earliest expiry is 2026-02-19, 10 days from the as-of time.",
+        "source_refs": [
+          "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "FILE-ALD-DOCUMENT-ALERT-LOG",
+          "FILE-ALD-AUTHORITY-MEMO-0209",
+          "FILE-ALD-SOURCE-MAP"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-056"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    }
+  ],
+  "trial_name": "erpbench-056__CmubTHe"
+}

@@ -1,0 +1,2097 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 100.0,
+    "erp_state": 100.0,
+    "handoff": 100.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.13608947999999998,
+  "failed_checks": [],
+  "finished_at": "2026-09-01T23:22:52.396989Z",
+  "receipt_sha256": "a74299c0707df0f6732903381396feee95333dd165c41f526e366173c53841c0",
+  "reward": 1.0,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 100.0,
+  "started_at": "2026-09-01T23:13:03.653412Z",
+  "strict_pass": true,
+  "successful_tool_calls": 47,
+  "task_digest": "sha256:65297cd3d4b925bca73ffbb30321bed6e63ff7128f82f5b29ccdc0c1126e22df",
+  "task_id": "erpbench-089",
+  "tokens": {
+    "cached": 4245504,
+    "input": 4413279,
+    "output": 14687
+  },
+  "tool_calls": 55,
+  "trace": [
+    {
+      "arguments": {
+        "query": "Bluefin Marine Parts"
+      },
+      "index": 1,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Bluefin Marine Parts"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "Bluefin"
+      },
+      "index": 2,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-BLF-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-ORDER-BATCH-0203",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "02-prior-partial-import.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PICK-CONFIRM-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "05-pick-confirmation.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AR-AGING-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "07-ar-aging.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DEMAND-FORECAST-F06",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "10-demand-forecast.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DOCUMENT-ALERT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "15-document-alert-log.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CHANNEL-EXPORT-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "18-channel-export.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CUSTOMER-CAPTURE-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "19-customer-capture-chat.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-WAGE-TABLE",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "22-wage-table.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-BLF-2026Q1.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-PICK-CONFIRM-0205",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "SHP-BLF-8801-pick-confirmation-2026-02-05.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-CHANNEL-EXPORT-0202",
+            "isCurrentAuthority": false,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "eBay Motors-export-2026-02-02.json",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {},
+      "index": 3,
+      "result": {
+        "count": 18,
+        "items": [
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-901",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-901",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-902",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-902",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-903",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-903",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-904",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-904",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-905",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-905",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-906",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-906",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-907",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-907",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-908",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-908",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff BF-909",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BF-909",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Liam Foster",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Chloe Bennett",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Noah Walsh",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ella Hughes",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Oscar Reyes",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1005",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Zoe Campbell",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1006",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Lucas Ward",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": null,
+            "PersonNumber": "BLF-P1007",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3002",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "query": "Fremantle"
+      },
+      "index": 4,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Fremantle"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "Fremantle"
+      },
+      "index": 5,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-BLF-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-ORDER-BATCH-0203",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "02-prior-partial-import.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PICK-CONFIRM-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "05-pick-confirmation.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AR-AGING-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "07-ar-aging.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DEMAND-FORECAST-F06",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "10-demand-forecast.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-DOCUMENT-ALERT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "15-document-alert-log.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CHANNEL-EXPORT-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "18-channel-export.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CUSTOMER-CAPTURE-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "19-customer-capture-chat.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-WAGE-TABLE",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "22-wage-table.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-BLF-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-BLF-2026Q1.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-PICK-CONFIRM-0205",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "SHP-BLF-8801-pick-confirmation-2026-02-05.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-CHANNEL-EXPORT-0202",
+            "isCurrentAuthority": false,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "eBay Motors-export-2026-02-02.json",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          },
+          {
+            "id": "FILE-BLF-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "query": "Jack Thornton"
+      },
+      "index": 6,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Jack Thornton"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-CANDIDATE-REGISTER"
+      },
+      "index": 7,
+      "result": {
+        "id": "FILE-BLF-CANDIDATE-REGISTER",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "21-candidate-register.xlsx",
+        "size": 234,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-WAGE-TABLE"
+      },
+      "index": 8,
+      "result": {
+        "id": "FILE-BLF-WAGE-TABLE",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "22-wage-table.csv",
+        "size": 92,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "index": 9,
+      "result": {
+        "id": "FILE-BLF-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "25-source-map.yaml",
+        "size": 466,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-OPS-AUDIT-LOG"
+      },
+      "index": 10,
+      "result": {
+        "id": "FILE-BLF-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "26-ops-audit.log",
+        "size": 297,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-AUTHORITY-MEMO-0209"
+      },
+      "index": 11,
+      "result": {
+        "id": "FILE-BLF-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "24-authority-memo.eml",
+        "size": 519,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+      },
+      "index": 12,
+      "result": {
+        "id": "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "20-headcount-approval.pdf",
+        "size": 354,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+      },
+      "index": 13,
+      "result": {
+        "content": "Bluefin Marine Parts headcount approval 2026 (revision 2)\nPosition: parts interpreter   Approved headcount: 4   Standard contract: 12 months\nApproved monthly wage: 4650.00 USD\nApproved by Jack Thornton on 2026-01-20. Supersedes the 2025 approval.\nOnly candidates with passed background checks and work permits valid beyond the contract end may be hired.\n",
+        "id": "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "name": "20-headcount-approval.pdf"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-CANDIDATE-REGISTER"
+      },
+      "index": 14,
+      "result": {
+        "content": "Candidate,Candidate id,Permit expiry,Background check,Grade\r\nEthan Murphy,BLF-C201,2029-12-10,passed,B\r\nIsla Grant,BLF-C202,2026-12-06,passed,B\r\nHarper Ross,BLF-C203,2028-07-28,not passed,B\r\nFinn O'Neill,BLF-C204,2029-02-13,passed,B\r\n",
+        "id": "FILE-BLF-CANDIDATE-REGISTER",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "21-candidate-register.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-WAGE-TABLE"
+      },
+      "index": 15,
+      "result": {
+        "content": "position,monthly_wage,contract_months,approved_from\nparts interpreter,4650.00,12,2026-01-20\n",
+        "id": "FILE-BLF-WAGE-TABLE",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "22-wage-table.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-AUTHORITY-MEMO-0209"
+      },
+      "index": 16,
+      "result": {
+        "content": "From: callum.reid@bluefin-sim.example\nTo: analyst@bluefin-sim.example\nSubject: Bluefin Marine Parts operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-BLF-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "index": 17,
+      "result": {
+        "content": "tenant: BLUEFIN\norder_batch: FILE-BLF-ORDER-BATCH-0209\npick_confirmation: FILE-BLF-PICK-CONFIRM-0208\nremittance_advice: FILE-BLF-REMIT-ADVICE-0206\nreorder_policy: FILE-BLF-REORDER-POLICY-R4\ndelivery_note: FILE-BLF-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-BLF-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-BLF-SHIFT-ROSTER-0208\nchannel_export: FILE-BLF-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-BLF-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-BLF-PRICE-BATCH-Q2\n",
+        "id": "FILE-BLF-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-OPS-AUDIT-LOG"
+      },
+      "index": 18,
+      "result": {
+        "content": "2026-02-03T10:12:00Z BLF partial import created SO-BLF-40039 from an earlier copy of SCB-PO-3391\n2026-02-06T15:40:00Z BLF delivery note DN-BLF-0206 received at Fremantle depot\n2026-02-08T22:05:00Z BLF pick confirmation posted for SHP-BLF-8801\n2026-02-09T06:00:00Z BLF eBay Motors export generated\n",
+        "id": "FILE-BLF-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "task_id": ""
+      },
+      "index": 19,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "BLUEFIN"
+      },
+      "index": 20,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "bluefin"
+      },
+      "index": 21,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "current"
+      },
+      "index": 22,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "BLF"
+      },
+      "index": 23,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "hire-parts-interpreter"
+      },
+      "index": 24,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "bluefin-parts-interpreter"
+      },
+      "index": 25,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f42-8d9a-76c1-90fd-5f70264fe044"
+      },
+      "index": 26,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-089"
+      },
+      "index": 27,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "contract_months": {
+              "description": "Standard contract length in months",
+              "type": "integer"
+            },
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "quota_filled",
+                "positions_remain_open"
+              ],
+              "type": "string"
+            },
+            "eligible_candidates": {
+              "description": "Candidates with passed checks and permits valid beyond contract end",
+              "type": "integer"
+            },
+            "hires": {
+              "description": "Workers hired",
+              "type": "integer"
+            },
+            "monthly_wage_total": {
+              "description": "Monthly wage cost of the hires",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "open_headcount": {
+              "description": "Approved headcount minus current staff",
+              "type": "integer"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "hire_eligible_within_quota",
+                "hire_eligible_and_keep_positions_open",
+                "hire_all_candidates",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "open_headcount",
+            "eligible_candidates",
+            "hires",
+            "monthly_wage_total",
+            "contract_months"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Bluefin Marine Parts",
+        "decision_options": [
+          {
+            "id": "hire_eligible_within_quota",
+            "label": "Hire eligible candidates up to the open headcount"
+          },
+          {
+            "id": "hire_eligible_and_keep_positions_open",
+            "label": "Hire every eligible candidate and leave the remaining positions open"
+          },
+          {
+            "id": "hire_all_candidates",
+            "label": "Hire every candidate on the register"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Hire nobody and escalate the round"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-blf",
+        "prompt": "**Bluefin Marine Parts · Fremantle depot · Hiring against approved headcount**\n\nJack Thornton needs the parts interpreter hiring round closed today. Work out how many positions are actually open against the approved headcount, which candidates are eligible once work permits and background checks are considered, and hire only the people we can place under a standard contract. Register the contracts and prepare the confirmation for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "open_headcount",
+            "eligible_candidates",
+            "hires",
+            "monthly_wage_total",
+            "contract_months",
+            "source_reference"
+          ],
+          "range": "Register!A29:H29",
+          "spreadsheetId": "SHEET-BLF-OPS"
+        },
+        "status_options": [
+          {
+            "id": "quota_filled",
+            "label": "Headcount quota filled"
+          },
+          {
+            "id": "positions_remain_open",
+            "label": "Positions remain open"
+          }
+        ],
+        "task_id": "erpbench-089",
+        "tenant_code": "BLUEFIN"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "Bluefin"
+      },
+      "index": 28,
+      "result": {
+        "messages": [
+          {
+            "from": "hannah.dwyer@bluefin-sim.example",
+            "id": "MSG-erpbench-089-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-089 operating request",
+            "task_id": "erpbench-089"
+          },
+          {
+            "from": "callum.reid@bluefin-sim.example",
+            "id": "MSG-BLF-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Bluefin Marine Parts operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "hiring"
+      },
+      "index": 29,
+      "result": {
+        "messages": [
+          {
+            "from": "hannah.dwyer@bluefin-sim.example",
+            "id": "MSG-erpbench-089-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-089 operating request",
+            "task_id": "erpbench-089"
+          },
+          {
+            "from": "jack.thornton@bluefin-sim.example",
+            "id": "MSG-BLF-HIRING-0209",
+            "internalDate": "2026-02-09T08:00:00Z",
+            "subject": "parts interpreter hiring round",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "from:(@bluefin-sim.example)"
+      },
+      "index": 30,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "parts interpreter"
+      },
+      "index": 31,
+      "result": {
+        "messages": [
+          {
+            "from": "hannah.dwyer@bluefin-sim.example",
+            "id": "MSG-erpbench-089-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-089 operating request",
+            "task_id": "erpbench-089"
+          },
+          {
+            "from": "jack.thornton@bluefin-sim.example",
+            "id": "MSG-BLF-HIRING-0209",
+            "internalDate": "2026-02-09T08:00:00Z",
+            "subject": "parts interpreter hiring round",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "Jack Thornton"
+      },
+      "index": 32,
+      "result": {
+        "messages": [
+          {
+            "from": "hannah.dwyer@bluefin-sim.example",
+            "id": "MSG-erpbench-089-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-089 operating request",
+            "task_id": "erpbench-089"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-HIRING-0209"
+      },
+      "index": 33,
+      "result": {
+        "body": "Close the parts interpreter round against the 2026 headcount approval (FILE-BLF-HEADCOUNT-APPROVAL-2026). Candidates are in the register; contracts run 12 months from today at the approved wage. Do not hire beyond the approved headcount.",
+        "from": "jack.thornton@bluefin-sim.example",
+        "id": "MSG-BLF-HIRING-0209",
+        "internalDate": "2026-02-09T08:00:00Z",
+        "subject": "parts interpreter hiring round",
+        "task_id": null,
+        "to": [
+          "analyst@bluefin-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-089-REQUEST"
+      },
+      "index": 34,
+      "result": {
+        "body": "**Bluefin Marine Parts · Fremantle depot · Hiring against approved headcount**\n\nJack Thornton needs the parts interpreter hiring round closed today. Work out how many positions are actually open against the approved headcount, which candidates are eligible once work permits and background checks are considered, and hire only the people we can place under a standard contract. Register the contracts and prepare the confirmation for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "hannah.dwyer@bluefin-sim.example",
+        "id": "MSG-erpbench-089-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-089 operating request",
+        "task_id": "erpbench-089",
+        "to": [
+          "analyst@bluefin-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "index": 35,
+      "result": {
+        "body": "From: callum.reid@bluefin-sim.example\nTo: analyst@bluefin-sim.example\nSubject: Bluefin Marine Parts operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "from": "callum.reid@bluefin-sim.example",
+        "id": "MSG-BLF-AUTHORITY-0209",
+        "internalDate": "2026-02-09T07:30:00Z",
+        "subject": "Bluefin Marine Parts operating authority for February",
+        "task_id": null,
+        "to": [
+          "analyst@bluefin-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-089"
+      },
+      "index": 36,
+      "result": {
+        "channel": "#ops-blf",
+        "messages": [
+          {
+            "text": "Partial import for SCB-PO-3391 went in on 2026-02-03 as SO-BLF-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-BLF-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Callum Reid"
+          },
+          {
+            "text": "Please resolve erpbench-089 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-089",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Callum Reid"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-089",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "index": 37,
+      "result": {
+        "range": "Register",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
+      },
+      "index": 38,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-06",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1001",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-02-17",
+            "DocumentRecordId": 400016,
+            "DocumentType": "First aid certificate",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1002",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-28",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-11",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1004",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-21",
+            "DocumentRecordId": 400055,
+            "DocumentType": "Forklift licence",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "BLF-P1005",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-25",
+            "DocumentRecordId": 400068,
+            "DocumentType": "First aid certificate",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-02-12",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Medical certificate",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "BLF-P1007",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-PRICE-LIST-CURRENT"
+      },
+      "index": 39,
+      "result": {
+        "content": "item,description,list_price,status,effective_from\nIMP-WP-40,Water pump impeller 40 mm,28.00,Active,2026-01-01\nANODE-ZN-2,Zinc anode 2 kg,19.50,Active,2026-01-01\nFILT-FUEL-10,Fuel filter 10 micron,16.80,Active,2026-01-01\nPROP-AL-13,Aluminium propeller 13 in,210.00,Active,2026-01-01\nHOSE-BILGE-25,Bilge hose 25 mm (per metre),4.60,Active,2026-01-01\nIMP-WP-35-OLD,Impeller 35 mm (superseded),24.00,Inactive,2026-01-01\n",
+        "id": "FILE-BLF-PRICE-LIST-CURRENT",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "03-current-price-list.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "channel": "#hr-blf"
+      },
+      "index": 40,
+      "result": {
+        "channel": "#hr-blf",
+        "messages": [
+          {
+            "text": "Compliance audit next week; document alerts, failed checks and the hiring round all need closing this week.",
+            "thread_ts": "THREAD-BLF-HR",
+            "ts": "2026-02-06T09:00:00Z",
+            "user": "Jack Thornton"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Headcount",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "index": 41,
+      "result": {
+        "range": "Headcount",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "CandidateId": "BLF-C201",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Ethan Murphy",
+        "HireDate": "2026-02-09",
+        "JobCode": "parts interpreter",
+        "LegalEmployerName": "Bluefin Marine Parts",
+        "MonthlySalary": 4650,
+        "PersonNumber": "BLF-P2001",
+        "task_id": "erpbench-089"
+      },
+      "index": 42,
+      "result": {
+        "CandidateId": "BLF-C201",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Ethan Murphy",
+        "HireDate": "2026-02-09",
+        "JobCode": "parts interpreter",
+        "LegalEmployerName": "Bluefin Marine Parts",
+        "MonthlySalary": 4650.0,
+        "PersonNumber": "BLF-P2001",
+        "WorkerStatus": "Active"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "CandidateId": "BLF-C204",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Finn O'Neill",
+        "HireDate": "2026-02-09",
+        "JobCode": "parts interpreter",
+        "LegalEmployerName": "Bluefin Marine Parts",
+        "MonthlySalary": 4650,
+        "PersonNumber": "BLF-P2002",
+        "task_id": "erpbench-089"
+      },
+      "index": 43,
+      "result": {
+        "CandidateId": "BLF-C204",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Finn O'Neill",
+        "HireDate": "2026-02-09",
+        "JobCode": "parts interpreter",
+        "LegalEmployerName": "Bluefin Marine Parts",
+        "MonthlySalary": 4650.0,
+        "PersonNumber": "BLF-P2002",
+        "WorkerStatus": "Active"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts' and JobCode='parts interpreter'"
+      },
+      "index": 44,
+      "result": {
+        "count": 4,
+        "items": [
+          {
+            "CandidateId": "BLF-C201",
+            "ContractEndDate": "2027-02-04",
+            "DisplayName": "Ethan Murphy",
+            "HireDate": "2026-02-09",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P2001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": "BLF-C204",
+            "ContractEndDate": "2027-02-04",
+            "DisplayName": "Finn O'Neill",
+            "HireDate": "2026-02-09",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P2002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3002",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:H29",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-089",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "BLF-P2001",
+            "hire_eligible_within_quota",
+            2,
+            2,
+            2,
+            9300,
+            12,
+            "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+          ]
+        ]
+      },
+      "index": 45,
+      "result": {
+        "changeId": "CHANGE-erpbench-089-1",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "updatedRange": "Register!A29:H29",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "hire_eligible_within_quota",
+        "primary_record": "BLF-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-BLF-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-089-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-089"
+      },
+      "index": 46,
+      "result": {
+        "decision": "hire_eligible_within_quota",
+        "decision_id": "DECISION-erpbench-089",
+        "primary_record": "BLF-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-BLF-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-089-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-089"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend hire_eligible_within_quota (quota_filled). Open headcount 2; eligible candidates 2; hires 2; monthly wage total 9300.00 USD; contract months 12. Primary record BLF-P2001; operative source FILE-BLF-HEADCOUNT-APPROVAL-2026. Draft for review, not sent.",
+        "subject": "erpbench-089 — Close the hiring round within quota — for review",
+        "task_id": "erpbench-089",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "index": 47,
+      "result": {
+        "id": "DRAFT-erpbench-089",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "erpbench-089 — Close the hiring round within quota — for review",
+          "to": "callum.reid@bluefin-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-089",
+        "text": "erpbench-089: quota_filled / hire_eligible_within_quota / BLF-P2001 — review draft ready."
+      },
+      "index": 48,
+      "result": {
+        "channel": "#ops-blf",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "erpbench-089: quota_filled / hire_eligible_within_quota / BLF-P2001 — review draft ready."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts' and JobCode='parts interpreter'"
+      },
+      "index": 49,
+      "result": {
+        "count": 4,
+        "items": [
+          {
+            "CandidateId": "BLF-C201",
+            "ContractEndDate": "2027-02-04",
+            "DisplayName": "Ethan Murphy",
+            "HireDate": "2026-02-09",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P2001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": "BLF-C204",
+            "ContractEndDate": "2027-02-04",
+            "DisplayName": "Finn O'Neill",
+            "HireDate": "2026-02-09",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P2002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "parts interpreter",
+            "LegalEmployerName": "Bluefin Marine Parts",
+            "MonthlySalary": 4650.0,
+            "PersonNumber": "BLF-P3002",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-089"
+      },
+      "index": 50,
+      "result": {
+        "id": "DRAFT-erpbench-089",
+        "message": {
+          "body": "Bluefin Marine Parts: recommend hire_eligible_within_quota (quota_filled). Open headcount 2; eligible candidates 2; hires 2; monthly wage total 9300.00 USD; contract months 12. Primary record BLF-P2001; operative source FILE-BLF-HEADCOUNT-APPROVAL-2026. Draft for review, not sent.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "erpbench-089 — Close the hiring round within quota — for review",
+          "to": "callum.reid@bluefin-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-089"
+      },
+      "index": 51,
+      "result": {
+        "channel": "#ops-blf",
+        "messages": [
+          {
+            "text": "Partial import for SCB-PO-3391 went in on 2026-02-03 as SO-BLF-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-BLF-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Callum Reid"
+          },
+          {
+            "text": "Please resolve erpbench-089 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-089",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Callum Reid"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-089",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-089",
+            "text": "erpbench-089: quota_filled / hire_eligible_within_quota / BLF-P2001 — review draft ready.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-089"
+      },
+      "index": 52,
+      "result": {
+        "decision": "hire_eligible_within_quota",
+        "decision_id": "DECISION-erpbench-089",
+        "primary_record": "BLF-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-BLF-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-BLF-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-089-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-089"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:H29",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "index": 53,
+      "result": {
+        "range": "Register!A29:H29",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "values": [
+          [
+            "BLF-P2001",
+            "hire_eligible_within_quota",
+            2,
+            2,
+            2,
+            9300,
+            12,
+            "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "contract_months": 12,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 2,
+          "hires": 2,
+          "monthly_wage_total": 9300,
+          "open_headcount": 2,
+          "primary_record": "BLF-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+        },
+        "task_id": "erpbench-089"
+      },
+      "index": 54,
+      "result": {
+        "answers": {
+          "contract_months": 12,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 2,
+          "hires": 2,
+          "monthly_wage_total": 9300,
+          "open_headcount": 2,
+          "primary_record": "BLF-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+        },
+        "durable": true,
+        "task_id": "erpbench-089"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-089"
+      },
+      "index": 55,
+      "result": {
+        "answers": {
+          "contract_months": 12,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 2,
+          "hires": 2,
+          "monthly_wage_total": 9300,
+          "open_headcount": 2,
+          "primary_record": "BLF-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-BLF-HEADCOUNT-APPROVAL-2026"
+        },
+        "task_id": "erpbench-089"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "trial_name": "erpbench-089__tysontN"
+}

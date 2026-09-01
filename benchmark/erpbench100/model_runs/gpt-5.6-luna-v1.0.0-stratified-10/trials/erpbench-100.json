@@ -1,0 +1,1922 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 80.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 80.0,
+    "erp_state": 70.0,
+    "handoff": 50.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.04850960000000001,
+  "failed_checks": [
+    "discovery:pricing_thread",
+    "discovery:prior_batch",
+    "discovery:superseded_prices",
+    "calculation:average_change_pct",
+    "erp_state:register",
+    "erp_state:decision_record",
+    "handoff:email_draft"
+  ],
+  "finished_at": "2026-09-01T23:02:48.209387Z",
+  "receipt_sha256": "abb29cdbf5f0cbc5fbe7fe59357005c173ea8b6dcfff5f7f4cad2fde0ef36f3a",
+  "reward": 0.81,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 81.0,
+  "started_at": "2026-09-01T22:54:19.565379Z",
+  "strict_pass": false,
+  "successful_tool_calls": 50,
+  "task_digest": "sha256:8cddbea8b9cee8ca95eceb31670b339b791bb8235f0a947303f39cb6fd8eb3ff",
+  "task_id": "erpbench-100",
+  "tokens": {
+    "cached": 1018880,
+    "input": 1086850,
+    "output": 12115
+  },
+  "tool_calls": 51,
+  "trace": [
+    {
+      "arguments": {
+        "task_id": "01a05f31-1b83-7752-acc9-24415188d848"
+      },
+      "index": 1,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "Terravane Solar Components"
+      },
+      "index": 2,
+      "result": {
+        "messages": [
+          {
+            "from": "ploy.suwannarat@terravane-sim.example",
+            "id": "MSG-erpbench-100-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-100 operating request",
+            "task_id": "erpbench-100"
+          },
+          {
+            "from": "nattapong.chai@terravane-sim.example",
+            "id": "MSG-TRV-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Terravane Solar Components operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 2
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Terravane'"
+      },
+      "index": 3,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "Q2 list-price"
+      },
+      "index": 4,
+      "result": {
+        "messages": [
+          {
+            "from": "ploy.suwannarat@terravane-sim.example",
+            "id": "MSG-erpbench-100-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-100 operating request",
+            "task_id": "erpbench-100"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'price'"
+      },
+      "index": 5,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-TRV-2026Q1.csv",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'register'"
+      },
+      "index": 6,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "index": 7,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "accepted_lines": {
+              "description": "Batch lines applied to item prices",
+              "type": "integer"
+            },
+            "average_change_pct": {
+              "description": "Average percentage change across applied lines",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "batch_lines": {
+              "description": "Lines in the price batch",
+              "type": "integer"
+            },
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "batch_applied",
+                "batch_applied_with_rejections"
+              ],
+              "type": "string"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "apply_policy_compliant_lines",
+                "apply_all_batch_lines",
+                "apply_latest_line_per_item_ignoring_band",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "rejected_lines": {
+              "description": "Batch lines rejected by pricing policy",
+              "type": "integer"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            },
+            "superseded_lines": {
+              "description": "Lines superseded by a later effective date",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "batch_lines",
+            "accepted_lines",
+            "rejected_lines",
+            "superseded_lines",
+            "average_change_pct"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Terravane Solar Components",
+        "decision_options": [
+          {
+            "id": "apply_policy_compliant_lines",
+            "label": "Apply only the lines that meet pricing policy, later effective dates winning"
+          },
+          {
+            "id": "apply_all_batch_lines",
+            "label": "Apply every line in the batch as sent"
+          },
+          {
+            "id": "apply_latest_line_per_item_ignoring_band",
+            "label": "Apply the latest line per item regardless of the change band"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Apply nothing and escalate the batch"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-trv",
+        "prompt": "**Terravane Solar Components · Rayong plant · Effective-dated price batch**\n\nPricing sent the Q2 list-price batch for Terravane Solar Components. Apply only the lines that meet policy: items we actually carry, effective dates that are not already past, and changes inside the approved band, and respect a later effective date when one line supersedes an earlier one for the same item. Update the prices we accept, log accepted and rejected lines with reasons in the register, and prepare the notice for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "batch_lines",
+            "accepted_lines",
+            "rejected_lines",
+            "superseded_lines",
+            "average_change_pct",
+            "source_reference"
+          ],
+          "range": "Register!A20:H20",
+          "spreadsheetId": "SHEET-TRV-OPS"
+        },
+        "status_options": [
+          {
+            "id": "batch_applied",
+            "label": "Batch applied"
+          },
+          {
+            "id": "batch_applied_with_rejections",
+            "label": "Batch applied with rejections"
+          }
+        ],
+        "task_id": "erpbench-100",
+        "tenant_code": "TERRAVANE"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q2"
+      },
+      "index": 8,
+      "result": {
+        "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-TRV-2026Q2,1,MOD-410-M,152.00,2026-03-01\nPRICE-BATCH-TRV-2026Q2,2,INV-5K-H,705.00,2026-03-01\nPRICE-BATCH-TRV-2026Q2,3,RAIL-AL-42,20.90,2026-03-01\nPRICE-BATCH-TRV-2026Q2,4,CLMP-MID,1.45,2026-02-03\nPRICE-BATCH-TRV-2026Q2,5,CABLE-PV-6,1.15,2026-03-01\nPRICE-BATCH-TRV-2026Q2,6,MOD-410-M,155.00,2026-03-31\nPRICE-BATCH-TRV-2026Q2,7,MOD-430-M,160.00,2026-03-01\nPRICE-BATCH-TRV-2026Q2,8,MOD-380-OLD,134.00,2026-03-01\nPRICE-BATCH-TRV-2026Q2,9,CABLE-PV-6,1.18,2026-04-30\n",
+        "id": "FILE-TRV-PRICE-BATCH-Q2",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "23-price-batch.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "index": 9,
+      "result": {
+        "body": "From: nattapong.chai@terravane-sim.example\nTo: analyst@terravane-sim.example\nSubject: Terravane Solar Components operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "from": "nattapong.chai@terravane-sim.example",
+        "id": "MSG-TRV-AUTHORITY-0209",
+        "internalDate": "2026-02-09T07:30:00Z",
+        "subject": "Terravane Solar Components operating authority for February",
+        "task_id": null,
+        "to": [
+          "analyst@terravane-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-LIST-CURRENT"
+      },
+      "index": 10,
+      "result": {
+        "content": "item,description,list_price,status,effective_from\nMOD-410-M,410 W mono module,148.00,Active,2026-01-01\nINV-5K-H,5 kW hybrid inverter,690.00,Active,2026-01-01\nRAIL-AL-42,Aluminium rail 4.2 m,18.50,Active,2026-01-01\nCLMP-MID,Mid clamp,1.40,Active,2026-01-01\nCABLE-PV-6,PV cable 6 mm2 (per metre),1.10,Active,2026-01-01\nMOD-380-OLD,380 W module (EOL),132.00,Inactive,2026-01-01\n",
+        "id": "FILE-TRV-PRICE-LIST-CURRENT",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "03-current-price-list.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-100-REQUEST"
+      },
+      "index": 11,
+      "result": {
+        "body": "**Terravane Solar Components · Rayong plant · Effective-dated price batch**\n\nPricing sent the Q2 list-price batch for Terravane Solar Components. Apply only the lines that meet policy: items we actually carry, effective dates that are not already past, and changes inside the approved band, and respect a later effective date when one line supersedes an earlier one for the same item. Update the prices we accept, log accepted and rejected lines with reasons in the register, and prepare the notice for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "ploy.suwannarat@terravane-sim.example",
+        "id": "MSG-erpbench-100-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-100 operating request",
+        "task_id": "erpbench-100",
+        "to": [
+          "analyst@terravane-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-AUTHORITY-MEMO-0209"
+      },
+      "index": 12,
+      "result": {
+        "content": "From: nattapong.chai@terravane-sim.example\nTo: analyst@terravane-sim.example\nSubject: Terravane Solar Components operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "index": 13,
+      "result": {
+        "content": "tenant: TERRAVANE\norder_batch: FILE-TRV-ORDER-BATCH-0209\npick_confirmation: FILE-TRV-PICK-CONFIRM-0208\nremittance_advice: FILE-TRV-REMIT-ADVICE-0206\nreorder_policy: FILE-TRV-REORDER-POLICY-R4\ndelivery_note: FILE-TRV-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-TRV-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-TRV-SHIFT-ROSTER-0208\nchannel_export: FILE-TRV-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-TRV-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-TRV-PRICE-BATCH-Q2\n",
+        "id": "FILE-TRV-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-CANDIDATE-REGISTER"
+      },
+      "index": 14,
+      "result": {
+        "content": "Candidate,Candidate id,Permit expiry,Background check,Grade\r\nNattawut Kham,TRV-C201,2028-11-05,passed,B\r\nSuda Phong,TRV-C202,2027-06-24,passed,B\r\nZaw Lin,TRV-C203,2026-12-06,passed,B\r\nPimchanok Dee,TRV-C204,2029-05-24,passed,B\r\nKyaw Htun,TRV-C205,2028-07-28,not passed,B\r\n",
+        "id": "FILE-TRV-CANDIDATE-REGISTER",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "21-candidate-register.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'policy'"
+      },
+      "index": 15,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'band'"
+      },
+      "index": 16,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'price'"
+      },
+      "index": 17,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-TRV-2026Q1.csv",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Q2'"
+      },
+      "index": 18,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 19,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-TRV-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-ORDER-BATCH-0203",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "02-prior-partial-import.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PICK-CONFIRM-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "05-pick-confirmation.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AR-AGING-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "07-ar-aging.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-DEMAND-FORECAST-F06",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "10-demand-forecast.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-COMPLIANCE-CHECKLIST-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "14-compliance-checklist.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-DOCUMENT-ALERT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "15-document-alert-log.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SHIFT-REPORTS-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "17-shift-work-reports.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CHANNEL-EXPORT-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "18-channel-export.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CUSTOMER-CAPTURE-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "19-customer-capture-chat.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-WAGE-TABLE",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "22-wage-table.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-TRV-CHANNEL-EXPORT-0202",
+            "isCurrentAuthority": false,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "Distributor portal-export-2026-02-02.json",
+            "version": 1
+          },
+          {
+            "id": "FILE-TRV-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-TRV-2026Q1.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-TRV-PICK-CONFIRM-0205",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "SHP-TRV-2290-pick-confirmation-2026-02-05.csv",
+            "version": 1
+          },
+          {
+            "id": "FILE-TRV-COMPLIANCE-CHECKLIST-0126",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "compliance-checklist-2026-01-26.xlsx",
+            "version": 1
+          },
+          {
+            "id": "FILE-TRV-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          },
+          {
+            "id": "FILE-TRV-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 20,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "ItemDescription": "PV cable 6 mm2 (per metre)",
+            "ItemId": 300031,
+            "ItemNumber": "CABLE-PV-6",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.1,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Mid clamp",
+            "ItemId": 300024,
+            "ItemNumber": "CLMP-MID",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.4,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "5 kW hybrid inverter",
+            "ItemId": 300010,
+            "ItemNumber": "INV-5K-H",
+            "ItemStatusValue": "Active",
+            "ListPrice": 690.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "380 W module (EOL)",
+            "ItemId": 300038,
+            "ItemNumber": "MOD-380-OLD",
+            "ItemStatusValue": "Inactive",
+            "ListPrice": 132.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "410 W mono module",
+            "ItemId": 300003,
+            "ItemNumber": "MOD-410-M",
+            "ItemStatusValue": "Active",
+            "ListPrice": 148.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Aluminium rail 4.2 m",
+            "ItemId": 300017,
+            "ItemNumber": "RAIL-AL-42",
+            "ItemStatusValue": "Active",
+            "ListPrice": 18.5,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "query": "Terravane price"
+      },
+      "index": 21,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Terravane price"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "price"
+      },
+      "index": 22,
+      "result": {
+        "messages": [
+          {
+            "from": "ploy.suwannarat@terravane-sim.example",
+            "id": "MSG-erpbench-100-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-100 operating request",
+            "task_id": "erpbench-100"
+          },
+          {
+            "from": "pricing@terravane-sim.example",
+            "id": "MSG-TRV-PRICING-0209",
+            "internalDate": "2026-02-09T08:15:00Z",
+            "subject": "PRICE-BATCH-TRV-2026Q2 for review",
+            "task_id": null
+          },
+          {
+            "from": "nattapong.chai@terravane-sim.example",
+            "id": "MSG-TRV-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Terravane Solar Components operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 3
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "query": "pricing"
+      },
+      "index": 23,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#pricing-trv",
+              "text": "Price batch PRICE-BATCH-TRV-2026Q2 is out; policy tab in the ops register applies.",
+              "ts": "2026-02-09T08:20:00Z",
+              "user": "pricing"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "pricing"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "pricing"
+      },
+      "index": 24,
+      "result": {
+        "messages": [
+          {
+            "from": "ploy.suwannarat@terravane-sim.example",
+            "id": "MSG-erpbench-100-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-100 operating request",
+            "task_id": "erpbench-100"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "query": "band"
+      },
+      "index": 25,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "band"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "index": 26,
+      "result": {
+        "channel": "#ops-trv",
+        "messages": [
+          {
+            "text": "Partial import for SGI-PO-2026-014 went in on 2026-02-03 as SO-TRV-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-TRV-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Please resolve erpbench-100 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-PRICING-0209"
+      },
+      "index": 27,
+      "result": {
+        "body": "The Q2 batch is FILE-TRV-PRICE-BATCH-Q2. Policy: known active items only, no effective dates in the past, changes within 8%, and the later effective date wins when an item appears twice.",
+        "from": "pricing@terravane-sim.example",
+        "id": "MSG-TRV-PRICING-0209",
+        "internalDate": "2026-02-09T08:15:00Z",
+        "subject": "PRICE-BATCH-TRV-2026Q2 for review",
+        "task_id": null,
+        "to": [
+          "analyst@terravane-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 28,
+      "result": {
+        "range": "Register!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:Z30",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 29,
+      "result": {
+        "range": "Register!A1:Z30",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "range": "Policy!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 30,
+      "result": {
+        "range": "Policy!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "range": "Pricing!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 31,
+      "result": {
+        "range": "Pricing!A1:H25",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-31",
+        "ItemId": 300003,
+        "ListPrice": 155,
+        "task_id": "erpbench-100"
+      },
+      "index": 32,
+      "result": {
+        "ItemId": 300003,
+        "ItemNumber": "MOD-410-M",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "ListPrice": 155.0,
+        "PriceEffectiveDate": "2026-03-31"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-01",
+        "ItemId": 300010,
+        "ListPrice": 705,
+        "task_id": "erpbench-100"
+      },
+      "index": 33,
+      "result": {
+        "ItemId": 300010,
+        "ItemNumber": "INV-5K-H",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "ListPrice": 705.0,
+        "PriceEffectiveDate": "2026-03-01"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-04-30",
+        "ItemId": 300031,
+        "ListPrice": 1.18,
+        "task_id": "erpbench-100"
+      },
+      "index": 34,
+      "result": {
+        "ItemId": 300031,
+        "ItemNumber": "CABLE-PV-6",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "ListPrice": 1.18,
+        "PriceEffectiveDate": "2026-04-30"
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:H20",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-100",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "300003",
+            "apply_policy_compliant_lines",
+            9,
+            3,
+            4,
+            2,
+            4.73,
+            "FILE-TRV-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "index": 35,
+      "result": {
+        "changeId": "CHANGE-erpbench-100-1",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "updatedRange": "Register!A20:H20",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "300003",
+        "rationale": "Applied 3 of 9 batch lines under the pricing policy: line 6 MOD-410-M at 155.00 effective 2026-03-31 (+4.73%; line 1 superseded), line 2 INV-5K-H at 705.00 effective 2026-03-01 (+2.17%), and line 9 CABLE-PV-6 at 1.18 effective 2026-04-30 (+7.27%; line 5 superseded). Rejected line 3 RAIL-AL-42 at 20.90 (+12.97%) because it exceeds the 8% band; line 4 CLMP-MID at 1.45 because its 2026-02-03 effective date was past as of 2026-02-09; line 7 MOD-430-M because it is not a known active item; and line 8 MOD-380-OLD because it is inactive/not carried. Lines 1 and 5 were superseded by later effective dates.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "FILE-TRV-PRICE-LIST-CURRENT",
+          "MSG-TRV-PRICING-0209",
+          "FILE-TRV-AUTHORITY-MEMO-0209",
+          "MSG-TRV-AUTHORITY-0209",
+          "SHEET-TRV-OPS Register!A20:H20"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "index": 36,
+      "result": {
+        "decision": "apply_policy_compliant_lines",
+        "decision_id": "DECISION-erpbench-100",
+        "primary_record": "300003",
+        "rationale": "Applied 3 of 9 batch lines under the pricing policy: line 6 MOD-410-M at 155.00 effective 2026-03-31 (+4.73%; line 1 superseded), line 2 INV-5K-H at 705.00 effective 2026-03-01 (+2.17%), and line 9 CABLE-PV-6 at 1.18 effective 2026-04-30 (+7.27%; line 5 superseded). Rejected line 3 RAIL-AL-42 at 20.90 (+12.97%) because it exceeds the 8% band; line 4 CLMP-MID at 1.45 because its 2026-02-03 effective date was past as of 2026-02-09; line 7 MOD-430-M because it is not a known active item; and line 8 MOD-380-OLD because it is inactive/not carried. Lines 1 and 5 were superseded by later effective dates.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "FILE-TRV-PRICE-LIST-CURRENT",
+          "MSG-TRV-PRICING-0209",
+          "FILE-TRV-AUTHORITY-MEMO-0209",
+          "MSG-TRV-AUTHORITY-0209",
+          "SHEET-TRV-OPS Register!A20:H20"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components — Q2 price batch review\n\nDecision option: apply_policy_compliant_lines\nDecision status: batch_applied_with_rejections\nPrimary ERP record: 300003 (MOD-410-M)\nSource batch: FILE-TRV-PRICE-BATCH-Q2\n\nResults: 9 batch lines; 3 accepted; 4 rejected; 2 superseded; average change across accepted lines: 4.73%.\n\nApplied:\n- Line 6 MOD-410-M: 155.00 effective 2026-03-31 (+4.73%); supersedes line 1.\n- Line 2 INV-5K-H: 705.00 effective 2026-03-01 (+2.17%).\n- Line 9 CABLE-PV-6: 1.18 effective 2026-04-30 (+7.27%); supersedes line 5.\n\nRejected:\n- Line 3 RAIL-AL-42: +12.97%, outside the approved 8% band.\n- Line 4 CLMP-MID: effective 2026-02-03, already past as of 2026-02-09.\n- Line 7 MOD-430-M: not a known active item.\n- Line 8 MOD-380-OLD: inactive/not carried.\n\nThe price updates and register row are ready for review.",
+        "subject": "REVIEW: PRICE-BATCH-TRV-2026Q2 — policy-compliant lines applied",
+        "task_id": "erpbench-100",
+        "to": "pricing@terravane-sim.example"
+      },
+      "index": 37,
+      "result": {
+        "id": "DRAFT-erpbench-100",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "REVIEW: PRICE-BATCH-TRV-2026Q2 — policy-compliant lines applied",
+          "to": "pricing@terravane-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-100",
+        "text": "Terravane Solar Components Q2 price batch handoff — decision_status=batch_applied_with_rejections; decision=apply_policy_compliant_lines; primary ERP record=300003. Batch 9 lines: 3 accepted, 4 rejected, 2 superseded; average accepted change 4.73%. Applied MOD-410-M 155.00 effective 2026-03-31, INV-5K-H 705.00 effective 2026-03-01, and CABLE-PV-6 1.18 effective 2026-04-30. Rejected line 3 RAIL-AL-42 (+12.97%, over 8% band), line 4 CLMP-MID (past effective date), line 7 MOD-430-M (not known active), and line 8 MOD-380-OLD (inactive/not carried); lines 1 and 5 superseded by later effective dates. Handoff remains draft_for_review."
+      },
+      "index": 38,
+      "result": {
+        "channel": "#ops-trv",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Terravane Solar Components Q2 price batch handoff — decision_status=batch_applied_with_rejections; decision=apply_policy_compliant_lines; primary ERP record=300003. Batch 9 lines: 3 accepted, 4 rejected, 2 superseded; average accepted change 4.73%. Applied MOD-410-M 155.00 effective 2026-03-31, INV-5K-H 705.00 effective 2026-03-01, and CABLE-PV-6 1.18 effective 2026-04-30. Rejected line 3 RAIL-AL-42 (+12.97%, over 8% band), line 4 CLMP-MID (past effective date), line 7 MOD-430-M (not known active), and line 8 MOD-380-OLD (inactive/not carried); lines 1 and 5 superseded by later effective dates. Handoff remains draft_for_review."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:H20",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 39,
+      "result": {
+        "range": "Register!A20:H20",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": [
+          [
+            "300003",
+            "apply_policy_compliant_lines",
+            9,
+            3,
+            4,
+            2,
+            4.73,
+            "FILE-TRV-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 40,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "ItemDescription": "PV cable 6 mm2 (per metre)",
+            "ItemId": 300031,
+            "ItemNumber": "CABLE-PV-6",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.18,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-04-30",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Mid clamp",
+            "ItemId": 300024,
+            "ItemNumber": "CLMP-MID",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.4,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "5 kW hybrid inverter",
+            "ItemId": 300010,
+            "ItemNumber": "INV-5K-H",
+            "ItemStatusValue": "Active",
+            "ListPrice": 705.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-03-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "380 W module (EOL)",
+            "ItemId": 300038,
+            "ItemNumber": "MOD-380-OLD",
+            "ItemStatusValue": "Inactive",
+            "ListPrice": 132.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "410 W mono module",
+            "ItemId": 300003,
+            "ItemNumber": "MOD-410-M",
+            "ItemStatusValue": "Active",
+            "ListPrice": 155.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-03-31",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Aluminium rail 4.2 m",
+            "ItemId": 300017,
+            "ItemNumber": "RAIL-AL-42",
+            "ItemStatusValue": "Active",
+            "ListPrice": 18.5,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-100"
+      },
+      "index": 41,
+      "result": {
+        "id": "DRAFT-erpbench-100",
+        "message": {
+          "body": "Terravane Solar Components — Q2 price batch review\n\nDecision option: apply_policy_compliant_lines\nDecision status: batch_applied_with_rejections\nPrimary ERP record: 300003 (MOD-410-M)\nSource batch: FILE-TRV-PRICE-BATCH-Q2\n\nResults: 9 batch lines; 3 accepted; 4 rejected; 2 superseded; average change across accepted lines: 4.73%.\n\nApplied:\n- Line 6 MOD-410-M: 155.00 effective 2026-03-31 (+4.73%); supersedes line 1.\n- Line 2 INV-5K-H: 705.00 effective 2026-03-01 (+2.17%).\n- Line 9 CABLE-PV-6: 1.18 effective 2026-04-30 (+7.27%); supersedes line 5.\n\nRejected:\n- Line 3 RAIL-AL-42: +12.97%, outside the approved 8% band.\n- Line 4 CLMP-MID: effective 2026-02-03, already past as of 2026-02-09.\n- Line 7 MOD-430-M: not a known active item.\n- Line 8 MOD-380-OLD: inactive/not carried.\n\nThe price updates and register row are ready for review.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "REVIEW: PRICE-BATCH-TRV-2026Q2 — policy-compliant lines applied",
+          "to": "pricing@terravane-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-100"
+      },
+      "index": 42,
+      "result": {
+        "channel": "#ops-trv",
+        "messages": [
+          {
+            "text": "Partial import for SGI-PO-2026-014 went in on 2026-02-03 as SO-TRV-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-TRV-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Please resolve erpbench-100 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-100",
+            "text": "Terravane Solar Components Q2 price batch handoff — decision_status=batch_applied_with_rejections; decision=apply_policy_compliant_lines; primary ERP record=300003. Batch 9 lines: 3 accepted, 4 rejected, 2 superseded; average accepted change 4.73%. Applied MOD-410-M 155.00 effective 2026-03-31, INV-5K-H 705.00 effective 2026-03-01, and CABLE-PV-6 1.18 effective 2026-04-30. Rejected line 3 RAIL-AL-42 (+12.97%, over 8% band), line 4 CLMP-MID (past effective date), line 7 MOD-430-M (not known active), and line 8 MOD-380-OLD (inactive/not carried); lines 1 and 5 superseded by later effective dates. Handoff remains draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q2"
+      },
+      "index": 43,
+      "result": {
+        "id": "FILE-TRV-PRICE-BATCH-Q2",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "23-price-batch.csv",
+        "size": 519,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "index": 44,
+      "result": {
+        "decision": "apply_policy_compliant_lines",
+        "decision_id": "DECISION-erpbench-100",
+        "primary_record": "300003",
+        "rationale": "Applied 3 of 9 batch lines under the pricing policy: line 6 MOD-410-M at 155.00 effective 2026-03-31 (+4.73%; line 1 superseded), line 2 INV-5K-H at 705.00 effective 2026-03-01 (+2.17%), and line 9 CABLE-PV-6 at 1.18 effective 2026-04-30 (+7.27%; line 5 superseded). Rejected line 3 RAIL-AL-42 at 20.90 (+12.97%) because it exceeds the 8% band; line 4 CLMP-MID at 1.45 because its 2026-02-03 effective date was past as of 2026-02-09; line 7 MOD-430-M because it is not a known active item; and line 8 MOD-380-OLD because it is inactive/not carried. Lines 1 and 5 were superseded by later effective dates.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "FILE-TRV-PRICE-LIST-CURRENT",
+          "MSG-TRV-PRICING-0209",
+          "FILE-TRV-AUTHORITY-MEMO-0209",
+          "MSG-TRV-AUTHORITY-0209",
+          "SHEET-TRV-OPS Register!A20:H20"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.73,
+          "batch_lines": 9,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "300003",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+          "superseded_lines": 2
+        },
+        "task_id": "erpbench-100"
+      },
+      "index": 45,
+      "result": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.73,
+          "batch_lines": 9,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "300003",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+          "superseded_lines": 2
+        },
+        "durable": true,
+        "task_id": "erpbench-100"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "index": 46,
+      "result": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.73,
+          "batch_lines": 9,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "300003",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+          "superseded_lines": 2
+        },
+        "task_id": "erpbench-100"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 47,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "ItemDescription": "PV cable 6 mm2 (per metre)",
+            "ItemId": 300031,
+            "ItemNumber": "CABLE-PV-6",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.18,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-04-30",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Mid clamp",
+            "ItemId": 300024,
+            "ItemNumber": "CLMP-MID",
+            "ItemStatusValue": "Active",
+            "ListPrice": 1.4,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "5 kW hybrid inverter",
+            "ItemId": 300010,
+            "ItemNumber": "INV-5K-H",
+            "ItemStatusValue": "Active",
+            "ListPrice": 705.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-03-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "380 W module (EOL)",
+            "ItemId": 300038,
+            "ItemNumber": "MOD-380-OLD",
+            "ItemStatusValue": "Inactive",
+            "ListPrice": 132.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "410 W mono module",
+            "ItemId": 300003,
+            "ItemNumber": "MOD-410-M",
+            "ItemStatusValue": "Active",
+            "ListPrice": 155.0,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-03-31",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Aluminium rail 4.2 m",
+            "ItemId": 300017,
+            "ItemNumber": "RAIL-AL-42",
+            "ItemStatusValue": "Active",
+            "ListPrice": 18.5,
+            "OrganizationCode": "TRV1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-100"
+      },
+      "index": 48,
+      "result": {
+        "channel": "#ops-trv",
+        "messages": [
+          {
+            "text": "Partial import for SGI-PO-2026-014 went in on 2026-02-03 as SO-TRV-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-TRV-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Please resolve erpbench-100 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Nattapong Chai"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-100",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-100",
+            "text": "Terravane Solar Components Q2 price batch handoff — decision_status=batch_applied_with_rejections; decision=apply_policy_compliant_lines; primary ERP record=300003. Batch 9 lines: 3 accepted, 4 rejected, 2 superseded; average accepted change 4.73%. Applied MOD-410-M 155.00 effective 2026-03-31, INV-5K-H 705.00 effective 2026-03-01, and CABLE-PV-6 1.18 effective 2026-04-30. Rejected line 3 RAIL-AL-42 (+12.97%, over 8% band), line 4 CLMP-MID (past effective date), line 7 MOD-430-M (not known active), and line 8 MOD-380-OLD (inactive/not carried); lines 1 and 5 superseded by later effective dates. Handoff remains draft_for_review.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:H20",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "index": 49,
+      "result": {
+        "range": "Register!A20:H20",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "values": [
+          [
+            "300003",
+            "apply_policy_compliant_lines",
+            9,
+            3,
+            4,
+            2,
+            4.73,
+            "FILE-TRV-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-100"
+      },
+      "index": 50,
+      "result": {
+        "id": "DRAFT-erpbench-100",
+        "message": {
+          "body": "Terravane Solar Components — Q2 price batch review\n\nDecision option: apply_policy_compliant_lines\nDecision status: batch_applied_with_rejections\nPrimary ERP record: 300003 (MOD-410-M)\nSource batch: FILE-TRV-PRICE-BATCH-Q2\n\nResults: 9 batch lines; 3 accepted; 4 rejected; 2 superseded; average change across accepted lines: 4.73%.\n\nApplied:\n- Line 6 MOD-410-M: 155.00 effective 2026-03-31 (+4.73%); supersedes line 1.\n- Line 2 INV-5K-H: 705.00 effective 2026-03-01 (+2.17%).\n- Line 9 CABLE-PV-6: 1.18 effective 2026-04-30 (+7.27%); supersedes line 5.\n\nRejected:\n- Line 3 RAIL-AL-42: +12.97%, outside the approved 8% band.\n- Line 4 CLMP-MID: effective 2026-02-03, already past as of 2026-02-09.\n- Line 7 MOD-430-M: not a known active item.\n- Line 8 MOD-380-OLD: inactive/not carried.\n\nThe price updates and register row are ready for review.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "REVIEW: PRICE-BATCH-TRV-2026Q2 — policy-compliant lines applied",
+          "to": "pricing@terravane-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "index": 51,
+      "result": {
+        "decision": "apply_policy_compliant_lines",
+        "decision_id": "DECISION-erpbench-100",
+        "primary_record": "300003",
+        "rationale": "Applied 3 of 9 batch lines under the pricing policy: line 6 MOD-410-M at 155.00 effective 2026-03-31 (+4.73%; line 1 superseded), line 2 INV-5K-H at 705.00 effective 2026-03-01 (+2.17%), and line 9 CABLE-PV-6 at 1.18 effective 2026-04-30 (+7.27%; line 5 superseded). Rejected line 3 RAIL-AL-42 at 20.90 (+12.97%) because it exceeds the 8% band; line 4 CLMP-MID at 1.45 because its 2026-02-03 effective date was past as of 2026-02-09; line 7 MOD-430-M because it is not a known active item; and line 8 MOD-380-OLD because it is inactive/not carried. Lines 1 and 5 were superseded by later effective dates.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "FILE-TRV-PRICE-LIST-CURRENT",
+          "MSG-TRV-PRICING-0209",
+          "FILE-TRV-AUTHORITY-MEMO-0209",
+          "MSG-TRV-AUTHORITY-0209",
+          "SHEET-TRV-OPS Register!A20:H20"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    }
+  ],
+  "trial_name": "erpbench-100__PAbx4rt"
+}

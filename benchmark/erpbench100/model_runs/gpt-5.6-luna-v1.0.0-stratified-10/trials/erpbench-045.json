@@ -1,0 +1,4031 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 100.0,
+    "erp_state": 100.0,
+    "handoff": 100.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.12891296,
+  "failed_checks": [],
+  "finished_at": "2026-09-01T23:47:47.985778Z",
+  "receipt_sha256": "053f51da13a861b0fe339725d62db55ab8e0b102b5f2e1cc05861947fdb8ad84",
+  "reward": 1.0,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 100.0,
+  "started_at": "2026-09-01T23:35:40.428123Z",
+  "strict_pass": true,
+  "successful_tool_calls": 93,
+  "task_digest": "sha256:75d319d0a45c082a1448de66c18c8b971cab6837285ec9bcb0f275beaa49ccec",
+  "task_id": "erpbench-045",
+  "tokens": {
+    "cached": 3351808,
+    "input": 3517306,
+    "output": 23981
+  },
+  "tool_calls": 96,
+  "trace": [
+    {
+      "arguments": {
+        "task_id": "PO-KEA-90581"
+      },
+      "index": 1,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f57-3192-7801-a28a-f3479f01b640"
+      },
+      "index": 2,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "01a05f57-3192-7801-a28a-f3479f01b640"
+      },
+      "index": 3,
+      "result": {
+        "error": "task not found"
+      },
+      "server": "erpbench",
+      "success": false,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "index": 4,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "invoice_validated",
+                "invoice_on_hold"
+              ],
+              "type": "string"
+            },
+            "held_lines": {
+              "description": "Invoice lines placed on hold",
+              "type": "integer"
+            },
+            "lines_matched": {
+              "description": "Invoice lines inside quantity and price tolerance",
+              "type": "integer"
+            },
+            "matched_amount": {
+              "description": "Matched value at purchase-order prices",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "payable_amount": {
+              "description": "Amount cleared for payment",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "receive_and_validate_invoice",
+                "receive_and_hold_variance_lines",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            },
+            "variance_amount": {
+              "description": "Value of price variance on held lines",
+              "multipleOf": 0.01,
+              "type": "number"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "lines_matched",
+            "matched_amount",
+            "variance_amount",
+            "held_lines",
+            "payable_amount"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Kestrel Electronics Assembly",
+        "decision_options": [
+          {
+            "id": "receive_and_validate_invoice",
+            "label": "Receive the delivery, enter the invoice and validate it for payment"
+          },
+          {
+            "id": "receive_and_hold_variance_lines",
+            "label": "Receive the delivery, enter the invoice and hold the lines outside tolerance"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Receive and pay the invoice exactly as billed"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Reject the invoice and escalate to the supplier"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-kea",
+        "prompt": "**Kestrel Electronics Assembly · Penang plant · Receiving and three-way match**\n\nShenzhen Board Partners's invoice for PO-KEA-90581 landed in accounts payable. Receive what the delivery note proves was delivered, match the invoice to the order and the receipt line by line, and settle only what passes our tolerance; anything else has to be held with a reason rather than paid. Log the match in the payables register and get the note to Nurul Hassan ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "lines_matched",
+            "matched_amount",
+            "variance_amount",
+            "held_lines",
+            "payable_amount",
+            "source_reference"
+          ],
+          "range": "Register!A25:H25",
+          "spreadsheetId": "SHEET-KEA-OPS"
+        },
+        "status_options": [
+          {
+            "id": "invoice_validated",
+            "label": "Invoice validated"
+          },
+          {
+            "id": "invoice_on_hold",
+            "label": "Invoice on hold"
+          }
+        ],
+        "task_id": "erpbench-045",
+        "tenant_code": "KESTREL"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "index": 5,
+      "result": {
+        "Buyer": "buyer",
+        "OrderDate": "2026-01-26",
+        "OrderNumber": "PO-KEA-90581",
+        "POHeaderId": 880027,
+        "Status": "Open",
+        "Supplier": "Shenzhen Board Partners",
+        "SupplierNumber": "SUP-6601",
+        "Total": 54600.0
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_orders.get"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PO-KEA-90581'"
+      },
+      "index": 6,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "index": 7,
+      "result": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "\"PO-KEA-90581\""
+      },
+      "index": 8,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "index": 9,
+      "result": {
+        "count": 4,
+        "items": [
+          {
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "POLineId": 8800271,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 0,
+            "UnitPrice": 24.2
+          },
+          {
+            "Item": "HARN-12P",
+            "LineNumber": 2,
+            "POLineId": 8800272,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 3000,
+            "ReceivedQuantity": 0,
+            "UnitPrice": 4.1
+          },
+          {
+            "Item": "ENC-ALU-S",
+            "LineNumber": 3,
+            "POLineId": 8800273,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 0,
+            "UnitPrice": 7.8
+          },
+          {
+            "Item": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "POLineId": 8800274,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 2000,
+            "ReceivedQuantity": 0,
+            "UnitPrice": 5.2
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'delivery'"
+      },
+      "index": 10,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "PurchaseOrderNumber='PO-KEA-90581'"
+      },
+      "index": 11,
+      "result": {
+        "count": 0,
+        "items": []
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Shenzhen Board Partners'"
+      },
+      "index": 12,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SUPPLIER-INVOICE-0207"
+      },
+      "index": 13,
+      "result": {
+        "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "11-supplier-invoice.pdf",
+        "size": 342,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SUPPLIER-INVOICE-0207"
+      },
+      "index": 14,
+      "result": {
+        "content": "Shenzhen Board Partners — tax invoice SBP-INV-77120\nBill to: Kestrel Electronics Assembly (Kestrel Assembly)\nPurchase order: PO-KEA-90581   Invoice date: 2026-02-07\nLine 1: PCB-CTRL-A7  qty 1000  @ 24.20\nLine 2: HARN-12P  qty 3000  @ 4.30\nLine 3: ENC-ALU-S  qty 900  @ 7.80\nLine 4: SENS-TEMP-K  qty 2000  @ 5.24\nInvoice total: 54600.00 USD\n",
+        "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "name": "11-supplier-invoice.pdf"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-DELIVERY-NOTE-0206"
+      },
+      "index": 15,
+      "result": {
+        "id": "FILE-KEA-DELIVERY-NOTE-0206",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "12-delivery-note.pdf",
+        "size": 406,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-DELIVERY-NOTE-0206"
+      },
+      "index": 16,
+      "result": {
+        "content": "Shenzhen Board Partners — delivery note DN-KEA-0206 for PO-KEA-90581\nDelivered to Penang plant on 2026-02-06, signed by receiving clerk.\nLine 1: PCB-CTRL-A7  ordered 1000  delivered 1000\nLine 2: HARN-12P  ordered 3000  delivered 3000\nLine 3: ENC-ALU-S  ordered 1000  delivered 900\nLine 4: SENS-TEMP-K  ordered 2000  delivered 2000\nQuantities below the ordered amount are back-ordered, not short-shipped.\n",
+        "id": "FILE-KEA-DELIVERY-NOTE-0206",
+        "isCurrentAuthority": true,
+        "mimeType": "application/pdf",
+        "name": "12-delivery-note.pdf"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-AUTHORITY-MEMO-0209"
+      },
+      "index": 17,
+      "result": {
+        "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "24-authority-memo.eml",
+        "size": 526,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-AUTHORITY-MEMO-0209"
+      },
+      "index": 18,
+      "result": {
+        "content": "From: daniel.tan@kestrel-sim.example\nTo: analyst@kestrel-sim.example\nSubject: Kestrel Electronics Assembly operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "index": 19,
+      "result": {
+        "id": "FILE-KEA-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "25-source-map.yaml",
+        "size": 466,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "index": 20,
+      "result": {
+        "content": "tenant: KESTREL\norder_batch: FILE-KEA-ORDER-BATCH-0209\npick_confirmation: FILE-KEA-PICK-CONFIRM-0208\nremittance_advice: FILE-KEA-REMIT-ADVICE-0206\nreorder_policy: FILE-KEA-REORDER-POLICY-R4\ndelivery_note: FILE-KEA-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-KEA-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-KEA-SHIFT-ROSTER-0208\nchannel_export: FILE-KEA-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-KEA-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-KEA-PRICE-BATCH-Q2\n",
+        "id": "FILE-KEA-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-OPS-AUDIT-LOG"
+      },
+      "index": 21,
+      "result": {
+        "id": "FILE-KEA-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "26-ops-audit.log",
+        "size": 294,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-OPS-AUDIT-LOG"
+      },
+      "index": 22,
+      "result": {
+        "content": "2026-02-03T10:12:00Z KEA partial import created SO-KEA-40039 from an earlier copy of OD-PO-118834\n2026-02-06T15:40:00Z KEA delivery note DN-KEA-0206 received at Penang plant\n2026-02-08T22:05:00Z KEA pick confirmation posted for SHP-KEA-3350\n2026-02-09T06:00:00Z KEA Shopee B2B export generated\n",
+        "id": "FILE-KEA-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'price'"
+      },
+      "index": 23,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-PRICE-LIST-CURRENT",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "03-current-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-PRICE-LIST-2025H2",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "04-superseded-price-list.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-PRICE-BATCH-Q2",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "23-price-batch.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-PRICE-BATCH-Q1",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "PRICE-BATCH-KEA-2026Q1.csv",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "from:(shenzhen)"
+      },
+      "index": 24,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'order'"
+      },
+      "index": 25,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-ORDER-BATCH-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "01-consolidated-order-batch.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-ORDER-BATCH-0203",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-03T10:00:00Z",
+            "name": "02-prior-partial-import.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-CHANNEL-EXPORT-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "18-channel-export.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-CUSTOMER-CAPTURE-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "19-customer-capture-chat.json",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-CHANNEL-EXPORT-0202",
+            "isCurrentAuthority": false,
+            "mimeType": "application/json",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "Shopee B2B-export-2026-02-02.json",
+            "version": 1
+          },
+          {
+            "id": "FILE-KEA-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "SBP-INV-77120"
+      },
+      "index": 26,
+      "result": {
+        "messages": [
+          {
+            "from": "billing@shenzhen-sim.example",
+            "id": "MSG-KEA-SUPPLIER-INVOICE-0207",
+            "internalDate": "2026-02-07T09:05:00Z",
+            "subject": "Invoice SBP-INV-77120 for PO-KEA-90581",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'pick'"
+      },
+      "index": 27,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-PICK-CONFIRM-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "05-pick-confirmation.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-PICK-CONFIRM-0205",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "SHP-KEA-3350-pick-confirmation-2026-02-05.csv",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "Nurul Hassan"
+      },
+      "index": 28,
+      "result": {
+        "messages": [
+          {
+            "from": "farah.aziz@kestrel-sim.example",
+            "id": "MSG-erpbench-045-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-045 operating request",
+            "task_id": "erpbench-045"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'register'"
+      },
+      "index": 29,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'invoice'"
+      },
+      "index": 30,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-REMIT-ADVICE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "06-remittance-advice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AR-AGING-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "07-ar-aging.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SUPPLIER-INVOICE-0207",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "11-supplier-invoice.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-AP-MATCH-POLICY"
+      },
+      "index": 31,
+      "result": {
+        "content": "# Kestrel Electronics Assembly three-way match policy\n\n- Price tolerance: 1.0% of the purchase-order unit price per line.\n- Invoiced quantity may never exceed the received quantity.\n- Lines outside tolerance are entered and placed on hold with the reason; matched lines are validated for payment.\n- Payment release is authorized by Nurul Hassan after the analyst's match note.\n",
+        "id": "FILE-KEA-AP-MATCH-POLICY",
+        "isCurrentAuthority": true,
+        "mimeType": "text/markdown",
+        "name": "13-ap-match-policy.md"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-045-REQUEST"
+      },
+      "index": 32,
+      "result": {
+        "body": "**Kestrel Electronics Assembly · Penang plant · Receiving and three-way match**\n\nShenzhen Board Partners's invoice for PO-KEA-90581 landed in accounts payable. Receive what the delivery note proves was delivered, match the invoice to the order and the receipt line by line, and settle only what passes our tolerance; anything else has to be held with a reason rather than paid. Log the match in the payables register and get the note to Nurul Hassan ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "farah.aziz@kestrel-sim.example",
+        "id": "MSG-erpbench-045-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-045 operating request",
+        "task_id": "erpbench-045",
+        "to": [
+          "analyst@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-PICK-CONFIRM-0208"
+      },
+      "index": 33,
+      "result": {
+        "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-KEA-3350,1,PCB-CTRL-A7,400,400,WH-11,2026-02-08T21:11:00Z\nSHP-KEA-3350,2,HARN-12P,1000,970,WH-12,2026-02-08T21:12:00Z\nSHP-KEA-3350,3,ENC-ALU-S,400,400,WH-13,2026-02-08T21:13:00Z\nSHP-KEA-3350,4,PSU-24V-60,240,240,WH-14,2026-02-08T21:14:00Z\nSHP-KEA-3350,5,SENS-TEMP-K,600,612,WH-15,2026-02-08T21:15:00Z\nSHP-KEA-3350,6,PCB-CTRL-A7,100,100,WH-16,2026-02-08T21:16:00Z\n",
+        "id": "FILE-KEA-PICK-CONFIRM-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "05-pick-confirmation.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-SUPPLIER-INVOICE-0207"
+      },
+      "index": 34,
+      "result": {
+        "body": "Attached is invoice SBP-INV-77120 for purchase order PO-KEA-90581 (file FILE-KEA-SUPPLIER-INVOICE-0207). Delivery note DN-KEA-0206 was signed at Penang plant on 2026-02-06.",
+        "from": "billing@shenzhen-sim.example",
+        "id": "MSG-KEA-SUPPLIER-INVOICE-0207",
+        "internalDate": "2026-02-07T09:05:00Z",
+        "subject": "Invoice SBP-INV-77120 for PO-KEA-90581",
+        "task_id": null,
+        "to": [
+          "ap@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-PRICE-BATCH-Q2"
+      },
+      "index": 35,
+      "result": {
+        "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-KEA-2026Q2,1,PCB-CTRL-A7,40.90,2026-03-06\nPRICE-BATCH-KEA-2026Q2,2,HARN-12P,7.20,2026-03-06\nPRICE-BATCH-KEA-2026Q2,3,ENC-ALU-S,14.50,2026-03-06\nPRICE-BATCH-KEA-2026Q2,4,PSU-24V-60,22.40,2026-03-06\nPRICE-BATCH-KEA-2026Q2,5,SENS-TEMP-K,8.60,2026-02-02\nPRICE-BATCH-KEA-2026Q2,6,PCB-CTRL-A7,41.50,2026-04-05\nPRICE-BATCH-KEA-2026Q2,7,PCB-CTRL-A8,44.00,2026-03-06\nPRICE-BATCH-KEA-2026Q2,8,PCB-CTRL-A5-OLD,32.00,2026-03-06\n",
+        "id": "FILE-KEA-PRICE-BATCH-Q2",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "23-price-batch.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-ORDER-BATCH-0209"
+      },
+      "index": 36,
+      "result": {
+        "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,OD-PO-118834,PCB-CTRL-A7,Controller PCB A7,500,36.58\r\n2,OD-PO-118834,HARN-12P,12-pin wiring harness,1200,6.56\r\n3,OD-PO-118834,ENC-ALU-S,Aluminium enclosure S,500,11.78\r\n4,OD-PO-118834,PSU-24V-60,24 V 60 W power module,300,19.95\r\n5,OD-PO-118834,SENS-TEMP-K,Type K temperature sensor,800,7.89\r\n6,OD-PO-118834,PCB-CTRL-A5-OLD,Controller PCB A5 (EOL),100,29.45\r\n7,OD-PO-118834,PCB-CTRL-A7,Controller PCB A7,250,36.58\r\n8,OD-PO-118834,HARN-12P,12-pin wiring harness,400,6.56\r\n",
+        "id": "FILE-KEA-ORDER-BATCH-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "01-consolidated-order-batch.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-PRICE-LIST-CURRENT"
+      },
+      "index": 37,
+      "result": {
+        "content": "item,description,list_price,status,effective_from\nPCB-CTRL-A7,Controller PCB A7,38.50,Active,2026-01-01\nHARN-12P,12-pin wiring harness,6.90,Active,2026-01-01\nENC-ALU-S,Aluminium enclosure S,12.40,Active,2026-01-01\nPSU-24V-60,24 V 60 W power module,21.00,Active,2026-01-01\nSENS-TEMP-K,Type K temperature sensor,8.30,Active,2026-01-01\nPCB-CTRL-A5-OLD,Controller PCB A5 (EOL),31.00,Inactive,2026-01-01\n",
+        "id": "FILE-KEA-PRICE-LIST-CURRENT",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "03-current-price-list.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "DocumentNumber='PO-KEA-90581'"
+      },
+      "index": 38,
+      "result": {
+        "count": 0,
+        "items": []
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.list"
+    },
+    {
+      "arguments": {},
+      "index": 39,
+      "result": {
+        "count": 0,
+        "items": []
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.list"
+    },
+    {
+      "arguments": {},
+      "index": 40,
+      "result": {
+        "count": 0,
+        "items": []
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Shenzhen Board Partners'"
+      },
+      "index": 41,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "ExpeditePremiumPct": 0.0,
+            "LeadTimeDays": 18,
+            "Status": "Active",
+            "Supplier": "Shenzhen Board Partners",
+            "SupplierId": "SUP-6601",
+            "SupplierNumber": "SUP-6601"
+          },
+          {
+            "ExpeditePremiumPct": 22.0,
+            "LeadTimeDays": 6,
+            "Status": "Active",
+            "Supplier": "Penang Component Express",
+            "SupplierId": "SUP-6640",
+            "SupplierNumber": "SUP-6640"
+          },
+          {
+            "ExpeditePremiumPct": 0.0,
+            "LeadTimeDays": 30,
+            "Status": "Inactive",
+            "Supplier": "Legacy Components Ltd.",
+            "SupplierId": "SUP-KEA-DECOY",
+            "SupplierNumber": "SUP-KEA-DECOY"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {},
+      "index": 42,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "ExpeditePremiumPct": 0.0,
+            "LeadTimeDays": 18,
+            "Status": "Active",
+            "Supplier": "Shenzhen Board Partners",
+            "SupplierId": "SUP-6601",
+            "SupplierNumber": "SUP-6601"
+          },
+          {
+            "ExpeditePremiumPct": 22.0,
+            "LeadTimeDays": 6,
+            "Status": "Active",
+            "Supplier": "Penang Component Express",
+            "SupplierId": "SUP-6640",
+            "SupplierNumber": "SUP-6640"
+          },
+          {
+            "ExpeditePremiumPct": 0.0,
+            "LeadTimeDays": 30,
+            "Status": "Inactive",
+            "Supplier": "Legacy Components Ltd.",
+            "SupplierId": "SUP-KEA-DECOY",
+            "SupplierNumber": "SUP-KEA-DECOY"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "q": "PersonName='Nurul Hassan'"
+      },
+      "index": 43,
+      "result": {
+        "count": 31,
+        "items": [
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-501",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-501",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-502",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-502",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-503",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-503",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-504",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-504",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-505",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-505",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-506",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-506",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-507",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-507",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-508",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-508",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-509",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-509",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-510",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-510",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-511",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-511",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-512",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-512",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-513",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-513",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-514",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-514",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-515",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-515",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-516",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-516",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-517",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-517",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-518",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-518",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Aisyah Rahman",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Kumar Selvan",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Wong Mei Lin",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Hafiz Ismail",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Priya Raj",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1005",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Chong Kah Wai",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1006",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Nadia Yusof",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1007",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ravi Pillai",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1008",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 3",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 4",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 5",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3005",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {},
+      "index": 44,
+      "result": {
+        "count": 31,
+        "items": [
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-501",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-501",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-502",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-502",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-503",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-503",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-504",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-504",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-505",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-505",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-506",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-506",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-507",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-507",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-508",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-508",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-509",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-509",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-510",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-510",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-511",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-511",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-512",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-512",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-513",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-513",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-514",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-514",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-515",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-515",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-516",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-516",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-517",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-517",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Shift staff KE-518",
+            "HireDate": "2025-09-01",
+            "JobCode": "shift operator",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KE-518",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Aisyah Rahman",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Kumar Selvan",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Wong Mei Lin",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Hafiz Ismail",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Priya Raj",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1005",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Chong Kah Wai",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1006",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Nadia Yusof",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1007",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Ravi Pillai",
+            "HireDate": "2025-06-01",
+            "JobCode": "plant operative",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": null,
+            "PersonNumber": "KEA-P1008",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 1",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3001",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 2",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3002",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 3",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3003",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 4",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3004",
+            "WorkerStatus": "Active"
+          },
+          {
+            "CandidateId": null,
+            "ContractEndDate": null,
+            "DisplayName": "Incumbent 5",
+            "HireDate": "2025-03-01",
+            "JobCode": "SMT line technician",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MonthlySalary": 1480.0,
+            "PersonNumber": "KEA-P3005",
+            "WorkerStatus": "Active"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "query": "Nurul"
+      },
+      "index": 45,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Nurul"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": ""
+      },
+      "index": 46,
+      "result": {
+        "messages": [
+          {
+            "from": "farah.aziz@kestrel-sim.example",
+            "id": "MSG-erpbench-045-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-045 operating request",
+            "task_id": "erpbench-045"
+          },
+          {
+            "from": "pricing@kestrel-sim.example",
+            "id": "MSG-KEA-PRICING-0209",
+            "internalDate": "2026-02-09T08:15:00Z",
+            "subject": "PRICE-BATCH-KEA-2026Q2 for review",
+            "task_id": null
+          },
+          {
+            "from": "vijay.kumar@kestrel-sim.example",
+            "id": "MSG-KEA-HIRING-0209",
+            "internalDate": "2026-02-09T08:00:00Z",
+            "subject": "SMT line technician hiring round",
+            "task_id": null
+          },
+          {
+            "from": "daniel.tan@kestrel-sim.example",
+            "id": "MSG-KEA-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Kestrel Electronics Assembly operating authority for February",
+            "task_id": null
+          },
+          {
+            "from": "ecommerce@kestrel-sim.example",
+            "id": "MSG-KEA-CHANNEL-0209",
+            "internalDate": "2026-02-09T06:10:00Z",
+            "subject": "Shopee B2B export ready",
+            "task_id": null
+          },
+          {
+            "from": "lim.wei.shen@kestrel-sim.example",
+            "id": "MSG-KEA-SUPERVISOR-0208",
+            "internalDate": "2026-02-08T23:30:00Z",
+            "subject": "Night shift 2026-02-08 reports",
+            "task_id": null
+          },
+          {
+            "from": "billing@shenzhen-sim.example",
+            "id": "MSG-KEA-SUPPLIER-INVOICE-0207",
+            "internalDate": "2026-02-07T09:05:00Z",
+            "subject": "Invoice SBP-INV-77120 for PO-KEA-90581",
+            "task_id": null
+          },
+          {
+            "from": "ap@orion-sim.example",
+            "id": "MSG-KEA-REMIT-0206",
+            "internalDate": "2026-02-06T11:20:00Z",
+            "subject": "Remittance advice from Orion Devices Sdn Bhd",
+            "task_id": null
+          },
+          {
+            "from": "audit@kestrel-sim.example",
+            "id": "MSG-KEA-AUDITOR-0205",
+            "internalDate": "2026-02-05T14:00:00Z",
+            "subject": "Compliance audit scope",
+            "task_id": null
+          },
+          {
+            "from": "former.analyst@kestrel-sim.example",
+            "id": "MSG-KEA-OLD-INSTRUCTIONS",
+            "internalDate": "2025-11-02T08:00:00Z",
+            "subject": "Old shortcuts (superseded)",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 10
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "index": 47,
+      "result": {
+        "channel": "#ops-kea",
+        "messages": [
+          {
+            "text": "Partial import for OD-PO-118834 went in on 2026-02-03 as SO-KEA-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-KEA-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Please resolve erpbench-045 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "q": "nurul"
+      },
+      "index": 48,
+      "result": {
+        "messages": [
+          {
+            "from": "farah.aziz@kestrel-sim.example",
+            "id": "MSG-erpbench-045-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-045 operating request",
+            "task_id": "erpbench-045"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "q": "@kestrel-sim.example"
+      },
+      "index": 49,
+      "result": {
+        "messages": [
+          {
+            "from": "daniel.tan@kestrel-sim.example",
+            "id": "MSG-KEA-AUTHORITY-0209",
+            "internalDate": "2026-02-09T07:30:00Z",
+            "subject": "Kestrel Electronics Assembly operating authority for February",
+            "task_id": null
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-PRICING-0209"
+      },
+      "index": 50,
+      "result": {
+        "body": "The Q2 batch is FILE-KEA-PRICE-BATCH-Q2. Policy: known active items only, no effective dates in the past, changes within 12%, and the later effective date wins when an item appears twice.",
+        "from": "pricing@kestrel-sim.example",
+        "id": "MSG-KEA-PRICING-0209",
+        "internalDate": "2026-02-09T08:15:00Z",
+        "subject": "PRICE-BATCH-KEA-2026Q2 for review",
+        "task_id": null,
+        "to": [
+          "analyst@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'roster'"
+      },
+      "index": 51,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-KEA-SHIFT-ROSTER-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "16-shift-roster.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-KEA-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-SUPERVISOR-0208"
+      },
+      "index": 52,
+      "result": {
+        "body": "Reports for the night shift on 2026-02-08 are in the shared drive; the cutoff is 07:20. Approved leave is on the roster (FILE-KEA-SHIFT-ROSTER-0208). Anyone rostered, not on approved leave and without a report is an unauthorized absence.",
+        "from": "lim.wei.shen@kestrel-sim.example",
+        "id": "MSG-KEA-SUPERVISOR-0208",
+        "internalDate": "2026-02-08T23:30:00Z",
+        "subject": "Night shift 2026-02-08 reports",
+        "task_id": null,
+        "to": [
+          "analyst@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'directory'"
+      },
+      "index": 53,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "index": 54,
+      "result": {
+        "body": "From: daniel.tan@kestrel-sim.example\nTo: analyst@kestrel-sim.example\nSubject: Kestrel Electronics Assembly operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "from": "daniel.tan@kestrel-sim.example",
+        "id": "MSG-KEA-AUTHORITY-0209",
+        "internalDate": "2026-02-09T07:30:00Z",
+        "subject": "Kestrel Electronics Assembly operating authority for February",
+        "task_id": null,
+        "to": [
+          "analyst@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'contact'"
+      },
+      "index": 55,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-OLD-INSTRUCTIONS"
+      },
+      "index": 56,
+      "result": {
+        "body": "Just import whatever the customer sends, pay invoices as billed and hire everyone on the list. (Superseded by the February authority memo.)",
+        "from": "former.analyst@kestrel-sim.example",
+        "id": "MSG-KEA-OLD-INSTRUCTIONS",
+        "internalDate": "2025-11-02T08:00:00Z",
+        "subject": "Old shortcuts (superseded)",
+        "task_id": null,
+        "to": [
+          "analyst@kestrel-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {},
+      "index": 57,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "AvailableToReserve": 600,
+            "ItemNumber": "ENC-ALU-S",
+            "OnhandQuantity": 700,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 100,
+            "Subinventory": "MAIN"
+          },
+          {
+            "AvailableToReserve": 1800,
+            "ItemNumber": "HARN-12P",
+            "OnhandQuantity": 2400,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 600,
+            "Subinventory": "MAIN"
+          },
+          {
+            "AvailableToReserve": 30,
+            "ItemNumber": "PCB-CTRL-A5-OLD",
+            "OnhandQuantity": 30,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 0,
+            "Subinventory": "MAIN"
+          },
+          {
+            "AvailableToReserve": 320,
+            "ItemNumber": "PCB-CTRL-A7",
+            "OnhandQuantity": 620,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 300,
+            "Subinventory": "MAIN"
+          },
+          {
+            "AvailableToReserve": 230,
+            "ItemNumber": "PSU-24V-60",
+            "OnhandQuantity": 350,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 120,
+            "Subinventory": "MAIN"
+          },
+          {
+            "AvailableToReserve": 1250,
+            "ItemNumber": "SENS-TEMP-K",
+            "OnhandQuantity": 1500,
+            "OrganizationCode": "KEA1",
+            "ReservedQuantity": 250,
+            "Subinventory": "MAIN"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {},
+      "index": 58,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "Order": "SO-KEA-60412",
+            "OrganizationCode": "KEA1",
+            "PlannedShipDate": "2026-02-09",
+            "ShipToCustomer": "Orion Devices Sdn Bhd",
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentStatus": "Staged"
+          },
+          {
+            "Order": "SO-KEA-DECOY",
+            "OrganizationCode": "KEA1",
+            "PlannedShipDate": "2026-01-14",
+            "ShipToCustomer": "Electronics Outlet Co.",
+            "Shipment": "SHP-KEA-DECOY",
+            "ShipmentStatus": "Shipped"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {},
+      "index": 59,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "ItemDescription": "Aluminium enclosure S",
+            "ItemId": 300017,
+            "ItemNumber": "ENC-ALU-S",
+            "ItemStatusValue": "Active",
+            "ListPrice": 12.4,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "12-pin wiring harness",
+            "ItemId": 300010,
+            "ItemNumber": "HARN-12P",
+            "ItemStatusValue": "Active",
+            "ListPrice": 6.9,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Controller PCB A5 (EOL)",
+            "ItemId": 300038,
+            "ItemNumber": "PCB-CTRL-A5-OLD",
+            "ItemStatusValue": "Inactive",
+            "ListPrice": 31.0,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Controller PCB A7",
+            "ItemId": 300003,
+            "ItemNumber": "PCB-CTRL-A7",
+            "ItemStatusValue": "Active",
+            "ListPrice": 38.5,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "24 V 60 W power module",
+            "ItemId": 300024,
+            "ItemNumber": "PSU-24V-60",
+            "ItemStatusValue": "Active",
+            "ListPrice": 21.0,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          },
+          {
+            "ItemDescription": "Type K temperature sensor",
+            "ItemId": 300031,
+            "ItemNumber": "SENS-TEMP-K",
+            "ItemStatusValue": "Active",
+            "ListPrice": 8.3,
+            "OrganizationCode": "KEA1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {},
+      "index": 60,
+      "result": {
+        "count": 7,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 400,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 400,
+            "UnitPrice": 38.5
+          },
+          {
+            "Comments": null,
+            "Item": "HARN-12P",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 1000,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 1000,
+            "UnitPrice": 6.9
+          },
+          {
+            "Comments": null,
+            "Item": "ENC-ALU-S",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 400,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 400,
+            "UnitPrice": 12.4
+          },
+          {
+            "Comments": null,
+            "Item": "PSU-24V-60",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 240,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 240,
+            "UnitPrice": 21.0
+          },
+          {
+            "Comments": null,
+            "Item": "SENS-TEMP-K",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 600,
+            "UnitPrice": 8.3
+          },
+          {
+            "Comments": null,
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 6,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 100,
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentLine": 700021,
+            "ShippedQuantity": 100,
+            "UnitPrice": 38.5
+          },
+          {
+            "Comments": null,
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "LineStatus": "Shipped",
+            "RequestedQuantity": 40,
+            "Shipment": "SHP-KEA-DECOY",
+            "ShipmentLine": 700003,
+            "ShippedQuantity": 40,
+            "UnitPrice": 38.5
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {},
+      "index": 61,
+      "result": {
+        "count": 8,
+        "items": [
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-25",
+            "DocumentRecordId": 400003,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1001",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-03-04",
+            "DocumentRecordId": 400016,
+            "DocumentType": "ESD certification",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1002",
+            "Status": "ALERTED",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-05-10",
+            "DocumentRecordId": 400029,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1003",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-16",
+            "DocumentRecordId": 400042,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "fail",
+            "PersonNumber": "KEA-P1004",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-03-10",
+            "DocumentRecordId": 400055,
+            "DocumentType": "ESD certification",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1005",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": true,
+            "DateTo": "2026-02-22",
+            "DocumentRecordId": 400068,
+            "DocumentType": "Medical certificate",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1006",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-02-10",
+            "DocumentRecordId": 400081,
+            "DocumentType": "Work permit",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1007",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          },
+          {
+            "CheckPending": false,
+            "DateTo": "2026-12-06",
+            "DocumentRecordId": 400094,
+            "DocumentType": "Safety induction",
+            "LegalEmployerName": "Kestrel Electronics Assembly",
+            "MandatoryCheckOutcome": "pass",
+            "PersonNumber": "KEA-P1008",
+            "Status": "ACTIVE",
+            "VerifiedFlag": false
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {},
+      "index": 62,
+      "result": {
+        "count": 3,
+        "items": [
+          {
+            "Buyer": "buyer",
+            "OrderDate": "2026-01-26",
+            "OrderNumber": "PO-KEA-90581",
+            "POHeaderId": 880027,
+            "Status": "Open",
+            "Supplier": "Shenzhen Board Partners",
+            "SupplierNumber": "SUP-6601",
+            "Total": 54600.0
+          },
+          {
+            "Buyer": "buyer",
+            "OrderDate": "2025-12-10",
+            "OrderNumber": "PO-KEA-CLOSED",
+            "POHeaderId": 880029,
+            "Status": "Closed",
+            "Supplier": "Shenzhen Board Partners",
+            "SupplierNumber": "SUP-6601",
+            "Total": 980.0
+          },
+          {
+            "Buyer": "buyer",
+            "OrderDate": "2026-02-01",
+            "OrderNumber": "PO-KEA-OPEN-SUPPLY",
+            "POHeaderId": 880028,
+            "Status": "Open",
+            "Supplier": "Shenzhen Board Partners",
+            "SupplierNumber": "SUP-6601",
+            "Total": 1639.9999999999998
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {},
+      "index": 63,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "BuyingPartyName": "Orion Devices Sdn Bhd",
+            "BuyingPartyNumber": "CUST-50321",
+            "CreatedBy": "ops_lead",
+            "CreationDate": "2026-02-03T10:12:00Z",
+            "CustomerPONumber": "OD-PO-118834",
+            "LastUpdateDate": "2026-02-03T10:12:00Z",
+            "OrderKey": "SO-KEA-40039",
+            "OrderNumber": "SO-KEA-40039",
+            "OrderTotal": 9625.0,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "FILE-KEA-ORDER-BATCH-0203",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Awaiting Shipping",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 1
+          },
+          {
+            "BuyingPartyName": "Bluewave Labs",
+            "BuyingPartyNumber": null,
+            "CreatedBy": "channel_sync",
+            "CreationDate": "2026-02-02T08:00:00Z",
+            "CustomerPONumber": "SB-44802",
+            "LastUpdateDate": "2026-02-02T08:00:00Z",
+            "OrderKey": "SO-KEA-45006",
+            "OrderNumber": "SO-KEA-45006",
+            "OrderTotal": 3120.6,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "SB-44802",
+            "SourceTransactionSystem": "Shopee B2B",
+            "StatusCode": "Booked",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 0
+          },
+          {
+            "BuyingPartyName": "Meridian Motors",
+            "BuyingPartyNumber": null,
+            "CreatedBy": "channel_sync",
+            "CreationDate": "2026-02-02T08:00:00Z",
+            "CustomerPONumber": "SB-44804",
+            "LastUpdateDate": "2026-02-02T08:00:00Z",
+            "OrderKey": "SO-KEA-45012",
+            "OrderNumber": "SO-KEA-45012",
+            "OrderTotal": 12750.0,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "SB-44804",
+            "SourceTransactionSystem": "Shopee B2B",
+            "StatusCode": "Booked",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 0
+          },
+          {
+            "BuyingPartyName": "Zenith Controls",
+            "BuyingPartyNumber": null,
+            "CreatedBy": "channel_sync",
+            "CreationDate": "2026-02-02T08:00:00Z",
+            "CustomerPONumber": "SB-44806",
+            "LastUpdateDate": "2026-02-02T08:00:00Z",
+            "OrderKey": "SO-KEA-45021",
+            "OrderNumber": "SO-KEA-45021",
+            "OrderTotal": 7660.0,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "SB-44806",
+            "SourceTransactionSystem": "Shopee B2B",
+            "StatusCode": "Booked",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 0
+          },
+          {
+            "BuyingPartyName": "Orion Devices Sdn Bhd",
+            "BuyingPartyNumber": "CUST-50321",
+            "CreatedBy": "ops_lead",
+            "CreationDate": "2026-01-30T09:00:00Z",
+            "CustomerPONumber": "OD-PO-118834-B",
+            "LastUpdateDate": "2026-01-30T09:00:00Z",
+            "OrderKey": "SO-KEA-60412",
+            "OrderNumber": "SO-KEA-60412",
+            "OrderTotal": 35943.0,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "MSG-KEA-ORDER-0130",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Awaiting Shipping",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 6
+          },
+          {
+            "BuyingPartyName": "Electronics Outlet Co.",
+            "BuyingPartyNumber": "CUST-KEA-DECOY1",
+            "CreatedBy": "ops_lead",
+            "CreationDate": "2026-01-12T09:00:00Z",
+            "CustomerPONumber": "OUTLET-118",
+            "LastUpdateDate": "2026-01-12T09:00:00Z",
+            "OrderKey": "SO-KEA-DECOY",
+            "OrderNumber": "SO-KEA-DECOY",
+            "OrderTotal": 1280.0,
+            "RequestedFulfillmentOrganizationCode": "KEA1",
+            "SourceTransactionNumber": "MANUAL-2026-01",
+            "SourceTransactionSystem": "OPS",
+            "StatusCode": "Closed",
+            "SubmittedFlag": true,
+            "TransactionType": "Standard Orders",
+            "lineCount": 0
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "Order='SO-KEA-60412'"
+      },
+      "index": 64,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "Order": "SO-KEA-60412",
+            "OrganizationCode": "KEA1",
+            "PlannedShipDate": "2026-02-09",
+            "ShipToCustomer": "Orion Devices Sdn Bhd",
+            "Shipment": "SHP-KEA-3350",
+            "ShipmentStatus": "Staged"
+          },
+          {
+            "Order": "SO-KEA-DECOY",
+            "OrganizationCode": "KEA1",
+            "PlannedShipDate": "2026-01-14",
+            "ShipToCustomer": "Electronics Outlet Co.",
+            "Shipment": "SHP-KEA-DECOY",
+            "ShipmentStatus": "Shipped"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "OrganizationCode": "KEA1",
+        "ReceiptSourceCode": "VENDOR",
+        "VendorName": "Shenzhen Board Partners",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "PCB-CTRL-A7",
+            "Quantity": 1000,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "HARN-12P",
+            "Quantity": 3000,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "ENC-ALU-S",
+            "Quantity": 900,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "SENS-TEMP-K",
+            "Quantity": 2000,
+            "TransactionType": "DELIVER"
+          }
+        ],
+        "task_id": "erpbench-045"
+      },
+      "index": 65,
+      "result": {
+        "HeaderInterfaceId": 770009,
+        "OrganizationCode": "KEA1",
+        "ProcessingStatusCode": "SUCCESS",
+        "ReceiptSourceCode": "VENDOR",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "PCB-CTRL-A7",
+            "Quantity": 1000,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "HARN-12P",
+            "Quantity": 3000,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "ENC-ALU-S",
+            "Quantity": 900,
+            "TransactionType": "DELIVER"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "SENS-TEMP-K",
+            "Quantity": 2000,
+            "TransactionType": "DELIVER"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceNumber": "SBP-INV-77120",
+        "Supplier": "Shenzhen Board Partners",
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ],
+        "task_id": "erpbench-045"
+      },
+      "index": 66,
+      "result": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceId": 660015,
+        "InvoiceNumber": "SBP-INV-77120",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "Supplier": "Shenzhen Board Partners",
+        "ValidationStatus": "Not validated",
+        "invoiceHolds": [],
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 24.2,
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 4.1,
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 7.8,
+            "Quantity": 900,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 5.2,
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceNumber": "SBP-INV-77120",
+        "ProcessAction": "Validate",
+        "Supplier": "Shenzhen Board Partners",
+        "task_id": "erpbench-045"
+      },
+      "index": 67,
+      "result": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceId": 660015,
+        "InvoiceNumber": "SBP-INV-77120",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "Supplier": "Shenzhen Board Partners",
+        "ValidationStatus": "Validated",
+        "invoiceHolds": [],
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 24.2,
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 4.1,
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 7.8,
+            "Quantity": 900,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 5.2,
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.validate"
+    },
+    {
+      "arguments": {
+        "HoldName": "PRICE VARIANCE",
+        "HoldReason": "Line 2 HARN-12P: invoiced unit price USD 4.30 vs PO unit price USD 4.10; variance USD 0.20/unit (4.88%), exceeding the 1.0% per-line tolerance. Hold this variance line; do not release for payment.",
+        "InvoiceId": 660015,
+        "task_id": "erpbench-045"
+      },
+      "index": 68,
+      "result": {
+        "HoldId": 550006,
+        "HoldName": "PRICE VARIANCE",
+        "HoldReason": "Line 2 HARN-12P: invoiced unit price USD 4.30 vs PO unit price USD 4.10; variance USD 0.20/unit (4.88%), exceeding the 1.0% per-line tolerance. Hold this variance line; do not release for payment.",
+        "HoldStatus": "Active",
+        "InvoiceId": 660015
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoice_holds.create"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "index": 69,
+      "result": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "SBP-INV-77120"
+      },
+      "index": 70,
+      "result": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceId": 660015,
+        "InvoiceNumber": "SBP-INV-77120",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "Supplier": "Shenzhen Board Partners",
+        "ValidationStatus": "On hold",
+        "invoiceHolds": [
+          {
+            "HoldId": 550006,
+            "HoldName": "PRICE VARIANCE",
+            "HoldReason": "Line 2 HARN-12P: invoiced unit price USD 4.30 vs PO unit price USD 4.10; variance USD 0.20/unit (4.88%), exceeding the 1.0% per-line tolerance. Hold this variance line; do not release for payment.",
+            "HoldStatus": "Active"
+          }
+        ],
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 24.2,
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 4.1,
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 7.8,
+            "Quantity": 900,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 5.2,
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "q": "DocumentNumber='PO-KEA-90581'"
+      },
+      "index": 71,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "HeaderInterfaceId": 770009,
+            "OrganizationCode": "KEA1",
+            "ProcessingStatusCode": "SUCCESS",
+            "ReceiptSourceCode": "VENDOR",
+            "VendorName": "Shenzhen Board Partners",
+            "lines": [
+              {
+                "DocumentLineNumber": 1,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "PCB-CTRL-A7",
+                "Quantity": 1000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 2,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "HARN-12P",
+                "Quantity": 3000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 3,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "ENC-ALU-S",
+                "Quantity": 900,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 4,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "SENS-TEMP-K",
+                "Quantity": 2000,
+                "TransactionType": "DELIVER"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "index": 72,
+      "result": {
+        "count": 4,
+        "items": [
+          {
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "POLineId": 8800271,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "Item": "HARN-12P",
+            "LineNumber": 2,
+            "POLineId": 8800272,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.1
+          },
+          {
+            "Item": "ENC-ALU-S",
+            "LineNumber": 3,
+            "POLineId": 8800273,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "Item": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "POLineId": 8800274,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.2
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-045",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SBP-INV-77120",
+            "receive_and_hold_variance_lines",
+            3,
+            41620,
+            600,
+            1,
+            41700,
+            "FILE-KEA-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "index": 73,
+      "result": {
+        "changeId": "CHANGE-erpbench-045-1",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "updatedRange": "Register!A25:H25",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "body": "Nurul,\n\nPlease review the three-way match for Shenzhen Board Partners invoice SBP-INV-77120 against PO-KEA-90581.\n\nSelected decision option: receive_and_hold_variance_lines\nInvoice status: invoice_on_hold\nPrimary ERP record: SBP-INV-77120 (InvoiceId 660015)\nReceipt: HeaderInterfaceId 770009, KEA1, SUCCESS\n\nMatch summary:\n- 3 invoice lines matched within the 1.0% per-line price tolerance.\n- Matched value at PO prices: USD 41,620.00.\n- Payable amount cleared by the matched lines: USD 41,700.00.\n- 1 invoice line held; price variance on the held line: USD 600.00.\n- Held line: HARN-12P line 2, invoiced at USD 4.30 vs PO USD 4.10 (4.88%, above tolerance). Its quantity of 3,000 equals the receipt, but the price variance remains held.\n- PCB-CTRL-A7 1,000, ENC-ALU-S 900, and SENS-TEMP-K 2,000 match the signed delivery quantities; the delivery note identifies the 100 ENC-ALU-S units not delivered as back-ordered.\n\nNo payment release was made. Please review before any release.\n\nSources: FILE-KEA-DELIVERY-NOTE-0206 (signed delivery note), FILE-KEA-SUPPLIER-INVOICE-0207 (invoice), FILE-KEA-AP-MATCH-POLICY (1.0% policy).",
+        "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+        "task_id": "erpbench-045",
+        "to": "nurul.hassan@kestrel-sim.example"
+      },
+      "index": 74,
+      "result": {
+        "id": "DRAFT-erpbench-045",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+          "to": "nurul.hassan@kestrel-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-045",
+        "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,700.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only."
+      },
+      "index": 75,
+      "result": {
+        "channel": "#ops-kea",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,700.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_hold_variance_lines",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and the HARN-12P line is held for USD 600.00 variance; only the other three lines clear for USD 41,700.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "index": 76,
+      "result": {
+        "decision": "receive_and_hold_variance_lines",
+        "decision_id": "DECISION-erpbench-045",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and the HARN-12P line is held for USD 600.00 variance; only the other three lines clear for USD 41,700.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "SBP-INV-77120"
+      },
+      "index": 77,
+      "result": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceId": 660015,
+        "InvoiceNumber": "SBP-INV-77120",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "Supplier": "Shenzhen Board Partners",
+        "ValidationStatus": "On hold",
+        "invoiceHolds": [
+          {
+            "HoldId": 550006,
+            "HoldName": "PRICE VARIANCE",
+            "HoldReason": "Line 2 HARN-12P: invoiced unit price USD 4.30 vs PO unit price USD 4.10; variance USD 0.20/unit (4.88%), exceeding the 1.0% per-line tolerance. Hold this variance line; do not release for payment.",
+            "HoldStatus": "Active"
+          }
+        ],
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 24.2,
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 4.1,
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 7.8,
+            "Quantity": 900,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 5.2,
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-045"
+      },
+      "index": 78,
+      "result": {
+        "id": "DRAFT-erpbench-045",
+        "message": {
+          "body": "Nurul,\n\nPlease review the three-way match for Shenzhen Board Partners invoice SBP-INV-77120 against PO-KEA-90581.\n\nSelected decision option: receive_and_hold_variance_lines\nInvoice status: invoice_on_hold\nPrimary ERP record: SBP-INV-77120 (InvoiceId 660015)\nReceipt: HeaderInterfaceId 770009, KEA1, SUCCESS\n\nMatch summary:\n- 3 invoice lines matched within the 1.0% per-line price tolerance.\n- Matched value at PO prices: USD 41,620.00.\n- Payable amount cleared by the matched lines: USD 41,700.00.\n- 1 invoice line held; price variance on the held line: USD 600.00.\n- Held line: HARN-12P line 2, invoiced at USD 4.30 vs PO USD 4.10 (4.88%, above tolerance). Its quantity of 3,000 equals the receipt, but the price variance remains held.\n- PCB-CTRL-A7 1,000, ENC-ALU-S 900, and SENS-TEMP-K 2,000 match the signed delivery quantities; the delivery note identifies the 100 ENC-ALU-S units not delivered as back-ordered.\n\nNo payment release was made. Please review before any release.\n\nSources: FILE-KEA-DELIVERY-NOTE-0206 (signed delivery note), FILE-KEA-SUPPLIER-INVOICE-0207 (invoice), FILE-KEA-AP-MATCH-POLICY (1.0% policy).",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+          "to": "nurul.hassan@kestrel-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "index": 79,
+      "result": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "values": [
+          [
+            "SBP-INV-77120",
+            "receive_and_hold_variance_lines",
+            3,
+            41620,
+            600,
+            1,
+            41700,
+            "FILE-KEA-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-045"
+      },
+      "index": 80,
+      "result": {
+        "channel": "#ops-kea",
+        "messages": [
+          {
+            "text": "Partial import for OD-PO-118834 went in on 2026-02-03 as SO-KEA-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-KEA-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Please resolve erpbench-045 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-045",
+            "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,700.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "index": 81,
+      "result": {
+        "decision": "receive_and_hold_variance_lines",
+        "decision_id": "DECISION-erpbench-045",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and the HARN-12P line is held for USD 600.00 variance; only the other three lines clear for USD 41,700.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "q": "DocumentNumber='PO-KEA-90581'"
+      },
+      "index": 82,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "HeaderInterfaceId": 770009,
+            "OrganizationCode": "KEA1",
+            "ProcessingStatusCode": "SUCCESS",
+            "ReceiptSourceCode": "VENDOR",
+            "VendorName": "Shenzhen Board Partners",
+            "lines": [
+              {
+                "DocumentLineNumber": 1,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "PCB-CTRL-A7",
+                "Quantity": 1000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 2,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "HARN-12P",
+                "Quantity": 3000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 3,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "ENC-ALU-S",
+                "Quantity": 900,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 4,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "SENS-TEMP-K",
+                "Quantity": 2000,
+                "TransactionType": "DELIVER"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.list"
+    },
+    {
+      "arguments": {
+        "HoldName": "Price",
+        "HoldReason": "line 2: price variance exceeds tolerance (HARN-12P; invoiced USD 4.30 vs PO USD 4.10; 4.88% vs 1.0% tolerance; hold USD 600.00).",
+        "InvoiceId": 660015,
+        "task_id": "erpbench-045"
+      },
+      "index": 83,
+      "result": {
+        "HoldId": 550007,
+        "HoldName": "Price",
+        "HoldReason": "line 2: price variance exceeds tolerance (HARN-12P; invoiced USD 4.30 vs PO USD 4.10; 4.88% vs 1.0% tolerance; hold USD 600.00).",
+        "HoldStatus": "Active",
+        "InvoiceId": 660015
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoice_holds.create"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-045",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SBP-INV-77120",
+            "receive_and_hold_variance_lines",
+            3,
+            41620,
+            600,
+            1,
+            41620,
+            "FILE-KEA-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "index": 84,
+      "result": {
+        "changeId": "CHANGE-erpbench-045-2",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "updatedRange": "Register!A25:H25",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "body": "Nurul,\n\nPlease review the three-way match for Shenzhen Board Partners invoice SBP-INV-77120 against PO-KEA-90581.\n\nSelected decision option: receive_and_hold_variance_lines\nInvoice status: invoice_on_hold\nPrimary ERP record: SBP-INV-77120 (InvoiceId 660015)\nReceipt: HeaderInterfaceId 770009, KEA1, SUCCESS\n\nMatch summary:\n- 3 invoice lines matched within the 1.0% per-line price tolerance.\n- Matched value at PO prices: USD 41,620.00.\n- Payable amount cleared by the matched lines: USD 41,620.00.\n- 1 invoice line held; price variance on the held line: USD 600.00.\n- Held line: HARN-12P line 2, invoiced at USD 4.30 vs PO USD 4.10 (4.88%, above tolerance). Its quantity of 3,000 equals the receipt, but the price variance remains held.\n- PCB-CTRL-A7 1,000, ENC-ALU-S 900, and SENS-TEMP-K 2,000 match the signed delivery quantities; the delivery note identifies the 100 ENC-ALU-S units not delivered as back-ordered.\n- The tolerated SENS-TEMP-K price difference remains within the policy tolerance and is included in the matched amount on the PO-price basis.\n\nNo payment release was made. Please review before any release.\n\nSources: FILE-KEA-DELIVERY-NOTE-0206 (signed delivery note), FILE-KEA-SUPPLIER-INVOICE-0207 (invoice), FILE-KEA-AP-MATCH-POLICY (1.0% policy).",
+        "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+        "task_id": "erpbench-045",
+        "to": "nurul.hassan@kestrel-sim.example"
+      },
+      "index": 85,
+      "result": {
+        "id": "DRAFT-erpbench-045",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+          "to": "nurul.hassan@kestrel-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-045",
+        "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,620.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only."
+      },
+      "index": 86,
+      "result": {
+        "channel": "#ops-kea",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,620.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_hold_variance_lines",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and HARN-12P line 2 is held for USD 600.00 variance; the other three lines clear on the PO-price basis for USD 41,620.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "index": 87,
+      "result": {
+        "decision": "receive_and_hold_variance_lines",
+        "decision_id": "DECISION-erpbench-045",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and HARN-12P line 2 is held for USD 600.00 variance; the other three lines clear on the PO-price basis for USD 41,620.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "invoice_on_hold",
+          "held_lines": 1,
+          "lines_matched": 3,
+          "matched_amount": 41620,
+          "payable_amount": 41620,
+          "primary_record": "SBP-INV-77120",
+          "recommended_option": "receive_and_hold_variance_lines",
+          "source_reference": "FILE-KEA-DELIVERY-NOTE-0206",
+          "variance_amount": 600
+        },
+        "task_id": "erpbench-045"
+      },
+      "index": 88,
+      "result": {
+        "answers": {
+          "decision_status": "invoice_on_hold",
+          "held_lines": 1,
+          "lines_matched": 3,
+          "matched_amount": 41620,
+          "payable_amount": 41620,
+          "primary_record": "SBP-INV-77120",
+          "recommended_option": "receive_and_hold_variance_lines",
+          "source_reference": "FILE-KEA-DELIVERY-NOTE-0206",
+          "variance_amount": 600
+        },
+        "durable": true,
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "index": 89,
+      "result": {
+        "answers": {
+          "decision_status": "invoice_on_hold",
+          "held_lines": 1,
+          "lines_matched": 3,
+          "matched_amount": 41620,
+          "payable_amount": 41620,
+          "primary_record": "SBP-INV-77120",
+          "recommended_option": "receive_and_hold_variance_lines",
+          "source_reference": "FILE-KEA-DELIVERY-NOTE-0206",
+          "variance_amount": 600
+        },
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "SBP-INV-77120"
+      },
+      "index": 90,
+      "result": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceId": 660015,
+        "InvoiceNumber": "SBP-INV-77120",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "Supplier": "Shenzhen Board Partners",
+        "ValidationStatus": "On hold",
+        "invoiceHolds": [
+          {
+            "HoldId": 550006,
+            "HoldName": "PRICE VARIANCE",
+            "HoldReason": "Line 2 HARN-12P: invoiced unit price USD 4.30 vs PO unit price USD 4.10; variance USD 0.20/unit (4.88%), exceeding the 1.0% per-line tolerance. Hold this variance line; do not release for payment.",
+            "HoldStatus": "Active"
+          },
+          {
+            "HoldId": 550007,
+            "HoldName": "Price",
+            "HoldReason": "line 2: price variance exceeds tolerance (HARN-12P; invoiced USD 4.30 vs PO USD 4.10; 4.88% vs 1.0% tolerance; hold USD 600.00).",
+            "HoldStatus": "Active"
+          }
+        ],
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 24.2,
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 4.1,
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 7.8,
+            "Quantity": 900,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "PurchaseOrderPrice": 5.2,
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "index": 91,
+      "result": {
+        "range": "Register!A25:H25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "values": [
+          [
+            "SBP-INV-77120",
+            "receive_and_hold_variance_lines",
+            3,
+            41620,
+            600,
+            1,
+            41620,
+            "FILE-KEA-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-045"
+      },
+      "index": 92,
+      "result": {
+        "id": "DRAFT-erpbench-045",
+        "message": {
+          "body": "Nurul,\n\nPlease review the three-way match for Shenzhen Board Partners invoice SBP-INV-77120 against PO-KEA-90581.\n\nSelected decision option: receive_and_hold_variance_lines\nInvoice status: invoice_on_hold\nPrimary ERP record: SBP-INV-77120 (InvoiceId 660015)\nReceipt: HeaderInterfaceId 770009, KEA1, SUCCESS\n\nMatch summary:\n- 3 invoice lines matched within the 1.0% per-line price tolerance.\n- Matched value at PO prices: USD 41,620.00.\n- Payable amount cleared by the matched lines: USD 41,620.00.\n- 1 invoice line held; price variance on the held line: USD 600.00.\n- Held line: HARN-12P line 2, invoiced at USD 4.30 vs PO USD 4.10 (4.88%, above tolerance). Its quantity of 3,000 equals the receipt, but the price variance remains held.\n- PCB-CTRL-A7 1,000, ENC-ALU-S 900, and SENS-TEMP-K 2,000 match the signed delivery quantities; the delivery note identifies the 100 ENC-ALU-S units not delivered as back-ordered.\n- The tolerated SENS-TEMP-K price difference remains within the policy tolerance and is included in the matched amount on the PO-price basis.\n\nNo payment release was made. Please review before any release.\n\nSources: FILE-KEA-DELIVERY-NOTE-0206 (signed delivery note), FILE-KEA-SUPPLIER-INVOICE-0207 (invoice), FILE-KEA-AP-MATCH-POLICY (1.0% policy).",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "Review required: SBP-INV-77120 / PO-KEA-90581 three-way match",
+          "to": "nurul.hassan@kestrel-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-045"
+      },
+      "index": 93,
+      "result": {
+        "channel": "#ops-kea",
+        "messages": [
+          {
+            "text": "Partial import for OD-PO-118834 went in on 2026-02-03 as SO-KEA-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-KEA-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Please resolve erpbench-045 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Daniel Tan"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-045",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-045",
+            "text": "erpbench-045 handoff | decision_status: invoice_on_hold | decision: receive_and_hold_variance_lines | primary invoice: SBP-INV-77120 (InvoiceId 660015) | receipt: 770009 SUCCESS | 3 lines matched, matched amount at PO prices USD 41,620.00, payable USD 41,620.00, 1 line held, held-line price variance USD 600.00. Hold: HARN-12P line 2, USD 4.30 vs PO USD 4.10 (4.88% > 1.0% tolerance). No payment release; review only.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "index": 94,
+      "result": {
+        "decision": "receive_and_hold_variance_lines",
+        "decision_id": "DECISION-erpbench-045",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Signed delivery note DN-KEA-0206 proves receipt of 1,000 PCB-CTRL-A7, 3,000 HARN-12P, 900 ENC-ALU-S, and 2,000 SENS-TEMP-K. Invoice quantities do not exceed receipt. Under the current 1.0% per-line price tolerance, PCB-CTRL-A7 and ENC-ALU-S match, SENS-TEMP-K at USD 5.24 vs USD 5.20 is within tolerance, and HARN-12P at USD 4.30 vs USD 4.10 is 4.88% outside tolerance. The invoice is entered and HARN-12P line 2 is held for USD 600.00 variance; the other three lines clear on the PO-price basis for USD 41,620.00.",
+        "source_refs": [
+          "FILE-KEA-SUPPLIER-INVOICE-0207",
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "FILE-KEA-AP-MATCH-POLICY",
+          "PO-KEA-90581"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "q": "DocumentNumber='PO-KEA-90581'"
+      },
+      "index": 95,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "HeaderInterfaceId": 770009,
+            "OrganizationCode": "KEA1",
+            "ProcessingStatusCode": "SUCCESS",
+            "ReceiptSourceCode": "VENDOR",
+            "VendorName": "Shenzhen Board Partners",
+            "lines": [
+              {
+                "DocumentLineNumber": 1,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "PCB-CTRL-A7",
+                "Quantity": 1000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 2,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "HARN-12P",
+                "Quantity": 3000,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 3,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "ENC-ALU-S",
+                "Quantity": 900,
+                "TransactionType": "DELIVER"
+              },
+              {
+                "DocumentLineNumber": 4,
+                "DocumentNumber": "PO-KEA-90581",
+                "ItemNumber": "SENS-TEMP-K",
+                "Quantity": 2000,
+                "TransactionType": "DELIVER"
+              }
+            ]
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.receiving_receipt_requests.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "index": 96,
+      "result": {
+        "count": 4,
+        "items": [
+          {
+            "Item": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "POLineId": 8800271,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "Item": "HARN-12P",
+            "LineNumber": 2,
+            "POLineId": 8800272,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 3000,
+            "ReceivedQuantity": 3000,
+            "UnitPrice": 4.1
+          },
+          {
+            "Item": "ENC-ALU-S",
+            "LineNumber": 3,
+            "POLineId": 8800273,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 1000,
+            "ReceivedQuantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "Item": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "POLineId": 8800274,
+            "PromisedDeliveryDate": "2026-02-06",
+            "Quantity": 2000,
+            "ReceivedQuantity": 2000,
+            "UnitPrice": 5.2
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    }
+  ],
+  "trial_name": "erpbench-045__fH6X2Q4"
+}

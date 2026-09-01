@@ -1,5 +1,5 @@
 {
-  "artifact_bytes_before_release_report": 109823215,
+  "artifact_bytes_before_release_report": 110432292,
   "artifact_file_count_before_release_report": 7147,
   "assets_per_task": {
     "max": 28,
@@ -31,7 +31,7 @@
   },
   "pre_satisfied_tasks": [],
   "qualification_passed": true,
-  "root_sha256_before_release_report": "54afbc40c03fbcbda6d62ed594e4f1827f31586957c978c3120a597aa0b569a2",
+  "root_sha256_before_release_report": "5713ff63187228f6e0882e72104e4bedd20929ffc7b4e3f08b9807c2c5a4a1b7",
   "rows_per_task_snapshot": 146,
   "schema_version": "erpbench.build.v1",
   "source_asset_count": 460,

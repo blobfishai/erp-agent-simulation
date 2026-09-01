@@ -1,0 +1,500 @@
+{
+  "agent": {
+    "kwargs": {
+      "reasoning_effort": "max",
+      "reasoning_summary": "detailed",
+      "version": "0.151.0",
+      "web_search": "disabled"
+    },
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "average_cost_usd": 0.092,
+  "average_tool_calls": 80.4,
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "category_scores": {
+    "calculation": 96.0,
+    "containment": 84.0,
+    "decision": 90.0,
+    "discovery": 82.0,
+    "erp_state": 76.0,
+    "handoff": 65.0,
+    "readback": 93.0
+  },
+  "execution": {
+    "agent_setup_timeout_multiplier": 3.0,
+    "max_retries": 0,
+    "n_attempts": 1,
+    "n_concurrent_trials": 2
+  },
+  "finished_at": "2026-09-01T16:47:47.989169",
+  "harbor_dataset": {
+    "name": "blobfishai/erpbench-100-suite",
+    "ref": "sha256:26648e276ee6e190c73c343bf93cf77823718c9c565f7d92a330b4ddbe5fdc56",
+    "task_names": [
+      "blobfishai/erpbench-001",
+      "blobfishai/erpbench-012",
+      "blobfishai/erpbench-023",
+      "blobfishai/erpbench-034",
+      "blobfishai/erpbench-045",
+      "blobfishai/erpbench-056",
+      "blobfishai/erpbench-067",
+      "blobfishai/erpbench-078",
+      "blobfishai/erpbench-089",
+      "blobfishai/erpbench-100"
+    ]
+  },
+  "job_id": "aefd797c-6b87-4c20-9bd1-fcf7ec6182c4",
+  "job_name": "erpbench-gpt-5.6-luna-v1.0.0-stratified-10",
+  "kind": "pilot",
+  "label": "GPT-5.6 Luna (Codex 0.151.0, max reasoning)",
+  "mean_score": 85.0,
+  "run_sha256": "2461b2ca9ee4325349cd08b3fee9e0297f265b84143996f1b89acc917e0c13c1",
+  "schema_version": "erpbench.model-run.v1",
+  "score_distribution": {
+    "max": 100.0,
+    "median": 88.5,
+    "min": 62.0
+  },
+  "slug": "gpt-5.6-luna-v1.0.0-stratified-10",
+  "source_repository": "https://github.com/blobfishai/erp-agent-simulation",
+  "started_at": "2026-09-01T15:54:19.441975",
+  "strict_passes": 3,
+  "tasks_attempted": 10,
+  "tasks_released": 100,
+  "tokens": {
+    "cached": 24536832,
+    "input": 25677599,
+    "output": 167947
+  },
+  "total_cost_usd": 0.9204,
+  "trials": [
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 40.0,
+        "decision": 100.0,
+        "discovery": 73.33,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.04092471999999999,
+      "failed_checks": [
+        "discovery:authority_memo",
+        "discovery:control_thread",
+        "discovery:ops_register",
+        "discovery:superseded_prices",
+        "containment:task_scope"
+      ],
+      "finished_at": "2026-09-01T23:40:40.030890Z",
+      "receipt_sha256": "30f5ba921b42909275f7219b5852df9c03f5ac69ae279fb4cc66e2cff5e45524",
+      "reward": 0.93,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 93.0,
+      "started_at": "2026-09-01T23:33:28.071969Z",
+      "strict_pass": false,
+      "successful_tool_calls": 43,
+      "task_digest": "sha256:ae0d10c164da8a9fd56a7182cafcd3e62acb2420b311588d10af0b5a01f6534d",
+      "task_id": "erpbench-001",
+      "tokens": {
+        "cached": 868096,
+        "input": 927494,
+        "output": 9736
+      },
+      "tool_calls": 44,
+      "trial_name": "erpbench-001__8J2RXi8"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 80.0,
+        "containment": 100.0,
+        "decision": 33.33,
+        "discovery": 60.0,
+        "erp_state": 70.0,
+        "handoff": 0.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.06404235999999999,
+      "failed_checks": [
+        "discovery:authority_memo",
+        "discovery:control_thread",
+        "discovery:item_master",
+        "discovery:stale_pick",
+        "discovery:sales_order",
+        "discovery:shipping_register",
+        "calculation:confirmed_value",
+        "decision:recommended_option",
+        "erp_state:register",
+        "erp_state:decision_record",
+        "handoff:email_draft",
+        "handoff:chat_post"
+      ],
+      "finished_at": "2026-09-01T23:13:03.322077Z",
+      "receipt_sha256": "9d808417d70880202e06747b97912b0f2097352b43b176c02e5093d807e92800",
+      "reward": 0.63,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 63.0,
+      "started_at": "2026-09-01T23:04:50.154222Z",
+      "strict_pass": false,
+      "successful_tool_calls": 44,
+      "task_digest": "sha256:33cfcf41cb3cb6c2b94a1b2dfd19a280a2128efa56b5e6078adc769af6f72bfa",
+      "task_id": "erpbench-012",
+      "tokens": {
+        "cached": 1502208,
+        "input": 1589657,
+        "output": 13757
+      },
+      "tool_calls": 44,
+      "trial_name": "erpbench-012__Uk25XZX"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 60.0,
+        "decision": 100.0,
+        "discovery": 80.0,
+        "erp_state": 20.0,
+        "handoff": 0.0,
+        "readback": 30.0
+      },
+      "cost_usd": 0.08882819999999998,
+      "failed_checks": [
+        "discovery:task_contract",
+        "discovery:control_thread",
+        "discovery:item_master",
+        "erp_state:primary_write",
+        "erp_state:register",
+        "erp_state:decision_record",
+        "handoff:email_draft",
+        "handoff:chat_post",
+        "readback:register_and_decision",
+        "readback:communications",
+        "readback:submission",
+        "containment:review_gate"
+      ],
+      "finished_at": "2026-09-01T23:23:27.985912Z",
+      "receipt_sha256": "49b79f60eb1b8ec2a23ff9908c91a16af79bf9c120f4b13dd545642eba0ebe6b",
+      "reward": 0.62,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 62.0,
+      "started_at": "2026-09-01T23:12:56.010682Z",
+      "strict_pass": false,
+      "successful_tool_calls": 99,
+      "task_digest": "sha256:58a212e5342c0439d079267bb495c31c1fd63830436b973e751ac3bf75d35fe8",
+      "task_id": "erpbench-023",
+      "tokens": {
+        "cached": 2192640,
+        "input": 2304909,
+        "output": 18768
+      },
+      "tool_calls": 117,
+      "trial_name": "erpbench-023__9n5pY3B"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.09556172,
+      "failed_checks": [],
+      "finished_at": "2026-09-01T23:33:27.639804Z",
+      "receipt_sha256": "daf60a0833d18347a6225d7bb3aec1aafdf9085e3269ef6261766ede3415ab9a",
+      "reward": 1.0,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 100.0,
+      "started_at": "2026-09-01T23:23:28.186836Z",
+      "strict_pass": true,
+      "successful_tool_calls": 70,
+      "task_digest": "sha256:be16b029cad59cc4e0a6f762aa40c28e790dc8bbbfdc8c0ecbedd4a2103f31eb",
+      "task_id": "erpbench-034",
+      "tokens": {
+        "cached": 2681856,
+        "input": 2782519,
+        "output": 18160
+      },
+      "tool_calls": 73,
+      "trial_name": "erpbench-034__yzDmdBK"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.12891296,
+      "failed_checks": [],
+      "finished_at": "2026-09-01T23:47:47.985778Z",
+      "receipt_sha256": "053f51da13a861b0fe339725d62db55ab8e0b102b5f2e1cc05861947fdb8ad84",
+      "reward": 1.0,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 100.0,
+      "started_at": "2026-09-01T23:35:40.428123Z",
+      "strict_pass": true,
+      "successful_tool_calls": 93,
+      "task_digest": "sha256:75d319d0a45c082a1448de66c18c8b971cab6837285ec9bcb0f275beaa49ccec",
+      "task_id": "erpbench-045",
+      "tokens": {
+        "cached": 3351808,
+        "input": 3517306,
+        "output": 23981
+      },
+      "tool_calls": 96,
+      "trial_name": "erpbench-045__fH6X2Q4"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 66.67,
+        "erp_state": 70.0,
+        "handoff": 50.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.09167028,
+      "failed_checks": [
+        "discovery:item_master",
+        "discovery:stale_checklist",
+        "discovery:compliance_tab",
+        "discovery:auditor_mail",
+        "discovery:hr_thread",
+        "erp_state:register",
+        "erp_state:decision_record",
+        "handoff:email_draft"
+      ],
+      "finished_at": "2026-09-01T23:04:49.871689Z",
+      "receipt_sha256": "6495ffc32480c9837522264ec3fa9d17aec3d32e50bd714bc6d419653c18991d",
+      "reward": 0.84,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 84.0,
+      "started_at": "2026-09-01T22:54:19.845385Z",
+      "strict_pass": false,
+      "successful_tool_calls": 48,
+      "task_digest": "sha256:6f277143e0e53577812e0cc585554492a9fb71a4022c9595b51506083a269978",
+      "task_id": "erpbench-056",
+      "tokens": {
+        "cached": 2390784,
+        "input": 2511675,
+        "output": 16397
+      },
+      "tool_calls": 53,
+      "trial_name": "erpbench-056__CmubTHe"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 40.0,
+        "decision": 66.67,
+        "discovery": 73.33,
+        "erp_state": 50.0,
+        "handoff": 50.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.09757467999999998,
+      "failed_checks": [
+        "discovery:request_mail",
+        "discovery:control_thread",
+        "discovery:item_master",
+        "discovery:shift_tab",
+        "decision:operative_source",
+        "erp_state:secondary_write",
+        "erp_state:register",
+        "erp_state:decision_record",
+        "handoff:email_draft",
+        "containment:task_scope"
+      ],
+      "finished_at": "2026-09-01T23:35:40.298094Z",
+      "receipt_sha256": "6c9e7fdeb67f85dc5409ab04e4e0439eabf10ebdb9dded893184251e73f6b937",
+      "reward": 0.73,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 73.0,
+      "started_at": "2026-09-01T23:22:52.619587Z",
+      "strict_pass": false,
+      "successful_tool_calls": 77,
+      "task_digest": "sha256:79d12b220a6955a5ee8a2ebd198f615f45be56c834bd66f82ff6762d884b8ecf",
+      "task_id": "erpbench-067",
+      "tokens": {
+        "cached": 2548224,
+        "input": 2654885,
+        "output": 21065
+      },
+      "tool_calls": 88,
+      "trial_name": "erpbench-067__ooi7sjW"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 86.67,
+        "erp_state": 80.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.12831244000000006,
+      "failed_checks": [
+        "discovery:customer_capture",
+        "discovery:customer_account",
+        "erp_state:secondary_write"
+      ],
+      "finished_at": "2026-09-01T23:12:55.517367Z",
+      "receipt_sha256": "dd7034548b56c8f16ee73caf1a7d8bd30141a196a5ac54512e30ba755710253b",
+      "reward": 0.94,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 94.0,
+      "started_at": "2026-09-01T23:02:48.424869Z",
+      "strict_pass": false,
+      "successful_tool_calls": 174,
+      "task_digest": "sha256:0c910460999792ad5a057a8e0142239408421625488d85b126618200f940dd31",
+      "task_id": "erpbench-078",
+      "tokens": {
+        "cached": 3736832,
+        "input": 3889025,
+        "output": 19281
+      },
+      "tool_calls": 183,
+      "trial_name": "erpbench-078__FgqSJHM"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.13608947999999998,
+      "failed_checks": [],
+      "finished_at": "2026-09-01T23:22:52.396989Z",
+      "receipt_sha256": "a74299c0707df0f6732903381396feee95333dd165c41f526e366173c53841c0",
+      "reward": 1.0,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 100.0,
+      "started_at": "2026-09-01T23:13:03.653412Z",
+      "strict_pass": true,
+      "successful_tool_calls": 47,
+      "task_digest": "sha256:65297cd3d4b925bca73ffbb30321bed6e63ff7128f82f5b29ccdc0c1126e22df",
+      "task_id": "erpbench-089",
+      "tokens": {
+        "cached": 4245504,
+        "input": 4413279,
+        "output": 14687
+      },
+      "tool_calls": 55,
+      "trial_name": "erpbench-089__tysontN"
+    },
+    {
+      "agent": {
+        "model": "gpt-5.6-luna",
+        "name": "codex",
+        "provider": "openai",
+        "version": "0.151.0"
+      },
+      "category_scores": {
+        "calculation": 80.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 80.0,
+        "erp_state": 70.0,
+        "handoff": 50.0,
+        "readback": 100.0
+      },
+      "cost_usd": 0.04850960000000001,
+      "failed_checks": [
+        "discovery:pricing_thread",
+        "discovery:prior_batch",
+        "discovery:superseded_prices",
+        "calculation:average_change_pct",
+        "erp_state:register",
+        "erp_state:decision_record",
+        "handoff:email_draft"
+      ],
+      "finished_at": "2026-09-01T23:02:48.209387Z",
+      "receipt_sha256": "abb29cdbf5f0cbc5fbe7fe59357005c173ea8b6dcfff5f7f4cad2fde0ef36f3a",
+      "reward": 0.81,
+      "schema_version": "erpbench.model-trial.v1",
+      "score": 81.0,
+      "started_at": "2026-09-01T22:54:19.565379Z",
+      "strict_pass": false,
+      "successful_tool_calls": 50,
+      "task_digest": "sha256:8cddbea8b9cee8ca95eceb31670b339b791bb8235f0a947303f39cb6fd8eb3ff",
+      "task_id": "erpbench-100",
+      "tokens": {
+        "cached": 1018880,
+        "input": 1086850,
+        "output": 12115
+      },
+      "tool_calls": 51,
+      "trial_name": "erpbench-100__PAbx4rt"
+    }
+  ]
+}

@@ -1,0 +1,1462 @@
+{
+  "agent": {
+    "model": "gpt-5.6-luna",
+    "name": "codex",
+    "provider": "openai",
+    "version": "0.151.0"
+  },
+  "category_scores": {
+    "calculation": 80.0,
+    "containment": 100.0,
+    "decision": 33.33,
+    "discovery": 60.0,
+    "erp_state": 70.0,
+    "handoff": 0.0,
+    "readback": 100.0
+  },
+  "cost_usd": 0.06404235999999999,
+  "failed_checks": [
+    "discovery:authority_memo",
+    "discovery:control_thread",
+    "discovery:item_master",
+    "discovery:stale_pick",
+    "discovery:sales_order",
+    "discovery:shipping_register",
+    "calculation:confirmed_value",
+    "decision:recommended_option",
+    "erp_state:register",
+    "erp_state:decision_record",
+    "handoff:email_draft",
+    "handoff:chat_post"
+  ],
+  "finished_at": "2026-09-01T23:13:03.322077Z",
+  "receipt_sha256": "9d808417d70880202e06747b97912b0f2097352b43b176c02e5093d807e92800",
+  "reward": 0.63,
+  "schema_version": "erpbench.model-trial.v1",
+  "score": 63.0,
+  "started_at": "2026-09-01T23:04:50.154222Z",
+  "strict_pass": false,
+  "successful_tool_calls": 44,
+  "task_digest": "sha256:33cfcf41cb3cb6c2b94a1b2dfd19a280a2128efa56b5e6078adc769af6f72bfa",
+  "task_id": "erpbench-012",
+  "tokens": {
+    "cached": 1502208,
+    "input": 1589657,
+    "output": 13757
+  },
+  "tool_calls": 44,
+  "trace": [
+    {
+      "arguments": {
+        "q": "ShipmentNumber='SHP-HBL-2210'"
+      },
+      "index": 1,
+      "result": {
+        "count": 2,
+        "items": [
+          {
+            "Order": "SO-HBL-41022",
+            "OrganizationCode": "HBL1",
+            "PlannedShipDate": "2026-02-09",
+            "ShipToCustomer": "Pacific Grocers Ltd.",
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentStatus": "Staged"
+          },
+          {
+            "Order": "SO-HBL-DECOY",
+            "OrganizationCode": "HBL1",
+            "PlannedShipDate": "2026-01-14",
+            "ShipToCustomer": "Food Outlet Co.",
+            "Shipment": "SHP-HBL-DECOY",
+            "ShipmentStatus": "Shipped"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "ShipmentNumber='SHP-HBL-2210'"
+      },
+      "index": 2,
+      "result": {
+        "count": 6,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 200,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 200,
+            "UnitPrice": 14.5
+          },
+          {
+            "Comments": null,
+            "Item": "RICE-JAS-5K",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 500,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 500,
+            "UnitPrice": 11.8
+          },
+          {
+            "Comments": null,
+            "Item": "SOY-PRM-1L",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 300,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 300,
+            "UnitPrice": 6.4
+          },
+          {
+            "Comments": null,
+            "Item": "NDL-DRY-1K",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 600,
+            "UnitPrice": 4.9
+          },
+          {
+            "Comments": null,
+            "Item": "CHL-OIL-250",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 250,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 250,
+            "UnitPrice": 5.6
+          },
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Shipped",
+            "RequestedQuantity": 40,
+            "Shipment": "SHP-HBL-DECOY",
+            "ShipmentLine": 700003,
+            "ShippedQuantity": 40,
+            "UnitPrice": 14.5
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "SHP-HBL-2210"
+      },
+      "index": 3,
+      "result": {
+        "messages": [
+          {
+            "from": "chen.yu-ting@harborline-sim.example",
+            "id": "MSG-erpbench-012-REQUEST",
+            "internalDate": "2026-02-09T09:00:00Z",
+            "subject": "erpbench-012 operating request",
+            "task_id": "erpbench-012"
+          }
+        ],
+        "resultSizeEstimate": 1
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "query": "SHP-HBL-2210"
+      },
+      "index": 4,
+      "result": {
+        "messages": {
+          "matches": [
+            {
+              "channel": "#warehouse-hbl",
+              "text": "SHP-HBL-2210 picked; the pick confirmation is uploaded, a couple of lines did not match the requested quantity.",
+              "ts": "2026-02-08T22:10:00Z",
+              "user": "Liu Cheng"
+            }
+          ],
+          "total": 1
+        },
+        "ok": true,
+        "query": "SHP-HBL-2210"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-HBL-2210'"
+      },
+      "index": 5,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-HBL-PICK-CONFIRM-0208",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "05-pick-confirmation.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-PICK-CONFIRM-0205",
+            "isCurrentAuthority": false,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "SHP-HBL-2210-pick-confirmation-2026-02-05.csv",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "index": 6,
+      "result": {
+        "allowed_write_tools": [
+          "oracle_fusion.sales_orders.create",
+          "oracle_fusion.shipment_lines.update",
+          "oracle_fusion.standard_receipts.create",
+          "oracle_fusion.purchase_requisitions.create",
+          "oracle_fusion.purchase_requisitions.submit",
+          "oracle_fusion.receiving_receipt_requests.create",
+          "oracle_fusion.invoices.create",
+          "oracle_fusion.invoices.validate",
+          "oracle_fusion.invoice_holds.create",
+          "oracle_fusion.document_records.update",
+          "oracle_fusion.absences.create",
+          "oracle_fusion.workers.create",
+          "oracle_fusion.items.update",
+          "google_sheets.spreadsheets.values.update",
+          "google_sheets.spreadsheets.values.append",
+          "gmail.drafts.create",
+          "slack.chat_postMessage",
+          "erpbench.record_decision",
+          "erpbench.submit_answer"
+        ],
+        "answer_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "confirmed_value": {
+              "description": "Value of the lines that can ship (held lines excluded) at list price",
+              "multipleOf": 0.01,
+              "type": "number"
+            },
+            "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "ready_to_confirm",
+                "partial_hold"
+              ],
+              "type": "string"
+            },
+            "lines_corrected": {
+              "description": "Lines corrected down to the picked quantity",
+              "type": "integer"
+            },
+            "lines_matching": {
+              "description": "Lines where requested, picked and shipped agree",
+              "type": "integer"
+            },
+            "lines_reviewed": {
+              "description": "Shipment lines reviewed",
+              "type": "integer"
+            },
+            "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
+              "type": "string"
+            },
+            "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "correct_short_picks_and_confirm",
+                "correct_short_picks_and_hold_over_picks",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
+              "type": "string"
+            },
+            "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
+              "type": "string"
+            },
+            "units_removed": {
+              "description": "Units removed by the corrections",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "recommended_option",
+            "decision_status",
+            "source_reference",
+            "primary_record",
+            "lines_reviewed",
+            "lines_matching",
+            "lines_corrected",
+            "units_removed",
+            "confirmed_value"
+          ],
+          "type": "object"
+        },
+        "as_of": "2026-02-09T09:00:00Z",
+        "company": "Harborline Trading Co.",
+        "decision_options": [
+          {
+            "id": "correct_short_picks_and_confirm",
+            "label": "Correct short-picked lines to the pick confirmation and confirm the shipment"
+          },
+          {
+            "id": "correct_short_picks_and_hold_over_picks",
+            "label": "Correct short-picked lines and hold the over-picked lines"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Ship every line at the staged quantity"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Hold the entire shipment and escalate"
+          }
+        ],
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
+        "ops_channel": "#ops-hbl",
+        "prompt": "**Harborline Trading Co. · Kaohsiung warehouse · Shipment verification**\n\nShipment SHP-HBL-2210 for Pacific Grocers Ltd. is staged for tonight's truck, but the warehouse pick confirmation and the shipment lines in the system do not agree everywhere. Reconcile them line by line, correct what the pick confirmation proves was actually picked, hold anything that looks over-picked instead of shipping it, and confirm the value we can honestly ship. Record it in the shipping register and leave the update for Wang Po-Wei ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "lines_reviewed",
+            "lines_matching",
+            "lines_corrected",
+            "units_removed",
+            "confirmed_value",
+            "source_reference"
+          ],
+          "range": "Register!A22:H22",
+          "spreadsheetId": "SHEET-HBL-OPS"
+        },
+        "status_options": [
+          {
+            "id": "ready_to_confirm",
+            "label": "Shipment ready to confirm"
+          },
+          {
+            "id": "partial_hold",
+            "label": "Shipment partially held"
+          }
+        ],
+        "task_id": "erpbench-012",
+        "tenant_code": "HARBORLINE"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'ops'"
+      },
+      "index": 7,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-HBL-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-012-REQUEST"
+      },
+      "index": 8,
+      "result": {
+        "body": "**Harborline Trading Co. · Kaohsiung warehouse · Shipment verification**\n\nShipment SHP-HBL-2210 for Pacific Grocers Ltd. is staged for tonight's truck, but the warehouse pick confirmation and the shipment lines in the system do not agree everywhere. Reconcile them line by line, correct what the pick confirmation proves was actually picked, hold anything that looks over-picked instead of shipping it, and confirm the value we can honestly ship. Record it in the shipping register and leave the update for Wang Po-Wei ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+        "from": "chen.yu-ting@harborline-sim.example",
+        "id": "MSG-erpbench-012-REQUEST",
+        "internalDate": "2026-02-09T09:00:00Z",
+        "subject": "erpbench-012 operating request",
+        "task_id": "erpbench-012",
+        "to": [
+          "analyst@harborline-sim.example"
+        ]
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'warehouse'"
+      },
+      "index": 9,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-HBL-DELIVERY-NOTE-0206",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "12-delivery-note.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-HEADCOUNT-APPROVAL-2026",
+            "isCurrentAuthority": true,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "20-headcount-approval.pdf",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-WAGE-TABLE",
+            "isCurrentAuthority": true,
+            "mimeType": "text/csv",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "22-wage-table.csv",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-OPS-AUDIT-LOG",
+            "isCurrentAuthority": true,
+            "mimeType": "text/plain",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "26-ops-audit.log",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-HEADCOUNT-APPROVAL-2025",
+            "isCurrentAuthority": false,
+            "mimeType": "application/pdf",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "headcount-approval-2025.pdf",
+            "version": 1
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-OPS-AUDIT-LOG"
+      },
+      "index": 10,
+      "result": {
+        "content": "2026-02-03T10:12:00Z HBL partial import created SO-HBL-40039 from an earlier copy of PG-2026-0442\n2026-02-06T15:40:00Z HBL delivery note DN-HBL-0206 received at Kaohsiung warehouse\n2026-02-08T22:05:00Z HBL pick confirmation posted for SHP-HBL-2210\n2026-02-09T06:00:00Z HBL CyberBiz export generated\n",
+        "id": "FILE-HBL-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'register'"
+      },
+      "index": 11,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-HBL-CANDIDATE-REGISTER",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "21-candidate-register.xlsx",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'shipping'"
+      },
+      "index": 12,
+      "result": {
+        "files": []
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-PICK-CONFIRM-0208"
+      },
+      "index": 13,
+      "result": {
+        "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-HBL-2210,1,TEA-OOL-500,200,200,WH-11,2026-02-08T21:11:00Z\nSHP-HBL-2210,2,RICE-JAS-5K,500,500,WH-12,2026-02-08T21:12:00Z\nSHP-HBL-2210,3,SOY-PRM-1L,300,288,WH-13,2026-02-08T21:13:00Z\nSHP-HBL-2210,4,NDL-DRY-1K,600,600,WH-14,2026-02-08T21:14:00Z\nSHP-HBL-2210,5,CHL-OIL-250,250,250,WH-15,2026-02-08T21:15:00Z\n",
+        "id": "FILE-HBL-PICK-CONFIRM-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "05-pick-confirmation.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "index": 14,
+      "result": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "values": null
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+        "ShipmentLine": 700012,
+        "ShippedQuantity": 288,
+        "task_id": "erpbench-012"
+      },
+      "index": 15,
+      "result": {
+        "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+        "Item": "SOY-PRM-1L",
+        "LastUpdateDate": "2026-02-09T09:00:00Z",
+        "LineNumber": 3,
+        "LineStatus": "Staged",
+        "RequestedQuantity": 300,
+        "Shipment": "SHP-HBL-2210",
+        "ShipmentLine": 700012,
+        "ShippedQuantity": 288,
+        "UnitPrice": 6.4
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "index": 16,
+      "result": {
+        "count": 5,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 200,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 200,
+            "UnitPrice": 14.5
+          },
+          {
+            "Comments": null,
+            "Item": "RICE-JAS-5K",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 500,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 500,
+            "UnitPrice": 11.8
+          },
+          {
+            "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+            "Item": "SOY-PRM-1L",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 300,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 288,
+            "UnitPrice": 6.4
+          },
+          {
+            "Comments": null,
+            "Item": "NDL-DRY-1K",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 600,
+            "UnitPrice": 4.9
+          },
+          {
+            "Comments": null,
+            "Item": "CHL-OIL-250",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 250,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 250,
+            "UnitPrice": 5.6
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "index": 17,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "Order": "SO-HBL-41022",
+            "OrganizationCode": "HBL1",
+            "PlannedShipDate": "2026-02-09",
+            "ShipToCustomer": "Pacific Grocers Ltd.",
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentStatus": "Staged"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "query": "Wang Po-Wei"
+      },
+      "index": 18,
+      "result": {
+        "messages": {
+          "matches": [],
+          "total": 0
+        },
+        "ok": true,
+        "query": "Wang Po-Wei"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "\"Wang Po-Wei\""
+      },
+      "index": 19,
+      "result": {
+        "messages": [],
+        "resultSizeEstimate": 0
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "index": 20,
+      "result": {
+        "channel": "#ops-hbl",
+        "messages": [
+          {
+            "text": "Partial import for PG-2026-0442 went in on 2026-02-03 as SO-HBL-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-HBL-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Wang Po-Wei"
+          },
+          {
+            "text": "Please resolve erpbench-012 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-012",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Wang Po-Wei"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-012",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "channel": "#warehouse-hbl"
+      },
+      "index": 21,
+      "result": {
+        "channel": "#warehouse-hbl",
+        "messages": [
+          {
+            "text": "SHP-HBL-2210 picked; the pick confirmation is uploaded, a couple of lines did not match the requested quantity.",
+            "thread_ts": "THREAD-HBL-WH",
+            "ts": "2026-02-08T22:10:00Z",
+            "user": "Liu Cheng"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'source'"
+      },
+      "index": 22,
+      "result": {
+        "files": [
+          {
+            "id": "FILE-HBL-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          }
+        ]
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "index": 23,
+      "result": {
+        "content": "tenant: HARBORLINE\norder_batch: FILE-HBL-ORDER-BATCH-0209\npick_confirmation: FILE-HBL-PICK-CONFIRM-0208\nremittance_advice: FILE-HBL-REMIT-ADVICE-0206\nreorder_policy: FILE-HBL-REORDER-POLICY-R4\ndelivery_note: FILE-HBL-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-HBL-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-HBL-SHIFT-ROSTER-0208\nchannel_export: FILE-HBL-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-HBL-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-HBL-PRICE-BATCH-Q2\n",
+        "id": "FILE-HBL-SOURCE-MAP",
+        "isCurrentAuthority": true,
+        "mimeType": "application/yaml",
+        "name": "25-source-map.yaml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-AUTHORITY-MEMO-0209"
+      },
+      "index": 24,
+      "result": {
+        "content": "From: wang.po-wei@harborline-sim.example\nTo: analyst@harborline-sim.example\nSubject: Harborline Trading Co. operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+        "id": "FILE-HBL-AUTHORITY-MEMO-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "message/rfc822",
+        "name": "24-authority-memo.eml"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-PRICE-BATCH-Q2"
+      },
+      "index": 25,
+      "result": {
+        "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-HBL-2026Q2,1,TEA-OOL-500,15.20,2026-02-24\nPRICE-BATCH-HBL-2026Q2,2,RICE-JAS-5K,12.10,2026-02-24\nPRICE-BATCH-HBL-2026Q2,3,SOY-PRM-1L,7.60,2026-02-24\nPRICE-BATCH-HBL-2026Q2,4,NDL-DRY-1K,5.10,2026-02-06\nPRICE-BATCH-HBL-2026Q2,5,CHL-OIL-250,5.90,2026-02-24\nPRICE-BATCH-HBL-2026Q2,6,CHL-OIL-250,6.10,2026-03-26\nPRICE-BATCH-HBL-2026Q2,7,RICE-BAS-5K,13.40,2026-02-24\nPRICE-BATCH-HBL-2026Q2,8,MCH-GIFT-OLD,12.50,2026-02-24\nPRICE-BATCH-HBL-2026Q2,9,TEA-OOL-500,15.60,2026-04-10\n",
+        "id": "FILE-HBL-PRICE-BATCH-Q2",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "name": "23-price-batch.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-ORDER-BATCH-0209"
+      },
+      "index": 26,
+      "result": {
+        "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,PG-2026-0442,TEA-OOL-500,Oolong tea 500 g tin,240,13.92\r\n2,PG-2026-0442,RICE-JAS-5K,Jasmine rice 5 kg,600,11.33\r\n3,PG-2026-0442,SOY-PRM-1L,Premium soy sauce 1 L,360,6.14\r\n4,PG-2026-0442,NDL-DRY-1K,Dried noodles 1 kg,800,4.7\r\n5,PG-2026-0442,CHL-OIL-250,Chili oil 250 ml,300,5.38\r\n6,PG-2026-0442,RICE-JAS-5K,Jasmine rice 5 kg,150,11.33\r\n7,PG-2026-0442,MCH-GIFT-OLD,Mochi gift box (retired),40,11.52\r\n8,PG-2026-0442,TEA-OOL-500,Oolong tea 500 g tin,120,13.92\r\n9,PG-2026-0442,NDL-DRY-1K,Dried noodles 1 kg,200,4.7\r\n",
+        "id": "FILE-HBL-ORDER-BATCH-0209",
+        "isCurrentAuthority": true,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "01-consolidated-order-batch.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "ItemNumber='NDL-DRY-1K'"
+      },
+      "index": 27,
+      "result": {
+        "count": 1,
+        "items": [
+          {
+            "ItemDescription": "Dried noodles 1 kg",
+            "ItemId": 300024,
+            "ItemNumber": "NDL-DRY-1K",
+            "ItemStatusValue": "Active",
+            "ListPrice": 4.9,
+            "OrganizationCode": "HBL1",
+            "PriceEffectiveDate": "2026-01-01",
+            "PrimaryUOMValue": "EA"
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-012",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-HBL-2210",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            4,
+            1,
+            12,
+            15103.2,
+            "FILE-HBL-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "index": 28,
+      "result": {
+        "changeId": "CHANGE-erpbench-012-1",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "updatedRange": "Register!A22:H22",
+        "updatedRows": 1
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "index": 29,
+      "result": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "values": [
+          [
+            "SHP-HBL-2210",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            4,
+            1,
+            12,
+            15103.2,
+            "FILE-HBL-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "index": 30,
+      "result": {
+        "count": 5,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 200,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 200,
+            "UnitPrice": 14.5
+          },
+          {
+            "Comments": null,
+            "Item": "RICE-JAS-5K",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 500,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 500,
+            "UnitPrice": 11.8
+          },
+          {
+            "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+            "Item": "SOY-PRM-1L",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 300,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 288,
+            "UnitPrice": 6.4
+          },
+          {
+            "Comments": null,
+            "Item": "NDL-DRY-1K",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 600,
+            "UnitPrice": 4.9
+          },
+          {
+            "Comments": null,
+            "Item": "CHL-OIL-250",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 250,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 250,
+            "UnitPrice": 5.6
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-PICK-CONFIRM-0208"
+      },
+      "index": 31,
+      "result": {
+        "id": "FILE-HBL-PICK-CONFIRM-0208",
+        "isCurrentAuthority": true,
+        "mimeType": "text/csv",
+        "modifiedTime": "2026-02-09T06:00:00Z",
+        "name": "05-pick-confirmation.csv",
+        "size": 364,
+        "version": 2
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.get"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-HBL-2210",
+        "rationale": "Current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208 shows lines 1, 2, 4 and 5 picked at requested quantity, while line 3 SOY-PRM-1L picked 288 versus 300 staged. Shipment line 700012 was corrected to 288, holding 12 over-picked/staged units. Four lines match; five reviewed. Shippable value is 15103.20 at list price as of 2026-02-09, applying the effective 5.10 price for NDL-DRY-1K from FILE-HBL-PRICE-BATCH-Q2 and not future-dated increases.",
+        "source_refs": [
+          "FILE-HBL-PICK-CONFIRM-0208",
+          "FILE-HBL-PRICE-BATCH-Q2",
+          "FILE-HBL-SOURCE-MAP",
+          "FILE-HBL-AUTHORITY-MEMO-0209",
+          "SHP-HBL-2210",
+          "ShipmentLine:700012"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-012"
+      },
+      "index": 32,
+      "result": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "decision_id": "DECISION-erpbench-012",
+        "primary_record": "SHP-HBL-2210",
+        "rationale": "Current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208 shows lines 1, 2, 4 and 5 picked at requested quantity, while line 3 SOY-PRM-1L picked 288 versus 300 staged. Shipment line 700012 was corrected to 288, holding 12 over-picked/staged units. Four lines match; five reviewed. Shippable value is 15103.20 at list price as of 2026-02-09, applying the effective 5.10 price for NDL-DRY-1K from FILE-HBL-PRICE-BATCH-Q2 and not future-dated increases.",
+        "source_refs": [
+          "FILE-HBL-PICK-CONFIRM-0208",
+          "FILE-HBL-PRICE-BATCH-Q2",
+          "FILE-HBL-SOURCE-MAP",
+          "FILE-HBL-AUTHORITY-MEMO-0209",
+          "SHP-HBL-2210",
+          "ShipmentLine:700012"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-012"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Review required — shipment reconciliation for SHP-HBL-2210 (Pacific Grocers Ltd.)\n\nDecision option: correct_short_picks_and_hold_over_picks\nDecision status: partial_hold\nPrimary ERP record: SHP-HBL-2210\n\nFive shipment lines reviewed; four matched requested/picked quantities. Shipment line 700012 (SOY-PRM-1L) was corrected from 300 to the confirmed pick of 288, holding 12 over-picked/staged units. Confirmed shippable value is 15,103.20 at current list price as of 2026-02-09.\n\nRegister row: Register!A22:H22\nPick source: FILE-HBL-PICK-CONFIRM-0208 (current authority)\nPrice source: FILE-HBL-PRICE-BATCH-Q2 (only effective price changes applied)\n\nPlease review. This draft has not been sent.",
+        "subject": "[REVIEW] SHP-HBL-2210 shipment reconciliation",
+        "task_id": "erpbench-012",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "index": 33,
+      "result": {
+        "id": "DRAFT-erpbench-012",
+        "message": {
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "[REVIEW] SHP-HBL-2210 shipment reconciliation",
+          "to": "wang.po-wei@harborline-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-012",
+        "text": "Review handoff for Wang Po-Wei — SHP-HBL-2210: decision_status=partial_hold; decision=correct_short_picks_and_hold_over_picks. Reviewed 5 lines; 4 matched; corrected line 700012 (SOY-PRM-1L) to picked 288 from staged 300; 12 units held. Confirmed shippable value=15103.20 at current list price. Register!A22:H22 and ERP shipment line updated; source FILE-HBL-PICK-CONFIRM-0208. draft_for_review — no outbound send."
+      },
+      "index": 34,
+      "result": {
+        "channel": "#ops-hbl",
+        "message": {
+          "review_status": "draft_for_review",
+          "text": "Review handoff for Wang Po-Wei — SHP-HBL-2210: decision_status=partial_hold; decision=correct_short_picks_and_hold_over_picks. Reviewed 5 lines; 4 matched; corrected line 700012 (SOY-PRM-1L) to picked 288 from staged 300; 12 units held. Confirmed shippable value=15103.20 at current list price. Register!A22:H22 and ERP shipment line updated; source FILE-HBL-PICK-CONFIRM-0208. draft_for_review — no outbound send."
+        },
+        "ok": true,
+        "ts": "2026-02-09T09:00:00Z"
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "index": 35,
+      "result": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "values": [
+          [
+            "SHP-HBL-2210",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            4,
+            1,
+            12,
+            15103.2,
+            "FILE-HBL-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "index": 36,
+      "result": {
+        "count": 5,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 200,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 200,
+            "UnitPrice": 14.5
+          },
+          {
+            "Comments": null,
+            "Item": "RICE-JAS-5K",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 500,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 500,
+            "UnitPrice": 11.8
+          },
+          {
+            "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+            "Item": "SOY-PRM-1L",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 300,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 288,
+            "UnitPrice": 6.4
+          },
+          {
+            "Comments": null,
+            "Item": "NDL-DRY-1K",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 600,
+            "UnitPrice": 4.9
+          },
+          {
+            "Comments": null,
+            "Item": "CHL-OIL-250",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 250,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 250,
+            "UnitPrice": 5.6
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-012"
+      },
+      "index": 37,
+      "result": {
+        "id": "DRAFT-erpbench-012",
+        "message": {
+          "body": "Review required — shipment reconciliation for SHP-HBL-2210 (Pacific Grocers Ltd.)\n\nDecision option: correct_short_picks_and_hold_over_picks\nDecision status: partial_hold\nPrimary ERP record: SHP-HBL-2210\n\nFive shipment lines reviewed; four matched requested/picked quantities. Shipment line 700012 (SOY-PRM-1L) was corrected from 300 to the confirmed pick of 288, holding 12 over-picked/staged units. Confirmed shippable value is 15,103.20 at current list price as of 2026-02-09.\n\nRegister row: Register!A22:H22\nPick source: FILE-HBL-PICK-CONFIRM-0208 (current authority)\nPrice source: FILE-HBL-PRICE-BATCH-Q2 (only effective price changes applied)\n\nPlease review. This draft has not been sent.",
+          "labelIds": [
+            "DRAFT"
+          ],
+          "subject": "[REVIEW] SHP-HBL-2210 shipment reconciliation",
+          "to": "wang.po-wei@harborline-sim.example"
+        },
+        "review_status": "draft_for_review"
+      },
+      "server": "gmail",
+      "success": true,
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "index": 38,
+      "result": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "decision_id": "DECISION-erpbench-012",
+        "primary_record": "SHP-HBL-2210",
+        "rationale": "Current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208 shows lines 1, 2, 4 and 5 picked at requested quantity, while line 3 SOY-PRM-1L picked 288 versus 300 staged. Shipment line 700012 was corrected to 288, holding 12 over-picked/staged units. Four lines match; five reviewed. Shippable value is 15103.20 at list price as of 2026-02-09, applying the effective 5.10 price for NDL-DRY-1K from FILE-HBL-PRICE-BATCH-Q2 and not future-dated increases.",
+        "source_refs": [
+          "FILE-HBL-PICK-CONFIRM-0208",
+          "FILE-HBL-PRICE-BATCH-Q2",
+          "FILE-HBL-SOURCE-MAP",
+          "FILE-HBL-AUTHORITY-MEMO-0209",
+          "SHP-HBL-2210",
+          "ShipmentLine:700012"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-012"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-012"
+      },
+      "index": 39,
+      "result": {
+        "channel": "#ops-hbl",
+        "messages": [
+          {
+            "text": "Partial import for PG-2026-0442 went in on 2026-02-03 as SO-HBL-40039; the rest of the lines are still pending.",
+            "thread_ts": "THREAD-HBL-IMPORT",
+            "ts": "2026-02-03T10:20:00Z",
+            "user": "Wang Po-Wei"
+          },
+          {
+            "text": "Please resolve erpbench-012 against the current February authority; keep the handoff in review.",
+            "thread_ts": "THREAD-erpbench-012",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "Wang Po-Wei"
+          },
+          {
+            "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+            "thread_ts": "THREAD-erpbench-012",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "controls"
+          },
+          {
+            "review_status": "draft_for_review",
+            "task_id": "erpbench-012",
+            "text": "Review handoff for Wang Po-Wei — SHP-HBL-2210: decision_status=partial_hold; decision=correct_short_picks_and_hold_over_picks. Reviewed 5 lines; 4 matched; corrected line 700012 (SOY-PRM-1L) to picked 288 from staged 300; 12 units held. Confirmed shippable value=15103.20 at current list price. Register!A22:H22 and ERP shipment line updated; source FILE-HBL-PICK-CONFIRM-0208. draft_for_review — no outbound send.",
+            "ts": "2026-02-09T09:00:00Z",
+            "user": "analyst"
+          }
+        ],
+        "ok": true
+      },
+      "server": "slack",
+      "success": true,
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 15103.2,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-HBL-2210",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-HBL-PICK-CONFIRM-0208",
+          "units_removed": 12
+        },
+        "task_id": "erpbench-012"
+      },
+      "index": 40,
+      "result": {
+        "answers": {
+          "confirmed_value": 15103.2,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-HBL-2210",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-HBL-PICK-CONFIRM-0208",
+          "units_removed": 12
+        },
+        "durable": true,
+        "task_id": "erpbench-012"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "index": 41,
+      "result": {
+        "answers": {
+          "confirmed_value": 15103.2,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-HBL-2210",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-HBL-PICK-CONFIRM-0208",
+          "units_removed": 12
+        },
+        "task_id": "erpbench-012"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_submission"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "index": 42,
+      "result": {
+        "count": 5,
+        "items": [
+          {
+            "Comments": null,
+            "Item": "TEA-OOL-500",
+            "LineNumber": 1,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 200,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700006,
+            "ShippedQuantity": 200,
+            "UnitPrice": 14.5
+          },
+          {
+            "Comments": null,
+            "Item": "RICE-JAS-5K",
+            "LineNumber": 2,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 500,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700009,
+            "ShippedQuantity": 500,
+            "UnitPrice": 11.8
+          },
+          {
+            "Comments": "Corrected to current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208: picked 288 of 300; 12 over-picked/staged units held.",
+            "Item": "SOY-PRM-1L",
+            "LineNumber": 3,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 300,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700012,
+            "ShippedQuantity": 288,
+            "UnitPrice": 6.4
+          },
+          {
+            "Comments": null,
+            "Item": "NDL-DRY-1K",
+            "LineNumber": 4,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 600,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700015,
+            "ShippedQuantity": 600,
+            "UnitPrice": 4.9
+          },
+          {
+            "Comments": null,
+            "Item": "CHL-OIL-250",
+            "LineNumber": 5,
+            "LineStatus": "Staged",
+            "RequestedQuantity": 250,
+            "Shipment": "SHP-HBL-2210",
+            "ShipmentLine": 700018,
+            "ShippedQuantity": 250,
+            "UnitPrice": 5.6
+          }
+        ]
+      },
+      "server": "oracle_fusion",
+      "success": true,
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "index": 43,
+      "result": {
+        "range": "Register!A22:H22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "values": [
+          [
+            "SHP-HBL-2210",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            4,
+            1,
+            12,
+            15103.2,
+            "FILE-HBL-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "server": "google_sheets",
+      "success": true,
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "index": 44,
+      "result": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "decision_id": "DECISION-erpbench-012",
+        "primary_record": "SHP-HBL-2210",
+        "rationale": "Current-authority pick confirmation FILE-HBL-PICK-CONFIRM-0208 shows lines 1, 2, 4 and 5 picked at requested quantity, while line 3 SOY-PRM-1L picked 288 versus 300 staged. Shipment line 700012 was corrected to 288, holding 12 over-picked/staged units. Four lines match; five reviewed. Shippable value is 15103.20 at list price as of 2026-02-09, applying the effective 5.10 price for NDL-DRY-1K from FILE-HBL-PRICE-BATCH-Q2 and not future-dated increases.",
+        "source_refs": [
+          "FILE-HBL-PICK-CONFIRM-0208",
+          "FILE-HBL-PRICE-BATCH-Q2",
+          "FILE-HBL-SOURCE-MAP",
+          "FILE-HBL-AUTHORITY-MEMO-0209",
+          "SHP-HBL-2210",
+          "ShipmentLine:700012"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-012"
+      },
+      "server": "erpbench",
+      "success": true,
+      "tool": "erpbench.get_decision"
+    }
+  ],
+  "trial_name": "erpbench-012__Uk25XZX"
+}
