@@ -119,7 +119,7 @@
     {
       "audit_id": 6,
       "payload": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-HBL-OPS",
         "task_id": "erpbench-018",
         "valueInputOption": "RAW",
@@ -1587,7 +1587,7 @@
       ]
     },
     {
-      "cell_range": "Register!A28:J28",
+      "cell_range": "Register!A28:H28",
       "change_id": "CHANGE-erpbench-018-2",
       "operation": "update",
       "spreadsheet_id": "SHEET-HBL-OPS",
@@ -1981,7 +1981,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A28:J28": [
+        "Register!A28:H28": [
           [
             "SO-HBL-52007",
             "create_unsynced_orders_and_capture_customer",

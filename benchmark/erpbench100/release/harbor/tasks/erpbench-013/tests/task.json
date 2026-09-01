@@ -323,7 +323,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-HBL-OPS",
         "task_id": "erpbench-013",
         "valueInputOption": "RAW",
@@ -377,7 +377,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-HBL-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -438,7 +438,7 @@
       "past_due_pct_of_limit",
       "source_reference"
     ],
-    "range": "Register!A23:J23",
+    "range": "Register!A23:H23",
     "spreadsheetId": "SHEET-HBL-OPS"
   },
   "required_investigations": [

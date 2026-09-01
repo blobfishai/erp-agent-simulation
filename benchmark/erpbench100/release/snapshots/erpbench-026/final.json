@@ -98,7 +98,7 @@
     {
       "audit_id": 7,
       "payload": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-MSS-OPS",
         "task_id": "erpbench-026",
         "valueInputOption": "RAW",
@@ -1438,7 +1438,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A26:J26",
+      "cell_range": "Register!A26:H26",
       "change_id": "CHANGE-erpbench-026-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-MSS-OPS",
@@ -1836,7 +1836,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A26:J26": [
+        "Register!A26:H26": [
           [
             "MSS-COMPLIANCE-0209",
             "alert_expiring_and_block_failed_checks",

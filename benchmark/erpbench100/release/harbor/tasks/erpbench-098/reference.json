@@ -171,7 +171,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-TRV-OPS",
         "task_id": "erpbench-098",
         "valueInputOption": "RAW",
@@ -225,7 +225,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-TRV-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

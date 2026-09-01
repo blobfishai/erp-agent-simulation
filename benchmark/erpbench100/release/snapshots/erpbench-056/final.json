@@ -76,7 +76,7 @@
     {
       "audit_id": 5,
       "payload": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-ALD-OPS",
         "task_id": "erpbench-056",
         "valueInputOption": "RAW",
@@ -1445,7 +1445,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A26:J26",
+      "cell_range": "Register!A26:H26",
       "change_id": "CHANGE-erpbench-056-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-ALD-OPS",
@@ -1825,7 +1825,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A26:J26": [
+        "Register!A26:H26": [
           [
             "ALD-COMPLIANCE-0209",
             "alert_expiring_and_block_failed_checks",

@@ -128,7 +128,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-BLF-OPS",
         "task_id": "erpbench-089",
         "valueInputOption": "RAW",
@@ -182,7 +182,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-BLF-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

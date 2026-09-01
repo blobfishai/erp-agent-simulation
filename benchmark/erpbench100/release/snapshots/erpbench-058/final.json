@@ -119,7 +119,7 @@
     {
       "audit_id": 6,
       "payload": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-ALD-OPS",
         "task_id": "erpbench-058",
         "valueInputOption": "RAW",
@@ -1581,7 +1581,7 @@
       ]
     },
     {
-      "cell_range": "Register!A28:J28",
+      "cell_range": "Register!A28:H28",
       "change_id": "CHANGE-erpbench-058-2",
       "operation": "update",
       "spreadsheet_id": "SHEET-ALD-OPS",
@@ -1968,7 +1968,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A28:J28": [
+        "Register!A28:H28": [
           [
             "SO-ALD-52007",
             "create_unsynced_orders_and_capture_customer",

@@ -81,7 +81,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-049",
         "valueInputOption": "RAW",
@@ -1466,7 +1466,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A29:J29",
+      "cell_range": "Register!A29:H29",
       "change_id": "CHANGE-erpbench-049-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-KEA-OPS",
@@ -1875,7 +1875,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A29:J29": [
+        "Register!A29:H29": [
           [
             "KEA-P2001",
             "hire_eligible_within_quota",

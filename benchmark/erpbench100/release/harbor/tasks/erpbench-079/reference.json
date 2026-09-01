@@ -139,7 +139,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-079",
         "valueInputOption": "RAW",
@@ -193,7 +193,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-RVS-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

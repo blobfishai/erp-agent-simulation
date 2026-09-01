@@ -346,7 +346,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A24:J24",
+        "range": "Register!A24:H24",
         "spreadsheetId": "SHEET-ALD-OPS",
         "task_id": "erpbench-054",
         "valueInputOption": "RAW",
@@ -400,7 +400,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A24:J24",
+        "range": "Register!A24:H24",
         "spreadsheetId": "SHEET-ALD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -461,7 +461,7 @@
       "days_late",
       "source_reference"
     ],
-    "range": "Register!A24:J24",
+    "range": "Register!A24:H24",
     "spreadsheetId": "SHEET-ALD-OPS"
   },
   "required_investigations": [

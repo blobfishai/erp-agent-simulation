@@ -131,7 +131,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-ALD-OPS",
         "task_id": "erpbench-053",
         "valueInputOption": "RAW",
@@ -185,7 +185,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-ALD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

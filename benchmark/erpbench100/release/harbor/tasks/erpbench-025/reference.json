@@ -189,7 +189,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-MSS-OPS",
         "task_id": "erpbench-025",
         "valueInputOption": "RAW",
@@ -243,7 +243,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-MSS-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

@@ -42,7 +42,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-042",
         "valueInputOption": "RAW",
@@ -1427,7 +1427,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A22:J22",
+      "cell_range": "Register!A22:H22",
       "change_id": "CHANGE-erpbench-042-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-KEA-OPS",
@@ -1836,7 +1836,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A22:J22": [
+        "Register!A22:H22": [
           [
             "SHP-KEA-3350",
             "correct_short_picks_and_hold_over_picks",

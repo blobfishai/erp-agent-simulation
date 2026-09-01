@@ -614,7 +614,7 @@ class ErpWorld:
                 "register_contract": deepcopy(self.task["register_contract"]),
                 "allowed_write_tools": self.task["allowed_write_tools"],
                 "ops_channel": f"#ops-{short.lower()}",
-                "handoff": "Save one review-only email draft and one ops-channel post; both stay draft_for_review. Record the decision, then submit the structured answer.",
+                "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
             }
         if tool == "erpbench.get_decision":
             return self._one("SELECT * FROM decisions WHERE task_id = ?", (a["task_id"],))

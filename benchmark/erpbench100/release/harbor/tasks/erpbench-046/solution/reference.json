@@ -142,7 +142,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-046",
         "valueInputOption": "RAW",
@@ -196,7 +196,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-KEA-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

@@ -323,7 +323,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A20:J20",
+        "range": "Register!A20:H20",
         "spreadsheetId": "SHEET-NBR-OPS",
         "task_id": "erpbench-010",
         "valueInputOption": "RAW",
@@ -377,7 +377,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A20:J20",
+        "range": "Register!A20:H20",
         "spreadsheetId": "SHEET-NBR-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -438,7 +438,7 @@
       "average_change_pct",
       "source_reference"
     ],
-    "range": "Register!A20:J20",
+    "range": "Register!A20:H20",
     "spreadsheetId": "SHEET-NBR-OPS"
   },
   "required_investigations": [

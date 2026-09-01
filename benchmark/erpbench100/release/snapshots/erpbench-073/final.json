@@ -46,7 +46,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-073",
         "valueInputOption": "RAW",
@@ -1425,7 +1425,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A23:J23",
+      "cell_range": "Register!A23:H23",
       "change_id": "CHANGE-erpbench-073-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-RVS-OPS",
@@ -1827,7 +1827,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A23:J23": [
+        "Register!A23:H23": [
           [
             "RCPT-RVS-6613",
             "apply_receipt_and_escalate_credit_hold",

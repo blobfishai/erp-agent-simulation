@@ -204,7 +204,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-045",
         "valueInputOption": "RAW",
@@ -258,7 +258,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-KEA-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

@@ -338,7 +338,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-ALD-OPS",
         "task_id": "erpbench-059",
         "valueInputOption": "RAW",
@@ -392,7 +392,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-ALD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -453,7 +453,7 @@
       "contract_months",
       "source_reference"
     ],
-    "range": "Register!A29:J29",
+    "range": "Register!A29:H29",
     "spreadsheetId": "SHEET-ALD-OPS"
   },
   "required_investigations": [

@@ -79,7 +79,7 @@
     {
       "audit_id": 3,
       "payload": {
-        "range": "Register!A24:J24",
+        "range": "Register!A24:H24",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-044",
         "valueInputOption": "RAW",
@@ -1504,7 +1504,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A24:J24",
+      "cell_range": "Register!A24:H24",
       "change_id": "CHANGE-erpbench-044-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-KEA-OPS",
@@ -1913,7 +1913,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A24:J24": [
+        "Register!A24:H24": [
           [
             "REQ-KEA-61015",
             "requisition_primary_supplier_and_flag_lateness",

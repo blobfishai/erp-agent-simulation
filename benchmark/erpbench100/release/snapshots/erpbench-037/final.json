@@ -69,7 +69,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A27:J27",
+        "range": "Register!A27:H27",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-037",
         "valueInputOption": "RAW",
@@ -1459,7 +1459,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A27:J27",
+      "cell_range": "Register!A27:H27",
       "change_id": "CHANGE-erpbench-037-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-SGF-OPS",
@@ -1865,7 +1865,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A27:J27": [
+        "Register!A27:H27": [
           [
             "ROLLUP-SGF-2026-02-08-MORNING",
             "post_rollup_and_record_unauthorized_absences",

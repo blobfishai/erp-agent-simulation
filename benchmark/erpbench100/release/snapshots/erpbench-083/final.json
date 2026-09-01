@@ -46,7 +46,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-BLF-OPS",
         "task_id": "erpbench-083",
         "valueInputOption": "RAW",
@@ -1412,7 +1412,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A23:J23",
+      "cell_range": "Register!A23:H23",
       "change_id": "CHANGE-erpbench-083-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-BLF-OPS",
@@ -1805,7 +1805,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A23:J23": [
+        "Register!A23:H23": [
           [
             "RCPT-BLF-7719",
             "apply_receipt_and_continue_collections",

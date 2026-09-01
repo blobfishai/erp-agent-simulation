@@ -356,7 +356,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-KEA-OPS",
         "task_id": "erpbench-048",
         "valueInputOption": "RAW",
@@ -410,7 +410,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-KEA-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -471,7 +471,7 @@
       "synced_value",
       "source_reference"
     ],
-    "range": "Register!A28:J28",
+    "range": "Register!A28:H28",
     "spreadsheetId": "SHEET-KEA-OPS"
   },
   "required_investigations": [

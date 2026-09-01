@@ -52,7 +52,7 @@
     {
       "audit_id": 3,
       "payload": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-069",
         "valueInputOption": "RAW",
@@ -1446,7 +1446,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A29:J29",
+      "cell_range": "Register!A29:H29",
       "change_id": "CHANGE-erpbench-069-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-CLD-OPS",
@@ -1855,7 +1855,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A29:J29": [
+        "Register!A29:H29": [
           [
             "CLD-P2001",
             "hire_eligible_within_quota",

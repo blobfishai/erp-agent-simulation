@@ -72,7 +72,7 @@
     {
       "audit_id": 3,
       "payload": {
-        "range": "Register!A27:J27",
+        "range": "Register!A27:H27",
         "spreadsheetId": "SHEET-NBR-OPS",
         "task_id": "erpbench-007",
         "valueInputOption": "RAW",
@@ -1451,7 +1451,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A27:J27",
+      "cell_range": "Register!A27:H27",
       "change_id": "CHANGE-erpbench-007-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-NBR-OPS",
@@ -1853,7 +1853,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A27:J27": [
+        "Register!A27:H27": [
           [
             "ROLLUP-NBR-2026-02-08-NIGHT",
             "post_rollup_and_record_unauthorized_absences",

@@ -90,7 +90,7 @@
     {
       "audit_id": 5,
       "payload": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-NBR-OPS",
         "task_id": "erpbench-008",
         "valueInputOption": "RAW",
@@ -1543,7 +1543,7 @@
       ]
     },
     {
-      "cell_range": "Register!A28:J28",
+      "cell_range": "Register!A28:H28",
       "change_id": "CHANGE-erpbench-008-2",
       "operation": "update",
       "spreadsheet_id": "SHEET-NBR-OPS",
@@ -1952,7 +1952,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A28:J28": [
+        "Register!A28:H28": [
           [
             "SO-NBR-52007",
             "create_unsynced_orders_and_capture_customer",

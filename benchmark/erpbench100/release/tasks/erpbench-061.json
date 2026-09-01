@@ -353,7 +353,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-061",
         "valueInputOption": "RAW",
@@ -407,7 +407,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-CLD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -468,7 +468,7 @@
       "duplicate_lines",
       "source_reference"
     ],
-    "range": "Register!A21:J21",
+    "range": "Register!A21:H21",
     "spreadsheetId": "SHEET-CLD-OPS"
   },
   "required_investigations": [

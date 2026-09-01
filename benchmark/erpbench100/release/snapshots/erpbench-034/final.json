@@ -91,7 +91,7 @@
     {
       "audit_id": 3,
       "payload": {
-        "range": "Register!A24:J24",
+        "range": "Register!A24:H24",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-034",
         "valueInputOption": "RAW",
@@ -1521,7 +1521,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A24:J24",
+      "cell_range": "Register!A24:H24",
       "change_id": "CHANGE-erpbench-034-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-SGF-OPS",
@@ -1927,7 +1927,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A24:J24": [
+        "Register!A24:H24": [
           [
             "REQ-SGF-61015",
             "requisition_primary_supplier",

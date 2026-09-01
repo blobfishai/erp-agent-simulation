@@ -109,7 +109,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-062",
         "valueInputOption": "RAW",
@@ -163,7 +163,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-CLD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

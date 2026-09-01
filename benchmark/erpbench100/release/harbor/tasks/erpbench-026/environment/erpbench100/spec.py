@@ -1420,7 +1420,7 @@ def _oracle_steps(task_id: str, world: dict[str, Any], family: dict[str, str], e
         [
             {
                 "tool": "google_sheets.spreadsheets.values.update",
-                "arguments": {"spreadsheetId": sheet, "range": f"Register!A{_register_row_number(task_id)}:J{_register_row_number(task_id)}", "valueInputOption": "RAW", "values": [_register_row(world, family, expected)], "task_id": task_id},
+                "arguments": {"spreadsheetId": sheet, "range": f"Register!A{_register_row_number(task_id)}:H{_register_row_number(task_id)}", "valueInputOption": "RAW", "values": [_register_row(world, family, expected)], "task_id": task_id},
             },
             {
                 "tool": "erpbench.record_decision",
@@ -1434,7 +1434,7 @@ def _oracle_steps(task_id: str, world: dict[str, Any], family: dict[str, str], e
                 "tool": "slack.chat_postMessage",
                 "arguments": {"channel": channel, "text": f"{task_id}: {expected['decision_status']} / {expected['recommended_option']} / {expected['primary_record']} — review draft ready.", "review_status": "draft_for_review", "task_id": task_id},
             },
-            {"tool": "google_sheets.spreadsheets.values.get", "arguments": {"spreadsheetId": sheet, "range": f"Register!A{_register_row_number(task_id)}:J{_register_row_number(task_id)}"}},
+            {"tool": "google_sheets.spreadsheets.values.get", "arguments": {"spreadsheetId": sheet, "range": f"Register!A{_register_row_number(task_id)}:H{_register_row_number(task_id)}"}},
             {"tool": "erpbench.get_decision", "arguments": {"task_id": task_id}},
             {"tool": "gmail.drafts.get", "arguments": {"id": f"DRAFT-{task_id}"}},
             {"tool": "slack.conversations_history", "arguments": {"channel": channel, "task_id": task_id}},
@@ -1618,7 +1618,7 @@ def build_tasks() -> list[dict[str, Any]]:
                 "status_options": [{"id": status_id, "label": label} for status_id, label in STATUS_SETS[family["key"]]],
                 "register_contract": {
                     "spreadsheetId": _sheet(world),
-                    "range": f"Register!A{_register_row_number(task_id)}:J{_register_row_number(task_id)}",
+                    "range": f"Register!A{_register_row_number(task_id)}:H{_register_row_number(task_id)}",
                     "columns": ["primary_record", "recommended_option", *NUMERIC_FIELDS[family["key"]], "source_reference"],
                 },
                 "required_investigations": _investigations(task_id, world, family),

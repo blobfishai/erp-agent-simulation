@@ -30,7 +30,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-072",
         "valueInputOption": "RAW",
@@ -1409,7 +1409,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A22:J22",
+      "cell_range": "Register!A22:H22",
       "change_id": "CHANGE-erpbench-072-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-RVS-OPS",
@@ -1811,7 +1811,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A22:J22": [
+        "Register!A22:H22": [
           [
             "SHP-RVS-5580",
             "correct_short_picks_and_hold_over_picks",

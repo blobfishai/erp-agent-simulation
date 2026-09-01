@@ -131,7 +131,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-033",
         "valueInputOption": "RAW",
@@ -185,7 +185,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A23:J23",
+        "range": "Register!A23:H23",
         "spreadsheetId": "SHEET-SGF-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

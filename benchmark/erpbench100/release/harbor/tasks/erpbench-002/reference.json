@@ -120,7 +120,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-NBR-OPS",
         "task_id": "erpbench-002",
         "valueInputOption": "RAW",
@@ -174,7 +174,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-NBR-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

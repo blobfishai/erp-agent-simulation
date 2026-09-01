@@ -370,7 +370,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-038",
         "valueInputOption": "RAW",
@@ -424,7 +424,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-SGF-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -485,7 +485,7 @@
       "synced_value",
       "source_reference"
     ],
-    "range": "Register!A28:J28",
+    "range": "Register!A28:H28",
     "spreadsheetId": "SHEET-SGF-OPS"
   },
   "required_investigations": [

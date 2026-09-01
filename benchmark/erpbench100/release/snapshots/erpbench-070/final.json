@@ -66,7 +66,7 @@
     {
       "audit_id": 5,
       "payload": {
-        "range": "Register!A20:J20",
+        "range": "Register!A20:H20",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-070",
         "valueInputOption": "RAW",
@@ -1460,7 +1460,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A20:J20",
+      "cell_range": "Register!A20:H20",
       "change_id": "CHANGE-erpbench-070-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-CLD-OPS",
@@ -1869,7 +1869,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A20:J20": [
+        "Register!A20:H20": [
           [
             "PRICE-BATCH-CLD-2026Q2",
             "apply_policy_compliant_lines",

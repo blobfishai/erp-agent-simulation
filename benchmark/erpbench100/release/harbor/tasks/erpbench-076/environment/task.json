@@ -337,7 +337,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-076",
         "valueInputOption": "RAW",
@@ -391,7 +391,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-RVS-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -452,7 +452,7 @@
       "days_to_earliest_expiry",
       "source_reference"
     ],
-    "range": "Register!A26:J26",
+    "range": "Register!A26:H26",
     "spreadsheetId": "SHEET-RVS-OPS"
   },
   "required_investigations": [

@@ -52,7 +52,7 @@
     {
       "audit_id": 3,
       "payload": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-079",
         "valueInputOption": "RAW",
@@ -1431,7 +1431,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A29:J29",
+      "cell_range": "Register!A29:H29",
       "change_id": "CHANGE-erpbench-079-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-RVS-OPS",
@@ -1833,7 +1833,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A29:J29": [
+        "Register!A29:H29": [
           [
             "RVS-P2001",
             "hire_eligible_within_quota",

@@ -178,7 +178,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-065",
         "valueInputOption": "RAW",
@@ -1613,7 +1613,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A25:J25",
+      "cell_range": "Register!A25:H25",
       "change_id": "CHANGE-erpbench-065-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-CLD-OPS",
@@ -2022,7 +2022,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A25:J25": [
+        "Register!A25:H25": [
           [
             "CPM-INV-2026-0207",
             "receive_and_validate_invoice",

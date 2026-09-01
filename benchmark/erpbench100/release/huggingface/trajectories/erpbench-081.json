@@ -112,7 +112,7 @@
             "label": "Stop and escalate the whole batch without importing"
           }
         ],
-        "handoff": "Save one review-only email draft and one ops-channel post; both stay draft_for_review. Record the decision, then submit the structured answer.",
+        "handoff": "Save one review-only email draft that names the selected decision option id, the primary ERP record number and the key figures; post one handoff to the ops channel that states the decision status id; both stay draft_for_review. Write the register row exactly as the register contract lists its columns, record the decision, then submit the structured answer. Change only the ERP records this request is about.",
         "ops_channel": "#ops-blf",
         "prompt": "**Bluefin Marine Parts · Fremantle depot · Customer order import**\n\nSouthern Cross Boatworks sent their consolidated SCB-PO-3391 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Hannah Dwyer ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
         "register_contract": {
@@ -126,7 +126,7 @@
             "duplicate_lines",
             "source_reference"
           ],
-          "range": "Register!A21:J21",
+          "range": "Register!A21:H21",
           "spreadsheetId": "SHEET-BLF-OPS"
         },
         "status_options": [
@@ -737,7 +737,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-BLF-OPS",
         "task_id": "erpbench-081",
         "valueInputOption": "RAW",
@@ -758,7 +758,7 @@
       "result": {
         "changeId": "CHANGE-erpbench-081-1",
         "spreadsheetId": "SHEET-BLF-OPS",
-        "updatedRange": "Register!A21:J21",
+        "updatedRange": "Register!A21:H21",
         "updatedRows": 1
       },
       "server": "google_sheets",
@@ -842,12 +842,12 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-BLF-OPS"
       },
       "index": 22,
       "result": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-BLF-OPS",
         "values": [
           [
@@ -1245,7 +1245,7 @@
         "description": "Write the exact task row to the controlled ops register range.",
         "evidence": {
           "changes": 1,
-          "expected_range": "Register!A21:J21"
+          "expected_range": "Register!A21:H21"
         },
         "id": "erp_state:register",
         "passed": true,
@@ -1336,6 +1336,7 @@
         "evidence": {
           "audit_scoped": true,
           "immutable": true,
+          "out_of_scope_tables": [],
           "rejected_writes": false,
           "unrelated_rows_unchanged": true
         },

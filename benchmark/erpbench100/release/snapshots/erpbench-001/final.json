@@ -66,7 +66,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-NBR-OPS",
         "task_id": "erpbench-001",
         "valueInputOption": "RAW",
@@ -1495,7 +1495,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A21:J21",
+      "cell_range": "Register!A21:H21",
       "change_id": "CHANGE-erpbench-001-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-NBR-OPS",
@@ -1897,7 +1897,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A21:J21": [
+        "Register!A21:H21": [
           [
             "SO-NBR-50011",
             "import_accepted_lines_and_submit",

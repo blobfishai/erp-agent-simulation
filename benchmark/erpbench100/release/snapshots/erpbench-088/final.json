@@ -90,7 +90,7 @@
     {
       "audit_id": 5,
       "payload": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-BLF-OPS",
         "task_id": "erpbench-088",
         "valueInputOption": "RAW",
@@ -1530,7 +1530,7 @@
       ]
     },
     {
-      "cell_range": "Register!A28:J28",
+      "cell_range": "Register!A28:H28",
       "change_id": "CHANGE-erpbench-088-2",
       "operation": "update",
       "spreadsheet_id": "SHEET-BLF-OPS",
@@ -1930,7 +1930,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A28:J28": [
+        "Register!A28:H28": [
           [
             "SO-BLF-52007",
             "create_unsynced_orders_and_capture_customer",

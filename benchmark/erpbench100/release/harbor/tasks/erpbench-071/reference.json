@@ -162,7 +162,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-RVS-OPS",
         "task_id": "erpbench-071",
         "valueInputOption": "RAW",
@@ -216,7 +216,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-RVS-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

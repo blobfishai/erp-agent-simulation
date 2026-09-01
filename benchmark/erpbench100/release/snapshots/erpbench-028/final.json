@@ -102,7 +102,7 @@
     {
       "audit_id": 5,
       "payload": {
-        "range": "Register!A28:J28",
+        "range": "Register!A28:H28",
         "spreadsheetId": "SHEET-MSS-OPS",
         "task_id": "erpbench-028",
         "valueInputOption": "RAW",
@@ -1516,7 +1516,7 @@
       ]
     },
     {
-      "cell_range": "Register!A28:J28",
+      "cell_range": "Register!A28:H28",
       "change_id": "CHANGE-erpbench-028-2",
       "operation": "update",
       "spreadsheet_id": "SHEET-MSS-OPS",
@@ -1921,7 +1921,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A28:J28": [
+        "Register!A28:H28": [
           [
             "SO-MSS-52007",
             "create_unsynced_orders_and_capture_customer",

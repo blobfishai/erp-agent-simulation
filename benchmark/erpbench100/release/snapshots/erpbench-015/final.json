@@ -190,7 +190,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-HBL-OPS",
         "task_id": "erpbench-015",
         "valueInputOption": "RAW",
@@ -1606,7 +1606,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A25:J25",
+      "cell_range": "Register!A25:H25",
       "change_id": "CHANGE-erpbench-015-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-HBL-OPS",
@@ -1993,7 +1993,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A25:J25": [
+        "Register!A25:H25": [
           [
             "FLE-INV-2026-118",
             "receive_and_validate_invoice",

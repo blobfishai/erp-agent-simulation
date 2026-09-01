@@ -341,7 +341,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-BLF-OPS",
         "task_id": "erpbench-081",
         "valueInputOption": "RAW",
@@ -395,7 +395,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A21:J21",
+        "range": "Register!A21:H21",
         "spreadsheetId": "SHEET-BLF-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -456,7 +456,7 @@
       "duplicate_lines",
       "source_reference"
     ],
-    "range": "Register!A21:J21",
+    "range": "Register!A21:H21",
     "spreadsheetId": "SHEET-BLF-OPS"
   },
   "required_investigations": [

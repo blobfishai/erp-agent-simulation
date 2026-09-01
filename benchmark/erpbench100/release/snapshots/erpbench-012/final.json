@@ -42,7 +42,7 @@
     {
       "audit_id": 2,
       "payload": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-HBL-OPS",
         "task_id": "erpbench-012",
         "valueInputOption": "RAW",
@@ -1417,7 +1417,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A22:J22",
+      "cell_range": "Register!A22:H22",
       "change_id": "CHANGE-erpbench-012-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-HBL-OPS",
@@ -1804,7 +1804,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A22:J22": [
+        "Register!A22:H22": [
           [
             "SHP-HBL-2210",
             "correct_short_picks_and_confirm",

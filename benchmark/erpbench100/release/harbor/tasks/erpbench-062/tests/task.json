@@ -305,7 +305,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-062",
         "valueInputOption": "RAW",
@@ -359,7 +359,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A22:J22",
+        "range": "Register!A22:H22",
         "spreadsheetId": "SHEET-CLD-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
@@ -420,7 +420,7 @@
       "confirmed_value",
       "source_reference"
     ],
-    "range": "Register!A22:J22",
+    "range": "Register!A22:H22",
     "spreadsheetId": "SHEET-CLD-OPS"
   },
   "required_investigations": [

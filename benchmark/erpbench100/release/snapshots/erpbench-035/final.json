@@ -202,7 +202,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-035",
         "valueInputOption": "RAW",
@@ -1633,7 +1633,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A25:J25",
+      "cell_range": "Register!A25:H25",
       "change_id": "CHANGE-erpbench-035-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-SGF-OPS",
@@ -2039,7 +2039,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A25:J25": [
+        "Register!A25:H25": [
           [
             "JAC-INV-4471",
             "receive_and_validate_invoice",

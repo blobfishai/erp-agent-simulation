@@ -93,7 +93,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A29:J29",
+        "range": "Register!A29:H29",
         "spreadsheetId": "SHEET-SGF-OPS",
         "task_id": "erpbench-039",
         "valueInputOption": "RAW",
@@ -1483,7 +1483,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A29:J29",
+      "cell_range": "Register!A29:H29",
       "change_id": "CHANGE-erpbench-039-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-SGF-OPS",
@@ -1889,7 +1889,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A29:J29": [
+        "Register!A29:H29": [
           [
             "SGF-P2001",
             "hire_eligible_and_keep_positions_open",

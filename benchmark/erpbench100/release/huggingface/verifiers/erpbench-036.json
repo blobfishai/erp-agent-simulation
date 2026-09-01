@@ -241,7 +241,7 @@
       "description": "Write the exact task row to the controlled ops register range.",
       "evidence": {
         "changes": 1,
-        "expected_range": "Register!A26:J26"
+        "expected_range": "Register!A26:H26"
       },
       "id": "erp_state:register",
       "passed": true,
@@ -332,6 +332,7 @@
       "evidence": {
         "audit_scoped": true,
         "immutable": true,
+        "out_of_scope_tables": [],
         "rejected_writes": false,
         "unrelated_rows_unchanged": true
       },

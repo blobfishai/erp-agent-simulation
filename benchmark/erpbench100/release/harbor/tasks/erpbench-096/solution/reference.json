@@ -150,7 +150,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-TRV-OPS",
         "task_id": "erpbench-096",
         "valueInputOption": "RAW",
@@ -204,7 +204,7 @@
     },
     {
       "arguments": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-TRV-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"

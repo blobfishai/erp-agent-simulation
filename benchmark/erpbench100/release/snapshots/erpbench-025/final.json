@@ -164,7 +164,7 @@
     {
       "audit_id": 4,
       "payload": {
-        "range": "Register!A25:J25",
+        "range": "Register!A25:H25",
         "spreadsheetId": "SHEET-MSS-OPS",
         "task_id": "erpbench-025",
         "valueInputOption": "RAW",
@@ -1548,7 +1548,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A25:J25",
+      "cell_range": "Register!A25:H25",
       "change_id": "CHANGE-erpbench-025-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-MSS-OPS",
@@ -1946,7 +1946,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A25:J25": [
+        "Register!A25:H25": [
           [
             "NSA-INV-0931",
             "receive_and_hold_variance_lines",

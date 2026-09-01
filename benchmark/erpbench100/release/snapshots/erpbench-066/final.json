@@ -75,7 +75,7 @@
     {
       "audit_id": 6,
       "payload": {
-        "range": "Register!A26:J26",
+        "range": "Register!A26:H26",
         "spreadsheetId": "SHEET-CLD-OPS",
         "task_id": "erpbench-066",
         "valueInputOption": "RAW",
@@ -1469,7 +1469,7 @@
   ],
   "sheet_changes": [
     {
-      "cell_range": "Register!A26:J26",
+      "cell_range": "Register!A26:H26",
       "change_id": "CHANGE-erpbench-066-1",
       "operation": "update",
       "spreadsheet_id": "SHEET-CLD-OPS",
@@ -1878,7 +1878,7 @@
             "MANUAL-2026-01"
           ]
         ],
-        "Register!A26:J26": [
+        "Register!A26:H26": [
           [
             "CLD-COMPLIANCE-0209",
             "alert_expiring_and_block_failed_checks",
