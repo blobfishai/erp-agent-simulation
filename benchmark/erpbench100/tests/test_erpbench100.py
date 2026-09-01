@@ -141,7 +141,8 @@ def test_checked_in_release_is_harbor_and_website_complete() -> None:
     assert page["benchmark"]["taskCount"] == 100
     assert len(page["tasks"]) == 100
     assert len(page["samples"]) == 100
-    assert len(page["trajectories"]) == 10
+    assert sum(1 for trajectory in page["trajectories"] if trajectory["kind"] == "reference") == 10
+    assert all(trajectory["kind"] in {"reference", "model"} for trajectory in page["trajectories"])
     assert page["leaderboard"] == []
     assert page["evaluationControls"][0]["score"] == 100
     assert len(page["evaluationControls"]) == 7
@@ -161,8 +162,8 @@ def test_checked_in_release_is_harbor_and_website_complete() -> None:
         for sample in page["samples"].values()
         for asset in sample["assets"]
     )
-    assert all(f"/blob/{revision}/" in trajectory["transcriptUrl"] for trajectory in page["trajectories"])
-    assert all(f"/blob/{revision}/" in trajectory["verifierUrl"] for trajectory in page["trajectories"])
+    assert all(f"/blob/{revision}/" in trajectory["transcriptUrl"] for trajectory in page["trajectories"] if trajectory["kind"] == "reference")
+    assert all(f"/blob/{revision}/" in trajectory["verifierUrl"] for trajectory in page["trajectories"] if trajectory["kind"] == "reference")
 
 
 def test_clean_room_anchor_receipt_is_explicit() -> None:
