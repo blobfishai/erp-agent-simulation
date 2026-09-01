@@ -823,7 +823,61 @@ def _website_data(
                 "events": _trajectory_events(by_id[task_id], episode),
             }
         )
-    return {
+    from .model_run import load_published_model_runs, trial_trace
+
+    leaderboard: list[dict[str, Any]] = []
+    model_notes: list[str] = []
+    for run in load_published_model_runs():
+        agent = run["agent"]
+        harness = f"Harbor · {agent['name']} {agent['version']} · reasoning {(agent.get('kwargs') or {}).get('reasoning_effort', 'default')}"
+        run_url = f"{SOURCE_URL.rsplit('/tree/', 1)[0]}/blob/main/benchmark/erpbench100/model_runs/{run['slug']}/run.json"
+        if run["kind"] == "ranked":
+            leaderboard.append(
+                {
+                    "rank": len(leaderboard) + 1,
+                    "name": run["label"],
+                    "harness": harness,
+                    "kind": "model",
+                    "tasks": run["tasks_attempted"],
+                    "score": run["mean_score"],
+                    "strictPassRate": run["strict_passes"],
+                    "categoryScores": run["category_scores"],
+                    "averageCalls": run["average_tool_calls"],
+                    "averageCost": run["average_cost_usd"],
+                    "note": f"Single exact-release Harbor job {run['job_name']}: {run['tasks_attempted']}/100 tasks, zero errors, zero retries.",
+                    "runUrl": run_url,
+                }
+            )
+            model_notes.append(f"{run['label']} completed all 100 tasks in one Harbor job at a mean {run['mean_score']:.2f} {METRIC} ({run['strict_passes']} strict passes, average {run['average_tool_calls']} calls, ${run['average_cost_usd']:.4f} per task).")
+        else:
+            model_notes.append(f"Disclosed pilot (not ranked): {run['label']} on {run['tasks_attempted']} of 100 tasks scored a mean {run['mean_score']:.2f} {METRIC} ({run['strict_passes']} strict passes); the full 100-task run is required before a leaderboard row appears.")
+        for trial in run["trials"]:
+            trace = trial_trace(run, trial["task_id"])
+            if trace is None or (run["kind"] == "ranked" and trial["task_id"] not in sample_task_ids):
+                continue
+            episode = {"trace": trace, "verdict": {"score": trial["score"], "passed": trial["strict_pass"]}}
+            trajectories.append(
+                {
+                    "taskId": trial["task_id"],
+                    "model": run["label"],
+                    "harness": harness,
+                    "kind": "model",
+                    "traceMode": "provider-native",
+                    "traceSource": f"Harbor trial {trial['trial_name']} verifier trace ({'ranked run' if run['kind'] == 'ranked' else 'disclosed pilot'})",
+                    "passed": trial["strict_pass"],
+                    "score": trial["score"],
+                    "categoryScores": trial["category_scores"],
+                    "toolCalls": trial["tool_calls"],
+                    "tokens": {"input": trial["tokens"].get("input"), "output": trial["tokens"].get("output")},
+                    "costUsd": trial.get("cost_usd"),
+                    "sourceArtifactUrl": run_url.replace("run.json", f"trials/{trial['task_id']}.json"),
+                    "transcriptUrl": run_url.replace("run.json", f"trials/{trial['task_id']}.json"),
+                    "verifierUrl": run_url.replace("run.json", f"trials/{trial['task_id']}.json"),
+                    "stages": stages,
+                    "events": _trajectory_events(by_id[trial["task_id"]], episode),
+                }
+            )
+    page = {
         "schemaVersion": "blobfish.benchmark-page.v1",
         "benchmark": {
             "name": BENCHMARK_NAME,
@@ -884,7 +938,7 @@ def _website_data(
             "links": {"harbor": HARBOR_URL, "huggingFace": HF_URL, "source": SOURCE_URL, "blobfishPage": PAGE_URL},
         },
         "scoring": {"categories": list(SCORING_CATEGORIES), "strictPassTracked": True},
-        "leaderboard": [],
+        "leaderboard": leaderboard,
         "evaluationControls": evaluation_controls,
         "tasks": task_rows,
         "samples": samples,
@@ -915,6 +969,9 @@ def _website_data(
             "linkUrl": ANCHOR_ARCHIPELAGO_URL,
         },
     }
+    if model_notes:
+        page["methodology"].append({"title": "Model runs on this release", "body": " ".join(model_notes)})
+    return page
 
 
 def _tree_digest(root: Path) -> tuple[str, int, int]:
