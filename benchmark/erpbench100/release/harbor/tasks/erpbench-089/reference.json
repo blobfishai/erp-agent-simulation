@@ -19,12 +19,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-089"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-089-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -56,9 +50,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-BLF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -68,7 +62,7 @@
     },
     {
       "arguments": {
-        "q": "LegalEmployerName='Bluefin Marine Parts' and JobCode='parts interpreter'"
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
       },
       "tool": "oracle_fusion.workers.list"
     },
@@ -102,6 +96,12 @@
         "query": "hiring"
       },
       "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
+      },
+      "tool": "oracle_fusion.document_records.list"
     },
     {
       "arguments": {
@@ -244,92 +244,92 @@
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the headcount approval investigation before any controlled write.",
+      "description": "Before any controlled write, read the current headcount approval (any listed route counts).",
       "id": "discovery:headcount_approval",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the current workers investigation before any controlled write.",
+      "description": "Before any controlled write, count the current workers in the job (any listed route counts).",
       "id": "discovery:current_workers",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the candidates investigation before any controlled write.",
+      "description": "Before any controlled write, read the candidate register (any listed route counts).",
       "id": "discovery:candidates",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the wage table investigation before any controlled write.",
+      "description": "Before any controlled write, read the approved wage (any listed route counts).",
       "id": "discovery:wage_table",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the headcount tab investigation before any controlled write.",
+      "description": "Before any controlled write, read the headcount tab (any listed route counts).",
       "id": "discovery:headcount_tab",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the hr request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the HR request (any listed route counts).",
       "id": "discovery:hr_request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the hr thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the HR thread (any listed route counts).",
       "id": "discovery:hr_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, check permit records or the superseded approval (any listed route counts).",
+      "id": "discovery:permit_records",
       "points": 1
     },
     {

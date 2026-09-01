@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-094"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-094-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-TRV-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -57,9 +51,15 @@
     },
     {
       "arguments": {
-        "q": "Supplier='Chonburi Cell Works' and Status='Open'"
+        "q": "Status='Open'"
       },
       "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-TRV-OPEN-SUPPLY"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
     },
     {
       "arguments": {
@@ -75,16 +75,15 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-TRV-DEMAND-FORECAST-F06"
+        "fileId": "FILE-TRV-REORDER-POLICY-R3"
       },
       "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "range": "Reorder!A1:F12",
-        "spreadsheetId": "SHEET-TRV-OPS"
+        "fileId": "FILE-TRV-DEMAND-FORECAST-F06"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {

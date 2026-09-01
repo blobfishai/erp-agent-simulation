@@ -199,33 +199,52 @@
             "additionalProperties": false,
             "properties": {
               "decision_status": {
+                "description": "One of the status ids listed in the task contract",
+                "enum": [
+                  "collections_in_progress",
+                  "credit_review_required"
+                ],
                 "type": "string"
               },
               "oldest_days_past_due": {
+                "description": "Days past due of the oldest remaining past-due invoice",
                 "type": "integer"
               },
               "open_invoices_before": {
+                "description": "Open invoices for the customer before the receipt",
                 "type": "integer"
               },
               "past_due_pct_of_limit": {
+                "description": "Remaining past-due balance as a percentage of the credit limit",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "primary_record": {
+                "description": "The primary ERP record number created or updated (as returned by the system)",
                 "type": "string"
               },
               "receipt_amount": {
+                "description": "Amount of the receipt entered",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "recommended_option": {
+                "description": "One of the decision option ids listed in the task contract",
+                "enum": [
+                  "apply_receipt_and_continue_collections",
+                  "apply_receipt_and_escalate_credit_hold",
+                  "process_everything_as_received",
+                  "escalate_without_executing"
+                ],
                 "type": "string"
               },
               "remaining_past_due": {
+                "description": "Past-due balance remaining after application",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "source_reference": {
+                "description": "Drive file id of the operative (current-authority) source document you relied on",
                 "type": "string"
               }
             },

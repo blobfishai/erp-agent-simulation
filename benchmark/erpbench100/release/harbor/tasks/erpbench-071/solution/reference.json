@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-071"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-071-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-RVS-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -63,15 +57,15 @@
     },
     {
       "arguments": {
-        "q": "CustomerPONumber='HVC-2026-0201'"
+        "fileId": "FILE-RVS-ORDER-BATCH-0203"
       },
-      "tool": "oracle_fusion.sales_orders.list"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "OrderKey": "SO-RVS-40039"
+        "q": "CustomerPONumber='HVC-2026-0201'"
       },
-      "tool": "oracle_fusion.sales_orders.get"
+      "tool": "oracle_fusion.sales_orders.list"
     },
     {
       "arguments": {
@@ -81,16 +75,22 @@
     },
     {
       "arguments": {
-        "range": "PriceList!A1:E12",
-        "spreadsheetId": "SHEET-RVS-OPS"
+        "fileId": "FILE-RVS-PRICE-LIST-2025H2"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "query": "HVC-2026-0201"
+        "fileId": "FILE-RVS-OPS-AUDIT-LOG"
       },
-      "tool": "slack.search_messages"
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
     },
     {
       "arguments": {

@@ -199,32 +199,51 @@
             "additionalProperties": false,
             "properties": {
               "decision_status": {
+                "description": "One of the status ids listed in the task contract",
+                "enum": [
+                  "invoice_validated",
+                  "invoice_on_hold"
+                ],
                 "type": "string"
               },
               "held_lines": {
+                "description": "Invoice lines placed on hold",
                 "type": "integer"
               },
               "lines_matched": {
+                "description": "Invoice lines inside quantity and price tolerance",
                 "type": "integer"
               },
               "matched_amount": {
+                "description": "Matched value at purchase-order prices",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "payable_amount": {
+                "description": "Amount cleared for payment",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "primary_record": {
+                "description": "The primary ERP record number created or updated (as returned by the system)",
                 "type": "string"
               },
               "recommended_option": {
+                "description": "One of the decision option ids listed in the task contract",
+                "enum": [
+                  "receive_and_validate_invoice",
+                  "receive_and_hold_variance_lines",
+                  "process_everything_as_received",
+                  "escalate_without_executing"
+                ],
                 "type": "string"
               },
               "source_reference": {
+                "description": "Drive file id of the operative (current-authority) source document you relied on",
                 "type": "string"
               },
               "variance_amount": {
+                "description": "Value of price variance on held lines",
                 "multipleOf": 0.01,
                 "type": "number"
               }

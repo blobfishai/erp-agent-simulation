@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-031"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-031-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-SGF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -63,15 +57,15 @@
     },
     {
       "arguments": {
-        "q": "CustomerPONumber='NRG-0209-88'"
+        "fileId": "FILE-SGF-ORDER-BATCH-0203"
       },
-      "tool": "oracle_fusion.sales_orders.list"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "OrderKey": "SO-SGF-40039"
+        "q": "CustomerPONumber='NRG-0209-88'"
       },
-      "tool": "oracle_fusion.sales_orders.get"
+      "tool": "oracle_fusion.sales_orders.list"
     },
     {
       "arguments": {
@@ -81,16 +75,22 @@
     },
     {
       "arguments": {
-        "range": "PriceList!A1:E12",
-        "spreadsheetId": "SHEET-SGF-OPS"
+        "fileId": "FILE-SGF-PRICE-LIST-2025H2"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "query": "NRG-0209-88"
+        "fileId": "FILE-SGF-OPS-AUDIT-LOG"
       },
-      "tool": "slack.search_messages"
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
     },
     {
       "arguments": {

@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-043"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-043-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-KEA-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -91,6 +85,12 @@
         "spreadsheetId": "SHEET-KEA-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "CustomerTransactionId": 900003
+      },
+      "tool": "oracle_fusion.receivables_invoices.get"
     },
     {
       "arguments": {

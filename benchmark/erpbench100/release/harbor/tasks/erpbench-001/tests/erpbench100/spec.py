@@ -379,6 +379,101 @@ SCORING_CATEGORIES: tuple[dict[str, Any], ...] = (
 )
 
 
+OPTION_SETS: dict[str, tuple[tuple[str, str], ...]] = {
+    "order_import": (
+        ("import_accepted_lines_and_submit", "Import the accepted lines at current list prices and submit the order"),
+        ("import_accepted_lines_and_hold_submission", "Import the accepted lines but hold submission for credit release"),
+        ("process_everything_as_received", "Import every spreadsheet line at the spreadsheet prices"),
+        ("escalate_without_executing", "Stop and escalate the whole batch without importing"),
+    ),
+    "shipment_verification": (
+        ("correct_short_picks_and_confirm", "Correct short-picked lines to the pick confirmation and confirm the shipment"),
+        ("correct_short_picks_and_hold_over_picks", "Correct short-picked lines and hold the over-picked lines"),
+        ("process_everything_as_received", "Ship every line at the staged quantity"),
+        ("escalate_without_executing", "Hold the entire shipment and escalate"),
+    ),
+    "receivables_collection": (
+        ("apply_receipt_and_continue_collections", "Apply the remittance to the invoices it names and continue normal collections"),
+        ("apply_receipt_and_escalate_credit_hold", "Apply the remittance and recommend a credit hold for finance approval"),
+        ("process_everything_as_received", "Apply the payment across every open invoice"),
+        ("escalate_without_executing", "Do not enter the receipt; escalate the account"),
+    ),
+    "inventory_reorder": (
+        ("requisition_primary_supplier", "Requisition the shortfall from the primary supplier inside the need window"),
+        ("requisition_primary_supplier_and_flag_lateness", "Requisition from the primary supplier and flag the delivery as late against the need window"),
+        ("requisition_expedite_supplier", "Requisition from the expedite supplier at a premium"),
+        ("escalate_without_executing", "Raise nothing and escalate the shortfall"),
+    ),
+    "receiving_ap_match": (
+        ("receive_and_validate_invoice", "Receive the delivery, enter the invoice and validate it for payment"),
+        ("receive_and_hold_variance_lines", "Receive the delivery, enter the invoice and hold the lines outside tolerance"),
+        ("process_everything_as_received", "Receive and pay the invoice exactly as billed"),
+        ("escalate_without_executing", "Reject the invoice and escalate to the supplier"),
+    ),
+    "document_compliance": (
+        ("alert_expiring_and_verify_pending", "Alert on expiring documents and verify the pending checks"),
+        ("alert_expiring_and_block_failed_checks", "Alert on expiring documents, verify pending checks and block workers with failed checks"),
+        ("process_everything_as_received", "Mark every document alerted and every check verified"),
+        ("escalate_without_executing", "Change nothing and escalate the audit"),
+    ),
+    "shift_rollup": (
+        ("post_rollup_and_record_unauthorized_absences", "Post the rollup and record an unauthorized absence for each missing worker"),
+        ("post_rollup_no_absences", "Post the rollup; no absences need recording"),
+        ("process_everything_as_received", "Record an absence for everyone without a report, including approved leave"),
+        ("escalate_without_executing", "Post nothing and escalate to the supervisor"),
+    ),
+    "channel_order_sync": (
+        ("create_unsynced_orders_and_capture_customer", "Create sales orders only for unsynced export rows and capture the new customer"),
+        ("create_all_export_rows", "Create a sales order for every row in the export"),
+        ("skip_sync_pending_dedup_review", "Sync nothing until the export is deduplicated by hand"),
+        ("escalate_without_executing", "Stop and escalate the export"),
+    ),
+    "hire_against_requisition": (
+        ("hire_eligible_within_quota", "Hire eligible candidates up to the open headcount"),
+        ("hire_eligible_and_keep_positions_open", "Hire every eligible candidate and leave the remaining positions open"),
+        ("hire_all_candidates", "Hire every candidate on the register"),
+        ("escalate_without_executing", "Hire nobody and escalate the round"),
+    ),
+    "price_list_batch": (
+        ("apply_policy_compliant_lines", "Apply only the lines that meet pricing policy, later effective dates winning"),
+        ("apply_all_batch_lines", "Apply every line in the batch as sent"),
+        ("apply_latest_line_per_item_ignoring_band", "Apply the latest line per item regardless of the change band"),
+        ("escalate_without_executing", "Apply nothing and escalate the batch"),
+    ),
+}
+
+STATUS_SETS: dict[str, tuple[tuple[str, str], ...]] = {
+    "order_import": (("submitted", "Order submitted"), ("awaiting_credit_release", "Order held awaiting credit release")),
+    "shipment_verification": (("ready_to_confirm", "Shipment ready to confirm"), ("partial_hold", "Shipment partially held")),
+    "receivables_collection": (("collections_in_progress", "Collections in progress"), ("credit_review_required", "Credit review required")),
+    "inventory_reorder": (("requisition_submitted", "Requisition submitted"), ("requisition_submitted_late_risk", "Requisition submitted with late-delivery risk")),
+    "receiving_ap_match": (("invoice_validated", "Invoice validated"), ("invoice_on_hold", "Invoice on hold")),
+    "document_compliance": (("compliance_cleared", "Compliance cleared"), ("placements_blocked", "Placements blocked")),
+    "shift_rollup": (("absences_recorded", "Absences recorded"), ("shift_complete", "Shift complete")),
+    "channel_order_sync": (("synced", "Channel orders synced"), ("sync_blocked", "Sync blocked")),
+    "hire_against_requisition": (("quota_filled", "Headcount quota filled"), ("positions_remain_open", "Positions remain open")),
+    "price_list_batch": (("batch_applied", "Batch applied"), ("batch_applied_with_rejections", "Batch applied with rejections")),
+}
+
+FIELD_DESCRIPTIONS: dict[str, str] = {
+    "recommended_option": "One of the decision option ids listed in the task contract",
+    "decision_status": "One of the status ids listed in the task contract",
+    "source_reference": "Drive file id of the operative (current-authority) source document you relied on",
+    "primary_record": "The primary ERP record number created or updated (as returned by the system)",
+    "accepted_lines": "Spreadsheet lines imported", "rejected_lines": "Spreadsheet lines not imported (duplicates and inactive items)", "imported_units": "Total quantity on the imported lines", "order_total": "Imported order value at current list prices", "duplicate_lines": "Lines already imported on the earlier partial import",
+    "lines_reviewed": "Shipment lines reviewed", "lines_matching": "Lines where requested, picked and shipped agree", "lines_corrected": "Lines corrected down to the picked quantity", "units_removed": "Units removed by the corrections", "confirmed_value": "Value of the lines that can ship (held lines excluded) at list price",
+    "open_invoices_before": "Open invoices for the customer before the receipt", "receipt_amount": "Amount of the receipt entered", "remaining_past_due": "Past-due balance remaining after application", "oldest_days_past_due": "Days past due of the oldest remaining past-due invoice", "past_due_pct_of_limit": "Remaining past-due balance as a percentage of the credit limit",
+    "skus_below_reorder": "Active items at or below their reorder point after reservations and open supply", "total_reorder_units": "Units requisitioned in total", "requisition_amount": "Requisition value at unit cost", "supplier_lead_time_days": "Lead time of the supplier used", "days_late": "Days the delivery lands after the need window (0 if inside it)",
+    "lines_matched": "Invoice lines inside quantity and price tolerance", "matched_amount": "Matched value at purchase-order prices", "variance_amount": "Value of price variance on held lines", "held_lines": "Invoice lines placed on hold", "payable_amount": "Amount cleared for payment",
+    "expiring_within_30": "Documents expiring within 30 days", "unalerted_expiring": "Expiring documents that had not been alerted", "blocked_workers": "Workers blocked by a failed mandatory check", "checks_verified": "Pending checks verified", "days_to_earliest_expiry": "Days until the earliest expiring document",
+    "expected_staff": "Rostered staff minus approved leave", "reporting_staff": "Staff who submitted a report", "late_reports": "Reports submitted after the cutoff", "overtime_hours": "Total overtime hours worked", "missing_staff": "Expected staff without a report",
+    "channel_rows": "Rows in the channel export", "already_synced": "Rows already carrying a sales order", "created_orders": "Sales orders created", "duplicate_rows": "Repeated rows skipped", "synced_value": "Value of the sales orders created",
+    "open_headcount": "Approved headcount minus current staff", "eligible_candidates": "Candidates with passed checks and permits valid beyond contract end", "hires": "Workers hired", "monthly_wage_total": "Monthly wage cost of the hires", "contract_months": "Standard contract length in months",
+    "batch_lines": "Lines in the price batch", "superseded_lines": "Lines superseded by a later effective date", "average_change_pct": "Average percentage change across applied lines",
+}
+
+PRICING_FIELD_DESCRIPTIONS: dict[str, str] = {"accepted_lines": "Batch lines applied to item prices", "rejected_lines": "Batch lines rejected by pricing policy"}
+
 NUMERIC_FIELDS: dict[str, tuple[str, ...]] = {
     "order_import": ("accepted_lines", "rejected_lines", "imported_units", "order_total", "duplicate_lines"),
     "shipment_verification": ("lines_reviewed", "lines_matching", "lines_corrected", "units_removed", "confirmed_value"),
@@ -1025,122 +1120,208 @@ def _channel(world: dict[str, Any]) -> str:
     return f"#ops-{world['short'].lower()}"
 
 
+def _exact(tool: str, arguments: dict[str, Any]) -> dict[str, Any]:
+    return {"tool": tool, "arguments": arguments}
+
+
+def _route(tool: str, **contains: Any) -> dict[str, Any]:
+    """A read that counts when every listed argument contains the given text."""
+
+    return {"tool": tool, "arguments_contains": contains}
+
+
 def _investigations(task_id: str, world: dict[str, Any], family: dict[str, str]) -> list[dict[str, Any]]:
+    """Fifteen evidence goals per task; each goal lists every acceptable read route."""
+
     model = world_model(world["code"])
     short = world["short"]
-    org = world["org"]
+    lower = short.lower()
     customer = world["customer"]
     supplier = world["supplier"]
     key = family["key"]
     sheet = _sheet(world)
-    channel = _channel(world)
-    common = [
-        ("task_contract", "erpbench.get_task", {"task_id": task_id}),
-        ("request_mail_search", "gmail.messages.list", {"q": task_id}),
-        ("request_mail", "gmail.messages.get", {"id": f"MSG-{task_id}-REQUEST"}),
-        ("authority_memo", "gmail.messages.get", {"id": f"MSG-{short}-AUTHORITY-0209"}),
-        ("control_thread", "slack.conversations_history", {"channel": channel}),
-        ("ops_register", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Register!A1:H40"}),
-        ("item_master", "oracle_fusion.items.list", {"q": f"OrganizationCode='{org}'"}),
-        ("source_map", "google_drive.files.download", {"fileId": f"FILE-{short}-SOURCE-MAP"}),
+    oi, sv, rc = model["order_import"], model["shipment_verification"], model["receivables_collection"]
+    ir, ap, dc = model["inventory_reorder"], model["receiving_ap_match"], model["document_compliance"]
+    sr, co, hr, pb = model["shift_rollup"], model["channel_order_sync"], model["hire_against_requisition"], model["price_list_batch"]
+    common: list[tuple[str, str, list[dict[str, Any]]]] = [
+        ("task_contract", "read the task contract", [_exact("erpbench.get_task", {"task_id": task_id})]),
+        ("request_mail", "read the operating request in the mailbox", [_exact("gmail.messages.get", {"id": f"MSG-{task_id}-REQUEST"}), _route("gmail.messages.list", q=task_id)]),
+        ("authority_memo", "establish which sources are current authority", [_exact("gmail.messages.get", {"id": f"MSG-{short}-AUTHORITY-0209"}), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-AUTHORITY-MEMO-0209"}), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-SOURCE-MAP"})]),
+        ("control_thread", "read the ops channel thread for the task", [_route("slack.conversations_history", channel=f"ops-{lower}"), _route("slack.search_messages", query=task_id)]),
+        ("ops_register", "read the ops register before writing to it", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Register")]),
+        ("item_master", "read the item master or current price list", [_route("oracle_fusion.items.list"), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-PRICE-LIST-CURRENT"}), _route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="PriceList")]),
+        ("drive_index", "index the shared drive for current and superseded versions", [_route("google_drive.files.list"), _route("google_drive.files.get", fileId=f"FILE-{short}"), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-OPS-AUDIT-LOG"})]),
     ]
-    domain: dict[str, list[tuple[str, str, dict[str, Any]]]] = {
+    domain: dict[str, list[tuple[str, str, list[dict[str, Any]]]]] = {
         "order_import": [
-            ("batch_search", "google_drive.files.list", {"q": f"name contains '{customer['po']}'"}),
-            ("batch_file", "google_drive.files.download", {"fileId": model["order_import"]["batch_file_id"]}),
-            ("existing_orders", "oracle_fusion.sales_orders.list", {"q": f"CustomerPONumber='{customer['po']}'"}),
-            ("prior_order_lines", "oracle_fusion.sales_orders.get", {"OrderKey": model["order_import"]["prior_order_number"]}),
-            ("customer_account", "oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]}),
-            ("price_list_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "PriceList!A1:E12"}),
-            ("prior_import_thread", "slack.search_messages", {"query": customer["po"]}),
+            ("batch_search", "locate the consolidated order batch", [_route("google_drive.files.list", q=customer["po"]), _route("google_drive.files.list", q="order"), _route("google_drive.files.list", q="batch"), _route("gmail.messages.list", q=customer["po"])]),
+            ("batch_file", "read the consolidated order batch", [_exact("google_drive.files.download", {"fileId": oi["batch_file_id"]})]),
+            ("prior_partial_import", "read the earlier partial import", [_exact("google_drive.files.download", {"fileId": oi["stale_batch_file_id"]}), _exact("oracle_fusion.sales_orders.get", {"OrderKey": oi["prior_order_number"]}), _route("slack.search_messages", query=customer["po"])]),
+            ("existing_orders", "check the sales orders already on the purchase order", [_route("oracle_fusion.sales_orders.list", q=customer["po"]), _route("oracle_fusion.sales_orders.list", q=customer["number"]), _route("oracle_fusion.sales_orders.list", q="OPS")]),
+            ("customer_credit", "check the customer's credit standing", [_exact("oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]}), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-CREDIT-POLICY-R6"}), _route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Aging")]),
+            ("superseded_prices", "recognise the superseded price list", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-PRICE-LIST-2025H2"}), _route("google_drive.files.get", fileId="PRICE-LIST"), _route("google_drive.files.list", q="price")]),
+            ("audit_trail", "read the audit trail for the purchase order", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-OPS-AUDIT-LOG"}), _route("gmail.messages.list", q=customer["po"]), _route("slack.search_messages", query="import")]),
+            ("customer_master", "confirm the customer master record", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Customers"), _exact("oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]})]),
         ],
         "shipment_verification": [
-            ("shipment_header", "oracle_fusion.shipments.list", {"q": f"Shipment='{model['shipment_verification']['shipment']}'"}),
-            ("shipment_lines", "oracle_fusion.shipment_lines.list", {"q": f"Shipment='{model['shipment_verification']['shipment']}'"}),
-            ("pick_search", "google_drive.files.list", {"q": f"name contains '{model['shipment_verification']['shipment']}'"}),
-            ("pick_confirmation", "google_drive.files.download", {"fileId": model["shipment_verification"]["pick_file_id"]}),
-            ("sales_order", "oracle_fusion.sales_orders.get", {"OrderKey": model["shipment_verification"]["order"]}),
-            ("shipping_register", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Shipping!A1:F20"}),
-            ("warehouse_thread", "slack.search_messages", {"query": model["shipment_verification"]["shipment"]}),
+            ("shipment_header", "read the shipment header", [_route("oracle_fusion.shipments.list")]),
+            ("shipment_lines", "read the staged shipment lines", [_route("oracle_fusion.shipment_lines.list")]),
+            ("pick_search", "locate the pick confirmation", [_route("google_drive.files.list", q=sv["shipment"]), _route("google_drive.files.list", q="pick"), _route("slack.search_messages", query=sv["shipment"])]),
+            ("pick_confirmation", "read the current pick confirmation", [_exact("google_drive.files.download", {"fileId": sv["pick_file_id"]})]),
+            ("stale_pick", "recognise the superseded pick confirmation", [_exact("google_drive.files.download", {"fileId": sv["stale_pick_file_id"]}), _route("google_drive.files.get", fileId="PICK-CONFIRM")]),
+            ("sales_order", "read the sales order behind the shipment", [_exact("oracle_fusion.sales_orders.get", {"OrderKey": sv["order"]}), _route("oracle_fusion.sales_orders.list", q=sv["order"])]),
+            ("shipping_register", "read the shipping register", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Shipping")]),
+            ("warehouse_thread", "read the warehouse thread", [_route("slack.search_messages", query=sv["shipment"]), _route("slack.conversations_history", channel=f"warehouse-{lower}")]),
         ],
         "receivables_collection": [
-            ("open_invoices", "oracle_fusion.receivables_invoices.list", {"q": f"BillToCustomerNumber='{customer['number']}' and InvoiceStatus='Open'"}),
-            ("customer_account", "oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]}),
-            ("existing_receipts", "oracle_fusion.standard_receipts.list", {"q": f"CustomerAccountNumber='{customer['number']}'"}),
-            ("remittance_mail", "gmail.messages.get", {"id": model["receivables_collection"]["remittance_message_id"]}),
-            ("remittance_advice", "google_drive.files.download", {"fileId": model["receivables_collection"]["remittance_file_id"]}),
-            ("credit_policy", "google_drive.files.download", {"fileId": f"FILE-{short}-CREDIT-POLICY-R6"}),
-            ("ar_aging_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Aging!A1:E12"}),
+            ("open_invoices", "read the customer's open invoices", [_route("oracle_fusion.receivables_invoices.list", q=customer["number"]), _route("oracle_fusion.receivables_invoices.list", q="Open"), _route("oracle_fusion.receivables_invoices.list")]),
+            ("customer_account", "read the customer account activity and credit limit", [_exact("oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]})]),
+            ("existing_receipts", "check receipts already entered", [_route("oracle_fusion.standard_receipts.list")]),
+            ("remittance_mail", "read the remittance email", [_exact("gmail.messages.get", {"id": rc["remittance_message_id"]}), _route("gmail.messages.list", q="remittance")]),
+            ("remittance_advice", "read the remittance advice", [_exact("google_drive.files.download", {"fileId": rc["remittance_file_id"]})]),
+            ("credit_policy", "read the credit policy", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-CREDIT-POLICY-R6"}), _route("slack.search_messages", query="credit")]),
+            ("ar_aging", "read the receivables aging", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Aging"), _exact("google_drive.files.download", {"fileId": f"FILE-{short}-AR-AGING-0209"})]),
+            ("invoice_detail", "read an invoice in detail", [_route("oracle_fusion.receivables_invoices.get"), _route("oracle_fusion.receivables_invoices.list", q=customer["number"])]),
         ],
         "inventory_reorder": [
-            ("onhand_balances", "oracle_fusion.onhand_balances.list", {"q": f"OrganizationCode='{org}'"}),
-            ("open_purchase_orders", "oracle_fusion.purchase_orders.list", {"q": f"Supplier='{supplier['name']}' and Status='Open'"}),
-            ("suppliers", "oracle_fusion.suppliers.list", {"q": f"SupplierNumber in ('{supplier['number']}','{world['expedite_supplier']['number']}')"}),
-            ("reorder_policy", "google_drive.files.download", {"fileId": model["inventory_reorder"]["policy_file_id"]}),
-            ("demand_forecast", "google_drive.files.download", {"fileId": f"FILE-{short}-DEMAND-FORECAST-F06"}),
-            ("reorder_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Reorder!A1:F12"}),
-            ("planning_thread", "slack.search_messages", {"query": "reorder"}),
+            ("onhand_balances", "read on-hand and reserved quantities", [_route("oracle_fusion.onhand_balances.list")]),
+            ("open_purchase_orders", "read open purchase orders as supply", [_route("oracle_fusion.purchase_orders.list")]),
+            ("supply_lines", "read the open supply lines", [_route("oracle_fusion.purchase_order_lines.list"), _route("oracle_fusion.purchase_orders.get")]),
+            ("suppliers", "read supplier lead times", [_route("oracle_fusion.suppliers.list")]),
+            ("reorder_policy", "read the current reorder policy", [_exact("google_drive.files.download", {"fileId": ir["policy_file_id"]})]),
+            ("stale_policy", "recognise the superseded reorder policy", [_exact("google_drive.files.download", {"fileId": ir["stale_policy_file_id"]}), _route("google_drive.files.get", fileId="REORDER-POLICY")]),
+            ("demand_forecast", "read the demand forecast or reorder tab", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-DEMAND-FORECAST-F06"}), _route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Reorder")]),
+            ("planning_thread", "read the planning thread", [_route("slack.search_messages", query="reorder"), _route("slack.conversations_history", channel=f"planning-{lower}")]),
         ],
         "receiving_ap_match": [
-            ("purchase_order", "oracle_fusion.purchase_orders.get", {"purchaseOrdersUniqID": model["receiving_ap_match"]["po"]}),
-            ("purchase_order_lines", "oracle_fusion.purchase_order_lines.list", {"purchaseOrdersUniqID": model["receiving_ap_match"]["po"]}),
-            ("delivery_note", "google_drive.files.download", {"fileId": model["receiving_ap_match"]["delivery_note_file_id"]}),
-            ("supplier_invoice", "google_drive.files.download", {"fileId": model["receiving_ap_match"]["invoice_file_id"]}),
-            ("invoice_mail", "gmail.messages.get", {"id": f"MSG-{short}-SUPPLIER-INVOICE-0207"}),
-            ("ap_policy", "google_drive.files.download", {"fileId": f"FILE-{short}-AP-MATCH-POLICY"}),
-            ("existing_ap_invoices", "oracle_fusion.invoices.list", {"q": f"Supplier='{supplier['name']}'"}),
+            ("purchase_order", "read the purchase order", [_exact("oracle_fusion.purchase_orders.get", {"purchaseOrdersUniqID": ap["po"]}), _route("oracle_fusion.purchase_orders.list", q=ap["po"])]),
+            ("purchase_order_lines", "read the purchase-order lines", [_exact("oracle_fusion.purchase_order_lines.list", {"purchaseOrdersUniqID": ap["po"]})]),
+            ("delivery_note", "read the signed delivery note", [_exact("google_drive.files.download", {"fileId": ap["delivery_note_file_id"]})]),
+            ("supplier_invoice", "read the supplier invoice", [_exact("google_drive.files.download", {"fileId": ap["invoice_file_id"]})]),
+            ("invoice_mail", "read the supplier's invoice email", [_exact("gmail.messages.get", {"id": f"MSG-{short}-SUPPLIER-INVOICE-0207"}), _route("gmail.messages.list", q=ap["invoice_number"])]),
+            ("ap_policy", "read the three-way match policy", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-AP-MATCH-POLICY"}), _route("slack.search_messages", query="tolerance")]),
+            ("existing_ap_invoices", "check invoices already entered for the supplier", [_route("oracle_fusion.invoices.list")]),
+            ("supplier_master", "read the supplier master", [_route("oracle_fusion.suppliers.list"), _route("oracle_fusion.purchase_orders.list", q=supplier["name"])]),
         ],
         "document_compliance": [
-            ("workers", "oracle_fusion.workers.list", {"q": f"LegalEmployerName='{world['company']}'"}),
-            ("document_records", "oracle_fusion.document_records.list", {"q": f"LegalEmployerName='{world['company']}'"}),
-            ("checklist", "google_drive.files.download", {"fileId": model["document_compliance"]["checklist_file_id"]}),
-            ("alert_log", "google_drive.files.download", {"fileId": f"FILE-{short}-DOCUMENT-ALERT-LOG"}),
-            ("compliance_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Compliance!A1:G14"}),
-            ("hr_thread", "slack.search_messages", {"query": "compliance"}),
-            ("auditor_mail", "gmail.messages.get", {"id": f"MSG-{short}-AUDITOR-0205"}),
+            ("workers", "read the worker roster", [_route("oracle_fusion.workers.list")]),
+            ("document_records", "read the documents of record", [_route("oracle_fusion.document_records.list")]),
+            ("checklist", "read the current compliance checklist", [_exact("google_drive.files.download", {"fileId": dc["checklist_file_id"]})]),
+            ("stale_checklist", "recognise the superseded checklist", [_exact("google_drive.files.download", {"fileId": dc["stale_checklist_file_id"]}), _route("google_drive.files.get", fileId="COMPLIANCE-CHECKLIST")]),
+            ("alert_log", "read who has already been alerted", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-DOCUMENT-ALERT-LOG"})]),
+            ("compliance_tab", "read the compliance tab", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Compliance")]),
+            ("auditor_mail", "read the audit scope email", [_exact("gmail.messages.get", {"id": f"MSG-{short}-AUDITOR-0205"}), _route("gmail.messages.list", q="audit")]),
+            ("hr_thread", "read the HR thread", [_route("slack.search_messages", query="compliance"), _route("slack.conversations_history", channel=f"hr-{lower}")]),
         ],
         "shift_rollup": [
-            ("work_reports", "google_drive.files.download", {"fileId": f"FILE-{short}-SHIFT-REPORTS-0208"}),
-            ("roster", "google_drive.files.download", {"fileId": model["shift_rollup"]["roster_file_id"]}),
-            ("absences", "oracle_fusion.absences.list", {"q": f"employer='{world['company']}' and startDate='{model['shift_rollup']['shift_date']}'"}),
-            ("workers", "oracle_fusion.workers.list", {"q": f"LegalEmployerName='{world['company']}'"}),
-            ("shift_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Shifts!A1:F30"}),
-            ("shift_thread", "slack.search_messages", {"query": model["shift_rollup"]["shift"]}),
-            ("supervisor_mail", "gmail.messages.get", {"id": f"MSG-{short}-SUPERVISOR-0208"}),
+            ("work_reports", "read the shift work reports", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-SHIFT-REPORTS-0208"})]),
+            ("roster", "read the shift roster with approved leave", [_exact("google_drive.files.download", {"fileId": sr["roster_file_id"]})]),
+            ("absences", "read absence records for the shift date", [_route("oracle_fusion.absences.list")]),
+            ("workers", "read the worker records", [_route("oracle_fusion.workers.list")]),
+            ("shift_tab", "read the shifts tab", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Shifts")]),
+            ("shift_thread", "read the shift thread", [_route("slack.search_messages", query=sr["shift"]), _route("slack.conversations_history", channel=f"shift-{lower}")]),
+            ("supervisor_mail", "read the supervisor's instructions", [_exact("gmail.messages.get", {"id": f"MSG-{short}-SUPERVISOR-0208"}), _route("gmail.messages.list", q="shift")]),
+            ("shift_channel", "read the shift channel history", [_route("slack.conversations_history", channel=f"shift-{lower}"), _route("slack.search_messages", query="cutoff")]),
         ],
         "channel_order_sync": [
-            ("export_search", "google_drive.files.list", {"q": f"name contains '{world['channel']}'"}),
-            ("channel_export", "google_drive.files.download", {"fileId": model["channel_order_sync"]["export_file_id"]}),
-            ("synced_orders", "oracle_fusion.sales_orders.list", {"q": f"SourceTransactionSystem='{world['channel']}'"}),
-            ("customer_capture", "slack.conversations_history", {"channel": f"#customers-{short.lower()}"}),
-            ("customer_master_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Customers!A1:E12"}),
-            ("customer_account", "oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]}),
-            ("sync_mail", "gmail.messages.get", {"id": f"MSG-{short}-CHANNEL-0209"}),
+            ("export_search", "locate the channel export", [_route("google_drive.files.list", q=world["channel"]), _route("google_drive.files.list", q="export")]),
+            ("channel_export", "read the current channel export", [_exact("google_drive.files.download", {"fileId": co["export_file_id"]})]),
+            ("stale_export", "recognise the superseded export", [_exact("google_drive.files.download", {"fileId": co["stale_export_file_id"]}), _route("google_drive.files.get", fileId="CHANNEL-EXPORT")]),
+            ("synced_orders", "check which channel orders already exist", [_route("oracle_fusion.sales_orders.list", q=world["channel"]), _route("oracle_fusion.sales_orders.list")]),
+            ("customer_capture", "read the buyer's chat introduction", [_route("slack.conversations_history", channel=f"customers-{lower}"), _route("slack.search_messages", query=co["new_customer"]["name"])]),
+            ("customer_master_tab", "read the customer master tab", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Customers")]),
+            ("customer_account", "check existing customer accounts", [_exact("oracle_fusion.customer_account_activities.get", {"AccountId": customer["number"]}), _route("oracle_fusion.customer_account_activities.get")]),
+            ("sync_mail", "read the export notice", [_exact("gmail.messages.get", {"id": f"MSG-{short}-CHANNEL-0209"}), _route("gmail.messages.list", q=world["channel"])]),
         ],
         "hire_against_requisition": [
-            ("headcount_approval", "google_drive.files.download", {"fileId": model["hire_against_requisition"]["approval_file_id"]}),
-            ("current_workers", "oracle_fusion.workers.list", {"q": f"LegalEmployerName='{world['company']}' and JobCode='{model['hire_against_requisition']['job']}'"}),
-            ("candidates", "google_drive.files.download", {"fileId": f"FILE-{short}-CANDIDATE-REGISTER"}),
-            ("wage_table", "google_drive.files.download", {"fileId": f"FILE-{short}-WAGE-TABLE"}),
-            ("headcount_tab", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "Headcount!A1:E12"}),
-            ("hr_request_mail", "gmail.messages.get", {"id": f"MSG-{short}-HIRING-0209"}),
-            ("hr_thread", "slack.search_messages", {"query": "hiring"}),
+            ("headcount_approval", "read the current headcount approval", [_exact("google_drive.files.download", {"fileId": hr["approval_file_id"]})]),
+            ("current_workers", "count the current workers in the job", [_route("oracle_fusion.workers.list")]),
+            ("candidates", "read the candidate register", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-CANDIDATE-REGISTER"})]),
+            ("wage_table", "read the approved wage", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-WAGE-TABLE"}), _route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Headcount")]),
+            ("headcount_tab", "read the headcount tab", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="Headcount")]),
+            ("hr_request_mail", "read the HR request", [_exact("gmail.messages.get", {"id": f"MSG-{short}-HIRING-0209"}), _route("gmail.messages.list", q="hiring")]),
+            ("hr_thread", "read the HR thread", [_route("slack.search_messages", query="hiring"), _route("slack.conversations_history", channel=f"hr-{lower}")]),
+            ("permit_records", "check permit records or the superseded approval", [_route("oracle_fusion.document_records.list"), _exact("google_drive.files.download", {"fileId": hr["stale_approval_file_id"]})]),
         ],
         "price_list_batch": [
-            ("batch_search", "google_drive.files.list", {"q": f"name contains '{model['price_list_batch']['batch']}'"}),
-            ("price_batch", "google_drive.files.download", {"fileId": model["price_list_batch"]["batch_file_id"]}),
-            ("current_prices", "google_drive.files.download", {"fileId": f"FILE-{short}-PRICE-LIST-CURRENT"}),
-            ("pricing_policy", "google_sheets.spreadsheets.values.get", {"spreadsheetId": sheet, "range": "PricingPolicy!A1:C6"}),
-            ("pricing_mail", "gmail.messages.get", {"id": f"MSG-{short}-PRICING-0209"}),
-            ("pricing_thread", "slack.search_messages", {"query": "price batch"}),
-            ("prior_batch", "google_drive.files.download", {"fileId": model["price_list_batch"]["stale_batch_file_id"]}),
+            ("batch_search", "locate the price batch", [_route("google_drive.files.list", q=pb["batch"]), _route("google_drive.files.list", q="price")]),
+            ("price_batch", "read the price batch", [_exact("google_drive.files.download", {"fileId": pb["batch_file_id"]})]),
+            ("current_prices", "read the current prices", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-PRICE-LIST-CURRENT"}), _route("oracle_fusion.items.list")]),
+            ("pricing_policy", "read the pricing policy", [_route("google_sheets.spreadsheets.values.get", spreadsheetId=sheet, range="PricingPolicy"), _exact("gmail.messages.get", {"id": f"MSG-{short}-PRICING-0209"})]),
+            ("pricing_mail", "read the pricing notice", [_exact("gmail.messages.get", {"id": f"MSG-{short}-PRICING-0209"}), _route("gmail.messages.list", q="price")]),
+            ("pricing_thread", "read the pricing thread", [_route("slack.search_messages", query="price batch"), _route("slack.conversations_history", channel=f"pricing-{lower}")]),
+            ("prior_batch", "recognise the superseded batch", [_exact("google_drive.files.download", {"fileId": pb["stale_batch_file_id"]}), _route("google_drive.files.get", fileId="PRICE-BATCH")]),
+            ("superseded_prices", "recognise the superseded price list", [_exact("google_drive.files.download", {"fileId": f"FILE-{short}-PRICE-LIST-2025H2"}), _route("google_drive.files.list", q="superseded")]),
         ],
     }
-    steps = common + domain[key]
-    return [
-        {"id": identifier, "description": identifier.replace("_", " "), "any_of": [{"tool": tool, "arguments": arguments}]}
-        for identifier, tool, arguments in steps
-    ]
+    return [{"id": identifier, "description": description, "any_of": routes} for identifier, description, routes in common + domain[key]]
+
+
+SHEET_RANGES: dict[str, str] = {
+    "Register": "Register!A1:H40", "PriceList": "PriceList!A1:E12", "Shipping": "Shipping!A1:F20", "Aging": "Aging!A1:E12",
+    "Reorder": "Reorder!A1:F12", "Compliance": "Compliance!A1:G14", "Shifts": "Shifts!A1:F30", "Customers": "Customers!A1:E12",
+    "Headcount": "Headcount!A1:E12", "PricingPolicy": "PricingPolicy!A1:C6",
+}
+
+
+def _concrete_arguments(route: dict[str, Any], world: dict[str, Any]) -> dict[str, Any]:
+    """Turn a route (tool + argument fragments) into one concrete oracle call."""
+
+    if "arguments" in route:
+        return deepcopy(route["arguments"])
+    model = world_model(world["code"])
+    short = world["short"]
+    org = world["org"]
+    customer = world["customer"]
+    contains = route.get("arguments_contains") or {}
+    tool = route["tool"]
+    sheet = _sheet(world)
+    if tool == "gmail.messages.list":
+        return {"q": contains.get("q", short)}
+    if tool == "slack.search_messages":
+        return {"query": contains["query"]}
+    if tool == "slack.conversations_history":
+        channel = contains["channel"]
+        return {"channel": channel if channel.startswith("#") else f"#{channel}"}
+    if tool == "google_sheets.spreadsheets.values.get":
+        return {"spreadsheetId": contains.get("spreadsheetId", sheet), "range": SHEET_RANGES[contains["range"]]}
+    if tool == "google_drive.files.list":
+        return {"q": f"name contains '{contains.get('q', 'policy')}'"}
+    if tool == "google_drive.files.get":
+        stale = {
+            "PRICE-LIST": f"FILE-{short}-PRICE-LIST-2025H2", "PICK-CONFIRM": model["shipment_verification"]["stale_pick_file_id"],
+            "REORDER-POLICY": model["inventory_reorder"]["stale_policy_file_id"], "COMPLIANCE-CHECKLIST": model["document_compliance"]["stale_checklist_file_id"],
+            "CHANNEL-EXPORT": model["channel_order_sync"]["stale_export_file_id"], "PRICE-BATCH": model["price_list_batch"]["stale_batch_file_id"],
+        }
+        return {"fileId": stale.get(contains.get("fileId", ""), f"FILE-{short}-SOURCE-MAP")}
+    defaults: dict[str, dict[str, Any]] = {
+        "oracle_fusion.items.list": {"q": f"OrganizationCode='{org}'"},
+        "oracle_fusion.shipments.list": {"q": f"Shipment='{model['shipment_verification']['shipment']}'"},
+        "oracle_fusion.shipment_lines.list": {"q": f"Shipment='{model['shipment_verification']['shipment']}'"},
+        "oracle_fusion.receivables_invoices.list": {"q": f"BillToCustomerNumber='{customer['number']}' and InvoiceStatus='Open'"},
+        "oracle_fusion.receivables_invoices.get": {"CustomerTransactionId": model["receivables_collection"]["invoices"][0]["customer_transaction_id"]},
+        "oracle_fusion.standard_receipts.list": {"q": f"CustomerAccountNumber='{customer['number']}'"},
+        "oracle_fusion.customer_account_activities.get": {"AccountId": customer["number"]},
+        "oracle_fusion.onhand_balances.list": {"q": f"OrganizationCode='{org}'"},
+        "oracle_fusion.purchase_orders.list": {"q": "Status='Open'"},
+        "oracle_fusion.purchase_orders.get": {"purchaseOrdersUniqID": model["receiving_ap_match"]["po"]},
+        "oracle_fusion.purchase_order_lines.list": {"purchaseOrdersUniqID": f"PO-{short}-OPEN-SUPPLY" if any(sku["open_po_qty"] for sku in model["inventory_reorder"]["skus"]) else model["receiving_ap_match"]["po"]},
+        "oracle_fusion.suppliers.list": {"q": f"SupplierNumber in ('{world['supplier']['number']}','{world['expedite_supplier']['number']}')"},
+        "oracle_fusion.invoices.list": {"q": f"Supplier='{world['supplier']['name']}'"},
+        "oracle_fusion.workers.list": {"q": f"LegalEmployerName='{world['company']}'"},
+        "oracle_fusion.document_records.list": {"q": f"LegalEmployerName='{world['company']}'"},
+        "oracle_fusion.absences.list": {"q": f"employer='{world['company']}' and startDate='{model['shift_rollup']['shift_date']}'"},
+    }
+    if tool == "oracle_fusion.sales_orders.list":
+        needle = contains.get("q", customer["po"])
+        column = {customer["po"]: "CustomerPONumber", customer["number"]: "BuyingPartyNumber", world["channel"]: "SourceTransactionSystem", "OPS": "SourceTransactionSystem"}.get(needle, "CustomerPONumber")
+        return {"q": f"{column}='{needle}'"}
+    if tool in defaults:
+        arguments = defaults[tool]
+        if "q" in contains and "q" in arguments and contains["q"] not in arguments["q"]:
+            arguments = {"q": f"{contains['q']}"}
+        return arguments
+    raise KeyError(f"no concrete oracle arguments for {tool}")
 
 
 def _primary_writes(task_id: str, world: dict[str, Any], family: dict[str, str], expected: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1228,8 +1409,8 @@ def _register_row(world: dict[str, Any], family: dict[str, str], expected: dict[
 def _oracle_steps(task_id: str, world: dict[str, Any], family: dict[str, str], expected: dict[str, Any]) -> list[dict[str, Any]]:
     steps: list[dict[str, Any]] = []
     for investigation in _investigations(task_id, world, family):
-        requirement = investigation["any_of"][0]
-        steps.append({"tool": requirement["tool"], "arguments": deepcopy(requirement["arguments"])})
+        route = investigation["any_of"][0]
+        steps.append({"tool": route["tool"], "arguments": _concrete_arguments(route, world)})
     steps.extend(_primary_writes(task_id, world, family, expected))
     sheet = _sheet(world)
     channel = _channel(world)
@@ -1298,7 +1479,7 @@ ERP_READBACK_TOOLS: dict[str, str] = {
 def _criteria(task: dict[str, Any]) -> list[dict[str, Any]]:
     criteria: list[dict[str, Any]] = []
     for investigation in task["required_investigations"]:
-        criteria.append({"id": f"discovery:{investigation['id']}", "category": "discovery", "description": f"Complete the {investigation['description']} investigation before any controlled write.", "points": 1})
+        criteria.append({"id": f"discovery:{investigation['id']}", "category": "discovery", "description": f"Before any controlled write, {investigation['description']} (any listed route counts).", "points": 1})
     expected = task["expected_answer"]
     for field in NUMERIC_FIELDS[task["metadata"]["category"]]:
         criteria.append({"id": f"calculation:{field}", "category": "calculation", "description": f"Submit the exact evidence-grounded {field.replace('_', ' ')} ({expected[field]}).", "points": 5})
@@ -1375,6 +1556,23 @@ def _prompt(world: dict[str, Any], family: dict[str, str]) -> str:
     )
 
 
+def _answer_schema(key: str, expected: dict[str, Any]) -> dict[str, Any]:
+    properties: dict[str, Any] = {}
+    descriptions = {**FIELD_DESCRIPTIONS, **(PRICING_FIELD_DESCRIPTIONS if key == "price_list_batch" else {})}
+    for field, value in expected.items():
+        if field == "recommended_option":
+            properties[field] = {"type": "string", "enum": [option_id for option_id, _ in OPTION_SETS[key]], "description": FIELD_DESCRIPTIONS[field]}
+        elif field == "decision_status":
+            properties[field] = {"type": "string", "enum": [status_id for status_id, _ in STATUS_SETS[key]], "description": FIELD_DESCRIPTIONS[field]}
+        elif isinstance(value, float):
+            properties[field] = {"type": "number", "multipleOf": 0.01, "description": descriptions[field]}
+        elif isinstance(value, int):
+            properties[field] = {"type": "integer", "description": descriptions[field]}
+        else:
+            properties[field] = {"type": "string", "description": descriptions[field]}
+    return {"type": "object", "additionalProperties": False, "required": list(expected), "properties": properties}
+
+
 def build_tasks() -> list[dict[str, Any]]:
     tasks: list[dict[str, Any]] = []
     ordinal = 0
@@ -1416,23 +1614,30 @@ def build_tasks() -> list[dict[str, Any]]:
                     },
                 },
                 "expected_answer": expected,
-                "answer_schema": {
-                    "type": "object",
-                    "additionalProperties": False,
-                    "required": list(expected),
-                    "properties": {
-                        key: ({"type": "number", "multipleOf": 0.01} if isinstance(value, float) else {"type": "integer"} if isinstance(value, int) else {"type": "string"})
-                        for key, value in expected.items()
-                    },
+                "answer_schema": _answer_schema(family["key"], expected),
+                "status_options": [{"id": status_id, "label": label} for status_id, label in STATUS_SETS[family["key"]]],
+                "register_contract": {
+                    "spreadsheetId": _sheet(world),
+                    "range": f"Register!A{_register_row_number(task_id)}:J{_register_row_number(task_id)}",
+                    "columns": ["primary_record", "recommended_option", *NUMERIC_FIELDS[family["key"]], "source_reference"],
                 },
                 "required_investigations": _investigations(task_id, world, family),
                 "allowed_write_tools": list(ALLOWED_WRITE_TOOLS),
                 "primary_write_tool": PRIMARY_WRITE_TOOLS[family["key"]],
                 "erp_readback_tool": ERP_READBACK_TOOLS[family["key"]],
                 "decision_options": [
-                    {"id": expected["recommended_option"], "label": "Policy-supported path", "selected": True, "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy."},
-                    {"id": "process_everything_as_received", "label": "Process the batch as received", "selected": False, "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state."},
-                    {"id": "escalate_without_executing", "label": "Stop and escalate everything", "selected": False, "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval."},
+                    {
+                        "id": option_id,
+                        "label": label,
+                        "selected": option_id == expected["recommended_option"],
+                        "reason": (
+                            "Matches the operative source, the recomputed quantities and the tenant's policy." if option_id == expected["recommended_option"]
+                            else "Policy-shaped alternative whose conditions the current evidence does not support." if index < 2
+                            else "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state." if index == 2
+                            else "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval."
+                        ),
+                    }
+                    for index, (option_id, label) in enumerate(OPTION_SETS[family["key"]])
                 ],
             }
             task["oracle_steps"] = _oracle_steps(task_id, world, family, expected)

@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-004"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-004-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -57,9 +51,15 @@
     },
     {
       "arguments": {
-        "q": "Supplier='Ridgeway Metals' and Status='Open'"
+        "q": "Status='Open'"
       },
       "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-NBR-OPEN-SUPPLY"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
     },
     {
       "arguments": {
@@ -75,16 +75,15 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-DEMAND-FORECAST-F06"
+        "fileId": "FILE-NBR-REORDER-POLICY-R3"
       },
       "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "range": "Reorder!A1:F12",
-        "spreadsheetId": "SHEET-NBR-OPS"
+        "fileId": "FILE-NBR-DEMAND-FORECAST-F06"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {

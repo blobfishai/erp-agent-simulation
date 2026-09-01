@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-070"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-070-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-CLD-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -89,6 +83,12 @@
     {
       "arguments": {
         "fileId": "FILE-CLD-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-PRICE-LIST-2025H2"
       },
       "tool": "google_drive.files.download"
     },

@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-061"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-061-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-CLD-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -63,15 +57,15 @@
     },
     {
       "arguments": {
-        "q": "CustomerPONumber='SF-PO-51188'"
+        "fileId": "FILE-CLD-ORDER-BATCH-0203"
       },
-      "tool": "oracle_fusion.sales_orders.list"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "OrderKey": "SO-CLD-40039"
+        "q": "CustomerPONumber='SF-PO-51188'"
       },
-      "tool": "oracle_fusion.sales_orders.get"
+      "tool": "oracle_fusion.sales_orders.list"
     },
     {
       "arguments": {
@@ -81,16 +75,22 @@
     },
     {
       "arguments": {
-        "range": "PriceList!A1:E12",
-        "spreadsheetId": "SHEET-CLD-OPS"
+        "fileId": "FILE-CLD-PRICE-LIST-2025H2"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "query": "SF-PO-51188"
+        "fileId": "FILE-CLD-OPS-AUDIT-LOG"
       },
-      "tool": "slack.search_messages"
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
     },
     {
       "arguments": {

@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-009"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-009-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -57,7 +51,7 @@
     },
     {
       "arguments": {
-        "q": "LegalEmployerName='Northbridge Fastener Works' and JobCode='machine operator'"
+        "q": "LegalEmployerName='Northbridge Fastener Works'"
       },
       "tool": "oracle_fusion.workers.list"
     },
@@ -91,6 +85,12 @@
         "query": "hiring"
       },
       "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Northbridge Fastener Works'"
+      },
+      "tool": "oracle_fusion.document_records.list"
     },
     {
       "arguments": {

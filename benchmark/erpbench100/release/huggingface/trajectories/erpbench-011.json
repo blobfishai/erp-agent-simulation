@@ -32,31 +32,50 @@
           "additionalProperties": false,
           "properties": {
             "accepted_lines": {
+              "description": "Spreadsheet lines imported",
               "type": "integer"
             },
             "decision_status": {
+              "description": "One of the status ids listed in the task contract",
+              "enum": [
+                "submitted",
+                "awaiting_credit_release"
+              ],
               "type": "string"
             },
             "duplicate_lines": {
+              "description": "Lines already imported on the earlier partial import",
               "type": "integer"
             },
             "imported_units": {
+              "description": "Total quantity on the imported lines",
               "type": "integer"
             },
             "order_total": {
+              "description": "Imported order value at current list prices",
               "multipleOf": 0.01,
               "type": "number"
             },
             "primary_record": {
+              "description": "The primary ERP record number created or updated (as returned by the system)",
               "type": "string"
             },
             "recommended_option": {
+              "description": "One of the decision option ids listed in the task contract",
+              "enum": [
+                "import_accepted_lines_and_submit",
+                "import_accepted_lines_and_hold_submission",
+                "process_everything_as_received",
+                "escalate_without_executing"
+              ],
               "type": "string"
             },
             "rejected_lines": {
+              "description": "Spreadsheet lines not imported (duplicates and inactive items)",
               "type": "integer"
             },
             "source_reference": {
+              "description": "Drive file id of the operative (current-authority) source document you relied on",
               "type": "string"
             }
           },
@@ -75,9 +94,51 @@
         },
         "as_of": "2026-02-09T09:00:00Z",
         "company": "Harborline Trading Co.",
+        "decision_options": [
+          {
+            "id": "import_accepted_lines_and_submit",
+            "label": "Import the accepted lines at current list prices and submit the order"
+          },
+          {
+            "id": "import_accepted_lines_and_hold_submission",
+            "label": "Import the accepted lines but hold submission for credit release"
+          },
+          {
+            "id": "process_everything_as_received",
+            "label": "Import every spreadsheet line at the spreadsheet prices"
+          },
+          {
+            "id": "escalate_without_executing",
+            "label": "Stop and escalate the whole batch without importing"
+          }
+        ],
+        "handoff": "Save one review-only email draft and one ops-channel post; both stay draft_for_review. Record the decision, then submit the structured answer.",
         "ops_channel": "#ops-hbl",
         "prompt": "**Harborline Trading Co. · Kaohsiung warehouse · Customer order import**\n\nPacific Grocers Ltd. sent their consolidated PG-2026-0442 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Chen Yu-Ting ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
-        "register_sheet": "SHEET-HBL-OPS",
+        "register_contract": {
+          "columns": [
+            "primary_record",
+            "recommended_option",
+            "accepted_lines",
+            "rejected_lines",
+            "imported_units",
+            "order_total",
+            "duplicate_lines",
+            "source_reference"
+          ],
+          "range": "Register!A21:J21",
+          "spreadsheetId": "SHEET-HBL-OPS"
+        },
+        "status_options": [
+          {
+            "id": "submitted",
+            "label": "Order submitted"
+          },
+          {
+            "id": "awaiting_credit_release",
+            "label": "Order held awaiting credit release"
+          }
+        ],
         "task_id": "erpbench-011",
         "tenant_code": "HARBORLINE"
       },
@@ -87,30 +148,9 @@
     },
     {
       "arguments": {
-        "q": "erpbench-011"
-      },
-      "index": 2,
-      "result": {
-        "messages": [
-          {
-            "from": "chen.yu-ting@harborline-sim.example",
-            "id": "MSG-erpbench-011-REQUEST",
-            "internalDate": "2026-02-09T09:00:00Z",
-            "subject": "erpbench-011 operating request",
-            "task_id": "erpbench-011"
-          }
-        ],
-        "resultSizeEstimate": 1
-      },
-      "server": "gmail",
-      "success": true,
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-011-REQUEST"
       },
-      "index": 3,
+      "index": 2,
       "result": {
         "body": "**Harborline Trading Co. · Kaohsiung warehouse · Customer order import**\n\nPacific Grocers Ltd. sent their consolidated PG-2026-0442 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Chen Yu-Ting ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
         "from": "chen.yu-ting@harborline-sim.example",
@@ -130,7 +170,7 @@
       "arguments": {
         "id": "MSG-HBL-AUTHORITY-0209"
       },
-      "index": 4,
+      "index": 3,
       "result": {
         "body": "From: wang.po-wei@harborline-sim.example\nTo: analyst@harborline-sim.example\nSubject: Harborline Trading Co. operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
         "from": "wang.po-wei@harborline-sim.example",
@@ -150,7 +190,7 @@
       "arguments": {
         "channel": "#ops-hbl"
       },
-      "index": 5,
+      "index": 4,
       "result": {
         "channel": "#ops-hbl",
         "messages": [
@@ -184,7 +224,7 @@
         "range": "Register!A1:H40",
         "spreadsheetId": "SHEET-HBL-OPS"
       },
-      "index": 6,
+      "index": 5,
       "result": {
         "range": "Register!A1:H40",
         "spreadsheetId": "SHEET-HBL-OPS",
@@ -219,7 +259,7 @@
       "arguments": {
         "q": "OrganizationCode='HBL1'"
       },
-      "index": 7,
+      "index": 6,
       "result": {
         "count": 6,
         "items": [
@@ -291,25 +331,70 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-HBL-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "index": 8,
+      "index": 7,
       "result": {
-        "content": "tenant: HARBORLINE\norder_batch: FILE-HBL-ORDER-BATCH-0209\npick_confirmation: FILE-HBL-PICK-CONFIRM-0208\nremittance_advice: FILE-HBL-REMIT-ADVICE-0206\nreorder_policy: FILE-HBL-REORDER-POLICY-R4\ndelivery_note: FILE-HBL-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-HBL-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-HBL-SHIFT-ROSTER-0208\nchannel_export: FILE-HBL-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-HBL-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-HBL-PRICE-BATCH-Q2\n",
-        "id": "FILE-HBL-SOURCE-MAP",
-        "isCurrentAuthority": true,
-        "mimeType": "application/yaml",
-        "name": "25-source-map.yaml"
+        "files": [
+          {
+            "id": "FILE-HBL-CREDIT-POLICY-R6",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "08-credit-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-REORDER-POLICY-R4",
+            "isCurrentAuthority": true,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "09-reorder-policy.xlsx",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-AP-MATCH-POLICY",
+            "isCurrentAuthority": true,
+            "mimeType": "text/markdown",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "13-ap-match-policy.md",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-AUTHORITY-MEMO-0209",
+            "isCurrentAuthority": true,
+            "mimeType": "message/rfc822",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "24-authority-memo.eml",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-SOURCE-MAP",
+            "isCurrentAuthority": true,
+            "mimeType": "application/yaml",
+            "modifiedTime": "2026-02-09T06:00:00Z",
+            "name": "25-source-map.yaml",
+            "version": 2
+          },
+          {
+            "id": "FILE-HBL-REORDER-POLICY-R3",
+            "isCurrentAuthority": false,
+            "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "modifiedTime": "2026-01-26T09:00:00Z",
+            "name": "reorder-policy-R3.xlsx",
+            "version": 1
+          }
+        ]
       },
       "server": "google_drive",
       "success": true,
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
         "q": "name contains 'PG-2026-0442'"
       },
-      "index": 9,
+      "index": 8,
       "result": {
         "files": [
           {
@@ -346,13 +431,29 @@
       "arguments": {
         "fileId": "FILE-HBL-ORDER-BATCH-0209"
       },
-      "index": 10,
+      "index": 9,
       "result": {
         "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,PG-2026-0442,TEA-OOL-500,Oolong tea 500 g tin,240,13.92\r\n2,PG-2026-0442,RICE-JAS-5K,Jasmine rice 5 kg,600,11.33\r\n3,PG-2026-0442,SOY-PRM-1L,Premium soy sauce 1 L,360,6.14\r\n4,PG-2026-0442,NDL-DRY-1K,Dried noodles 1 kg,800,4.7\r\n5,PG-2026-0442,CHL-OIL-250,Chili oil 250 ml,300,5.38\r\n6,PG-2026-0442,RICE-JAS-5K,Jasmine rice 5 kg,150,11.33\r\n7,PG-2026-0442,MCH-GIFT-OLD,Mochi gift box (retired),40,11.52\r\n8,PG-2026-0442,TEA-OOL-500,Oolong tea 500 g tin,120,13.92\r\n9,PG-2026-0442,NDL-DRY-1K,Dried noodles 1 kg,200,4.7\r\n",
         "id": "FILE-HBL-ORDER-BATCH-0209",
         "isCurrentAuthority": true,
         "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "name": "01-consolidated-order-batch.xlsx"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-ORDER-BATCH-0203"
+      },
+      "index": 10,
+      "result": {
+        "content": "Line,Customer PO,Item,Quantity,Imported order,Imported on\r\n6,PG-2026-0442,RICE-JAS-5K,150,SO-HBL-40039,2026-02-03\r\n",
+        "id": "FILE-HBL-ORDER-BATCH-0203",
+        "isCurrentAuthority": false,
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "name": "02-prior-partial-import.xlsx"
       },
       "server": "google_drive",
       "success": true,
@@ -392,43 +493,9 @@
     },
     {
       "arguments": {
-        "OrderKey": "SO-HBL-40039"
-      },
-      "index": 12,
-      "result": {
-        "BuyingPartyName": "Pacific Grocers Ltd.",
-        "BuyingPartyNumber": "CUST-20077",
-        "CreatedBy": "ops_lead",
-        "CreationDate": "2026-02-03T10:12:00Z",
-        "CustomerPONumber": "PG-2026-0442",
-        "LastUpdateDate": "2026-02-03T10:12:00Z",
-        "OrderKey": "SO-HBL-40039",
-        "OrderNumber": "SO-HBL-40039",
-        "OrderTotal": 1770.0,
-        "RequestedFulfillmentOrganizationCode": "HBL1",
-        "SourceTransactionNumber": "FILE-HBL-ORDER-BATCH-0203",
-        "SourceTransactionSystem": "OPS",
-        "StatusCode": "Awaiting Shipping",
-        "SubmittedFlag": true,
-        "TransactionType": "Standard Orders",
-        "lines": [
-          {
-            "OrderedQuantity": 150,
-            "OrderedUOM": "EA",
-            "ProductNumber": "RICE-JAS-5K",
-            "UnitListPrice": 11.8
-          }
-        ]
-      },
-      "server": "oracle_fusion",
-      "success": true,
-      "tool": "oracle_fusion.sales_orders.get"
-    },
-    {
-      "arguments": {
         "AccountId": "CUST-20077"
       },
-      "index": 13,
+      "index": 12,
       "result": {
         "AccountId": "CUST-20077",
         "AsOfDate": "2026-02-09",
@@ -446,92 +513,72 @@
     },
     {
       "arguments": {
-        "range": "PriceList!A1:E12",
-        "spreadsheetId": "SHEET-HBL-OPS"
+        "fileId": "FILE-HBL-PRICE-LIST-2025H2"
+      },
+      "index": 13,
+      "result": {
+        "content": "item,description,list_price,status,effective_from,superseded\nTEA-OOL-500,Oolong tea 500 g tin,13.78,Active,2025-07-01,true\nRICE-JAS-5K,Jasmine rice 5 kg,11.21,Active,2025-07-01,true\nSOY-PRM-1L,Premium soy sauce 1 L,6.08,Active,2025-07-01,true\nNDL-DRY-1K,Dried noodles 1 kg,4.66,Active,2025-07-01,true\nCHL-OIL-250,Chili oil 250 ml,5.32,Active,2025-07-01,true\nMCH-GIFT-OLD,Mochi gift box (retired),11.40,Active,2025-07-01,true\n",
+        "id": "FILE-HBL-PRICE-LIST-2025H2",
+        "isCurrentAuthority": false,
+        "mimeType": "text/csv",
+        "name": "04-superseded-price-list.csv"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-OPS-AUDIT-LOG"
       },
       "index": 14,
       "result": {
-        "range": "PriceList!A1:E12",
+        "content": "2026-02-03T10:12:00Z HBL partial import created SO-HBL-40039 from an earlier copy of PG-2026-0442\n2026-02-06T15:40:00Z HBL delivery note DN-HBL-0206 received at Kaohsiung warehouse\n2026-02-08T22:05:00Z HBL pick confirmation posted for SHP-HBL-2210\n2026-02-09T06:00:00Z HBL CyberBiz export generated\n",
+        "id": "FILE-HBL-OPS-AUDIT-LOG",
+        "isCurrentAuthority": true,
+        "mimeType": "text/plain",
+        "name": "26-ops-audit.log"
+      },
+      "server": "google_drive",
+      "success": true,
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "index": 15,
+      "result": {
+        "range": "Customers!A1:E12",
         "spreadsheetId": "SHEET-HBL-OPS",
         "values": [
           [
-            "Item",
-            "Description",
-            "List price",
-            "Status",
-            "Effective"
+            "Customer",
+            "Number",
+            "Email",
+            "Tax id",
+            "Channel"
           ],
           [
-            "TEA-OOL-500",
-            "Oolong tea 500 g tin",
-            14.5,
-            "Active",
-            "2026-01-01"
+            "Pacific Grocers Ltd.",
+            "CUST-20077",
+            "ap@pacific-sim.example",
+            "TX-HBL-0001",
+            "direct"
           ],
           [
-            "RICE-JAS-5K",
-            "Jasmine rice 5 kg",
-            11.8,
-            "Active",
-            "2026-01-01"
-          ],
-          [
-            "SOY-PRM-1L",
-            "Premium soy sauce 1 L",
-            6.4,
-            "Active",
-            "2026-01-01"
-          ],
-          [
-            "NDL-DRY-1K",
-            "Dried noodles 1 kg",
-            4.9,
-            "Active",
-            "2026-01-01"
-          ],
-          [
-            "CHL-OIL-250",
-            "Chili oil 250 ml",
-            5.6,
-            "Active",
-            "2026-01-01"
-          ],
-          [
-            "MCH-GIFT-OLD",
-            "Mochi gift box (retired)",
-            12.0,
-            "Inactive",
-            "2026-01-01"
+            "Food Outlet Co.",
+            "CUST-HBL-DECOY1",
+            "buyer@outlet-sim.example",
+            "TX-HBL-0002",
+            "direct"
           ]
         ]
       },
       "server": "google_sheets",
       "success": true,
       "tool": "google_sheets.spreadsheets.values.get"
-    },
-    {
-      "arguments": {
-        "query": "PG-2026-0442"
-      },
-      "index": 15,
-      "result": {
-        "messages": {
-          "matches": [
-            {
-              "channel": "#ops-hbl",
-              "text": "Partial import for PG-2026-0442 went in on 2026-02-03 as SO-HBL-40039; the rest of the lines are still pending.",
-              "ts": "2026-02-03T10:20:00Z",
-              "user": "Wang Po-Wei"
-            }
-          ],
-          "total": 1
-        },
-        "ok": true,
-        "query": "PG-2026-0442"
-      },
-      "server": "slack",
-      "success": true,
-      "tool": "slack.search_messages"
     },
     {
       "arguments": {
@@ -1011,7 +1058,7 @@
     "checks": [
       {
         "category": "discovery",
-        "description": "Complete the task contract investigation before any controlled write.",
+        "description": "Before any controlled write, read the task contract (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:task_contract",
         "passed": true,
@@ -1019,15 +1066,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the request mail search investigation before any controlled write.",
-        "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:request_mail_search",
-        "passed": true,
-        "points": 1
-      },
-      {
-        "category": "discovery",
-        "description": "Complete the request mail investigation before any controlled write.",
+        "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:request_mail",
         "passed": true,
@@ -1035,7 +1074,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the authority memo investigation before any controlled write.",
+        "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:authority_memo",
         "passed": true,
@@ -1043,7 +1082,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the control thread investigation before any controlled write.",
+        "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:control_thread",
         "passed": true,
@@ -1051,7 +1090,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the ops register investigation before any controlled write.",
+        "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:ops_register",
         "passed": true,
@@ -1059,7 +1098,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the item master investigation before any controlled write.",
+        "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:item_master",
         "passed": true,
@@ -1067,15 +1106,15 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the source map investigation before any controlled write.",
+        "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:source_map",
+        "id": "discovery:drive_index",
         "passed": true,
         "points": 1
       },
       {
         "category": "discovery",
-        "description": "Complete the batch search investigation before any controlled write.",
+        "description": "Before any controlled write, locate the consolidated order batch (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:batch_search",
         "passed": true,
@@ -1083,7 +1122,7 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the batch file investigation before any controlled write.",
+        "description": "Before any controlled write, read the consolidated order batch (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:batch_file",
         "passed": true,
@@ -1091,7 +1130,15 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the existing orders investigation before any controlled write.",
+        "description": "Before any controlled write, read the earlier partial import (any listed route counts).",
+        "evidence": "successful required investigation before the first controlled write",
+        "id": "discovery:prior_partial_import",
+        "passed": true,
+        "points": 1
+      },
+      {
+        "category": "discovery",
+        "description": "Before any controlled write, check the sales orders already on the purchase order (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
         "id": "discovery:existing_orders",
         "passed": true,
@@ -1099,33 +1146,33 @@
       },
       {
         "category": "discovery",
-        "description": "Complete the prior order lines investigation before any controlled write.",
+        "description": "Before any controlled write, check the customer's credit standing (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:prior_order_lines",
+        "id": "discovery:customer_credit",
         "passed": true,
         "points": 1
       },
       {
         "category": "discovery",
-        "description": "Complete the customer account investigation before any controlled write.",
+        "description": "Before any controlled write, recognise the superseded price list (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:customer_account",
+        "id": "discovery:superseded_prices",
         "passed": true,
         "points": 1
       },
       {
         "category": "discovery",
-        "description": "Complete the price list tab investigation before any controlled write.",
+        "description": "Before any controlled write, read the audit trail for the purchase order (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:price_list_tab",
+        "id": "discovery:audit_trail",
         "passed": true,
         "points": 1
       },
       {
         "category": "discovery",
-        "description": "Complete the prior import thread investigation before any controlled write.",
+        "description": "Before any controlled write, confirm the customer master record (any listed route counts).",
         "evidence": "successful required investigation before the first controlled write",
-        "id": "discovery:prior_import_thread",
+        "id": "discovery:customer_master",
         "passed": true,
         "points": 1
       },
@@ -1265,7 +1312,8 @@
         "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
         "evidence": {
           "draft": true,
-          "numeric_mentions": 5
+          "numeric_mentions": 5,
+          "option_named": true
         },
         "id": "handoff:email_draft",
         "passed": true,
@@ -1324,7 +1372,7 @@
         "evidence": {
           "audit_scoped": true,
           "immutable": true,
-          "tool_errors": false,
+          "rejected_writes": false,
           "unrelated_rows_unchanged": true
         },
         "id": "containment:task_scope",

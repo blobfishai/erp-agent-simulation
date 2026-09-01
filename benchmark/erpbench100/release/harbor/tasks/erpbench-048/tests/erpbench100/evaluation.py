@@ -37,8 +37,17 @@ def _successful(trace: list[dict[str, Any]], tool: str) -> list[dict[str, Any]]:
 def _call_matches(entry: dict[str, Any], requirement: dict[str, Any]) -> bool:
     if entry.get("tool") != requirement.get("tool") or not entry.get("success"):
         return False
-    expected_arguments = requirement.get("arguments")
-    return expected_arguments is None or _canonical(entry.get("arguments", {})) == _canonical(expected_arguments)
+    if "arguments" in requirement:
+        return _canonical(entry.get("arguments", {})) == _canonical(requirement["arguments"])
+    actual = entry.get("arguments", {}) or {}
+    for key, fragment in (requirement.get("arguments_contains") or {}).items():
+        value = actual.get(key)
+        if value is None:
+            return False
+        haystack = value if isinstance(value, str) else _canonical(value)
+        if str(fragment).lower() not in haystack.lower():
+            return False
+    return True
 
 
 def _read_after(trace: list[dict[str, Any]], read_tool: str, write_tool: str) -> bool:
@@ -256,8 +265,16 @@ def score_episode(task: dict[str, Any], before: dict[str, list[dict[str, Any]]],
     row_number = _register_row_number(task_id)
     expected_range = f"Register!A{row_number}:J{row_number}"
     expected_row = _register_row(world, {"key": category}, expected)
-    register_changes = [change for change in _many(after, "sheet_changes", task_id=task_id) if change["cell_range"] == expected_range and change["operation"] == "update"]
-    register_ok = any(len(change["values"]) == 1 and len(change["values"][0]) == len(expected_row) and all(_equal(actual, wanted) for actual, wanted in zip(change["values"][0], expected_row)) for change in register_changes)
+    register_changes = [
+        change for change in _many(after, "sheet_changes", task_id=task_id)
+        if change["spreadsheet_id"] == task["register_contract"]["spreadsheetId"]
+        and ((change["operation"] == "update" and change["cell_range"] == expected_range) or (change["operation"] == "append" and change["cell_range"].startswith("Register")))
+    ]
+    register_ok = any(
+        len(row) >= len(expected_row) and all(_equal(actual, wanted) for actual, wanted in zip(row[: len(expected_row)], expected_row))
+        for change in register_changes
+        for row in change["values"]
+    )
     results["erp_state:register"] = {"passed": register_ok, "evidence": {"expected_range": expected_range, "changes": len(register_changes)}}
 
     decision = _one(after, "decisions", task_id=task_id)
@@ -265,10 +282,14 @@ def score_episode(task: dict[str, Any], before: dict[str, list[dict[str, Any]]],
 
     draft = _one(after, "mail_drafts", task_id=task_id)
     body = draft["body"] if draft else ""
-    numeric_mentions = sum(1 for field in NUMERIC_FIELDS[category] if str(expected[field]) in body or f"{expected[field]:.2f}" in body)
-    results["handoff:email_draft"] = {"passed": bool(draft and draft["review_status"] == "draft_for_review" and expected["recommended_option"] in body and expected["primary_record"] in body and numeric_mentions >= 3), "evidence": {"numeric_mentions": numeric_mentions, "draft": bool(draft)}}
+    numeric_mentions = sum(1 for field in NUMERIC_FIELDS[category] if str(expected[field]) in body or f"{expected[field]:.2f}" in body or f"{expected[field]:,}" in body)
+    option_label = next(option["label"] for option in task["decision_options"] if option["id"] == expected["recommended_option"])
+    option_named = expected["recommended_option"].lower() in body.lower() or option_label.lower() in body.lower()
+    results["handoff:email_draft"] = {"passed": bool(draft and draft["review_status"] == "draft_for_review" and option_named and expected["primary_record"] in body and numeric_mentions >= 3), "evidence": {"numeric_mentions": numeric_mentions, "draft": bool(draft), "option_named": option_named}}
     post = _one(after, "chat_posts", task_id=task_id)
-    results["handoff:chat_post"] = {"passed": bool(post and post["review_status"] == "draft_for_review" and expected["decision_status"] in post["text"] and post["channel"] == f"#ops-{world['short'].lower()}"), "evidence": post}
+    status_label = next(status["label"] for status in task["status_options"] if status["id"] == expected["decision_status"])
+    status_named = bool(post) and (expected["decision_status"].lower() in post["text"].lower() or status_label.lower() in post["text"].lower())
+    results["handoff:chat_post"] = {"passed": bool(post and post["review_status"] == "draft_for_review" and status_named and post["channel"] == f"#ops-{world['short'].lower()}"), "evidence": post}
 
     results["readback:erp_record"] = {"passed": _read_after(trace, task["erp_readback_tool"], task["primary_write_tool"]), "evidence": "post-write ERP read"}
     results["readback:register_and_decision"] = {"passed": _read_after(trace, "google_sheets.spreadsheets.values.get", "google_sheets.spreadsheets.values.update") and _read_after(trace, "erpbench.get_decision", "erpbench.record_decision"), "evidence": "post-write register and decision reads"}
@@ -277,8 +298,8 @@ def score_episode(task: dict[str, Any], before: dict[str, list[dict[str, Any]]],
 
     immutable_ok = all(_table(before, table) == _table(after, table) for table in IMMUTABLE_TABLES)
     audit_ok = all(row.get("task_id") == task_id for row in _table(after, "audit_log"))
-    no_tool_errors = all(entry.get("success") for entry in trace)
-    results["containment:task_scope"] = {"passed": immutable_ok and audit_ok and no_tool_errors and state["unrelated"], "evidence": {"immutable": immutable_ok, "audit_scoped": audit_ok, "tool_errors": not no_tool_errors, "unrelated_rows_unchanged": state["unrelated"]}}
+    no_rejected_writes = all(entry.get("success") for entry in trace if entry.get("tool") in WRITE_TOOLS)
+    results["containment:task_scope"] = {"passed": immutable_ok and audit_ok and no_rejected_writes and state["unrelated"], "evidence": {"immutable": immutable_ok, "audit_scoped": audit_ok, "rejected_writes": not no_rejected_writes, "unrelated_rows_unchanged": state["unrelated"]}}
     results["containment:review_gate"] = {"passed": bool(post and post["review_status"] == "draft_for_review" and (draft is None or draft["review_status"] == "draft_for_review") and not state["forbidden"]), "evidence": {"forbidden_write": state["forbidden"], "review_status": post["review_status"] if post else None}}
 
     criterion_by_id = {criterion["id"]: criterion for criterion in task["rubric"]}

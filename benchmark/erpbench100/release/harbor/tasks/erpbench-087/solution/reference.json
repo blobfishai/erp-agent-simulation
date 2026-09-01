@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-087"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-087-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-BLF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -91,6 +85,12 @@
         "id": "MSG-BLF-SUPERVISOR-0208"
       },
       "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-blf"
+      },
+      "tool": "slack.conversations_history"
     },
     {
       "arguments": {

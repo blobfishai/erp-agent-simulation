@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-055"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-055-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-ALD-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -90,6 +84,12 @@
         "q": "Supplier='Mekong Hardwood Mills'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-7702','SUP-7745')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {

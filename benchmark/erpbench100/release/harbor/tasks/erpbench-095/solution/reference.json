@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-095"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-095-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-TRV-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -90,6 +84,12 @@
         "q": "Supplier='Chonburi Cell Works'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-1250','SUP-1288')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {

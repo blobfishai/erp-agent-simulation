@@ -24,31 +24,50 @@
     "additionalProperties": false,
     "properties": {
       "decision_status": {
+        "description": "One of the status ids listed in the task contract",
+        "enum": [
+          "absences_recorded",
+          "shift_complete"
+        ],
         "type": "string"
       },
       "expected_staff": {
+        "description": "Rostered staff minus approved leave",
         "type": "integer"
       },
       "late_reports": {
+        "description": "Reports submitted after the cutoff",
         "type": "integer"
       },
       "missing_staff": {
+        "description": "Expected staff without a report",
         "type": "integer"
       },
       "overtime_hours": {
+        "description": "Total overtime hours worked",
         "multipleOf": 0.01,
         "type": "number"
       },
       "primary_record": {
+        "description": "The primary ERP record number created or updated (as returned by the system)",
         "type": "string"
       },
       "recommended_option": {
+        "description": "One of the decision option ids listed in the task contract",
+        "enum": [
+          "post_rollup_and_record_unauthorized_absences",
+          "post_rollup_no_absences",
+          "process_everything_as_received",
+          "escalate_without_executing"
+        ],
         "type": "string"
       },
       "reporting_staff": {
+        "description": "Staff who submitted a report",
         "type": "integer"
       },
       "source_reference": {
+        "description": "Drive file id of the operative (current-authority) source document you relied on",
         "type": "string"
       }
     },
@@ -101,19 +120,25 @@
   "decision_options": [
     {
       "id": "post_rollup_and_record_unauthorized_absences",
-      "label": "Policy-supported path",
-      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "label": "Post the rollup and record an unauthorized absence for each missing worker",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's policy.",
       "selected": true
     },
     {
+      "id": "post_rollup_no_absences",
+      "label": "Post the rollup; no absences need recording",
+      "reason": "Policy-shaped alternative whose conditions the current evidence does not support.",
+      "selected": false
+    },
+    {
       "id": "process_everything_as_received",
-      "label": "Process the batch as received",
-      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "label": "Record an absence for everyone without a report, including approved leave",
+      "reason": "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state.",
       "selected": false
     },
     {
       "id": "escalate_without_executing",
-      "label": "Stop and escalate everything",
+      "label": "Post nothing and escalate to the supervisor",
       "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
       "selected": false
     }
@@ -179,12 +204,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-087"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-087-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -216,9 +235,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-BLF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -262,6 +281,12 @@
         "id": "MSG-BLF-SUPERVISOR-0208"
       },
       "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#shift-blf"
+      },
+      "tool": "slack.conversations_history"
     },
     {
       "arguments": {
@@ -387,6 +412,20 @@
   ],
   "primary_write_tool": "oracle_fusion.absences.create",
   "prompt": "**Bluefin Marine Parts · Fremantle depot · Shift work-report rollup**\n\nRoll up the day shift reports for 2026-02-08 at the Fremantle depot. Mia Fraser wants to know who was expected once approved leave is taken out, who actually reported, who was late against the cutoff, how much overtime was worked, and who is simply missing. Record the missing people the way policy requires, post the rollup to the shift channel, and log it in the register for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "register_contract": {
+    "columns": [
+      "primary_record",
+      "recommended_option",
+      "expected_staff",
+      "reporting_staff",
+      "late_reports",
+      "overtime_hours",
+      "missing_staff",
+      "source_reference"
+    ],
+    "range": "Register!A27:J27",
+    "spreadsheetId": "SHEET-BLF-OPS"
+  },
   "required_investigations": [
     {
       "any_of": [
@@ -397,20 +436,8 @@
           "tool": "erpbench.get_task"
         }
       ],
-      "description": "task contract",
+      "description": "read the task contract",
       "id": "task_contract"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "erpbench-087"
-          },
-          "tool": "gmail.messages.list"
-        }
-      ],
-      "description": "request mail search",
-      "id": "request_mail_search"
     },
     {
       "any_of": [
@@ -419,9 +446,15 @@
             "id": "MSG-erpbench-087-REQUEST"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "erpbench-087"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "request mail",
+      "description": "read the operating request in the mailbox",
       "id": "request_mail"
     },
     {
@@ -431,50 +464,13 @@
             "id": "MSG-BLF-AUTHORITY-0209"
           },
           "tool": "gmail.messages.get"
-        }
-      ],
-      "description": "authority memo",
-      "id": "authority_memo"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "channel": "#ops-blf"
+            "fileId": "FILE-BLF-AUTHORITY-MEMO-0209"
           },
-          "tool": "slack.conversations_history"
-        }
-      ],
-      "description": "control thread",
-      "id": "control_thread"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "range": "Register!A1:H40",
-            "spreadsheetId": "SHEET-BLF-OPS"
-          },
-          "tool": "google_sheets.spreadsheets.values.get"
-        }
-      ],
-      "description": "ops register",
-      "id": "ops_register"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "OrganizationCode='BLF1'"
-          },
-          "tool": "oracle_fusion.items.list"
-        }
-      ],
-      "description": "item master",
-      "id": "item_master"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "fileId": "FILE-BLF-SOURCE-MAP"
@@ -482,8 +478,84 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "source map",
-      "id": "source_map"
+      "description": "establish which sources are current authority",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "channel": "ops-blf"
+          },
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "erpbench-087"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "read the ops channel thread for the task",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Register",
+            "spreadsheetId": "SHEET-BLF-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the ops register before writing to it",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.items.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-BLF-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "PriceList",
+            "spreadsheetId": "SHEET-BLF-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the item master or current price list",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "FILE-BLF"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-BLF-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "index the shared drive for current and superseded versions",
+      "id": "drive_index"
     },
     {
       "any_of": [
@@ -494,7 +566,7 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "work reports",
+      "description": "read the shift work reports",
       "id": "work_reports"
     },
     {
@@ -506,56 +578,58 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "roster",
+      "description": "read the shift roster with approved leave",
       "id": "roster"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "employer='Bluefin Marine Parts' and startDate='2026-02-08'"
-          },
+          "arguments_contains": {},
           "tool": "oracle_fusion.absences.list"
         }
       ],
-      "description": "absences",
+      "description": "read absence records for the shift date",
       "id": "absences"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "LegalEmployerName='Bluefin Marine Parts'"
-          },
+          "arguments_contains": {},
           "tool": "oracle_fusion.workers.list"
         }
       ],
-      "description": "workers",
+      "description": "read the worker records",
       "id": "workers"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "range": "Shifts!A1:F30",
+          "arguments_contains": {
+            "range": "Shifts",
             "spreadsheetId": "SHEET-BLF-OPS"
           },
           "tool": "google_sheets.spreadsheets.values.get"
         }
       ],
-      "description": "shift tab",
+      "description": "read the shifts tab",
       "id": "shift_tab"
     },
     {
       "any_of": [
         {
-          "arguments": {
+          "arguments_contains": {
             "query": "Day"
           },
           "tool": "slack.search_messages"
+        },
+        {
+          "arguments_contains": {
+            "channel": "shift-blf"
+          },
+          "tool": "slack.conversations_history"
         }
       ],
-      "description": "shift thread",
+      "description": "read the shift thread",
       "id": "shift_thread"
     },
     {
@@ -565,101 +639,125 @@
             "id": "MSG-BLF-SUPERVISOR-0208"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "shift"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "supervisor mail",
+      "description": "read the supervisor's instructions",
       "id": "supervisor_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "channel": "shift-blf"
+          },
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "cutoff"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "read the shift channel history",
+      "id": "shift_channel"
     }
   ],
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the work reports investigation before any controlled write.",
+      "description": "Before any controlled write, read the shift work reports (any listed route counts).",
       "id": "discovery:work_reports",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the roster investigation before any controlled write.",
+      "description": "Before any controlled write, read the shift roster with approved leave (any listed route counts).",
       "id": "discovery:roster",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the absences investigation before any controlled write.",
+      "description": "Before any controlled write, read absence records for the shift date (any listed route counts).",
       "id": "discovery:absences",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the workers investigation before any controlled write.",
+      "description": "Before any controlled write, read the worker records (any listed route counts).",
       "id": "discovery:workers",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the shift tab investigation before any controlled write.",
+      "description": "Before any controlled write, read the shifts tab (any listed route counts).",
       "id": "discovery:shift_tab",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the shift thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the shift thread (any listed route counts).",
       "id": "discovery:shift_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the supervisor mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the supervisor's instructions (any listed route counts).",
       "id": "discovery:supervisor_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, read the shift channel history (any listed route counts).",
+      "id": "discovery:shift_channel",
       "points": 1
     },
     {
@@ -778,6 +876,16 @@
     }
   ],
   "schema_version": "erpbench.task.v1",
+  "status_options": [
+    {
+      "id": "absences_recorded",
+      "label": "Absences recorded"
+    },
+    {
+      "id": "shift_complete",
+      "label": "Shift complete"
+    }
+  ],
   "task_id": "erpbench-087",
   "task_name": "Roll up the shift reports and record the gaps",
   "tenant_code": "BLUEFIN",

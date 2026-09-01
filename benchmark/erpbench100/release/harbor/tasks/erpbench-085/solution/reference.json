@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-085"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-085-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-BLF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -90,6 +84,12 @@
         "q": "Supplier='Tasman Propulsion Supply'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-1101','SUP-1160')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {

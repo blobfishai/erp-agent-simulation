@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-035"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-035-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-SGF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -90,6 +84,12 @@
         "q": "Supplier='Java Agro Cooperative'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-5510','SUP-5566')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {

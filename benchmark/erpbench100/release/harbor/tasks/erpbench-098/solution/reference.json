@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-098"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-098-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-TRV-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -58,6 +52,12 @@
     {
       "arguments": {
         "fileId": "FILE-TRV-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-CHANNEL-EXPORT-0202"
       },
       "tool": "google_drive.files.download"
     },

@@ -1,22 +1,22 @@
 {
-  "artifact_bytes_before_release_report": 102537550,
+  "artifact_bytes_before_release_report": 109538245,
   "artifact_file_count_before_release_report": 7147,
   "assets_per_task": {
     "max": 28,
     "min": 28
   },
   "benchmark": "ERPBench-100",
-  "catalog_sha256": "452ffe3c9fd55bdd5c56a6cf5a5fc2fb877868e854c4eb6bc8a5051f893f7cde",
+  "catalog_sha256": "3e364531b10bf1a453772d271c53d2481c77be6090d3ac476d20e7e7eda4e2d3",
   "criteria_per_task": {
     "max": 34,
     "min": 34
   },
   "family_count": 10,
-  "harbor_root_sha256": "71cd621743b8e056f65e3b20d89fb9cf4ec1dfcb737536d0d1da717956bad1b7",
-  "harbor_task_bytes": 70454374,
+  "harbor_root_sha256": "2c924c391e87bd74fcab21562eab6bf431756160e723c35cc7230b4b95df18d1",
+  "harbor_task_bytes": 76277976,
   "harbor_task_files": 5500,
-  "huggingface_commit": "c01ed2aa1dbeb8bfc76b183f1e3fda52d55b21aa",
-  "huggingface_payload_manifest_sha256": "d1ea6a3aad50066ebe27d2314a0535f33a27bd694fed973aeacd91e8999d9611",
+  "huggingface_commit": "f83f74faa59e29d4a56406078444012b47a84a6d",
+  "huggingface_payload_manifest_sha256": "58dc05910d0eebb04cec986828c9950a8d25fff940a7d8563219321fe3c1ce5d",
   "mcp_pin": {
     "package": "erpbench100",
     "protocol_version": "2025-06-18",
@@ -31,7 +31,7 @@
   },
   "pre_satisfied_tasks": [],
   "qualification_passed": true,
-  "root_sha256_before_release_report": "f2a2b2c6e8abbc18463cf840946bcd6d28d94801ff02bf81a30de6e2feefa2c9",
+  "root_sha256_before_release_report": "80aa05a23942eeca74c4512b91170db139d3840f11e8e807ae9d923600956e24",
   "rows_per_task_snapshot": 146,
   "schema_version": "erpbench.build.v1",
   "source_asset_count": 460,

@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-076"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-076-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-RVS-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -69,6 +63,12 @@
     },
     {
       "arguments": {
+        "fileId": "FILE-RVS-COMPLIANCE-CHECKLIST-0126"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
         "fileId": "FILE-RVS-DOCUMENT-ALERT-LOG"
       },
       "tool": "google_drive.files.download"
@@ -82,15 +82,15 @@
     },
     {
       "arguments": {
-        "query": "compliance"
-      },
-      "tool": "slack.search_messages"
-    },
-    {
-      "arguments": {
         "id": "MSG-RVS-AUDITOR-0205"
       },
       "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
     },
     {
       "arguments": {

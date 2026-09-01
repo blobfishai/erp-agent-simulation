@@ -24,31 +24,50 @@
     "additionalProperties": false,
     "properties": {
       "days_late": {
+        "description": "Days the delivery lands after the need window (0 if inside it)",
         "type": "integer"
       },
       "decision_status": {
+        "description": "One of the status ids listed in the task contract",
+        "enum": [
+          "requisition_submitted",
+          "requisition_submitted_late_risk"
+        ],
         "type": "string"
       },
       "primary_record": {
+        "description": "The primary ERP record number created or updated (as returned by the system)",
         "type": "string"
       },
       "recommended_option": {
+        "description": "One of the decision option ids listed in the task contract",
+        "enum": [
+          "requisition_primary_supplier",
+          "requisition_primary_supplier_and_flag_lateness",
+          "requisition_expedite_supplier",
+          "escalate_without_executing"
+        ],
         "type": "string"
       },
       "requisition_amount": {
+        "description": "Requisition value at unit cost",
         "multipleOf": 0.01,
         "type": "number"
       },
       "skus_below_reorder": {
+        "description": "Active items at or below their reorder point after reservations and open supply",
         "type": "integer"
       },
       "source_reference": {
+        "description": "Drive file id of the operative (current-authority) source document you relied on",
         "type": "string"
       },
       "supplier_lead_time_days": {
+        "description": "Lead time of the supplier used",
         "type": "integer"
       },
       "total_reorder_units": {
+        "description": "Units requisitioned in total",
         "type": "integer"
       }
     },
@@ -100,20 +119,26 @@
   ],
   "decision_options": [
     {
+      "id": "requisition_primary_supplier",
+      "label": "Requisition the shortfall from the primary supplier inside the need window",
+      "reason": "Policy-shaped alternative whose conditions the current evidence does not support.",
+      "selected": false
+    },
+    {
       "id": "requisition_primary_supplier_and_flag_lateness",
-      "label": "Policy-supported path",
-      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "label": "Requisition from the primary supplier and flag the delivery as late against the need window",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's policy.",
       "selected": true
     },
     {
-      "id": "process_everything_as_received",
-      "label": "Process the batch as received",
-      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "id": "requisition_expedite_supplier",
+      "label": "Requisition from the expedite supplier at a premium",
+      "reason": "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state.",
       "selected": false
     },
     {
       "id": "escalate_without_executing",
-      "label": "Stop and escalate everything",
+      "label": "Raise nothing and escalate the shortfall",
       "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
       "selected": false
     }
@@ -179,12 +204,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-064"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-064-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -216,9 +235,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-CLD-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -228,9 +247,15 @@
     },
     {
       "arguments": {
-        "q": "Supplier='Cascade Paper Mills' and Status='Open'"
+        "q": "Status='Open'"
       },
       "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-CLD-OPEN-SUPPLY"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
     },
     {
       "arguments": {
@@ -246,16 +271,15 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-CLD-DEMAND-FORECAST-F06"
+        "fileId": "FILE-CLD-REORDER-POLICY-R3"
       },
       "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "range": "Reorder!A1:F12",
-        "spreadsheetId": "SHEET-CLD-OPS"
+        "fileId": "FILE-CLD-DEMAND-FORECAST-F06"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
@@ -418,6 +442,20 @@
   ],
   "primary_write_tool": "oracle_fusion.purchase_requisitions.create",
   "prompt": "**Caldera Packaging · Reno plant · Reorder monitoring and requisition**\n\nPlanning wants the reorder run for the Reno plant done today. Work out which items are genuinely below their reorder point once reservations and open purchase orders are counted, how much each needs to come back to its planned level, and whether Cascade Paper Mills can deliver inside the 7-day window or whether an expedite option is worth raising. Raise the requisition that current policy supports, log it in the register, and post the planning update for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "register_contract": {
+    "columns": [
+      "primary_record",
+      "recommended_option",
+      "skus_below_reorder",
+      "total_reorder_units",
+      "requisition_amount",
+      "supplier_lead_time_days",
+      "days_late",
+      "source_reference"
+    ],
+    "range": "Register!A24:J24",
+    "spreadsheetId": "SHEET-CLD-OPS"
+  },
   "required_investigations": [
     {
       "any_of": [
@@ -428,20 +466,8 @@
           "tool": "erpbench.get_task"
         }
       ],
-      "description": "task contract",
+      "description": "read the task contract",
       "id": "task_contract"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "erpbench-064"
-          },
-          "tool": "gmail.messages.list"
-        }
-      ],
-      "description": "request mail search",
-      "id": "request_mail_search"
     },
     {
       "any_of": [
@@ -450,9 +476,15 @@
             "id": "MSG-erpbench-064-REQUEST"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "erpbench-064"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "request mail",
+      "description": "read the operating request in the mailbox",
       "id": "request_mail"
     },
     {
@@ -462,50 +494,13 @@
             "id": "MSG-CLD-AUTHORITY-0209"
           },
           "tool": "gmail.messages.get"
-        }
-      ],
-      "description": "authority memo",
-      "id": "authority_memo"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "channel": "#ops-cld"
+            "fileId": "FILE-CLD-AUTHORITY-MEMO-0209"
           },
-          "tool": "slack.conversations_history"
-        }
-      ],
-      "description": "control thread",
-      "id": "control_thread"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "range": "Register!A1:H40",
-            "spreadsheetId": "SHEET-CLD-OPS"
-          },
-          "tool": "google_sheets.spreadsheets.values.get"
-        }
-      ],
-      "description": "ops register",
-      "id": "ops_register"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "OrganizationCode='CLD1'"
-          },
-          "tool": "oracle_fusion.items.list"
-        }
-      ],
-      "description": "item master",
-      "id": "item_master"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "fileId": "FILE-CLD-SOURCE-MAP"
@@ -513,43 +508,127 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "source map",
-      "id": "source_map"
+      "description": "establish which sources are current authority",
+      "id": "authority_memo"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "OrganizationCode='CLD1'"
+          "arguments_contains": {
+            "channel": "ops-cld"
           },
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "erpbench-064"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "read the ops channel thread for the task",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Register",
+            "spreadsheetId": "SHEET-CLD-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the ops register before writing to it",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.items.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-CLD-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "PriceList",
+            "spreadsheetId": "SHEET-CLD-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the item master or current price list",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "FILE-CLD"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-CLD-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "index the shared drive for current and superseded versions",
+      "id": "drive_index"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
           "tool": "oracle_fusion.onhand_balances.list"
         }
       ],
-      "description": "onhand balances",
+      "description": "read on-hand and reserved quantities",
       "id": "onhand_balances"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "Supplier='Cascade Paper Mills' and Status='Open'"
-          },
+          "arguments_contains": {},
           "tool": "oracle_fusion.purchase_orders.list"
         }
       ],
-      "description": "open purchase orders",
+      "description": "read open purchase orders as supply",
       "id": "open_purchase_orders"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "SupplierNumber in ('SUP-8801','SUP-8830')"
-          },
+          "arguments_contains": {},
+          "tool": "oracle_fusion.purchase_order_lines.list"
+        },
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.purchase_orders.get"
+        }
+      ],
+      "description": "read the open supply lines",
+      "id": "supply_lines"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
           "tool": "oracle_fusion.suppliers.list"
         }
       ],
-      "description": "suppliers",
+      "description": "read supplier lead times",
       "id": "suppliers"
     },
     {
@@ -561,8 +640,26 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "reorder policy",
+      "description": "read the current reorder policy",
       "id": "reorder_policy"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-CLD-REORDER-POLICY-R3"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "REORDER-POLICY"
+          },
+          "tool": "google_drive.files.get"
+        }
+      ],
+      "description": "recognise the superseded reorder policy",
+      "id": "stale_policy"
     },
     {
       "any_of": [
@@ -571,125 +668,125 @@
             "fileId": "FILE-CLD-DEMAND-FORECAST-F06"
           },
           "tool": "google_drive.files.download"
-        }
-      ],
-      "description": "demand forecast",
-      "id": "demand_forecast"
-    },
-    {
-      "any_of": [
+        },
         {
-          "arguments": {
-            "range": "Reorder!A1:F12",
+          "arguments_contains": {
+            "range": "Reorder",
             "spreadsheetId": "SHEET-CLD-OPS"
           },
           "tool": "google_sheets.spreadsheets.values.get"
         }
       ],
-      "description": "reorder tab",
-      "id": "reorder_tab"
+      "description": "read the demand forecast or reorder tab",
+      "id": "demand_forecast"
     },
     {
       "any_of": [
         {
-          "arguments": {
+          "arguments_contains": {
             "query": "reorder"
           },
           "tool": "slack.search_messages"
+        },
+        {
+          "arguments_contains": {
+            "channel": "planning-cld"
+          },
+          "tool": "slack.conversations_history"
         }
       ],
-      "description": "planning thread",
+      "description": "read the planning thread",
       "id": "planning_thread"
     }
   ],
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the onhand balances investigation before any controlled write.",
+      "description": "Before any controlled write, read on-hand and reserved quantities (any listed route counts).",
       "id": "discovery:onhand_balances",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the open purchase orders investigation before any controlled write.",
+      "description": "Before any controlled write, read open purchase orders as supply (any listed route counts).",
       "id": "discovery:open_purchase_orders",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the suppliers investigation before any controlled write.",
+      "description": "Before any controlled write, read the open supply lines (any listed route counts).",
+      "id": "discovery:supply_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, read supplier lead times (any listed route counts).",
       "id": "discovery:suppliers",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the reorder policy investigation before any controlled write.",
+      "description": "Before any controlled write, read the current reorder policy (any listed route counts).",
       "id": "discovery:reorder_policy",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the demand forecast investigation before any controlled write.",
+      "description": "Before any controlled write, recognise the superseded reorder policy (any listed route counts).",
+      "id": "discovery:stale_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, read the demand forecast or reorder tab (any listed route counts).",
       "id": "discovery:demand_forecast",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the reorder tab investigation before any controlled write.",
-      "id": "discovery:reorder_tab",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the planning thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the planning thread (any listed route counts).",
       "id": "discovery:planning_thread",
       "points": 1
     },
@@ -809,6 +906,16 @@
     }
   ],
   "schema_version": "erpbench.task.v1",
+  "status_options": [
+    {
+      "id": "requisition_submitted",
+      "label": "Requisition submitted"
+    },
+    {
+      "id": "requisition_submitted_late_risk",
+      "label": "Requisition submitted with late-delivery risk"
+    }
+  ],
   "task_id": "erpbench-064",
   "task_name": "Run the reorder review and raise the requisition",
   "tenant_code": "CALDERA",

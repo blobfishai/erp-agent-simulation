@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-075"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-075-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-RVS-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -90,6 +84,12 @@
         "q": "Supplier='Medigrade Manufacturing'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-9902','SUP-9950')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {

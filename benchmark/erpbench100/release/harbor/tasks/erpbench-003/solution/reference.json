@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-003"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-003-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -91,6 +85,12 @@
         "spreadsheetId": "SHEET-NBR-OPS"
       },
       "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "CustomerTransactionId": 900003
+      },
+      "tool": "oracle_fusion.receivables_invoices.get"
     },
     {
       "arguments": {

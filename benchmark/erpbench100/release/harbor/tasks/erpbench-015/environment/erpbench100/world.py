@@ -602,7 +602,20 @@ class ErpWorld:
         if tool == "erpbench.get_task":
             if a["task_id"] != self.task["task_id"]:
                 raise ValueError("task not found")
-            return {"task_id": self.task["task_id"], "prompt": self.task["prompt"], "tenant_code": code, "company": self.task["company"], "as_of": AS_OF, "answer_schema": self.task["answer_schema"], "allowed_write_tools": self.task["allowed_write_tools"], "register_sheet": f"SHEET-{short}-OPS", "ops_channel": f"#ops-{short.lower()}"}
+            return {
+                "task_id": self.task["task_id"],
+                "prompt": self.task["prompt"],
+                "tenant_code": code,
+                "company": self.task["company"],
+                "as_of": AS_OF,
+                "answer_schema": self.task["answer_schema"],
+                "decision_options": [{"id": option["id"], "label": option["label"]} for option in self.task["decision_options"]],
+                "status_options": deepcopy(self.task["status_options"]),
+                "register_contract": deepcopy(self.task["register_contract"]),
+                "allowed_write_tools": self.task["allowed_write_tools"],
+                "ops_channel": f"#ops-{short.lower()}",
+                "handoff": "Save one review-only email draft and one ops-channel post; both stay draft_for_review. Record the decision, then submit the structured answer.",
+            }
         if tool == "erpbench.get_decision":
             return self._one("SELECT * FROM decisions WHERE task_id = ?", (a["task_id"],))
         if tool == "erpbench.get_submission":

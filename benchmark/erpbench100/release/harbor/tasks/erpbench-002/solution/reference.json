@@ -8,12 +8,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-002"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-002-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -45,9 +39,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -70,6 +64,12 @@
     {
       "arguments": {
         "fileId": "FILE-NBR-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-PICK-CONFIRM-0205"
       },
       "tool": "google_drive.files.download"
     },

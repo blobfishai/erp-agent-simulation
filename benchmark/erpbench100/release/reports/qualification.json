@@ -35,13 +35,13 @@
     "wrong_source": {
       "executions": 100,
       "false_accepts": 0,
-      "mean_score": 87.1,
+      "mean_score": 88.0,
       "strict_passes": 0
     },
     "wrong_target": {
       "executions": 100,
       "false_accepts": 0,
-      "mean_score": 82.51,
+      "mean_score": 82.81,
       "strict_passes": 0
     }
   },
@@ -118,14 +118,14 @@
     {
       "category_scores": {
         "calculation": 100.0,
-        "containment": 82.0,
+        "containment": 100.0,
         "decision": 66.67,
         "discovery": 93.33,
         "erp_state": 70.0,
         "handoff": 100.0,
         "readback": 100.0
       },
-      "mean_score": 87.1,
+      "mean_score": 88.0,
       "policy": "wrong_source",
       "strict_passes": 0,
       "task_count": 100
@@ -133,14 +133,14 @@
     {
       "category_scores": {
         "calculation": 100.0,
-        "containment": 42.0,
+        "containment": 48.0,
         "decision": 100.0,
         "discovery": 100.0,
         "erp_state": 35.0,
         "handoff": 100.0,
         "readback": 84.1
       },
-      "mean_score": 82.51,
+      "mean_score": 82.81,
       "policy": "wrong_target",
       "strict_passes": 0,
       "task_count": 100

@@ -24,31 +24,50 @@
     "additionalProperties": false,
     "properties": {
       "contract_months": {
+        "description": "Standard contract length in months",
         "type": "integer"
       },
       "decision_status": {
+        "description": "One of the status ids listed in the task contract",
+        "enum": [
+          "quota_filled",
+          "positions_remain_open"
+        ],
         "type": "string"
       },
       "eligible_candidates": {
+        "description": "Candidates with passed checks and permits valid beyond contract end",
         "type": "integer"
       },
       "hires": {
+        "description": "Workers hired",
         "type": "integer"
       },
       "monthly_wage_total": {
+        "description": "Monthly wage cost of the hires",
         "multipleOf": 0.01,
         "type": "number"
       },
       "open_headcount": {
+        "description": "Approved headcount minus current staff",
         "type": "integer"
       },
       "primary_record": {
+        "description": "The primary ERP record number created or updated (as returned by the system)",
         "type": "string"
       },
       "recommended_option": {
+        "description": "One of the decision option ids listed in the task contract",
+        "enum": [
+          "hire_eligible_within_quota",
+          "hire_eligible_and_keep_positions_open",
+          "hire_all_candidates",
+          "escalate_without_executing"
+        ],
         "type": "string"
       },
       "source_reference": {
+        "description": "Drive file id of the operative (current-authority) source document you relied on",
         "type": "string"
       }
     },
@@ -101,19 +120,25 @@
   "decision_options": [
     {
       "id": "hire_eligible_within_quota",
-      "label": "Policy-supported path",
-      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "label": "Hire eligible candidates up to the open headcount",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's policy.",
       "selected": true
     },
     {
-      "id": "process_everything_as_received",
-      "label": "Process the batch as received",
-      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "id": "hire_eligible_and_keep_positions_open",
+      "label": "Hire every eligible candidate and leave the remaining positions open",
+      "reason": "Policy-shaped alternative whose conditions the current evidence does not support.",
+      "selected": false
+    },
+    {
+      "id": "hire_all_candidates",
+      "label": "Hire every candidate on the register",
+      "reason": "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state.",
       "selected": false
     },
     {
       "id": "escalate_without_executing",
-      "label": "Stop and escalate everything",
+      "label": "Hire nobody and escalate the round",
       "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
       "selected": false
     }
@@ -179,12 +204,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-079"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-079-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -216,9 +235,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-RVS-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -228,7 +247,7 @@
     },
     {
       "arguments": {
-        "q": "LegalEmployerName='Riverstone Medical Supply' and JobCode='cold-chain picker'"
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
       },
       "tool": "oracle_fusion.workers.list"
     },
@@ -262,6 +281,12 @@
         "query": "hiring"
       },
       "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
+      },
+      "tool": "oracle_fusion.document_records.list"
     },
     {
       "arguments": {
@@ -403,6 +428,20 @@
   ],
   "primary_write_tool": "oracle_fusion.workers.create",
   "prompt": "**Riverstone Medical Supply · Jurong distribution centre · Hiring against approved headcount**\n\nMarcus Ng needs the cold-chain picker hiring round closed today. Work out how many positions are actually open against the approved headcount, which candidates are eligible once work permits and background checks are considered, and hire only the people we can place under a standard contract. Register the contracts and prepare the confirmation for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "register_contract": {
+    "columns": [
+      "primary_record",
+      "recommended_option",
+      "open_headcount",
+      "eligible_candidates",
+      "hires",
+      "monthly_wage_total",
+      "contract_months",
+      "source_reference"
+    ],
+    "range": "Register!A29:J29",
+    "spreadsheetId": "SHEET-RVS-OPS"
+  },
   "required_investigations": [
     {
       "any_of": [
@@ -413,20 +452,8 @@
           "tool": "erpbench.get_task"
         }
       ],
-      "description": "task contract",
+      "description": "read the task contract",
       "id": "task_contract"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "erpbench-079"
-          },
-          "tool": "gmail.messages.list"
-        }
-      ],
-      "description": "request mail search",
-      "id": "request_mail_search"
     },
     {
       "any_of": [
@@ -435,9 +462,15 @@
             "id": "MSG-erpbench-079-REQUEST"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "erpbench-079"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "request mail",
+      "description": "read the operating request in the mailbox",
       "id": "request_mail"
     },
     {
@@ -447,50 +480,13 @@
             "id": "MSG-RVS-AUTHORITY-0209"
           },
           "tool": "gmail.messages.get"
-        }
-      ],
-      "description": "authority memo",
-      "id": "authority_memo"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "channel": "#ops-rvs"
+            "fileId": "FILE-RVS-AUTHORITY-MEMO-0209"
           },
-          "tool": "slack.conversations_history"
-        }
-      ],
-      "description": "control thread",
-      "id": "control_thread"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "range": "Register!A1:H40",
-            "spreadsheetId": "SHEET-RVS-OPS"
-          },
-          "tool": "google_sheets.spreadsheets.values.get"
-        }
-      ],
-      "description": "ops register",
-      "id": "ops_register"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "OrganizationCode='RVS1'"
-          },
-          "tool": "oracle_fusion.items.list"
-        }
-      ],
-      "description": "item master",
-      "id": "item_master"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "fileId": "FILE-RVS-SOURCE-MAP"
@@ -498,8 +494,84 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "source map",
-      "id": "source_map"
+      "description": "establish which sources are current authority",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "channel": "ops-rvs"
+          },
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "erpbench-079"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "read the ops channel thread for the task",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Register",
+            "spreadsheetId": "SHEET-RVS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the ops register before writing to it",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.items.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "PriceList",
+            "spreadsheetId": "SHEET-RVS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the item master or current price list",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "FILE-RVS"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "index the shared drive for current and superseded versions",
+      "id": "drive_index"
     },
     {
       "any_of": [
@@ -510,19 +582,17 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "headcount approval",
+      "description": "read the current headcount approval",
       "id": "headcount_approval"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "LegalEmployerName='Riverstone Medical Supply' and JobCode='cold-chain picker'"
-          },
+          "arguments_contains": {},
           "tool": "oracle_fusion.workers.list"
         }
       ],
-      "description": "current workers",
+      "description": "count the current workers in the job",
       "id": "current_workers"
     },
     {
@@ -534,7 +604,7 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "candidates",
+      "description": "read the candidate register",
       "id": "candidates"
     },
     {
@@ -544,22 +614,29 @@
             "fileId": "FILE-RVS-WAGE-TABLE"
           },
           "tool": "google_drive.files.download"
-        }
-      ],
-      "description": "wage table",
-      "id": "wage_table"
-    },
-    {
-      "any_of": [
+        },
         {
-          "arguments": {
-            "range": "Headcount!A1:E12",
+          "arguments_contains": {
+            "range": "Headcount",
             "spreadsheetId": "SHEET-RVS-OPS"
           },
           "tool": "google_sheets.spreadsheets.values.get"
         }
       ],
-      "description": "headcount tab",
+      "description": "read the approved wage",
+      "id": "wage_table"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Headcount",
+            "spreadsheetId": "SHEET-RVS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the headcount tab",
       "id": "headcount_tab"
     },
     {
@@ -569,113 +646,141 @@
             "id": "MSG-RVS-HIRING-0209"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "hiring"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "hr request mail",
+      "description": "read the HR request",
       "id": "hr_request_mail"
     },
     {
       "any_of": [
         {
-          "arguments": {
+          "arguments_contains": {
             "query": "hiring"
           },
           "tool": "slack.search_messages"
+        },
+        {
+          "arguments_contains": {
+            "channel": "hr-rvs"
+          },
+          "tool": "slack.conversations_history"
         }
       ],
-      "description": "hr thread",
+      "description": "read the HR thread",
       "id": "hr_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.document_records.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-HEADCOUNT-APPROVAL-2025"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "check permit records or the superseded approval",
+      "id": "permit_records"
     }
   ],
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the headcount approval investigation before any controlled write.",
+      "description": "Before any controlled write, read the current headcount approval (any listed route counts).",
       "id": "discovery:headcount_approval",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the current workers investigation before any controlled write.",
+      "description": "Before any controlled write, count the current workers in the job (any listed route counts).",
       "id": "discovery:current_workers",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the candidates investigation before any controlled write.",
+      "description": "Before any controlled write, read the candidate register (any listed route counts).",
       "id": "discovery:candidates",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the wage table investigation before any controlled write.",
+      "description": "Before any controlled write, read the approved wage (any listed route counts).",
       "id": "discovery:wage_table",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the headcount tab investigation before any controlled write.",
+      "description": "Before any controlled write, read the headcount tab (any listed route counts).",
       "id": "discovery:headcount_tab",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the hr request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the HR request (any listed route counts).",
       "id": "discovery:hr_request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the hr thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the HR thread (any listed route counts).",
       "id": "discovery:hr_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, check permit records or the superseded approval (any listed route counts).",
+      "id": "discovery:permit_records",
       "points": 1
     },
     {
@@ -794,6 +899,16 @@
     }
   ],
   "schema_version": "erpbench.task.v1",
+  "status_options": [
+    {
+      "id": "quota_filled",
+      "label": "Headcount quota filled"
+    },
+    {
+      "id": "positions_remain_open",
+      "label": "Positions remain open"
+    }
+  ],
   "task_id": "erpbench-079",
   "task_name": "Close the hiring round within quota",
   "tenant_code": "RIVERSTONE",

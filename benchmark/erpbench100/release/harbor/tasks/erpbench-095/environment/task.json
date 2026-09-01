@@ -24,32 +24,51 @@
     "additionalProperties": false,
     "properties": {
       "decision_status": {
+        "description": "One of the status ids listed in the task contract",
+        "enum": [
+          "invoice_validated",
+          "invoice_on_hold"
+        ],
         "type": "string"
       },
       "held_lines": {
+        "description": "Invoice lines placed on hold",
         "type": "integer"
       },
       "lines_matched": {
+        "description": "Invoice lines inside quantity and price tolerance",
         "type": "integer"
       },
       "matched_amount": {
+        "description": "Matched value at purchase-order prices",
         "multipleOf": 0.01,
         "type": "number"
       },
       "payable_amount": {
+        "description": "Amount cleared for payment",
         "multipleOf": 0.01,
         "type": "number"
       },
       "primary_record": {
+        "description": "The primary ERP record number created or updated (as returned by the system)",
         "type": "string"
       },
       "recommended_option": {
+        "description": "One of the decision option ids listed in the task contract",
+        "enum": [
+          "receive_and_validate_invoice",
+          "receive_and_hold_variance_lines",
+          "process_everything_as_received",
+          "escalate_without_executing"
+        ],
         "type": "string"
       },
       "source_reference": {
+        "description": "Drive file id of the operative (current-authority) source document you relied on",
         "type": "string"
       },
       "variance_amount": {
+        "description": "Value of price variance on held lines",
         "multipleOf": 0.01,
         "type": "number"
       }
@@ -102,20 +121,26 @@
   ],
   "decision_options": [
     {
+      "id": "receive_and_validate_invoice",
+      "label": "Receive the delivery, enter the invoice and validate it for payment",
+      "reason": "Policy-shaped alternative whose conditions the current evidence does not support.",
+      "selected": false
+    },
+    {
       "id": "receive_and_hold_variance_lines",
-      "label": "Policy-supported path",
-      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "label": "Receive the delivery, enter the invoice and hold the lines outside tolerance",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's policy.",
       "selected": true
     },
     {
       "id": "process_everything_as_received",
-      "label": "Process the batch as received",
-      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "label": "Receive and pay the invoice exactly as billed",
+      "reason": "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state.",
       "selected": false
     },
     {
       "id": "escalate_without_executing",
-      "label": "Stop and escalate everything",
+      "label": "Reject the invoice and escalate to the supplier",
       "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
       "selected": false
     }
@@ -181,12 +206,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-095"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-095-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -218,9 +237,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-TRV-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -263,6 +282,12 @@
         "q": "Supplier='Chonburi Cell Works'"
       },
       "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-1250','SUP-1288')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
     },
     {
       "arguments": {
@@ -470,6 +495,20 @@
   ],
   "primary_write_tool": "oracle_fusion.receiving_receipt_requests.create",
   "prompt": "**Terravane Solar Components · Rayong plant · Receiving and three-way match**\n\nChonburi Cell Works's invoice for PO-TRV-83371 landed in accounts payable. Receive what the delivery note proves was delivered, match the invoice to the order and the receipt line by line, and settle only what passes our tolerance; anything else has to be held with a reason rather than paid. Log the match in the payables register and get the note to Kanya Boonmee ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "register_contract": {
+    "columns": [
+      "primary_record",
+      "recommended_option",
+      "lines_matched",
+      "matched_amount",
+      "variance_amount",
+      "held_lines",
+      "payable_amount",
+      "source_reference"
+    ],
+    "range": "Register!A25:J25",
+    "spreadsheetId": "SHEET-TRV-OPS"
+  },
   "required_investigations": [
     {
       "any_of": [
@@ -480,20 +519,8 @@
           "tool": "erpbench.get_task"
         }
       ],
-      "description": "task contract",
+      "description": "read the task contract",
       "id": "task_contract"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "erpbench-095"
-          },
-          "tool": "gmail.messages.list"
-        }
-      ],
-      "description": "request mail search",
-      "id": "request_mail_search"
     },
     {
       "any_of": [
@@ -502,9 +529,15 @@
             "id": "MSG-erpbench-095-REQUEST"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "erpbench-095"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "request mail",
+      "description": "read the operating request in the mailbox",
       "id": "request_mail"
     },
     {
@@ -514,50 +547,13 @@
             "id": "MSG-TRV-AUTHORITY-0209"
           },
           "tool": "gmail.messages.get"
-        }
-      ],
-      "description": "authority memo",
-      "id": "authority_memo"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "channel": "#ops-trv"
+            "fileId": "FILE-TRV-AUTHORITY-MEMO-0209"
           },
-          "tool": "slack.conversations_history"
-        }
-      ],
-      "description": "control thread",
-      "id": "control_thread"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "range": "Register!A1:H40",
-            "spreadsheetId": "SHEET-TRV-OPS"
-          },
-          "tool": "google_sheets.spreadsheets.values.get"
-        }
-      ],
-      "description": "ops register",
-      "id": "ops_register"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "OrganizationCode='TRV1'"
-          },
-          "tool": "oracle_fusion.items.list"
-        }
-      ],
-      "description": "item master",
-      "id": "item_master"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "fileId": "FILE-TRV-SOURCE-MAP"
@@ -565,8 +561,84 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "source map",
-      "id": "source_map"
+      "description": "establish which sources are current authority",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "channel": "ops-trv"
+          },
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "erpbench-095"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "read the ops channel thread for the task",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Register",
+            "spreadsheetId": "SHEET-TRV-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the ops register before writing to it",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.items.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-TRV-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "PriceList",
+            "spreadsheetId": "SHEET-TRV-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the item master or current price list",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "FILE-TRV"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-TRV-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "index the shared drive for current and superseded versions",
+      "id": "drive_index"
     },
     {
       "any_of": [
@@ -575,9 +647,15 @@
             "purchaseOrdersUniqID": "PO-TRV-83371"
           },
           "tool": "oracle_fusion.purchase_orders.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "PO-TRV-83371"
+          },
+          "tool": "oracle_fusion.purchase_orders.list"
         }
       ],
-      "description": "purchase order",
+      "description": "read the purchase order",
       "id": "purchase_order"
     },
     {
@@ -589,7 +667,7 @@
           "tool": "oracle_fusion.purchase_order_lines.list"
         }
       ],
-      "description": "purchase order lines",
+      "description": "read the purchase-order lines",
       "id": "purchase_order_lines"
     },
     {
@@ -601,7 +679,7 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "delivery note",
+      "description": "read the signed delivery note",
       "id": "delivery_note"
     },
     {
@@ -613,7 +691,7 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "supplier invoice",
+      "description": "read the supplier invoice",
       "id": "supplier_invoice"
     },
     {
@@ -623,9 +701,15 @@
             "id": "MSG-TRV-SUPPLIER-INVOICE-0207"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "CCW-INV-2026-091"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "invoice mail",
+      "description": "read the supplier's invoice email",
       "id": "invoice_mail"
     },
     {
@@ -635,113 +719,133 @@
             "fileId": "FILE-TRV-AP-MATCH-POLICY"
           },
           "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "query": "tolerance"
+          },
+          "tool": "slack.search_messages"
         }
       ],
-      "description": "ap policy",
+      "description": "read the three-way match policy",
       "id": "ap_policy"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "Supplier='Chonburi Cell Works'"
-          },
+          "arguments_contains": {},
           "tool": "oracle_fusion.invoices.list"
         }
       ],
-      "description": "existing ap invoices",
+      "description": "check invoices already entered for the supplier",
       "id": "existing_ap_invoices"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.suppliers.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "Chonburi Cell Works"
+          },
+          "tool": "oracle_fusion.purchase_orders.list"
+        }
+      ],
+      "description": "read the supplier master",
+      "id": "supplier_master"
     }
   ],
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the purchase order investigation before any controlled write.",
+      "description": "Before any controlled write, read the purchase order (any listed route counts).",
       "id": "discovery:purchase_order",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the purchase order lines investigation before any controlled write.",
+      "description": "Before any controlled write, read the purchase-order lines (any listed route counts).",
       "id": "discovery:purchase_order_lines",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the delivery note investigation before any controlled write.",
+      "description": "Before any controlled write, read the signed delivery note (any listed route counts).",
       "id": "discovery:delivery_note",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the supplier invoice investigation before any controlled write.",
+      "description": "Before any controlled write, read the supplier invoice (any listed route counts).",
       "id": "discovery:supplier_invoice",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the invoice mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the supplier's invoice email (any listed route counts).",
       "id": "discovery:invoice_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ap policy investigation before any controlled write.",
+      "description": "Before any controlled write, read the three-way match policy (any listed route counts).",
       "id": "discovery:ap_policy",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the existing ap invoices investigation before any controlled write.",
+      "description": "Before any controlled write, check invoices already entered for the supplier (any listed route counts).",
       "id": "discovery:existing_ap_invoices",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, read the supplier master (any listed route counts).",
+      "id": "discovery:supplier_master",
       "points": 1
     },
     {
@@ -860,6 +964,16 @@
     }
   ],
   "schema_version": "erpbench.task.v1",
+  "status_options": [
+    {
+      "id": "invoice_validated",
+      "label": "Invoice validated"
+    },
+    {
+      "id": "invoice_on_hold",
+      "label": "Invoice on hold"
+    }
+  ],
   "task_id": "erpbench-095",
   "task_name": "Receive the delivery and match the supplier invoice",
   "tenant_code": "TERRAVANE",

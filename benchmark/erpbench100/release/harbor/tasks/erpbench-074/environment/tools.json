@@ -199,31 +199,50 @@
             "additionalProperties": false,
             "properties": {
               "days_late": {
+                "description": "Days the delivery lands after the need window (0 if inside it)",
                 "type": "integer"
               },
               "decision_status": {
+                "description": "One of the status ids listed in the task contract",
+                "enum": [
+                  "requisition_submitted",
+                  "requisition_submitted_late_risk"
+                ],
                 "type": "string"
               },
               "primary_record": {
+                "description": "The primary ERP record number created or updated (as returned by the system)",
                 "type": "string"
               },
               "recommended_option": {
+                "description": "One of the decision option ids listed in the task contract",
+                "enum": [
+                  "requisition_primary_supplier",
+                  "requisition_primary_supplier_and_flag_lateness",
+                  "requisition_expedite_supplier",
+                  "escalate_without_executing"
+                ],
                 "type": "string"
               },
               "requisition_amount": {
+                "description": "Requisition value at unit cost",
                 "multipleOf": 0.01,
                 "type": "number"
               },
               "skus_below_reorder": {
+                "description": "Active items at or below their reorder point after reservations and open supply",
                 "type": "integer"
               },
               "source_reference": {
+                "description": "Drive file id of the operative (current-authority) source document you relied on",
                 "type": "string"
               },
               "supplier_lead_time_days": {
+                "description": "Lead time of the supplier used",
                 "type": "integer"
               },
               "total_reorder_units": {
+                "description": "Units requisitioned in total",
                 "type": "integer"
               }
             },

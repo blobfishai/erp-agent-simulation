@@ -19,12 +19,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-082"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-082-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -56,9 +50,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-BLF-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -81,6 +75,12 @@
     {
       "arguments": {
         "fileId": "FILE-BLF-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-PICK-CONFIRM-0205"
       },
       "tool": "google_drive.files.download"
     },
@@ -225,91 +225,91 @@
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the shipment header investigation before any controlled write.",
+      "description": "Before any controlled write, read the shipment header (any listed route counts).",
       "id": "discovery:shipment_header",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the shipment lines investigation before any controlled write.",
+      "description": "Before any controlled write, read the staged shipment lines (any listed route counts).",
       "id": "discovery:shipment_lines",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the pick search investigation before any controlled write.",
+      "description": "Before any controlled write, locate the pick confirmation (any listed route counts).",
       "id": "discovery:pick_search",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the pick confirmation investigation before any controlled write.",
+      "description": "Before any controlled write, read the current pick confirmation (any listed route counts).",
       "id": "discovery:pick_confirmation",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the sales order investigation before any controlled write.",
+      "description": "Before any controlled write, recognise the superseded pick confirmation (any listed route counts).",
+      "id": "discovery:stale_pick",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, read the sales order behind the shipment (any listed route counts).",
       "id": "discovery:sales_order",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the shipping register investigation before any controlled write.",
+      "description": "Before any controlled write, read the shipping register (any listed route counts).",
       "id": "discovery:shipping_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the warehouse thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the warehouse thread (any listed route counts).",
       "id": "discovery:warehouse_thread",
       "points": 1
     },

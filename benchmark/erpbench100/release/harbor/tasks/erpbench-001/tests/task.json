@@ -24,31 +24,50 @@
     "additionalProperties": false,
     "properties": {
       "accepted_lines": {
+        "description": "Spreadsheet lines imported",
         "type": "integer"
       },
       "decision_status": {
+        "description": "One of the status ids listed in the task contract",
+        "enum": [
+          "submitted",
+          "awaiting_credit_release"
+        ],
         "type": "string"
       },
       "duplicate_lines": {
+        "description": "Lines already imported on the earlier partial import",
         "type": "integer"
       },
       "imported_units": {
+        "description": "Total quantity on the imported lines",
         "type": "integer"
       },
       "order_total": {
+        "description": "Imported order value at current list prices",
         "multipleOf": 0.01,
         "type": "number"
       },
       "primary_record": {
+        "description": "The primary ERP record number created or updated (as returned by the system)",
         "type": "string"
       },
       "recommended_option": {
+        "description": "One of the decision option ids listed in the task contract",
+        "enum": [
+          "import_accepted_lines_and_submit",
+          "import_accepted_lines_and_hold_submission",
+          "process_everything_as_received",
+          "escalate_without_executing"
+        ],
         "type": "string"
       },
       "rejected_lines": {
+        "description": "Spreadsheet lines not imported (duplicates and inactive items)",
         "type": "integer"
       },
       "source_reference": {
+        "description": "Drive file id of the operative (current-authority) source document you relied on",
         "type": "string"
       }
     },
@@ -101,19 +120,25 @@
   "decision_options": [
     {
       "id": "import_accepted_lines_and_submit",
-      "label": "Policy-supported path",
-      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "label": "Import the accepted lines at current list prices and submit the order",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's policy.",
       "selected": true
     },
     {
+      "id": "import_accepted_lines_and_hold_submission",
+      "label": "Import the accepted lines but hold submission for credit release",
+      "reason": "Policy-shaped alternative whose conditions the current evidence does not support.",
+      "selected": false
+    },
+    {
       "id": "process_everything_as_received",
-      "label": "Process the batch as received",
-      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "label": "Import every spreadsheet line at the spreadsheet prices",
+      "reason": "Ignores duplicates, tolerance, expiry, quota, band or supersession rules and writes unsupported state.",
       "selected": false
     },
     {
       "id": "escalate_without_executing",
-      "label": "Stop and escalate everything",
+      "label": "Stop and escalate the whole batch without importing",
       "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
       "selected": false
     }
@@ -179,12 +204,6 @@
     },
     {
       "arguments": {
-        "q": "erpbench-001"
-      },
-      "tool": "gmail.messages.list"
-    },
-    {
-      "arguments": {
         "id": "MSG-erpbench-001-REQUEST"
       },
       "tool": "gmail.messages.get"
@@ -216,9 +235,9 @@
     },
     {
       "arguments": {
-        "fileId": "FILE-NBR-SOURCE-MAP"
+        "q": "name contains 'policy'"
       },
-      "tool": "google_drive.files.download"
+      "tool": "google_drive.files.list"
     },
     {
       "arguments": {
@@ -234,15 +253,15 @@
     },
     {
       "arguments": {
-        "q": "CustomerPONumber='CA-PO-77310'"
+        "fileId": "FILE-NBR-ORDER-BATCH-0203"
       },
-      "tool": "oracle_fusion.sales_orders.list"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "OrderKey": "SO-NBR-40039"
+        "q": "CustomerPONumber='CA-PO-77310'"
       },
-      "tool": "oracle_fusion.sales_orders.get"
+      "tool": "oracle_fusion.sales_orders.list"
     },
     {
       "arguments": {
@@ -252,16 +271,22 @@
     },
     {
       "arguments": {
-        "range": "PriceList!A1:E12",
-        "spreadsheetId": "SHEET-NBR-OPS"
+        "fileId": "FILE-NBR-PRICE-LIST-2025H2"
       },
-      "tool": "google_sheets.spreadsheets.values.get"
+      "tool": "google_drive.files.download"
     },
     {
       "arguments": {
-        "query": "CA-PO-77310"
+        "fileId": "FILE-NBR-OPS-AUDIT-LOG"
       },
-      "tool": "slack.search_messages"
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
     },
     {
       "arguments": {
@@ -420,6 +445,20 @@
   ],
   "primary_write_tool": "oracle_fusion.sales_orders.create",
   "prompt": "**Northbridge Fastener Works · Toledo plant · Customer order import**\n\nCascade Assembly Inc. sent their consolidated CA-PO-77310 order as a spreadsheet this morning and wants it confirmed today. Get it into the system properly: check every line against what we already imported for that purchase order and against the items we still sell, price it from the current list rather than whatever the spreadsheet says, and respect the customer's credit standing before you submit anything. Log the import in the ops register and get a reply to Dana Whitfield ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "register_contract": {
+    "columns": [
+      "primary_record",
+      "recommended_option",
+      "accepted_lines",
+      "rejected_lines",
+      "imported_units",
+      "order_total",
+      "duplicate_lines",
+      "source_reference"
+    ],
+    "range": "Register!A21:J21",
+    "spreadsheetId": "SHEET-NBR-OPS"
+  },
   "required_investigations": [
     {
       "any_of": [
@@ -430,20 +469,8 @@
           "tool": "erpbench.get_task"
         }
       ],
-      "description": "task contract",
+      "description": "read the task contract",
       "id": "task_contract"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "erpbench-001"
-          },
-          "tool": "gmail.messages.list"
-        }
-      ],
-      "description": "request mail search",
-      "id": "request_mail_search"
     },
     {
       "any_of": [
@@ -452,9 +479,15 @@
             "id": "MSG-erpbench-001-REQUEST"
           },
           "tool": "gmail.messages.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "erpbench-001"
+          },
+          "tool": "gmail.messages.list"
         }
       ],
-      "description": "request mail",
+      "description": "read the operating request in the mailbox",
       "id": "request_mail"
     },
     {
@@ -464,50 +497,13 @@
             "id": "MSG-NBR-AUTHORITY-0209"
           },
           "tool": "gmail.messages.get"
-        }
-      ],
-      "description": "authority memo",
-      "id": "authority_memo"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "channel": "#ops-nbr"
+            "fileId": "FILE-NBR-AUTHORITY-MEMO-0209"
           },
-          "tool": "slack.conversations_history"
-        }
-      ],
-      "description": "control thread",
-      "id": "control_thread"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "range": "Register!A1:H40",
-            "spreadsheetId": "SHEET-NBR-OPS"
-          },
-          "tool": "google_sheets.spreadsheets.values.get"
-        }
-      ],
-      "description": "ops register",
-      "id": "ops_register"
-    },
-    {
-      "any_of": [
-        {
-          "arguments": {
-            "q": "OrganizationCode='NBR1'"
-          },
-          "tool": "oracle_fusion.items.list"
-        }
-      ],
-      "description": "item master",
-      "id": "item_master"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "fileId": "FILE-NBR-SOURCE-MAP"
@@ -515,19 +511,113 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "source map",
-      "id": "source_map"
+      "description": "establish which sources are current authority",
+      "id": "authority_memo"
     },
     {
       "any_of": [
         {
-          "arguments": {
-            "q": "name contains 'CA-PO-77310'"
+          "arguments_contains": {
+            "channel": "ops-nbr"
           },
-          "tool": "google_drive.files.list"
+          "tool": "slack.conversations_history"
+        },
+        {
+          "arguments_contains": {
+            "query": "erpbench-001"
+          },
+          "tool": "slack.search_messages"
         }
       ],
-      "description": "batch search",
+      "description": "read the ops channel thread for the task",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Register",
+            "spreadsheetId": "SHEET-NBR-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the ops register before writing to it",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "oracle_fusion.items.list"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "PriceList",
+            "spreadsheetId": "SHEET-NBR-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "read the item master or current price list",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {},
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "FILE-NBR"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "index the shared drive for current and superseded versions",
+      "id": "drive_index"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "q": "CA-PO-77310"
+          },
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "order"
+          },
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "batch"
+          },
+          "tool": "google_drive.files.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "CA-PO-77310"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "locate the consolidated order batch",
       "id": "batch_search"
     },
     {
@@ -539,32 +629,56 @@
           "tool": "google_drive.files.download"
         }
       ],
-      "description": "batch file",
+      "description": "read the consolidated order batch",
       "id": "batch_file"
     },
     {
       "any_of": [
         {
           "arguments": {
-            "q": "CustomerPONumber='CA-PO-77310'"
+            "fileId": "FILE-NBR-ORDER-BATCH-0203"
           },
-          "tool": "oracle_fusion.sales_orders.list"
-        }
-      ],
-      "description": "existing orders",
-      "id": "existing_orders"
-    },
-    {
-      "any_of": [
+          "tool": "google_drive.files.download"
+        },
         {
           "arguments": {
             "OrderKey": "SO-NBR-40039"
           },
           "tool": "oracle_fusion.sales_orders.get"
+        },
+        {
+          "arguments_contains": {
+            "query": "CA-PO-77310"
+          },
+          "tool": "slack.search_messages"
         }
       ],
-      "description": "prior order lines",
-      "id": "prior_order_lines"
+      "description": "read the earlier partial import",
+      "id": "prior_partial_import"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "q": "CA-PO-77310"
+          },
+          "tool": "oracle_fusion.sales_orders.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "CUST-10412"
+          },
+          "tool": "oracle_fusion.sales_orders.list"
+        },
+        {
+          "arguments_contains": {
+            "q": "OPS"
+          },
+          "tool": "oracle_fusion.sales_orders.list"
+        }
+      ],
+      "description": "check the sales orders already on the purchase order",
+      "id": "existing_orders"
     },
     {
       "any_of": [
@@ -573,126 +687,181 @@
             "AccountId": "CUST-10412"
           },
           "tool": "oracle_fusion.customer_account_activities.get"
-        }
-      ],
-      "description": "customer account",
-      "id": "customer_account"
-    },
-    {
-      "any_of": [
+        },
         {
           "arguments": {
-            "range": "PriceList!A1:E12",
+            "fileId": "FILE-NBR-CREDIT-POLICY-R6"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "range": "Aging",
             "spreadsheetId": "SHEET-NBR-OPS"
           },
           "tool": "google_sheets.spreadsheets.values.get"
         }
       ],
-      "description": "price list tab",
-      "id": "price_list_tab"
+      "description": "check the customer's credit standing",
+      "id": "customer_credit"
     },
     {
       "any_of": [
         {
           "arguments": {
-            "query": "CA-PO-77310"
+            "fileId": "FILE-NBR-PRICE-LIST-2025H2"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "fileId": "PRICE-LIST"
+          },
+          "tool": "google_drive.files.get"
+        },
+        {
+          "arguments_contains": {
+            "q": "price"
+          },
+          "tool": "google_drive.files.list"
+        }
+      ],
+      "description": "recognise the superseded price list",
+      "id": "superseded_prices"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-OPS-AUDIT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        },
+        {
+          "arguments_contains": {
+            "q": "CA-PO-77310"
+          },
+          "tool": "gmail.messages.list"
+        },
+        {
+          "arguments_contains": {
+            "query": "import"
           },
           "tool": "slack.search_messages"
         }
       ],
-      "description": "prior import thread",
-      "id": "prior_import_thread"
+      "description": "read the audit trail for the purchase order",
+      "id": "audit_trail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments_contains": {
+            "range": "Customers",
+            "spreadsheetId": "SHEET-NBR-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        },
+        {
+          "arguments": {
+            "AccountId": "CUST-10412"
+          },
+          "tool": "oracle_fusion.customer_account_activities.get"
+        }
+      ],
+      "description": "confirm the customer master record",
+      "id": "customer_master"
     }
   ],
   "rubric": [
     {
       "category": "discovery",
-      "description": "Complete the task contract investigation before any controlled write.",
+      "description": "Before any controlled write, read the task contract (any listed route counts).",
       "id": "discovery:task_contract",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the request mail search investigation before any controlled write.",
-      "id": "discovery:request_mail_search",
-      "points": 1
-    },
-    {
-      "category": "discovery",
-      "description": "Complete the request mail investigation before any controlled write.",
+      "description": "Before any controlled write, read the operating request in the mailbox (any listed route counts).",
       "id": "discovery:request_mail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the authority memo investigation before any controlled write.",
+      "description": "Before any controlled write, establish which sources are current authority (any listed route counts).",
       "id": "discovery:authority_memo",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the control thread investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops channel thread for the task (any listed route counts).",
       "id": "discovery:control_thread",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the ops register investigation before any controlled write.",
+      "description": "Before any controlled write, read the ops register before writing to it (any listed route counts).",
       "id": "discovery:ops_register",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the item master investigation before any controlled write.",
+      "description": "Before any controlled write, read the item master or current price list (any listed route counts).",
       "id": "discovery:item_master",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the source map investigation before any controlled write.",
-      "id": "discovery:source_map",
+      "description": "Before any controlled write, index the shared drive for current and superseded versions (any listed route counts).",
+      "id": "discovery:drive_index",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the batch search investigation before any controlled write.",
+      "description": "Before any controlled write, locate the consolidated order batch (any listed route counts).",
       "id": "discovery:batch_search",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the batch file investigation before any controlled write.",
+      "description": "Before any controlled write, read the consolidated order batch (any listed route counts).",
       "id": "discovery:batch_file",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the existing orders investigation before any controlled write.",
+      "description": "Before any controlled write, read the earlier partial import (any listed route counts).",
+      "id": "discovery:prior_partial_import",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Before any controlled write, check the sales orders already on the purchase order (any listed route counts).",
       "id": "discovery:existing_orders",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the prior order lines investigation before any controlled write.",
-      "id": "discovery:prior_order_lines",
+      "description": "Before any controlled write, check the customer's credit standing (any listed route counts).",
+      "id": "discovery:customer_credit",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the customer account investigation before any controlled write.",
-      "id": "discovery:customer_account",
+      "description": "Before any controlled write, recognise the superseded price list (any listed route counts).",
+      "id": "discovery:superseded_prices",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the price list tab investigation before any controlled write.",
-      "id": "discovery:price_list_tab",
+      "description": "Before any controlled write, read the audit trail for the purchase order (any listed route counts).",
+      "id": "discovery:audit_trail",
       "points": 1
     },
     {
       "category": "discovery",
-      "description": "Complete the prior import thread investigation before any controlled write.",
-      "id": "discovery:prior_import_thread",
+      "description": "Before any controlled write, confirm the customer master record (any listed route counts).",
+      "id": "discovery:customer_master",
       "points": 1
     },
     {
@@ -811,6 +980,16 @@
     }
   ],
   "schema_version": "erpbench.task.v1",
+  "status_options": [
+    {
+      "id": "submitted",
+      "label": "Order submitted"
+    },
+    {
+      "id": "awaiting_credit_release",
+      "label": "Order held awaiting credit release"
+    }
+  ],
   "task_id": "erpbench-001",
   "task_name": "Import the customer's consolidated order",
   "tenant_code": "NORTHBRIDGE",
