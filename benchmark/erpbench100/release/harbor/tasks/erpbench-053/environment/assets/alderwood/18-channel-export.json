@@ -1,0 +1,62 @@
+{
+  "channel": "Wayfair",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Casa Verde Interiors",
+      "channel_order_id": "WF-20901",
+      "currency": "USD",
+      "order_total": 6840.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Northwind Homes",
+      "channel_order_id": "WF-20902",
+      "currency": "USD",
+      "order_total": 3960.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Elm Street Design",
+      "channel_order_id": "WF-20903",
+      "currency": "USD",
+      "order_total": 2520.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Harbor House",
+      "channel_order_id": "WF-20904",
+      "currency": "USD",
+      "order_total": 5100.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Northwind Homes",
+      "channel_order_id": "WF-20902",
+      "currency": "USD",
+      "order_total": 3960.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Maple & Co",
+      "channel_order_id": "WF-20905",
+      "currency": "USD",
+      "order_total": 1890.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Fernway Rentals",
+      "channel_order_id": "WF-20906",
+      "currency": "USD",
+      "order_total": 4380.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Loft 27",
+      "channel_order_id": "WF-20907",
+      "currency": "USD",
+      "order_total": 2310.0,
+      "status": "paid"
+    }
+  ]
+}

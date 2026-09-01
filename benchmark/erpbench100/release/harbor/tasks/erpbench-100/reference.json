@@ -1,0 +1,450 @@
+{
+  "expected_answer": {
+    "accepted_lines": 3,
+    "average_change_pct": 4.72,
+    "batch_lines": 9,
+    "decision_status": "batch_applied_with_rejections",
+    "primary_record": "PRICE-BATCH-TRV-2026Q2",
+    "recommended_option": "apply_policy_compliant_lines",
+    "rejected_lines": 4,
+    "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+    "superseded_lines": 2
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-100"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-100-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PRICE-BATCH-TRV-2026Q2'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q2"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-LIST-CURRENT"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "PricingPolicy!A1:C6",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-PRICING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "price batch"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-01",
+        "ItemId": 300010,
+        "ListPrice": 705.0,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-31",
+        "ItemId": 300003,
+        "ListPrice": 155.0,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-04-30",
+        "ItemId": 300031,
+        "ListPrice": 1.18,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-100",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "PRICE-BATCH-TRV-2026Q2",
+            "apply_policy_compliant_lines",
+            9,
+            3,
+            4,
+            2,
+            4.72,
+            "FILE-TRV-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "PRICE-BATCH-TRV-2026Q2",
+        "rationale": "Current evidence supports apply_policy_compliant_lines; operative source FILE-TRV-PRICE-BATCH-Q2.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "MSG-erpbench-100-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend apply_policy_compliant_lines (batch_applied_with_rejections). batch lines 9; accepted lines 3; rejected lines 4; superseded lines 2; average change pct 4.72. Primary record PRICE-BATCH-TRV-2026Q2; operative source FILE-TRV-PRICE-BATCH-Q2. Draft for review, not sent.",
+        "subject": "erpbench-100 — Apply the quarterly price batch under policy — for review",
+        "task_id": "erpbench-100",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-100",
+        "text": "erpbench-100: batch_applied_with_rejections / apply_policy_compliant_lines / PRICE-BATCH-TRV-2026Q2 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-100"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-100"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.72,
+          "batch_lines": 9,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "PRICE-BATCH-TRV-2026Q2",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+          "superseded_lines": 2
+        },
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch search investigation before any controlled write.",
+      "id": "discovery:batch_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the price batch investigation before any controlled write.",
+      "id": "discovery:price_batch",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the current prices investigation before any controlled write.",
+      "id": "discovery:current_prices",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing policy investigation before any controlled write.",
+      "id": "discovery:pricing_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing mail investigation before any controlled write.",
+      "id": "discovery:pricing_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing thread investigation before any controlled write.",
+      "id": "discovery:pricing_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior batch investigation before any controlled write.",
+      "id": "discovery:prior_batch",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded batch lines (9).",
+      "id": "calculation:batch_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded accepted lines (3).",
+      "id": "calculation:accepted_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded rejected lines (4).",
+      "id": "calculation:rejected_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded superseded lines (2).",
+      "id": "calculation:superseded_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded average change pct (4.72).",
+      "id": "calculation:average_change_pct",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option apply_policy_compliant_lines.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-TRV-PRICE-BATCH-Q2 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-100"
+}

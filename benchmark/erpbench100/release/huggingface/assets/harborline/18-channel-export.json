@@ -1,0 +1,62 @@
+{
+  "channel": "CyberBiz",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Lotus Mart",
+      "channel_order_id": "CB-55801",
+      "currency": "USD",
+      "order_total": 1275.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Jade Pantry",
+      "channel_order_id": "CB-55802",
+      "currency": "USD",
+      "order_total": 2140.4,
+      "status": "paid"
+    },
+    {
+      "buyer": "Sunrise Foods",
+      "channel_order_id": "CB-55803",
+      "currency": "USD",
+      "order_total": 860.2,
+      "status": "paid"
+    },
+    {
+      "buyer": "Sunrise Foods",
+      "channel_order_id": "CB-55803",
+      "currency": "USD",
+      "order_total": 860.2,
+      "status": "paid"
+    },
+    {
+      "buyer": "Harmony Grocers",
+      "channel_order_id": "CB-55804",
+      "currency": "USD",
+      "order_total": 3320.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Bamboo Kitchen",
+      "channel_order_id": "CB-55805",
+      "currency": "USD",
+      "order_total": 1910.75,
+      "status": "paid"
+    },
+    {
+      "buyer": "Golden Bowl",
+      "channel_order_id": "CB-55806",
+      "currency": "USD",
+      "order_total": 540.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Orchid Deli",
+      "channel_order_id": "CB-55807",
+      "currency": "USD",
+      "order_total": 2275.5,
+      "status": "paid"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-079"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-079"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-079-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-HEADCOUNT-APPROVAL-2026"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply' and JobCode='cold-chain picker'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-CANDIDATE-REGISTER"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-WAGE-TABLE"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Headcount!A1:E12",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-HIRING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "hiring"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "CandidateId": "RVS-C201",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Ismail Bakar",
+        "HireDate": "2026-02-09",
+        "JobCode": "cold-chain picker",
+        "LegalEmployerName": "Riverstone Medical Supply",
+        "MonthlySalary": 1750.0,
+        "PersonNumber": "RVS-P2001",
+        "task_id": "erpbench-079"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "CandidateId": "RVS-C203",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Rajesh Nair",
+        "HireDate": "2026-02-09",
+        "JobCode": "cold-chain picker",
+        "LegalEmployerName": "Riverstone Medical Supply",
+        "MonthlySalary": 1750.0,
+        "PersonNumber": "RVS-P2002",
+        "task_id": "erpbench-079"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply' and JobCode='cold-chain picker'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-079",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RVS-P2001",
+            "hire_eligible_within_quota",
+            2,
+            3,
+            2,
+            3500.0,
+            12,
+            "FILE-RVS-HEADCOUNT-APPROVAL-2026"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "hire_eligible_within_quota",
+        "primary_record": "RVS-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-RVS-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-RVS-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-079-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-079"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend hire_eligible_within_quota (quota_filled). open headcount 2; eligible candidates 3; hires 2; monthly wage total 3500.0; contract months 12. Primary record RVS-P2001; operative source FILE-RVS-HEADCOUNT-APPROVAL-2026. Draft for review, not sent.",
+        "subject": "erpbench-079 — Close the hiring round within quota — for review",
+        "task_id": "erpbench-079",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-079",
+        "text": "erpbench-079: quota_filled / hire_eligible_within_quota / RVS-P2001 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-079"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-079"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-079"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "contract_months": 12,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 3,
+          "hires": 2,
+          "monthly_wage_total": 3500.0,
+          "open_headcount": 2,
+          "primary_record": "RVS-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-RVS-HEADCOUNT-APPROVAL-2026"
+        },
+        "task_id": "erpbench-079"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-079"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

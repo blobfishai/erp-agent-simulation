@@ -1,0 +1,62 @@
+{
+  "channel": "Amazon Business",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Pacific Ecom Partners",
+      "channel_order_id": "AB-88101",
+      "currency": "USD",
+      "order_total": 4120.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Reno Roasters",
+      "channel_order_id": "AB-88102",
+      "currency": "USD",
+      "order_total": 1330.5,
+      "status": "paid"
+    },
+    {
+      "buyer": "Highline Apparel",
+      "channel_order_id": "AB-88103",
+      "currency": "USD",
+      "order_total": 2760.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Truckee Provisions",
+      "channel_order_id": "AB-88104",
+      "currency": "USD",
+      "order_total": 890.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Highline Apparel",
+      "channel_order_id": "AB-88103",
+      "currency": "USD",
+      "order_total": 2760.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Desert Bloom Cosmetics",
+      "channel_order_id": "AB-88105",
+      "currency": "USD",
+      "order_total": 3450.75,
+      "status": "paid"
+    },
+    {
+      "buyer": "Summit Gear",
+      "channel_order_id": "AB-88106",
+      "currency": "USD",
+      "order_total": 2180.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Pacific Ecom Partners",
+      "channel_order_id": "AB-88101",
+      "currency": "USD",
+      "order_total": 4120.0,
+      "status": "paid"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 100.0,
+    "erp_state": 100.0,
+    "handoff": 100.0,
+    "readback": 100.0
+  },
+  "checks": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:task_contract",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:request_mail_search",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:request_mail",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:authority_memo",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:control_thread",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:ops_register",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:item_master",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:source_map",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch search investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:batch_search",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch file investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:batch_file",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing orders investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:existing_orders",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior order lines investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:prior_order_lines",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer account investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:customer_account",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the price list tab investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:price_list_tab",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior import thread investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:prior_import_thread",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded accepted lines (5).",
+      "evidence": {
+        "actual": 5,
+        "expected": 5
+      },
+      "id": "calculation:accepted_lines",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded rejected lines (3).",
+      "evidence": {
+        "actual": 3,
+        "expected": 3
+      },
+      "id": "calculation:rejected_lines",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded imported units (495).",
+      "evidence": {
+        "actual": 495,
+        "expected": 495
+      },
+      "id": "calculation:imported_units",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded order total (71280.0).",
+      "evidence": {
+        "actual": 71280.0,
+        "expected": 71280.0
+      },
+      "id": "calculation:order_total",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded duplicate lines (2).",
+      "evidence": {
+        "actual": 2,
+        "expected": 2
+      },
+      "id": "calculation:duplicate_lines",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option import_accepted_lines_and_submit.",
+      "evidence": {
+        "actual": "import_accepted_lines_and_submit",
+        "expected": "import_accepted_lines_and_submit"
+      },
+      "id": "decision:recommended_option",
+      "passed": true,
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-ALD-ORDER-BATCH-0209 rather than a superseded version.",
+      "evidence": {
+        "actual": "FILE-ALD-ORDER-BATCH-0209",
+        "expected": "FILE-ALD-ORDER-BATCH-0209"
+      },
+      "id": "decision:operative_source",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "evidence": {
+        "created_orders": [
+          "SO-ALD-50015"
+        ]
+      },
+      "id": "erp_state:primary_write",
+      "passed": true,
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "evidence": {
+        "forbidden": false,
+        "secondary": true
+      },
+      "id": "erp_state:secondary_write",
+      "passed": true,
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "evidence": {
+        "changes": 1,
+        "expected_range": "Register!A21:J21"
+      },
+      "id": "erp_state:register",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "evidence": {
+        "decision": "import_accepted_lines_and_submit",
+        "decision_id": "DECISION-erpbench-051",
+        "primary_record": "SO-ALD-50015",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-ALD-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-ALD-ORDER-BATCH-0209",
+          "MSG-erpbench-051-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-051"
+      },
+      "id": "erp_state:decision_record",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "evidence": {
+        "draft": true,
+        "numeric_mentions": 5
+      },
+      "id": "handoff:email_draft",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "evidence": {
+        "channel": "#ops-ald",
+        "post_id": "POST-erpbench-051",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-051",
+        "tenant_code": "ALDERWOOD",
+        "text": "erpbench-051: submitted / import_accepted_lines_and_submit / SO-ALD-50015 — review draft ready."
+      },
+      "id": "handoff:chat_post",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "evidence": "post-write ERP read",
+      "id": "readback:erp_record",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "evidence": "post-write register and decision reads",
+      "id": "readback:register_and_decision",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "evidence": "post-write communication reads",
+      "id": "readback:communications",
+      "passed": true,
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "evidence": "durable answer readback",
+      "id": "readback:submission",
+      "passed": true,
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "evidence": {
+        "audit_scoped": true,
+        "immutable": true,
+        "tool_errors": false,
+        "unrelated_rows_unchanged": true
+      },
+      "id": "containment:task_scope",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "evidence": {
+        "forbidden_write": false,
+        "review_status": "draft_for_review"
+      },
+      "id": "containment:review_gate",
+      "passed": true,
+      "points": 2
+    }
+  ],
+  "gradable": true,
+  "metric": "ERPScore",
+  "passed": true,
+  "reward": 1.0,
+  "schema_version": "erpbench.verdict.v1",
+  "score": 100.0,
+  "state_diff_tables": [
+    "sales_orders",
+    "mail_drafts",
+    "spreadsheets",
+    "sheet_changes",
+    "chat_posts",
+    "decisions",
+    "submissions",
+    "audit_log"
+  ],
+  "successful_tool_calls": 27,
+  "task_id": "erpbench-051",
+  "tool_calls": 27
+}

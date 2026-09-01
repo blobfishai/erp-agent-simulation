@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-092"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-092"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-092-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-TRV-2290'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-TRV-2290'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-TRV-2290'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-TRV-14420"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-TRV-2290"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-TRV-PICK-CONFIRM-0208",
+        "ShipmentLine": 700012,
+        "ShippedQuantity": 690,
+        "task_id": "erpbench-092"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-TRV-2290'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-092",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-TRV-2290",
+            "correct_short_picks_and_hold_over_picks",
+            6,
+            4,
+            1,
+            10,
+            125065.0,
+            "FILE-TRV-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-TRV-2290",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-TRV-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-TRV-PICK-CONFIRM-0208",
+          "MSG-erpbench-092-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-092"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 6; lines matching 4; lines corrected 1; units removed 10; confirmed value 125065.0. Primary record SHP-TRV-2290; operative source FILE-TRV-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-092 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-092",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-092",
+        "text": "erpbench-092: partial_hold / correct_short_picks_and_hold_over_picks / SHP-TRV-2290 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-092"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-092"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-092"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 125065.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 6,
+          "primary_record": "SHP-TRV-2290",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-TRV-PICK-CONFIRM-0208",
+          "units_removed": 10
+        },
+        "task_id": "erpbench-092"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-092"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

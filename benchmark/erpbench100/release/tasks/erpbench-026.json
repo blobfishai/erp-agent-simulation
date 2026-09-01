@@ -1,0 +1,822 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "blocked_workers": {
+        "type": "integer"
+      },
+      "checks_verified": {
+        "type": "integer"
+      },
+      "days_to_earliest_expiry": {
+        "type": "integer"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "expiring_within_30": {
+        "type": "integer"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "unalerted_expiring": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "expiring_within_30",
+      "unalerted_expiring",
+      "blocked_workers",
+      "checks_verified",
+      "days_to_earliest_expiry"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Meridian Staffing Services",
+  "context_files": [
+    "assets/meridian/01-consolidated-order-batch.xlsx",
+    "assets/meridian/02-prior-partial-import.xlsx",
+    "assets/meridian/03-current-price-list.csv",
+    "assets/meridian/04-superseded-price-list.csv",
+    "assets/meridian/05-pick-confirmation.csv",
+    "assets/meridian/06-remittance-advice.pdf",
+    "assets/meridian/07-ar-aging.xlsx",
+    "assets/meridian/08-credit-policy.md",
+    "assets/meridian/09-reorder-policy.xlsx",
+    "assets/meridian/10-demand-forecast.csv",
+    "assets/meridian/11-supplier-invoice.pdf",
+    "assets/meridian/12-delivery-note.pdf",
+    "assets/meridian/13-ap-match-policy.md",
+    "assets/meridian/14-compliance-checklist.xlsx",
+    "assets/meridian/15-document-alert-log.csv",
+    "assets/meridian/16-shift-roster.xlsx",
+    "assets/meridian/17-shift-work-reports.csv",
+    "assets/meridian/18-channel-export.json",
+    "assets/meridian/19-customer-capture-chat.json",
+    "assets/meridian/20-headcount-approval.pdf",
+    "assets/meridian/21-candidate-register.xlsx",
+    "assets/meridian/22-wage-table.csv",
+    "assets/meridian/23-price-batch.csv",
+    "assets/meridian/24-authority-memo.eml",
+    "assets/meridian/25-source-map.yaml",
+    "assets/meridian/26-ops-audit.log",
+    "assets/tasks/erpbench-026/task-brief.md",
+    "assets/tasks/erpbench-026/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "alert_expiring_and_block_failed_checks",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.document_records.list",
+  "expected_answer": {
+    "blocked_workers": 2,
+    "checks_verified": 2,
+    "days_to_earliest_expiry": 2,
+    "decision_status": "placements_blocked",
+    "expiring_within_30": 7,
+    "primary_record": "MSS-COMPLIANCE-0209",
+    "recommended_option": "alert_expiring_and_block_failed_checks",
+    "source_reference": "FILE-MSS-COMPLIANCE-CHECKLIST-0209",
+    "unalerted_expiring": 6
+  },
+  "gold_output": {
+    "answers": {
+      "blocked_workers": 2,
+      "checks_verified": 2,
+      "days_to_earliest_expiry": 2,
+      "decision_status": "placements_blocked",
+      "expiring_within_30": 7,
+      "primary_record": "MSS-COMPLIANCE-0209",
+      "recommended_option": "alert_expiring_and_block_failed_checks",
+      "source_reference": "FILE-MSS-COMPLIANCE-CHECKLIST-0209",
+      "unalerted_expiring": 6
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "alert_expiring_and_block_failed_checks",
+      "primary_record": "MSS-COMPLIANCE-0209",
+      "status": "placements_blocked"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "document_compliance",
+    "category_label": "Worker document compliance",
+    "company": "Meridian Staffing Services",
+    "country": "TW",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Workforce placement",
+    "nario_grounding": {
+      "archetype": "atm-management-cpmi-verify",
+      "production_runs_observed": 189,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "state_transition"
+    },
+    "profile": "staffing and placement agency",
+    "reference_tool_calls": 32,
+    "synthetic": true,
+    "tenant": "MERIDIAN"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-026"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-026"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-026-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Meridian Staffing Services'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Meridian Staffing Services'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400042,
+        "Status": "ALERTED",
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400094,
+        "Status": "ALERTED",
+        "task_id": "erpbench-026"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Meridian Staffing Services'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-026",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "MSS-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            7,
+            6,
+            2,
+            2,
+            2,
+            "FILE-MSS-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "MSS-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-MSS-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-MSS-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-026-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-026"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 7; unalerted expiring 6; blocked workers 2; checks verified 2; days to earliest expiry 2. Primary record MSS-COMPLIANCE-0209; operative source FILE-MSS-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-026 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-026",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-026",
+        "text": "erpbench-026: placements_blocked / alert_expiring_and_block_failed_checks / MSS-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-026"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-026"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-026"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 2,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 2,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 7,
+          "primary_record": "MSS-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-MSS-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 6
+        },
+        "task_id": "erpbench-026"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-026"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.document_records.update",
+  "prompt": "**Meridian Staffing Services · Taipei head office · Worker document compliance**\n\nThe compliance audit is next week. Find every worker document that expires within the next thirty days that nobody has been alerted about, work out who is blocked by a failed mandatory check, clear the dossier checks that can be verified from the file, and record the alerts. Enter the outcome in the compliance log and prepare the update for Tsai Ming-Hui to review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-026"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-026"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-026-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-MSS-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-mss"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-MSS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='MSS1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-MSS-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "LegalEmployerName='Meridian Staffing Services'"
+          },
+          "tool": "oracle_fusion.workers.list"
+        }
+      ],
+      "description": "workers",
+      "id": "workers"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "LegalEmployerName='Meridian Staffing Services'"
+          },
+          "tool": "oracle_fusion.document_records.list"
+        }
+      ],
+      "description": "document records",
+      "id": "document_records"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-MSS-COMPLIANCE-CHECKLIST-0209"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "checklist",
+      "id": "checklist"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-MSS-DOCUMENT-ALERT-LOG"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "alert log",
+      "id": "alert_log"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Compliance!A1:G14",
+            "spreadsheetId": "SHEET-MSS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "compliance tab",
+      "id": "compliance_tab"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "query": "compliance"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "hr thread",
+      "id": "hr_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-MSS-AUDITOR-0205"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "auditor mail",
+      "id": "auditor_mail"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the workers investigation before any controlled write.",
+      "id": "discovery:workers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the document records investigation before any controlled write.",
+      "id": "discovery:document_records",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the checklist investigation before any controlled write.",
+      "id": "discovery:checklist",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the alert log investigation before any controlled write.",
+      "id": "discovery:alert_log",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the compliance tab investigation before any controlled write.",
+      "id": "discovery:compliance_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the hr thread investigation before any controlled write.",
+      "id": "discovery:hr_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the auditor mail investigation before any controlled write.",
+      "id": "discovery:auditor_mail",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded expiring within 30 (7).",
+      "id": "calculation:expiring_within_30",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded unalerted expiring (6).",
+      "id": "calculation:unalerted_expiring",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded blocked workers (2).",
+      "id": "calculation:blocked_workers",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded checks verified (2).",
+      "id": "calculation:checks_verified",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded days to earliest expiry (2).",
+      "id": "calculation:days_to_earliest_expiry",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option alert_expiring_and_block_failed_checks.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-MSS-COMPLIANCE-CHECKLIST-0209 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-026",
+  "task_name": "Clear the document expiry and dossier backlog",
+  "tenant_code": "MERIDIAN",
+  "world_id": "fusion-erp-tenants-v1"
+}

@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from,superseded
+PCB-CTRL-A7,Controller PCB A7,36.58,Active,2025-07-01,true
+HARN-12P,12-pin wiring harness,6.56,Active,2025-07-01,true
+ENC-ALU-S,Aluminium enclosure S,11.78,Active,2025-07-01,true
+PSU-24V-60,24 V 60 W power module,19.95,Active,2025-07-01,true
+SENS-TEMP-K,Type K temperature sensor,7.89,Active,2025-07-01,true
+PCB-CTRL-A5-OLD,Controller PCB A5 (EOL),29.45,Active,2025-07-01,true

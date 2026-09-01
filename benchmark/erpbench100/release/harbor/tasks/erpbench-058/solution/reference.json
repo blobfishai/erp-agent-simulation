@@ -1,0 +1,279 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-058"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-058"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-058-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Wayfair'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Wayfair'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-60244"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Northwind Homes",
+        "CustomerPONumber": "WF-20902",
+        "OrderTotal": 3960.0,
+        "RequestedFulfillmentOrganizationCode": "ALD1",
+        "SourceTransactionNumber": "WF-20902",
+        "SourceTransactionSystem": "Wayfair",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-058"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Elm Street Design",
+        "CustomerPONumber": "WF-20903",
+        "OrderTotal": 2520.0,
+        "RequestedFulfillmentOrganizationCode": "ALD1",
+        "SourceTransactionNumber": "WF-20903",
+        "SourceTransactionSystem": "Wayfair",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-058"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Maple & Co",
+        "CustomerPONumber": "WF-20905",
+        "OrderTotal": 1890.0,
+        "RequestedFulfillmentOrganizationCode": "ALD1",
+        "SourceTransactionNumber": "WF-20905",
+        "SourceTransactionSystem": "Wayfair",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-058"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Loft 27",
+        "CustomerPONumber": "WF-20907",
+        "OrderTotal": 2310.0,
+        "RequestedFulfillmentOrganizationCode": "ALD1",
+        "SourceTransactionNumber": "WF-20907",
+        "SourceTransactionSystem": "Wayfair",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-058"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Wayfair'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-058",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Northwind Homes",
+            "",
+            "buyers@northwind-sim.example",
+            "VN-15-908233",
+            "Wayfair"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-058",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-ALD-52007",
+            "create_unsynced_orders_and_capture_customer",
+            8,
+            3,
+            4,
+            1,
+            10680.0,
+            "FILE-ALD-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-ALD-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-ALD-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-ALD-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-058-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-058"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 8; already synced 3; created orders 4; duplicate rows 1; synced value 10680.0. Primary record SO-ALD-52007; operative source FILE-ALD-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-058 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-058",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-058",
+        "text": "erpbench-058: synced / create_unsynced_orders_and_capture_customer / SO-ALD-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-058"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-058"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-058"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 8,
+          "created_orders": 4,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-ALD-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-ALD-CHANNEL-EXPORT-0209",
+          "synced_value": 10680.0
+        },
+        "task_id": "erpbench-058"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-058"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

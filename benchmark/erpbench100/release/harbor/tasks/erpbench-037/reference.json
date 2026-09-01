@@ -1,0 +1,435 @@
+{
+  "expected_answer": {
+    "decision_status": "absences_recorded",
+    "expected_staff": 13,
+    "late_reports": 3,
+    "missing_staff": 1,
+    "overtime_hours": 1.83,
+    "primary_record": "ROLLUP-SGF-2026-02-08-MORNING",
+    "recommended_option": "post_rollup_and_record_unauthorized_absences",
+    "reporting_staff": 12,
+    "source_reference": "FILE-SGF-SHIFT-ROSTER-0208"
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-037"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-037"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-037-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='SGF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Sungrove Foods' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Sungrove Foods'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Morning"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Sungrove Foods",
+        "endDate": "2026-02-08",
+        "personNumber": "SG-416",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-037"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Sungrove Foods' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-037",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-SGF-2026-02-08-MORNING",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            12,
+            3,
+            1.83,
+            1,
+            "FILE-SGF-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-SGF-2026-02-08-MORNING",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-SGF-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-SGF-SHIFT-ROSTER-0208",
+          "MSG-erpbench-037-REQUEST",
+          "MSG-SGF-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-037"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Sungrove Foods: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 13; reporting staff 12; late reports 3; overtime hours 1.83; missing staff 1. Primary record ROLLUP-SGF-2026-02-08-MORNING; operative source FILE-SGF-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-037 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-037",
+        "to": "ayu.kartika@sungrove-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-037",
+        "text": "erpbench-037: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-SGF-2026-02-08-MORNING — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-037"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-037"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "task_id": "erpbench-037"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 1,
+          "overtime_hours": 1.83,
+          "primary_record": "ROLLUP-SGF-2026-02-08-MORNING",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 12,
+          "source_reference": "FILE-SGF-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-037"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-037"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the work reports investigation before any controlled write.",
+      "id": "discovery:work_reports",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the roster investigation before any controlled write.",
+      "id": "discovery:roster",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the absences investigation before any controlled write.",
+      "id": "discovery:absences",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the workers investigation before any controlled write.",
+      "id": "discovery:workers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shift tab investigation before any controlled write.",
+      "id": "discovery:shift_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shift thread investigation before any controlled write.",
+      "id": "discovery:shift_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the supervisor mail investigation before any controlled write.",
+      "id": "discovery:supervisor_mail",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded expected staff (13).",
+      "id": "calculation:expected_staff",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded reporting staff (12).",
+      "id": "calculation:reporting_staff",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded late reports (3).",
+      "id": "calculation:late_reports",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded overtime hours (1.83).",
+      "id": "calculation:overtime_hours",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded missing staff (1).",
+      "id": "calculation:missing_staff",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option post_rollup_and_record_unauthorized_absences.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-SGF-SHIFT-ROSTER-0208 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-037"
+}

@@ -1,0 +1,247 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-086"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-086"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-086-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='BLF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-086"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-086"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-086"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "task_id": "erpbench-086"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-086"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Bluefin Marine Parts'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-086",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "BLF-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            6,
+            5,
+            1,
+            2,
+            3,
+            "FILE-BLF-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "BLF-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-BLF-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-BLF-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-086-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-086"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 6; unalerted expiring 5; blocked workers 1; checks verified 2; days to earliest expiry 3. Primary record BLF-COMPLIANCE-0209; operative source FILE-BLF-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-086 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-086",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-086",
+        "text": "erpbench-086: placements_blocked / alert_expiring_and_block_failed_checks / BLF-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-086"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-086"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-086"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 3,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 6,
+          "primary_record": "BLF-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-BLF-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 5
+        },
+        "task_id": "erpbench-086"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-086"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

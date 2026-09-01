@@ -1,0 +1,229 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-067"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-067-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Caldera Packaging' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Swing"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-713",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-067"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Caldera Packaging",
+        "endDate": "2026-02-08",
+        "personNumber": "CL-714",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-067"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Caldera Packaging' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-067",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-CLD-2026-02-08-SWING",
+            "post_rollup_and_record_unauthorized_absences",
+            13,
+            11,
+            3,
+            1.25,
+            2,
+            "FILE-CLD-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-CLD-2026-02-08-SWING",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-CLD-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-CLD-SHIFT-ROSTER-0208",
+          "MSG-erpbench-067-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-067"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 13; reporting staff 11; late reports 3; overtime hours 1.25; missing staff 2. Primary record ROLLUP-CLD-2026-02-08-SWING; operative source FILE-CLD-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-067 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-067",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-067",
+        "text": "erpbench-067: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-CLD-2026-02-08-SWING — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-067"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-067"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 13,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.25,
+          "primary_record": "ROLLUP-CLD-2026-02-08-SWING",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 11,
+          "source_reference": "FILE-CLD-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-067"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-067"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

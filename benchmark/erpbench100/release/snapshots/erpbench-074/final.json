@@ -1,0 +1,2526 @@
+{
+  "absences": [
+    {
+      "absence_id": 1,
+      "absence_status": "APPROVED",
+      "absence_type": "Approved leave",
+      "created_by": "hr_lead",
+      "employer": "Riverstone Medical Supply",
+      "end_date": "2026-02-08",
+      "last_task_id": null,
+      "person_number": "RV-809",
+      "start_date": "2026-02-08",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "ap_invoices": [],
+  "audit_log": [
+    {
+      "audit_id": 1,
+      "payload": {
+        "Description": "Reorder run RVS1 2026-02-09 under policy FILE-RVS-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Riverstone Distribution",
+        "lines": [
+          {
+            "ItemNumber": "GLV-NIT-M",
+            "Quantity": 5300,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 5.6
+          },
+          {
+            "ItemNumber": "SYR-5ML-100",
+            "Quantity": 1250,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 8.1
+          },
+          {
+            "ItemNumber": "THERM-IR",
+            "Quantity": 240,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 21.5
+          }
+        ],
+        "task_id": "erpbench-074"
+      },
+      "target": "REQ-RVS-61015",
+      "task_id": "erpbench-074",
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "audit_id": 2,
+      "payload": {
+        "purchaseRequisitionsUniqID": "REQ-RVS-61015",
+        "task_id": "erpbench-074"
+      },
+      "target": "REQ-RVS-61015",
+      "task_id": "erpbench-074",
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "audit_id": 3,
+      "payload": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-074",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-RVS-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            6790,
+            44965.0,
+            11,
+            1,
+            "FILE-RVS-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "target": "SHEET-RVS-OPS",
+      "task_id": "erpbench-074",
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "audit_id": 4,
+      "payload": {
+        "decision": "requisition_primary_supplier_and_flag_lateness",
+        "primary_record": "REQ-RVS-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-RVS-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-RVS-REORDER-POLICY-R4",
+          "MSG-erpbench-074-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted_late_risk",
+        "task_id": "erpbench-074"
+      },
+      "target": "DECISION-erpbench-074",
+      "task_id": "erpbench-074",
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "audit_id": 5,
+      "payload": {
+        "body": "Riverstone Medical Supply: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 6790; requisition amount 44965.0; supplier lead time days 11; days late 1. Primary record REQ-RVS-61015; operative source FILE-RVS-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-074 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-074",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "target": "DRAFT-erpbench-074",
+      "task_id": "erpbench-074",
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "audit_id": 6,
+      "payload": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-074",
+        "text": "erpbench-074: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-RVS-61015 — review draft ready."
+      },
+      "target": "POST-erpbench-074",
+      "task_id": "erpbench-074",
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "audit_id": 7,
+      "payload": {
+        "answers": {
+          "days_late": 1,
+          "decision_status": "requisition_submitted_late_risk",
+          "primary_record": "REQ-RVS-61015",
+          "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+          "requisition_amount": 44965.0,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-RVS-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 11,
+          "total_reorder_units": 6790
+        },
+        "task_id": "erpbench-074"
+      },
+      "target": "erpbench-074",
+      "task_id": "erpbench-074",
+      "tool": "erpbench.submit_answer"
+    }
+  ],
+  "channel_orders": [
+    {
+      "buyer": "Bayfront Dental",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61001",
+      "order_total": 1120.0,
+      "row_id": 1,
+      "synced_order_number": "SO-RVS-45003",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Clementi Family Clinic",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61002",
+      "order_total": 2640.5,
+      "row_id": 2,
+      "synced_order_number": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Woodlands Physio",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61003",
+      "order_total": 780.0,
+      "row_id": 3,
+      "synced_order_number": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Tampines Eldercare",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61004",
+      "order_total": 3310.0,
+      "row_id": 4,
+      "synced_order_number": "SO-RVS-45012",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Woodlands Physio",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61003",
+      "order_total": 780.0,
+      "row_id": 5,
+      "synced_order_number": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Bishan Vet Clinic",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61005",
+      "order_total": 1455.25,
+      "row_id": 6,
+      "synced_order_number": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "buyer": "Marina Pharmacy",
+      "channel": "Lazada",
+      "channel_order_id": "LZ-61006",
+      "order_total": 920.0,
+      "row_id": 7,
+      "synced_order_number": "SO-RVS-45021",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "chat_messages": [
+    {
+      "author": "sales-inbox",
+      "channel": "#customers-rvs",
+      "message_id": "CHAT-RVS-CAPTURE-1",
+      "posted_at": "2026-02-09T06:30:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "New buyer from Lazada: Clementi Family Clinic, tax id SG-20-441870, orders via orders@clementifc-sim.example. Needs a master record before invoicing.",
+      "thread_id": "THREAD-RVS-CAPTURE"
+    },
+    {
+      "author": "Ryan Teo",
+      "channel": "#customers-rvs",
+      "message_id": "CHAT-RVS-CAPTURE-2",
+      "posted_at": "2026-02-09T06:35:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order.",
+      "thread_id": "THREAD-RVS-CAPTURE"
+    },
+    {
+      "author": "Marcus Ng",
+      "channel": "#hr-rvs",
+      "message_id": "CHAT-RVS-HR",
+      "posted_at": "2026-02-06T09:00:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Compliance audit next week; document alerts, failed checks and the hiring round all need closing this week.",
+      "thread_id": "THREAD-RVS-HR"
+    },
+    {
+      "author": "Ryan Teo",
+      "channel": "#planning-rvs",
+      "message_id": "CHAT-RVS-PLANNING",
+      "posted_at": "2026-02-09T07:45:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Reorder run today: use policy R4 (open POs count as supply) and the 10-day need window; Medigrade Manufacturing lead time is 11 days.",
+      "thread_id": "THREAD-RVS-PLAN"
+    },
+    {
+      "author": "pricing",
+      "channel": "#pricing-rvs",
+      "message_id": "CHAT-RVS-PRICING",
+      "posted_at": "2026-02-09T08:20:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Price batch PRICE-BATCH-RVS-2026Q2 is out; policy tab in the ops register applies.",
+      "thread_id": "THREAD-RVS-PRICE"
+    },
+    {
+      "author": "Ryan Teo",
+      "channel": "#ops-rvs",
+      "message_id": "CHAT-RVS-PRIOR-IMPORT",
+      "posted_at": "2026-02-03T10:20:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Partial import for HVC-2026-0201 went in on 2026-02-03 as SO-RVS-40039; the rest of the lines are still pending.",
+      "thread_id": "THREAD-RVS-IMPORT"
+    },
+    {
+      "author": "Zul Hakim",
+      "channel": "#shift-rvs",
+      "message_id": "CHAT-RVS-SHIFT",
+      "posted_at": "2026-02-08T21:00:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "Day shift 2026-02-08: reports due by 18:00; overtime is measured from shift end.",
+      "thread_id": "THREAD-RVS-SHIFT"
+    },
+    {
+      "author": "Zul Hakim",
+      "channel": "#warehouse-rvs",
+      "message_id": "CHAT-RVS-WAREHOUSE",
+      "posted_at": "2026-02-08T22:10:00Z",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "text": "SHP-RVS-5580 picked; the pick confirmation is uploaded, a couple of lines did not match the requested quantity.",
+      "thread_id": "THREAD-RVS-WH"
+    },
+    {
+      "author": "Ryan Teo",
+      "channel": "#ops-rvs",
+      "message_id": "CHAT-erpbench-074-1",
+      "posted_at": "2026-02-09T09:00:00Z",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE",
+      "text": "Please resolve erpbench-074 against the current February authority; keep the handoff in review.",
+      "thread_id": "THREAD-erpbench-074"
+    },
+    {
+      "author": "controls",
+      "channel": "#ops-rvs",
+      "message_id": "CHAT-erpbench-074-2",
+      "posted_at": "2026-02-09T09:00:00Z",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE",
+      "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+      "thread_id": "THREAD-erpbench-074"
+    }
+  ],
+  "chat_posts": [
+    {
+      "channel": "#ops-rvs",
+      "post_id": "POST-erpbench-074",
+      "review_status": "draft_for_review",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE",
+      "text": "erpbench-074: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-RVS-61015 — review draft ready."
+    }
+  ],
+  "customers": [
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 1,
+      "credit_limit": 75000.0,
+      "customer_number": "CUST-80633",
+      "name": "Harbourview Clinics",
+      "payment_terms": "Net 30",
+      "source_message_id": "MSG-RVS-CUSTOMER-SETUP",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 0,
+      "credit_limit": 40000.0,
+      "customer_number": "CUST-RVS-DECOY1",
+      "name": "Medical Outlet Co.",
+      "payment_terms": "Net 30",
+      "source_message_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 1,
+      "credit_limit": 55000.0,
+      "customer_number": "CUST-RVS-DECOY2",
+      "name": "Northern Regional Buyers",
+      "payment_terms": "Net 45",
+      "source_message_id": null,
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "requisition_primary_supplier_and_flag_lateness",
+      "decision_id": "DECISION-erpbench-074",
+      "primary_record": "REQ-RVS-61015",
+      "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-RVS-REORDER-POLICY-R4.",
+      "source_refs": [
+        "FILE-RVS-REORDER-POLICY-R4",
+        "MSG-erpbench-074-REQUEST",
+        "MSG-RVS-AUTHORITY-0209"
+      ],
+      "status": "requisition_submitted_late_risk",
+      "task_id": "erpbench-074"
+    }
+  ],
+  "document_records": [
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-02-20",
+      "document_record_id": 400003,
+      "document_type": "Cold-chain handling certificate",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1001",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-03-05",
+      "document_record_id": 400016,
+      "document_type": "Forklift licence",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1002",
+      "status": "ALERTED",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 1,
+      "date_to": "2026-03-10",
+      "document_record_id": 400029,
+      "document_type": "Work permit",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1003",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-03-21",
+      "document_record_id": 400042,
+      "document_type": "Health check",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1004",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "fail",
+      "check_pending": 0,
+      "date_to": "2026-02-15",
+      "document_record_id": 400055,
+      "document_type": "Cold-chain handling certificate",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1005",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-03-02",
+      "document_record_id": 400068,
+      "document_type": "Safety induction",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1006",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-05-20",
+      "document_record_id": 400081,
+      "document_type": "Work permit",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1007",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 1,
+      "date_to": "2026-02-27",
+      "document_record_id": 400094,
+      "document_type": "Health check",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "person_number": "RVS-P1008",
+      "status": "ACTIVE",
+      "tenant_code": "RIVERSTONE",
+      "verified_flag": 0
+    }
+  ],
+  "drive_files": [
+    {
+      "content": "# Riverstone Medical Supply three-way match policy\n\n- Price tolerance: 1.5% of the purchase-order unit price per line.\n- Invoiced quantity may never exceed the received quantity.\n- Lines outside tolerance are entered and placed on hold with the reason; matched lines are validated for payment.\n- Payment release is authorized by Shalini Devi after the analyst's match note.\n",
+      "file_id": "FILE-RVS-AP-MATCH-POLICY",
+      "is_current": 1,
+      "logical_name": "ap-match-policy",
+      "mime_type": "text/markdown",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "13-ap-match-policy.md",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Invoice,Amount,Due date,Days past due,Status\r\nINV-RVS-13310,21500.0,2025-12-22,49,open\r\nINV-RVS-13367,9800.0,2026-01-09,31,open\r\nINV-RVS-13421,13400.0,2026-01-23,17,open\r\nINV-RVS-13478,7600.0,2026-02-04,5,open\r\nINV-RVS-13530,11200.0,2026-02-16,0,open\r\n",
+      "file_id": "FILE-RVS-AR-AGING-0209",
+      "is_current": 1,
+      "logical_name": "ar-aging",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "07-ar-aging.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "From: ryan.teo@riverstone-sim.example\nTo: analyst@riverstone-sim.example\nSubject: Riverstone Medical Supply operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+      "file_id": "FILE-RVS-AUTHORITY-MEMO-0209",
+      "is_current": 1,
+      "logical_name": "authority-memo",
+      "mime_type": "message/rfc822",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "24-authority-memo.eml",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Candidate,Candidate id,Permit expiry,Background check,Grade\r\nIsmail Bakar,RVS-C201,2027-10-02,passed,B\r\nChloe Lee,RVS-C202,2026-08-28,passed,B\r\nRajesh Nair,RVS-C203,2029-09-01,passed,B\r\nAina Zahra,RVS-C204,2028-06-08,passed,B\r\nBrandon Koh,RVS-C205,2028-01-10,not passed,B\r\n",
+      "file_id": "FILE-RVS-CANDIDATE-REGISTER",
+      "is_current": 1,
+      "logical_name": "candidate-register",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "21-candidate-register.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "{\n  \"channel\": \"Lazada\",\n  \"exported_at\": \"2026-02-02T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Bayfront Dental\",\n      \"channel_order_id\": \"LZ-61001\",\n      \"order_total\": 1120.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Tampines Eldercare\",\n      \"channel_order_id\": \"LZ-61004\",\n      \"order_total\": 3310.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Marina Pharmacy\",\n      \"channel_order_id\": \"LZ-61006\",\n      \"order_total\": 920.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+      "file_id": "FILE-RVS-CHANNEL-EXPORT-0202",
+      "is_current": 0,
+      "logical_name": "channel-export",
+      "mime_type": "application/json",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "Lazada-export-2026-02-02.json",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "{\n  \"channel\": \"Lazada\",\n  \"exported_at\": \"2026-02-09T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Bayfront Dental\",\n      \"channel_order_id\": \"LZ-61001\",\n      \"currency\": \"USD\",\n      \"order_total\": 1120.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Clementi Family Clinic\",\n      \"channel_order_id\": \"LZ-61002\",\n      \"currency\": \"USD\",\n      \"order_total\": 2640.5,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Woodlands Physio\",\n      \"channel_order_id\": \"LZ-61003\",\n      \"currency\": \"USD\",\n      \"order_total\": 780.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Tampines Eldercare\",\n      \"channel_order_id\": \"LZ-61004\",\n      \"currency\": \"USD\",\n      \"order_total\": 3310.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Woodlands Physio\",\n      \"channel_order_id\": \"LZ-61003\",\n      \"currency\": \"USD\",\n      \"order_total\": 780.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Bishan Vet Clinic\",\n      \"channel_order_id\": \"LZ-61005\",\n      \"currency\": \"USD\",\n      \"order_total\": 1455.25,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Marina Pharmacy\",\n      \"channel_order_id\": \"LZ-61006\",\n      \"currency\": \"USD\",\n      \"order_total\": 920.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+      "file_id": "FILE-RVS-CHANNEL-EXPORT-0209",
+      "is_current": 1,
+      "logical_name": "channel-export",
+      "mime_type": "application/json",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "18-channel-export.json",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Person,Person number,Document,Expires,Days remaining\nNurul Izzah,RVS-P1001,Cold-chain handling certificate,2026-02-20,25\nKelvin Lim,RVS-P1002,Forklift licence,2026-03-05,38\nDeepa Menon,RVS-P1003,Work permit,2026-03-10,43\nHafiz Rahman,RVS-P1004,Health check,2026-03-21,54\nGrace Tan,RVS-P1005,Cold-chain handling certificate,2026-02-15,20\nArjun Das,RVS-P1006,Safety induction,2026-03-02,35\nMei Ling Chua,RVS-P1007,Work permit,2026-05-20,114\nSiti Aminah,RVS-P1008,Health check,2026-02-27,32\n",
+      "file_id": "FILE-RVS-COMPLIANCE-CHECKLIST-0126",
+      "is_current": 0,
+      "logical_name": "compliance-checklist",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "compliance-checklist-2026-01-26.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "Person,Person number,Document,Expires,Days remaining,Mandatory check,Check pending\r\nNurul Izzah,RVS-P1001,Cold-chain handling certificate,2026-02-20,11,pass,no\r\nKelvin Lim,RVS-P1002,Forklift licence,2026-03-05,24,pass,no\r\nDeepa Menon,RVS-P1003,Work permit,2026-03-10,29,pass,yes\r\nHafiz Rahman,RVS-P1004,Health check,2026-03-21,40,pass,no\r\nGrace Tan,RVS-P1005,Cold-chain handling certificate,2026-02-15,6,fail,no\r\nArjun Das,RVS-P1006,Safety induction,2026-03-02,21,pass,no\r\nMei Ling Chua,RVS-P1007,Work permit,2026-05-20,100,pass,no\r\nSiti Aminah,RVS-P1008,Health check,2026-02-27,18,pass,yes\r\n",
+      "file_id": "FILE-RVS-COMPLIANCE-CHECKLIST-0209",
+      "is_current": 1,
+      "logical_name": "compliance-checklist",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "14-compliance-checklist.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "# Riverstone Medical Supply credit policy (revision 6, effective 2026-01-15)\n\n- Credit limit for Harbourview Clinics: 75000.00 USD.\n- Recommend a credit hold when past-due receivables exceed 25% of the credit limit after all identified receipts are applied.\n- Credit holds are approved only by Shalini Devi; analysts recommend, they do not apply holds.\n- Receipts are applied only to the invoices named on the customer's remittance advice.\n",
+      "file_id": "FILE-RVS-CREDIT-POLICY-R6",
+      "is_current": 1,
+      "logical_name": "credit-policy",
+      "mime_type": "text/markdown",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "08-credit-policy.md",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "{\n  \"channel\": \"#customers-rvs\",\n  \"messages\": [\n    {\n      \"author\": \"sales-inbox\",\n      \"text\": \"New buyer from Lazada: Clementi Family Clinic, tax id SG-20-441870, orders via orders@clementifc-sim.example. Needs a master record before invoicing.\"\n    },\n    {\n      \"author\": \"Ryan Teo\",\n      \"text\": \"Capture it in the customer master tab, not as a note; check the channel export for their first order.\"\n    }\n  ]\n}",
+      "file_id": "FILE-RVS-CUSTOMER-CAPTURE-0209",
+      "is_current": 1,
+      "logical_name": "customer-capture-chat",
+      "mime_type": "application/json",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "19-customer-capture-chat.json",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Medigrade Manufacturing — delivery note DN-RVS-0206 for PO-RVS-61022\nDelivered to Jurong distribution centre on 2026-02-06, signed by receiving clerk.\nLine 1: GLV-NIT-M  ordered 4000  delivered 4000\nLine 2: MSK-SURG-3  ordered 6000  delivered 6000\nLine 3: SYR-5ML-100  ordered 1200  delivered 1000\nLine 4: GAUZE-4X4  ordered 2000  delivered 2000\nQuantities below the ordered amount are back-ordered, not short-shipped.\n",
+      "file_id": "FILE-RVS-DELIVERY-NOTE-0206",
+      "is_current": 1,
+      "logical_name": "delivery-note",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "12-delivery-note.pdf",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "item,weekly_demand,need_window_days,forecast_revision\nGLV-NIT-M,750,10,F-2026-06\nMSK-SURG-3,1250,10,F-2026-06\nSYR-5ML-100,175,10,F-2026-06\nGAUZE-4X4,300,10,F-2026-06\nTHERM-IR,30,10,F-2026-06\nMSK-CLOTH-OLD,1,10,F-2026-06\n",
+      "file_id": "FILE-RVS-DEMAND-FORECAST-F06",
+      "is_current": 1,
+      "logical_name": "demand-forecast",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "10-demand-forecast.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "person_number,document,alerted_on,alerted_by\nRVS-P1002,Forklift licence,2026-01-28,Marcus Ng\n",
+      "file_id": "FILE-RVS-DOCUMENT-ALERT-LOG",
+      "is_current": 1,
+      "logical_name": "document-alert-log",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "15-document-alert-log.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Riverstone Medical Supply headcount approval 2025 (superseded)\nPosition: cold-chain picker   Approved headcount: 8\nApproved monthly wage: 1645.00\nSuperseded by the 2026 approval.\n",
+      "file_id": "FILE-RVS-HEADCOUNT-APPROVAL-2025",
+      "is_current": 0,
+      "logical_name": "headcount-approval",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "headcount-approval-2025.pdf",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "Riverstone Medical Supply headcount approval 2026 (revision 2)\nPosition: cold-chain picker   Approved headcount: 6   Standard contract: 12 months\nApproved monthly wage: 1750.00 USD\nApproved by Marcus Ng on 2026-01-20. Supersedes the 2025 approval.\nOnly candidates with passed background checks and work permits valid beyond the contract end may be hired.\n",
+      "file_id": "FILE-RVS-HEADCOUNT-APPROVAL-2026",
+      "is_current": 1,
+      "logical_name": "headcount-approval",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "20-headcount-approval.pdf",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "2026-02-03T10:12:00Z RVS partial import created SO-RVS-40039 from an earlier copy of HVC-2026-0201\n2026-02-06T15:40:00Z RVS delivery note DN-RVS-0206 received at Jurong distribution centre\n2026-02-08T22:05:00Z RVS pick confirmation posted for SHP-RVS-5580\n2026-02-09T06:00:00Z RVS Lazada export generated\n",
+      "file_id": "FILE-RVS-OPS-AUDIT-LOG",
+      "is_current": 1,
+      "logical_name": "ops-audit",
+      "mime_type": "text/plain",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "26-ops-audit.log",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Line,Customer PO,Item,Quantity,Imported order,Imported on\r\n6,HVC-2026-0201,GLV-NIT-M,300,SO-RVS-40039,2026-02-03\r\n8,HVC-2026-0201,SYR-5ML-100,120,SO-RVS-40039,2026-02-03\r\n",
+      "file_id": "FILE-RVS-ORDER-BATCH-0203",
+      "is_current": 0,
+      "logical_name": "prior-partial-import",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-03T10:00:00Z",
+      "name": "02-prior-partial-import.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,HVC-2026-0201,GLV-NIT-M,Nitrile gloves M (box 100),900,9.35\r\n2,HVC-2026-0201,MSK-SURG-3,Surgical mask level 3 (50),1500,6.51\r\n3,HVC-2026-0201,SYR-5ML-100,Syringe 5 ml (100),300,13.13\r\n4,HVC-2026-0201,GAUZE-4X4,Gauze pad 4 x 4 (200),450,7.77\r\n5,HVC-2026-0201,THERM-IR,Infrared thermometer,60,35.7\r\n6,HVC-2026-0201,GLV-NIT-M,Nitrile gloves M (box 100),300,9.35\r\n7,HVC-2026-0201,MSK-CLOTH-OLD,Cloth mask (retired),200,2.21\r\n8,HVC-2026-0201,SYR-5ML-100,Syringe 5 ml (100),120,13.13\r\n9,HVC-2026-0201,MSK-SURG-3,Surgical mask level 3 (50),500,6.51\r\n",
+      "file_id": "FILE-RVS-ORDER-BATCH-0209",
+      "is_current": 1,
+      "logical_name": "consolidated-order-batch",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "01-consolidated-order-batch.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-RVS-5580,1,GLV-NIT-M,800,800,WH-11,2026-02-05T20:11:00Z\nSHP-RVS-5580,2,MSK-SURG-3,1200,1200,WH-12,2026-02-05T20:12:00Z\nSHP-RVS-5580,3,SYR-5ML-100,250,250,WH-13,2026-02-05T20:13:00Z\nSHP-RVS-5580,4,GAUZE-4X4,400,400,WH-14,2026-02-05T20:14:00Z\nSHP-RVS-5580,5,THERM-IR,50,50,WH-15,2026-02-05T20:15:00Z\nSHP-RVS-5580,6,MSK-SURG-3,300,300,WH-16,2026-02-05T20:16:00Z\n",
+      "file_id": "FILE-RVS-PICK-CONFIRM-0205",
+      "is_current": 0,
+      "logical_name": "pick-confirmation",
+      "mime_type": "text/csv",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "SHP-RVS-5580-pick-confirmation-2026-02-05.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-RVS-5580,1,GLV-NIT-M,800,800,WH-11,2026-02-08T21:11:00Z\nSHP-RVS-5580,2,MSK-SURG-3,1200,1170,WH-12,2026-02-08T21:12:00Z\nSHP-RVS-5580,3,SYR-5ML-100,250,250,WH-13,2026-02-08T21:13:00Z\nSHP-RVS-5580,4,GAUZE-4X4,400,400,WH-14,2026-02-08T21:14:00Z\nSHP-RVS-5580,5,THERM-IR,50,52,WH-15,2026-02-08T21:15:00Z\nSHP-RVS-5580,6,MSK-SURG-3,300,300,WH-16,2026-02-08T21:16:00Z\n",
+      "file_id": "FILE-RVS-PICK-CONFIRM-0208",
+      "is_current": 1,
+      "logical_name": "pick-confirmation",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "05-pick-confirmation.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-RVS-2026Q1,1,GLV-NIT-M,8.90,2026-01-01\nPRICE-BATCH-RVS-2026Q1,2,MSK-SURG-3,6.20,2026-01-01\nPRICE-BATCH-RVS-2026Q1,3,SYR-5ML-100,12.50,2026-01-01\nPRICE-BATCH-RVS-2026Q1,4,GAUZE-4X4,7.40,2026-01-01\nPRICE-BATCH-RVS-2026Q1,5,THERM-IR,34.00,2026-01-01\nPRICE-BATCH-RVS-2026Q1,6,MSK-CLOTH-OLD,2.10,2026-01-01\n",
+      "file_id": "FILE-RVS-PRICE-BATCH-Q1",
+      "is_current": 0,
+      "logical_name": "price-batch",
+      "mime_type": "text/csv",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "PRICE-BATCH-RVS-2026Q1.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-RVS-2026Q2,1,GLV-NIT-M,9.30,2026-02-27\nPRICE-BATCH-RVS-2026Q2,2,MSK-SURG-3,6.40,2026-02-27\nPRICE-BATCH-RVS-2026Q2,3,SYR-5ML-100,12.90,2026-02-27\nPRICE-BATCH-RVS-2026Q2,4,GAUZE-4X4,8.50,2026-02-27\nPRICE-BATCH-RVS-2026Q2,5,THERM-IR,35.00,2026-02-07\nPRICE-BATCH-RVS-2026Q2,6,GLV-NIT-M,9.60,2026-03-29\nPRICE-BATCH-RVS-2026Q2,7,GLV-NIT-L,9.30,2026-02-27\nPRICE-BATCH-RVS-2026Q2,8,MSK-CLOTH-OLD,2.20,2026-02-27\n",
+      "file_id": "FILE-RVS-PRICE-BATCH-Q2",
+      "is_current": 1,
+      "logical_name": "price-batch",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "23-price-batch.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "item,description,list_price,status,effective_from,superseded\nGLV-NIT-M,Nitrile gloves M (box 100),8.46,Active,2025-07-01,true\nMSK-SURG-3,Surgical mask level 3 (50),5.89,Active,2025-07-01,true\nSYR-5ML-100,Syringe 5 ml (100),11.88,Active,2025-07-01,true\nGAUZE-4X4,Gauze pad 4 x 4 (200),7.03,Active,2025-07-01,true\nTHERM-IR,Infrared thermometer,32.30,Active,2025-07-01,true\nMSK-CLOTH-OLD,Cloth mask (retired),2.00,Active,2025-07-01,true\n",
+      "file_id": "FILE-RVS-PRICE-LIST-2025H2",
+      "is_current": 0,
+      "logical_name": "superseded-price-list",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-03T10:00:00Z",
+      "name": "04-superseded-price-list.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "item,description,list_price,status,effective_from\nGLV-NIT-M,Nitrile gloves M (box 100),8.90,Active,2026-01-01\nMSK-SURG-3,Surgical mask level 3 (50),6.20,Active,2026-01-01\nSYR-5ML-100,Syringe 5 ml (100),12.50,Active,2026-01-01\nGAUZE-4X4,Gauze pad 4 x 4 (200),7.40,Active,2026-01-01\nTHERM-IR,Infrared thermometer,34.00,Active,2026-01-01\nMSK-CLOTH-OLD,Cloth mask (retired),2.10,Inactive,2026-01-01\n",
+      "file_id": "FILE-RVS-PRICE-LIST-CURRENT",
+      "is_current": 1,
+      "logical_name": "current-price-list",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "03-current-price-list.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Harbourview Clinics — remittance advice\nPayee: Riverstone Medical Supply\nPayment date: 2026-02-07   Method: GIRO\nAmount paid: 17400.00 USD\nInvoices covered by this payment:\n  INV-RVS-13367  9800.00\n  INV-RVS-13478  7600.00\nInvoices not included in this remittance are disputed or scheduled separately.\n",
+      "file_id": "FILE-RVS-REMIT-ADVICE-0206",
+      "is_current": 1,
+      "logical_name": "remittance-advice",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "06-remittance-advice.pdf",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Item,Reorder point,Planned maximum,Count open POs as supply,Policy revision\nGLV-NIT-M,2800,8000,no,R3\nMSK-SURG-3,4800,12000,no,R3\nSYR-5ML-100,500,1800,no,R3\nGAUZE-4X4,1000,2800,no,R3\nTHERM-IR,0,320,no,R3\nMSK-CLOTH-OLD,0,0,no,R3\n",
+      "file_id": "FILE-RVS-REORDER-POLICY-R3",
+      "is_current": 0,
+      "logical_name": "reorder-policy",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "reorder-policy-R3.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 1
+    },
+    {
+      "content": "Item,Reorder point,Planned maximum,Count open POs as supply,Policy revision\r\nGLV-NIT-M,3000,8000,yes,R4\r\nMSK-SURG-3,5000,12000,yes,R4\r\nSYR-5ML-100,700,1800,yes,R4\r\nGAUZE-4X4,1200,2800,yes,R4\r\nTHERM-IR,120,320,yes,R4\r\nMSK-CLOTH-OLD,0,0,yes,R4\r\n",
+      "file_id": "FILE-RVS-REORDER-POLICY-R4",
+      "is_current": 1,
+      "logical_name": "reorder-policy",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "09-reorder-policy.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "staff_code,shift_date,submitted_at,minutes_over_shift_end\nRV-801,2026-02-08,17:50,0\nRV-802,2026-02-08,17:58,0\nRV-803,2026-02-08,18:07,25\nRV-804,2026-02-08,17:55,0\nRV-805,2026-02-08,18:12,0\nRV-806,2026-02-08,17:52,0\nRV-807,2026-02-08,17:59,0\nRV-808,2026-02-08,18:03,35\n",
+      "file_id": "FILE-RVS-SHIFT-REPORTS-0208",
+      "is_current": 1,
+      "logical_name": "shift-work-reports",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "17-shift-work-reports.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Staff code,Shift,Date,Approved leave\r\nRV-801,Day,2026-02-08,no\r\nRV-802,Day,2026-02-08,no\r\nRV-803,Day,2026-02-08,no\r\nRV-804,Day,2026-02-08,no\r\nRV-805,Day,2026-02-08,no\r\nRV-806,Day,2026-02-08,no\r\nRV-807,Day,2026-02-08,no\r\nRV-808,Day,2026-02-08,no\r\nRV-809,Day,2026-02-08,yes\r\nRV-810,Day,2026-02-08,no\r\nRV-811,Day,2026-02-08,no\r\n",
+      "file_id": "FILE-RVS-SHIFT-ROSTER-0208",
+      "is_current": 1,
+      "logical_name": "shift-roster",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "16-shift-roster.xlsx",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "tenant: RIVERSTONE\norder_batch: FILE-RVS-ORDER-BATCH-0209\npick_confirmation: FILE-RVS-PICK-CONFIRM-0208\nremittance_advice: FILE-RVS-REMIT-ADVICE-0206\nreorder_policy: FILE-RVS-REORDER-POLICY-R4\ndelivery_note: FILE-RVS-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-RVS-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-RVS-SHIFT-ROSTER-0208\nchannel_export: FILE-RVS-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-RVS-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-RVS-PRICE-BATCH-Q2\n",
+      "file_id": "FILE-RVS-SOURCE-MAP",
+      "is_current": 1,
+      "logical_name": "source-map",
+      "mime_type": "application/yaml",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "25-source-map.yaml",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "Medigrade Manufacturing — tax invoice MGM-INV-8814\nBill to: Riverstone Medical Supply (Riverstone Distribution)\nPurchase order: PO-RVS-61022   Invoice date: 2026-02-07\nLine 1: GLV-NIT-M  qty 4000  @ 5.60\nLine 2: MSK-SURG-3  qty 6000  @ 3.85\nLine 3: SYR-5ML-100  qty 1000  @ 8.10\nLine 4: GAUZE-4X4  qty 2000  @ 4.60\nInvoice total: 62800.00 USD\n",
+      "file_id": "FILE-RVS-SUPPLIER-INVOICE-0207",
+      "is_current": 1,
+      "logical_name": "supplier-invoice",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "11-supplier-invoice.pdf",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    },
+    {
+      "content": "position,monthly_wage,contract_months,approved_from\ncold-chain picker,1750.00,12,2026-01-20\n",
+      "file_id": "FILE-RVS-WAGE-TABLE",
+      "is_current": 1,
+      "logical_name": "wage-table",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "22-wage-table.csv",
+      "tenant_code": "RIVERSTONE",
+      "version": 2
+    }
+  ],
+  "invoice_holds": [],
+  "items": [
+    {
+      "description": "Nitrile gloves M (box 100)",
+      "item_id": 300003,
+      "item_number": "GLV-NIT-M",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 8.9,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 5.6
+    },
+    {
+      "description": "Surgical mask level 3 (50)",
+      "item_id": 300010,
+      "item_number": "MSK-SURG-3",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 6.2,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 3.7
+    },
+    {
+      "description": "Syringe 5 ml (100)",
+      "item_id": 300017,
+      "item_number": "SYR-5ML-100",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 12.5,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 8.1
+    },
+    {
+      "description": "Gauze pad 4 x 4 (200)",
+      "item_id": 300024,
+      "item_number": "GAUZE-4X4",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 7.4,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 4.6
+    },
+    {
+      "description": "Infrared thermometer",
+      "item_id": 300031,
+      "item_number": "THERM-IR",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 34.0,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 21.5
+    },
+    {
+      "description": "Cloth mask (retired)",
+      "item_id": 300038,
+      "item_number": "MSK-CLOTH-OLD",
+      "item_status": "Inactive",
+      "last_task_id": null,
+      "list_price": 2.1,
+      "organization_code": "RVS1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "RIVERSTONE",
+      "unit_cost": 1.2
+    }
+  ],
+  "mail_drafts": [
+    {
+      "body": "Riverstone Medical Supply: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 6790; requisition amount 44965.0; supplier lead time days 11; days late 1. Primary record REQ-RVS-61015; operative source FILE-RVS-REORDER-POLICY-R4. Draft for review, not sent.",
+      "draft_id": "DRAFT-erpbench-074",
+      "recipient": "ryan.teo@riverstone-sim.example",
+      "review_status": "draft_for_review",
+      "subject": "erpbench-074 — Run the reorder review and raise the requisition — for review",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "mail_messages": [
+    {
+      "body": "The audit covers worker documents expiring within 30 days and any mandatory check that has failed or is still pending. Use the 2026-02-09 checklist (FILE-RVS-COMPLIANCE-CHECKLIST-0209); the January checklist is superseded.",
+      "message_id": "MSG-RVS-AUDITOR-0205",
+      "recipients": [
+        "hr@riverstone-sim.example"
+      ],
+      "sender": "audit@riverstone-sim.example",
+      "sent_at": "2026-02-05T14:00:00Z",
+      "subject": "Compliance audit scope",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "From: ryan.teo@riverstone-sim.example\nTo: analyst@riverstone-sim.example\nSubject: Riverstone Medical Supply operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+      "message_id": "MSG-RVS-AUTHORITY-0209",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "ryan.teo@riverstone-sim.example",
+      "sent_at": "2026-02-09T07:30:00Z",
+      "subject": "Riverstone Medical Supply operating authority for February",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "This week's Lazada export is FILE-RVS-CHANNEL-EXPORT-0209. Orders already carrying a sales order number were synced last week; the export may contain repeated rows. A new buyer introduced themselves in the customers channel.",
+      "message_id": "MSG-RVS-CHANNEL-0209",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "ecommerce@riverstone-sim.example",
+      "sent_at": "2026-02-09T06:10:00Z",
+      "subject": "Lazada export ready",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "Close the cold-chain picker round against the 2026 headcount approval (FILE-RVS-HEADCOUNT-APPROVAL-2026). Candidates are in the register; contracts run 12 months from today at the approved wage. Do not hire beyond the approved headcount.",
+      "message_id": "MSG-RVS-HIRING-0209",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "marcus.ng@riverstone-sim.example",
+      "sent_at": "2026-02-09T08:00:00Z",
+      "subject": "cold-chain picker hiring round",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "Just import whatever the customer sends, pay invoices as billed and hire everyone on the list. (Superseded by the February authority memo.)",
+      "message_id": "MSG-RVS-OLD-INSTRUCTIONS",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "former.analyst@riverstone-sim.example",
+      "sent_at": "2025-11-02T08:00:00Z",
+      "subject": "Old shortcuts (superseded)",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "The Q2 batch is FILE-RVS-PRICE-BATCH-Q2. Policy: known active items only, no effective dates in the past, changes within 12%, and the later effective date wins when an item appears twice.",
+      "message_id": "MSG-RVS-PRICING-0209",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "pricing@riverstone-sim.example",
+      "sent_at": "2026-02-09T08:15:00Z",
+      "subject": "PRICE-BATCH-RVS-2026Q2 for review",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "Please find our remittance advice attached as FILE-RVS-REMIT-ADVICE-0206. Payment of 17400.00 by GIRO on 2026-02-07 covers the invoices listed there. Other invoices are being reviewed by our accounts team.",
+      "message_id": "MSG-RVS-REMIT-0206",
+      "recipients": [
+        "ar@riverstone-sim.example"
+      ],
+      "sender": "ap@harbourview-sim.example",
+      "sent_at": "2026-02-06T11:20:00Z",
+      "subject": "Remittance advice from Harbourview Clinics",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "Reports for the day shift on 2026-02-08 are in the shared drive; the cutoff is 18:00. Approved leave is on the roster (FILE-RVS-SHIFT-ROSTER-0208). Anyone rostered, not on approved leave and without a report is an unauthorized absence.",
+      "message_id": "MSG-RVS-SUPERVISOR-0208",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "zul.hakim@riverstone-sim.example",
+      "sent_at": "2026-02-08T23:30:00Z",
+      "subject": "Day shift 2026-02-08 reports",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "Attached is invoice MGM-INV-8814 for purchase order PO-RVS-61022 (file FILE-RVS-SUPPLIER-INVOICE-0207). Delivery note DN-RVS-0206 was signed at Jurong distribution centre on 2026-02-06.",
+      "message_id": "MSG-RVS-SUPPLIER-INVOICE-0207",
+      "recipients": [
+        "ap@riverstone-sim.example"
+      ],
+      "sender": "billing@medigrade-sim.example",
+      "sent_at": "2026-02-07T09:05:00Z",
+      "subject": "Invoice MGM-INV-8814 for PO-RVS-61022",
+      "task_id": null,
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "body": "**Riverstone Medical Supply · Jurong distribution centre · Reorder monitoring and requisition**\n\nPlanning wants the reorder run for the Jurong distribution centre done today. Work out which items are genuinely below their reorder point once reservations and open purchase orders are counted, how much each needs to come back to its planned level, and whether Medigrade Manufacturing can deliver inside the 10-day window or whether an expedite option is worth raising. Raise the requisition that current policy supports, log it in the register, and post the planning update for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+      "message_id": "MSG-erpbench-074-REQUEST",
+      "recipients": [
+        "analyst@riverstone-sim.example"
+      ],
+      "sender": "amanda.goh@riverstone-sim.example",
+      "sent_at": "2026-02-09T09:00:00Z",
+      "subject": "erpbench-074 operating request",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "onhand_balances": [
+    {
+      "balance_id": 100,
+      "item_number": "GLV-NIT-M",
+      "onhand_quantity": 4200,
+      "organization_code": "RVS1",
+      "reserved_quantity": 1500,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "balance_id": 101,
+      "item_number": "MSK-SURG-3",
+      "onhand_quantity": 6100,
+      "organization_code": "RVS1",
+      "reserved_quantity": 900,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "balance_id": 102,
+      "item_number": "SYR-5ML-100",
+      "onhand_quantity": 800,
+      "organization_code": "RVS1",
+      "reserved_quantity": 250,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "balance_id": 103,
+      "item_number": "GAUZE-4X4",
+      "onhand_quantity": 1600,
+      "organization_code": "RVS1",
+      "reserved_quantity": 300,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "balance_id": 104,
+      "item_number": "THERM-IR",
+      "onhand_quantity": 140,
+      "organization_code": "RVS1",
+      "reserved_quantity": 60,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "balance_id": 105,
+      "item_number": "MSK-CLOTH-OLD",
+      "onhand_quantity": 90,
+      "organization_code": "RVS1",
+      "reserved_quantity": 0,
+      "subinventory": "MAIN",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "purchase_order_lines": [
+    {
+      "item_number": "GLV-NIT-M",
+      "last_task_id": null,
+      "line_number": 1,
+      "po_line_id": 8800271,
+      "po_number": "PO-RVS-61022",
+      "promised_date": "2026-02-06",
+      "quantity": 4000,
+      "received_quantity": 0,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 5.6
+    },
+    {
+      "item_number": "MSK-SURG-3",
+      "last_task_id": null,
+      "line_number": 2,
+      "po_line_id": 8800272,
+      "po_number": "PO-RVS-61022",
+      "promised_date": "2026-02-06",
+      "quantity": 6000,
+      "received_quantity": 0,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 3.7
+    },
+    {
+      "item_number": "SYR-5ML-100",
+      "last_task_id": null,
+      "line_number": 3,
+      "po_line_id": 8800273,
+      "po_number": "PO-RVS-61022",
+      "promised_date": "2026-02-06",
+      "quantity": 1200,
+      "received_quantity": 0,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 8.1
+    },
+    {
+      "item_number": "GAUZE-4X4",
+      "last_task_id": null,
+      "line_number": 4,
+      "po_line_id": 8800274,
+      "po_number": "PO-RVS-61022",
+      "promised_date": "2026-02-06",
+      "quantity": 2000,
+      "received_quantity": 0,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 4.6
+    },
+    {
+      "item_number": "MSK-SURG-3",
+      "last_task_id": null,
+      "line_number": 1,
+      "po_line_id": 8800281,
+      "po_number": "PO-RVS-OPEN-SUPPLY",
+      "promised_date": "2026-02-14",
+      "quantity": 1500,
+      "received_quantity": 0,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 3.7
+    }
+  ],
+  "purchase_orders": [
+    {
+      "buyer": "buyer",
+      "order_date": "2026-01-26",
+      "po_id": 880027,
+      "po_number": "PO-RVS-61022",
+      "status": "Open",
+      "supplier": "Medigrade Manufacturing",
+      "supplier_number": "SUP-9902",
+      "tenant_code": "RIVERSTONE",
+      "total_amount": 62800.0
+    },
+    {
+      "buyer": "buyer",
+      "order_date": "2025-12-10",
+      "po_id": 880029,
+      "po_number": "PO-RVS-CLOSED",
+      "status": "Closed",
+      "supplier": "Medigrade Manufacturing",
+      "supplier_number": "SUP-9902",
+      "tenant_code": "RIVERSTONE",
+      "total_amount": 980.0
+    },
+    {
+      "buyer": "buyer",
+      "order_date": "2026-02-01",
+      "po_id": 880028,
+      "po_number": "PO-RVS-OPEN-SUPPLY",
+      "status": "Open",
+      "supplier": "Medigrade Manufacturing",
+      "supplier_number": "SUP-9902",
+      "tenant_code": "RIVERSTONE",
+      "total_amount": 5550.0
+    }
+  ],
+  "purchase_requisitions": [
+    {
+      "created_by": "analyst",
+      "description": "Reorder run RVS1 2026-02-09 under policy FILE-RVS-REORDER-POLICY-R4",
+      "document_status": "Pending approval",
+      "justification": "3 items at or below reorder point after reservations and open supply",
+      "last_task_id": "erpbench-074",
+      "lines": [
+        {
+          "ItemNumber": "GLV-NIT-M",
+          "Quantity": 5300,
+          "RequestedDeliveryDate": "2026-02-20",
+          "Supplier": "Medigrade Manufacturing",
+          "UOM": "EA",
+          "UnitPrice": 5.6
+        },
+        {
+          "ItemNumber": "SYR-5ML-100",
+          "Quantity": 1250,
+          "RequestedDeliveryDate": "2026-02-20",
+          "Supplier": "Medigrade Manufacturing",
+          "UOM": "EA",
+          "UnitPrice": 8.1
+        },
+        {
+          "ItemNumber": "THERM-IR",
+          "Quantity": 240,
+          "RequestedDeliveryDate": "2026-02-20",
+          "Supplier": "Medigrade Manufacturing",
+          "UOM": "EA",
+          "UnitPrice": 21.5
+        }
+      ],
+      "preparer": "analyst",
+      "requisition_id": 610021,
+      "requisition_number": "REQ-RVS-61015",
+      "requisitioning_bu": "Riverstone Distribution",
+      "tenant_code": "RIVERSTONE",
+      "total_amount": 44965.0
+    }
+  ],
+  "receivables_invoices": [
+    {
+      "balance_due": 21500.0,
+      "bill_to_customer_number": "CUST-80633",
+      "customer_transaction_id": 900003,
+      "due_date": "2025-12-22",
+      "entered_amount": 21500.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-RVS-13310"
+    },
+    {
+      "balance_due": 9800.0,
+      "bill_to_customer_number": "CUST-80633",
+      "customer_transaction_id": 900014,
+      "due_date": "2026-01-09",
+      "entered_amount": 9800.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-RVS-13367"
+    },
+    {
+      "balance_due": 13400.0,
+      "bill_to_customer_number": "CUST-80633",
+      "customer_transaction_id": 900025,
+      "due_date": "2026-01-23",
+      "entered_amount": 13400.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-RVS-13421"
+    },
+    {
+      "balance_due": 7600.0,
+      "bill_to_customer_number": "CUST-80633",
+      "customer_transaction_id": 900036,
+      "due_date": "2026-02-04",
+      "entered_amount": 7600.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-RVS-13478"
+    },
+    {
+      "balance_due": 11200.0,
+      "bill_to_customer_number": "CUST-80633",
+      "customer_transaction_id": 900047,
+      "due_date": "2026-02-16",
+      "entered_amount": 11200.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-RVS-13530"
+    },
+    {
+      "balance_due": 3200.0,
+      "bill_to_customer_number": "CUST-RVS-DECOY1",
+      "customer_transaction_id": 999003,
+      "due_date": "2026-02-19",
+      "entered_amount": 3200.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "RIVERSTONE",
+      "transaction_date": "2026-01-20",
+      "transaction_number": "INV-RVS-DECOY"
+    }
+  ],
+  "receiving_receipt_requests": [],
+  "sales_orders": [
+    {
+      "buying_party_name": "Harbourview Clinics",
+      "buying_party_number": "CUST-80633",
+      "created_at": "2026-02-03T10:12:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "HVC-2026-0201",
+      "last_task_id": null,
+      "lines": [
+        {
+          "OrderedQuantity": 300,
+          "OrderedUOM": "EA",
+          "ProductNumber": "GLV-NIT-M",
+          "UnitListPrice": 8.9
+        },
+        {
+          "OrderedQuantity": 120,
+          "OrderedUOM": "EA",
+          "ProductNumber": "SYR-5ML-100",
+          "UnitListPrice": 12.5
+        }
+      ],
+      "order_number": "SO-RVS-40039",
+      "order_total": 4170.0,
+      "organization_code": "RVS1",
+      "source_message_id": "MSG-RVS-ORDER-0203",
+      "source_transaction_number": "FILE-RVS-ORDER-BATCH-0203",
+      "source_transaction_system": "OPS",
+      "status": "Awaiting Shipping",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Bayfront Dental",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "LZ-61001",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-RVS-45003",
+      "order_total": 1120.0,
+      "organization_code": "RVS1",
+      "source_message_id": null,
+      "source_transaction_number": "LZ-61001",
+      "source_transaction_system": "Lazada",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Tampines Eldercare",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "LZ-61004",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-RVS-45012",
+      "order_total": 3310.0,
+      "organization_code": "RVS1",
+      "source_message_id": null,
+      "source_transaction_number": "LZ-61004",
+      "source_transaction_system": "Lazada",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Marina Pharmacy",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "LZ-61006",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-RVS-45021",
+      "order_total": 920.0,
+      "organization_code": "RVS1",
+      "source_message_id": null,
+      "source_transaction_number": "LZ-61006",
+      "source_transaction_system": "Lazada",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Harbourview Clinics",
+      "buying_party_number": "CUST-80633",
+      "created_at": "2026-01-30T09:00:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "HVC-2026-0201-B",
+      "last_task_id": null,
+      "lines": [
+        {
+          "OrderedQuantity": 800,
+          "OrderedUOM": "EA",
+          "ProductNumber": "GLV-NIT-M",
+          "UnitListPrice": 8.9
+        },
+        {
+          "OrderedQuantity": 1200,
+          "OrderedUOM": "EA",
+          "ProductNumber": "MSK-SURG-3",
+          "UnitListPrice": 6.2
+        },
+        {
+          "OrderedQuantity": 250,
+          "OrderedUOM": "EA",
+          "ProductNumber": "SYR-5ML-100",
+          "UnitListPrice": 12.5
+        },
+        {
+          "OrderedQuantity": 400,
+          "OrderedUOM": "EA",
+          "ProductNumber": "GAUZE-4X4",
+          "UnitListPrice": 7.4
+        },
+        {
+          "OrderedQuantity": 50,
+          "OrderedUOM": "EA",
+          "ProductNumber": "THERM-IR",
+          "UnitListPrice": 34.0
+        },
+        {
+          "OrderedQuantity": 300,
+          "OrderedUOM": "EA",
+          "ProductNumber": "MSK-SURG-3",
+          "UnitListPrice": 6.2
+        }
+      ],
+      "order_number": "SO-RVS-92210",
+      "order_total": 22319.0,
+      "organization_code": "RVS1",
+      "source_message_id": "MSG-RVS-ORDER-0130",
+      "source_transaction_number": "MSG-RVS-ORDER-0130",
+      "source_transaction_system": "OPS",
+      "status": "Awaiting Shipping",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Medical Outlet Co.",
+      "buying_party_number": "CUST-RVS-DECOY1",
+      "created_at": "2026-01-12T09:00:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "OUTLET-118",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-RVS-DECOY",
+      "order_total": 1280.0,
+      "organization_code": "RVS1",
+      "source_message_id": null,
+      "source_transaction_number": "MANUAL-2026-01",
+      "source_transaction_system": "OPS",
+      "status": "Closed",
+      "submitted_flag": 1,
+      "tenant_code": "RIVERSTONE",
+      "transaction_type": "Standard Orders"
+    }
+  ],
+  "sheet_changes": [
+    {
+      "cell_range": "Register!A24:J24",
+      "change_id": "CHANGE-erpbench-074-1",
+      "operation": "update",
+      "spreadsheet_id": "SHEET-RVS-OPS",
+      "task_id": "erpbench-074",
+      "tenant_code": "RIVERSTONE",
+      "values": [
+        [
+          "REQ-RVS-61015",
+          "requisition_primary_supplier_and_flag_lateness",
+          3,
+          6790,
+          44965.0,
+          11,
+          1,
+          "FILE-RVS-REORDER-POLICY-R4"
+        ]
+      ]
+    }
+  ],
+  "shipment_lines": [
+    {
+      "comments": null,
+      "item_number": "GLV-NIT-M",
+      "last_task_id": null,
+      "line_number": 1,
+      "line_status": "Shipped",
+      "requested_quantity": 40,
+      "shipment": "SHP-RVS-DECOY",
+      "shipment_line_id": 700003,
+      "shipped_quantity": 40,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 8.9
+    },
+    {
+      "comments": null,
+      "item_number": "GLV-NIT-M",
+      "last_task_id": null,
+      "line_number": 1,
+      "line_status": "Staged",
+      "requested_quantity": 800,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700006,
+      "shipped_quantity": 800,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 8.9
+    },
+    {
+      "comments": null,
+      "item_number": "MSK-SURG-3",
+      "last_task_id": null,
+      "line_number": 2,
+      "line_status": "Staged",
+      "requested_quantity": 1200,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700009,
+      "shipped_quantity": 1200,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 6.2
+    },
+    {
+      "comments": null,
+      "item_number": "SYR-5ML-100",
+      "last_task_id": null,
+      "line_number": 3,
+      "line_status": "Staged",
+      "requested_quantity": 250,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700012,
+      "shipped_quantity": 250,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 12.5
+    },
+    {
+      "comments": null,
+      "item_number": "GAUZE-4X4",
+      "last_task_id": null,
+      "line_number": 4,
+      "line_status": "Staged",
+      "requested_quantity": 400,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700015,
+      "shipped_quantity": 400,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 7.4
+    },
+    {
+      "comments": null,
+      "item_number": "THERM-IR",
+      "last_task_id": null,
+      "line_number": 5,
+      "line_status": "Staged",
+      "requested_quantity": 50,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700018,
+      "shipped_quantity": 50,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 34.0
+    },
+    {
+      "comments": null,
+      "item_number": "MSK-SURG-3",
+      "last_task_id": null,
+      "line_number": 6,
+      "line_status": "Staged",
+      "requested_quantity": 300,
+      "shipment": "SHP-RVS-5580",
+      "shipment_line_id": 700021,
+      "shipped_quantity": 300,
+      "tenant_code": "RIVERSTONE",
+      "unit_price": 6.2
+    }
+  ],
+  "shipments": [
+    {
+      "order_number": "SO-RVS-92210",
+      "organization_code": "RVS1",
+      "planned_ship_date": "2026-02-09",
+      "ship_to_customer": "Harbourview Clinics",
+      "shipment": "SHP-RVS-5580",
+      "shipment_status": "Staged",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "order_number": "SO-RVS-DECOY",
+      "organization_code": "RVS1",
+      "planned_ship_date": "2026-01-14",
+      "ship_to_customer": "Medical Outlet Co.",
+      "shipment": "SHP-RVS-DECOY",
+      "shipment_status": "Shipped",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "spreadsheets": [
+    {
+      "ranges": {
+        "Aging!A1:E12": [
+          [
+            "Invoice",
+            "Amount",
+            "Due",
+            "Days past due",
+            "Status"
+          ],
+          [
+            "INV-RVS-13310",
+            21500.0,
+            "2025-12-22",
+            49,
+            "open"
+          ],
+          [
+            "INV-RVS-13367",
+            9800.0,
+            "2026-01-09",
+            31,
+            "open"
+          ],
+          [
+            "INV-RVS-13421",
+            13400.0,
+            "2026-01-23",
+            17,
+            "open"
+          ],
+          [
+            "INV-RVS-13478",
+            7600.0,
+            "2026-02-04",
+            5,
+            "open"
+          ],
+          [
+            "INV-RVS-13530",
+            11200.0,
+            "2026-02-16",
+            0,
+            "open"
+          ]
+        ],
+        "Compliance!A1:G14": [
+          [
+            "Person",
+            "Person number",
+            "Document",
+            "Expires",
+            "Days",
+            "Check",
+            "Alerted"
+          ],
+          [
+            "Nurul Izzah",
+            "RVS-P1001",
+            "Cold-chain handling certificate",
+            "2026-02-20",
+            11,
+            "pass",
+            "no"
+          ],
+          [
+            "Kelvin Lim",
+            "RVS-P1002",
+            "Forklift licence",
+            "2026-03-05",
+            24,
+            "pass",
+            "yes"
+          ],
+          [
+            "Deepa Menon",
+            "RVS-P1003",
+            "Work permit",
+            "2026-03-10",
+            29,
+            "pass",
+            "no"
+          ],
+          [
+            "Hafiz Rahman",
+            "RVS-P1004",
+            "Health check",
+            "2026-03-21",
+            40,
+            "pass",
+            "no"
+          ],
+          [
+            "Grace Tan",
+            "RVS-P1005",
+            "Cold-chain handling certificate",
+            "2026-02-15",
+            6,
+            "fail",
+            "no"
+          ],
+          [
+            "Arjun Das",
+            "RVS-P1006",
+            "Safety induction",
+            "2026-03-02",
+            21,
+            "pass",
+            "no"
+          ],
+          [
+            "Mei Ling Chua",
+            "RVS-P1007",
+            "Work permit",
+            "2026-05-20",
+            100,
+            "pass",
+            "no"
+          ],
+          [
+            "Siti Aminah",
+            "RVS-P1008",
+            "Health check",
+            "2026-02-27",
+            18,
+            "pass",
+            "no"
+          ]
+        ],
+        "Customers!A1:E12": [
+          [
+            "Customer",
+            "Number",
+            "Email",
+            "Tax id",
+            "Channel"
+          ],
+          [
+            "Harbourview Clinics",
+            "CUST-80633",
+            "ap@harbourview-sim.example",
+            "TX-RVS-0001",
+            "direct"
+          ],
+          [
+            "Medical Outlet Co.",
+            "CUST-RVS-DECOY1",
+            "buyer@outlet-sim.example",
+            "TX-RVS-0002",
+            "direct"
+          ]
+        ],
+        "Headcount!A1:E12": [
+          [
+            "Position",
+            "Approved",
+            "Current",
+            "Open",
+            "Revision"
+          ],
+          [
+            "cold-chain picker",
+            6,
+            4,
+            "",
+            "2026-R2"
+          ]
+        ],
+        "PriceList!A1:E12": [
+          [
+            "Item",
+            "Description",
+            "List price",
+            "Status",
+            "Effective"
+          ],
+          [
+            "GLV-NIT-M",
+            "Nitrile gloves M (box 100)",
+            8.9,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "MSK-SURG-3",
+            "Surgical mask level 3 (50)",
+            6.2,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "SYR-5ML-100",
+            "Syringe 5 ml (100)",
+            12.5,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "GAUZE-4X4",
+            "Gauze pad 4 x 4 (200)",
+            7.4,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "THERM-IR",
+            "Infrared thermometer",
+            34.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "MSK-CLOTH-OLD",
+            "Cloth mask (retired)",
+            2.1,
+            "Inactive",
+            "2026-01-01"
+          ]
+        ],
+        "PricingPolicy!A1:C6": [
+          [
+            "Rule",
+            "Value",
+            "Note"
+          ],
+          [
+            "Maximum change pct",
+            12.0,
+            "per line versus current list price"
+          ],
+          [
+            "Past effective dates",
+            "reject",
+            ""
+          ],
+          [
+            "Unknown or inactive items",
+            "reject",
+            ""
+          ],
+          [
+            "Same item twice",
+            "later effective date wins",
+            "earlier line superseded"
+          ]
+        ],
+        "Register!A1:H40": [
+          [
+            "Record",
+            "Option",
+            "Values",
+            "",
+            "",
+            "",
+            "",
+            "Source"
+          ],
+          [
+            "SO-RVS-DECOY",
+            "closed_manual_order",
+            1,
+            0,
+            1280.0,
+            0,
+            0,
+            "MANUAL-2026-01"
+          ]
+        ],
+        "Register!A24:J24": [
+          [
+            "REQ-RVS-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            6790,
+            44965.0,
+            11,
+            1,
+            "FILE-RVS-REORDER-POLICY-R4"
+          ]
+        ],
+        "Reorder!A1:F12": [
+          [
+            "Item",
+            "Reorder point",
+            "Planned maximum",
+            "Open POs count",
+            "Revision",
+            "Need window"
+          ],
+          [
+            "GLV-NIT-M",
+            3000,
+            8000,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "MSK-SURG-3",
+            5000,
+            12000,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "SYR-5ML-100",
+            700,
+            1800,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "GAUZE-4X4",
+            1200,
+            2800,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "THERM-IR",
+            120,
+            320,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "MSK-CLOTH-OLD",
+            0,
+            0,
+            "yes",
+            "R4",
+            10
+          ]
+        ],
+        "Shifts!A1:F30": [
+          [
+            "Staff",
+            "Shift",
+            "Date",
+            "Approved leave",
+            "Reported",
+            "Late"
+          ],
+          [
+            "RV-801",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-802",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-803",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-804",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-805",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-806",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-807",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-808",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-809",
+            "Day",
+            "2026-02-08",
+            "yes",
+            "",
+            ""
+          ],
+          [
+            "RV-810",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "RV-811",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ]
+        ],
+        "Shipping!A1:F20": [
+          [
+            "Shipment",
+            "Order",
+            "Status",
+            "Lines",
+            "Value",
+            "Verified"
+          ],
+          [
+            "SHP-RVS-DECOY",
+            "SO-RVS-DECOY",
+            "Shipped",
+            1,
+            356.0,
+            "yes"
+          ],
+          [
+            "SHP-RVS-5580",
+            "SO-RVS-92210",
+            "Staged",
+            6,
+            "",
+            "no"
+          ]
+        ]
+      },
+      "spreadsheet_id": "SHEET-RVS-OPS",
+      "tenant_code": "RIVERSTONE",
+      "title": "Riverstone Medical Supply operations register"
+    }
+  ],
+  "standard_receipts": [
+    {
+      "business_unit": "Riverstone Distribution",
+      "created_by": "ar_clerk",
+      "currency": "USD",
+      "customer_account_number": "CUST-80633",
+      "last_task_id": null,
+      "receipt_amount": 4400.0,
+      "receipt_date": "2026-01-22",
+      "receipt_method": "Wire",
+      "receipt_number": "RCPT-RVS-PRIOR",
+      "receipt_status": "Applied",
+      "remittance_references": [
+        {
+          "ApplyAmount": 4400.0,
+          "ReferenceNumber": "INV-RVS-PRIOR",
+          "ReferenceType": "INVOICE"
+        }
+      ],
+      "standard_receipt_id": 930003,
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "submissions": [
+    {
+      "answers": {
+        "days_late": 1,
+        "decision_status": "requisition_submitted_late_risk",
+        "primary_record": "REQ-RVS-61015",
+        "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+        "requisition_amount": 44965.0,
+        "skus_below_reorder": 3,
+        "source_reference": "FILE-RVS-REORDER-POLICY-R4",
+        "supplier_lead_time_days": 11,
+        "total_reorder_units": 6790
+      },
+      "task_id": "erpbench-074"
+    }
+  ],
+  "suppliers": [
+    {
+      "expedite_premium_pct": 0.0,
+      "lead_time_days": 11,
+      "name": "Medigrade Manufacturing",
+      "supplier_number": "SUP-9902",
+      "supplier_status": "Active",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "expedite_premium_pct": 16.0,
+      "lead_time_days": 4,
+      "name": "Changi Med Air",
+      "supplier_number": "SUP-9950",
+      "supplier_status": "Active",
+      "tenant_code": "RIVERSTONE"
+    },
+    {
+      "expedite_premium_pct": 0.0,
+      "lead_time_days": 30,
+      "name": "Legacy Components Ltd.",
+      "supplier_number": "SUP-RVS-DECOY",
+      "supplier_status": "Inactive",
+      "tenant_code": "RIVERSTONE"
+    }
+  ],
+  "tenants": [
+    {
+      "as_of": "2026-02-09T09:00:00Z",
+      "business_unit": "Riverstone Distribution",
+      "code": "RIVERSTONE",
+      "company": "Riverstone Medical Supply",
+      "country": "SG",
+      "currency": "USD",
+      "org": "RVS1",
+      "profile": "medical distributor"
+    }
+  ],
+  "users": [
+    {
+      "approval_limit": 0.0,
+      "email": "analyst@riverstone-sim.example",
+      "name": "Operations analyst",
+      "role": "analyst",
+      "tenant_code": "RIVERSTONE",
+      "user_id": "analyst"
+    },
+    {
+      "approval_limit": 250000.0,
+      "email": "shalini.devi@riverstone-sim.example",
+      "name": "Shalini Devi",
+      "role": "finance lead",
+      "tenant_code": "RIVERSTONE",
+      "user_id": "finance_lead"
+    },
+    {
+      "approval_limit": 50000.0,
+      "email": "marcus.ng@riverstone-sim.example",
+      "name": "Marcus Ng",
+      "role": "hr lead",
+      "tenant_code": "RIVERSTONE",
+      "user_id": "hr_lead"
+    },
+    {
+      "approval_limit": 25000.0,
+      "email": "ryan.teo@riverstone-sim.example",
+      "name": "Ryan Teo",
+      "role": "operations lead",
+      "tenant_code": "RIVERSTONE",
+      "user_id": "ops_lead"
+    }
+  ],
+  "workers": [
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-801",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-801",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-802",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-802",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-803",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-803",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-804",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-804",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-805",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-805",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-806",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-806",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-807",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-807",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-808",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-808",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-809",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-809",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-810",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-810",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff RV-811",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RV-811",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Nurul Izzah",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1001",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Kelvin Lim",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1002",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Deepa Menon",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1003",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Hafiz Rahman",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1004",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Grace Tan",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1005",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Arjun Das",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1006",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Mei Ling Chua",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1007",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Siti Aminah",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": null,
+      "person_number": "RVS-P1008",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 1",
+      "hire_date": "2025-03-01",
+      "job_code": "cold-chain picker",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": 1750.0,
+      "person_number": "RVS-P3001",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 2",
+      "hire_date": "2025-03-01",
+      "job_code": "cold-chain picker",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": 1750.0,
+      "person_number": "RVS-P3002",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 3",
+      "hire_date": "2025-03-01",
+      "job_code": "cold-chain picker",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": 1750.0,
+      "person_number": "RVS-P3003",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 4",
+      "hire_date": "2025-03-01",
+      "job_code": "cold-chain picker",
+      "last_task_id": null,
+      "legal_employer_name": "Riverstone Medical Supply",
+      "monthly_salary": 1750.0,
+      "person_number": "RVS-P3004",
+      "tenant_code": "RIVERSTONE",
+      "worker_status": "Active"
+    }
+  ]
+}

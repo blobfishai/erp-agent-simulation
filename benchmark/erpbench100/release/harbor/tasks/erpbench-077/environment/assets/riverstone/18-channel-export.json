@@ -1,0 +1,55 @@
+{
+  "channel": "Lazada",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Bayfront Dental",
+      "channel_order_id": "LZ-61001",
+      "currency": "USD",
+      "order_total": 1120.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Clementi Family Clinic",
+      "channel_order_id": "LZ-61002",
+      "currency": "USD",
+      "order_total": 2640.5,
+      "status": "paid"
+    },
+    {
+      "buyer": "Woodlands Physio",
+      "channel_order_id": "LZ-61003",
+      "currency": "USD",
+      "order_total": 780.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Tampines Eldercare",
+      "channel_order_id": "LZ-61004",
+      "currency": "USD",
+      "order_total": 3310.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Woodlands Physio",
+      "channel_order_id": "LZ-61003",
+      "currency": "USD",
+      "order_total": 780.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Bishan Vet Clinic",
+      "channel_order_id": "LZ-61005",
+      "currency": "USD",
+      "order_total": 1455.25,
+      "status": "paid"
+    },
+    {
+      "buyer": "Marina Pharmacy",
+      "channel_order_id": "LZ-61006",
+      "currency": "USD",
+      "order_total": 920.0,
+      "status": "paid"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-003"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-003"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-003-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-10412' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-10412'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Northbridge Manufacturing",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-10412",
+        "ReceiptAmount": 41180.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "Wire",
+        "ReceiptNumber": "RCPT-NBR-8817",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 18400.0,
+            "ReferenceNumber": "INV-NBR-51120",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 22780.0,
+            "ReferenceNumber": "INV-NBR-51231",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-003"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-10412'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-003",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-NBR-8817",
+            "apply_receipt_and_continue_collections",
+            5,
+            41180.0,
+            9650.0,
+            21,
+            5.36,
+            "FILE-NBR-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_continue_collections",
+        "primary_record": "RCPT-NBR-8817",
+        "rationale": "Current evidence supports apply_receipt_and_continue_collections; operative source FILE-NBR-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-NBR-REMIT-ADVICE-0206",
+          "MSG-erpbench-003-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "collections_in_progress",
+        "task_id": "erpbench-003"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend apply_receipt_and_continue_collections (collections_in_progress). open invoices before 5; receipt amount 41180.0; remaining past due 9650.0; oldest days past due 21; past due pct of limit 5.36. Primary record RCPT-NBR-8817; operative source FILE-NBR-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-003 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-003",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-003",
+        "text": "erpbench-003: collections_in_progress / apply_receipt_and_continue_collections / RCPT-NBR-8817 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-003"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-003"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-003"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "collections_in_progress",
+          "oldest_days_past_due": 21,
+          "open_invoices_before": 5,
+          "past_due_pct_of_limit": 5.36,
+          "primary_record": "RCPT-NBR-8817",
+          "receipt_amount": 41180.0,
+          "recommended_option": "apply_receipt_and_continue_collections",
+          "remaining_past_due": 9650.0,
+          "source_reference": "FILE-NBR-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-003"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-003"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

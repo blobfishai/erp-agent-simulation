@@ -1,0 +1,239 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-056"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-056-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-056"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-056"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-056"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-056"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-056",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ALD-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            5,
+            4,
+            1,
+            2,
+            10,
+            "FILE-ALD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "ALD-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-ALD-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-056-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-056"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 5; unalerted expiring 4; blocked workers 1; checks verified 2; days to earliest expiry 10. Primary record ALD-COMPLIANCE-0209; operative source FILE-ALD-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-056 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-056",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-056",
+        "text": "erpbench-056: placements_blocked / alert_expiring_and_block_failed_checks / ALD-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-056"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-056"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 10,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 5,
+          "primary_record": "ALD-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 4
+        },
+        "task_id": "erpbench-056"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-056"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-051"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-051"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-051-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'HLS-PO-2026-031'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='HLS-PO-2026-031'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-ALD-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-60244"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "HLS-PO-2026-031"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-60244",
+        "CustomerPONumber": "HLS-PO-2026-031",
+        "RequestedFulfillmentOrganizationCode": "ALD1",
+        "SourceTransactionNumber": "FILE-ALD-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 240,
+            "OrderedUOM": "EA",
+            "ProductNumber": "CHR-OAK-DIN",
+            "UnitListPrice": 96.0
+          },
+          {
+            "OrderedQuantity": 60,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TBL-OAK-180",
+            "UnitListPrice": 420.0
+          },
+          {
+            "OrderedQuantity": 120,
+            "OrderedUOM": "EA",
+            "ProductNumber": "STL-BAR-75",
+            "UnitListPrice": 72.0
+          },
+          {
+            "OrderedQuantity": 45,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SHF-WAL-5",
+            "UnitListPrice": 210.0
+          },
+          {
+            "OrderedQuantity": 30,
+            "OrderedUOM": "EA",
+            "ProductNumber": "BNCH-TEAK-120",
+            "UnitListPrice": 165.0
+          }
+        ],
+        "task_id": "erpbench-051"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-ALD-50015"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-051",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-ALD-50015",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            495,
+            71280.0,
+            2,
+            "FILE-ALD-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-ALD-50015",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-ALD-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-ALD-ORDER-BATCH-0209",
+          "MSG-erpbench-051-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-051"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend import_accepted_lines_and_submit (submitted). accepted lines 5; rejected lines 3; imported units 495; order total 71280.0; duplicate lines 2. Primary record SO-ALD-50015; operative source FILE-ALD-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-051 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-051",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-051",
+        "text": "erpbench-051: submitted / import_accepted_lines_and_submit / SO-ALD-50015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-051"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-051"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-051"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 495,
+          "order_total": 71280.0,
+          "primary_record": "SO-ALD-50015",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-ALD-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-051"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-051"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

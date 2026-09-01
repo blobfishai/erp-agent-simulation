@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from
+GLV-NIT-M,Nitrile gloves M (box 100),8.90,Active,2026-01-01
+MSK-SURG-3,Surgical mask level 3 (50),6.20,Active,2026-01-01
+SYR-5ML-100,Syringe 5 ml (100),12.50,Active,2026-01-01
+GAUZE-4X4,Gauze pad 4 x 4 (200),7.40,Active,2026-01-01
+THERM-IR,Infrared thermometer,34.00,Active,2026-01-01
+MSK-CLOTH-OLD,Cloth mask (retired),2.10,Inactive,2026-01-01

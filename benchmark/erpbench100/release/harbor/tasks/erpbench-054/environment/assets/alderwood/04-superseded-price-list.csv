@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from,superseded
+CHR-OAK-DIN,Oak dining chair,91.20,Active,2025-07-01,true
+TBL-OAK-180,Oak dining table 180 cm,399.00,Active,2025-07-01,true
+STL-BAR-75,Bar stool 75 cm,68.40,Active,2025-07-01,true
+SHF-WAL-5,Walnut shelf 5-tier,199.50,Active,2025-07-01,true
+BNCH-TEAK-120,Teak bench 120 cm,156.75,Active,2025-07-01,true
+CHR-PINE-OLD,Pine chair (discontinued),51.30,Active,2025-07-01,true

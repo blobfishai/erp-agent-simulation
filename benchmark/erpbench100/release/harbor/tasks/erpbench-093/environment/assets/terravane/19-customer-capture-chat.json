@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-trv",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Distributor portal: Chiang Mai Energy Co, tax id TH-40-227719, orders via purchasing@cmenergy-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Nattapong Chai",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "channel": "Agency portal",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Taoyuan Precision",
+      "channel_order_id": "AP-7101",
+      "currency": "USD",
+      "order_total": 5900.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Kaohsiung Care Homes",
+      "channel_order_id": "AP-7102",
+      "currency": "USD",
+      "order_total": 8700.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Hsinchu Foundry",
+      "channel_order_id": "AP-7103",
+      "currency": "USD",
+      "order_total": 3540.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Tainan Textiles",
+      "channel_order_id": "AP-7104",
+      "currency": "USD",
+      "order_total": 2360.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Hsinchu Foundry",
+      "channel_order_id": "AP-7103",
+      "currency": "USD",
+      "order_total": 3540.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Keelung Shipworks",
+      "channel_order_id": "AP-7105",
+      "currency": "USD",
+      "order_total": 6300.0,
+      "status": "paid"
+    }
+  ]
+}

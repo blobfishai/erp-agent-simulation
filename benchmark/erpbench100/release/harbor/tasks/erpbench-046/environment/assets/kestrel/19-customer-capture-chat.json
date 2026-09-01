@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-kea",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Shopee B2B: Nexa Robotics, tax id MY-77-120548, orders via procurement@nexa-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Daniel Tan",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

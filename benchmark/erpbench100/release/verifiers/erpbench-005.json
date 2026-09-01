@@ -1,0 +1,389 @@
+{
+  "category_scores": {
+    "calculation": 100.0,
+    "containment": 100.0,
+    "decision": 100.0,
+    "discovery": 100.0,
+    "erp_state": 100.0,
+    "handoff": 100.0,
+    "readback": 100.0
+  },
+  "checks": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:task_contract",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:request_mail_search",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:request_mail",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:authority_memo",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:control_thread",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:ops_register",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:item_master",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:source_map",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:purchase_order",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order lines investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:purchase_order_lines",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the delivery note investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:delivery_note",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the supplier invoice investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:supplier_invoice",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the invoice mail investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:invoice_mail",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ap policy investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:ap_policy",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing ap invoices investigation before any controlled write.",
+      "evidence": "successful required investigation before the first controlled write",
+      "id": "discovery:existing_ap_invoices",
+      "passed": true,
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines matched (3).",
+      "evidence": {
+        "actual": 3,
+        "expected": 3
+      },
+      "id": "calculation:lines_matched",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded matched amount (3188.0).",
+      "evidence": {
+        "actual": 3188.0,
+        "expected": 3188.0
+      },
+      "id": "calculation:matched_amount",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded variance amount (180.0).",
+      "evidence": {
+        "actual": 180.0,
+        "expected": 180.0
+      },
+      "id": "calculation:variance_amount",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded held lines (1).",
+      "evidence": {
+        "actual": 1,
+        "expected": 1
+      },
+      "id": "calculation:held_lines",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded payable amount (3188.0).",
+      "evidence": {
+        "actual": 3188.0,
+        "expected": 3188.0
+      },
+      "id": "calculation:payable_amount",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option receive_and_hold_variance_lines.",
+      "evidence": {
+        "actual": "receive_and_hold_variance_lines",
+        "expected": "receive_and_hold_variance_lines"
+      },
+      "id": "decision:recommended_option",
+      "passed": true,
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-NBR-DELIVERY-NOTE-0206 rather than a superseded version.",
+      "evidence": {
+        "actual": "FILE-NBR-DELIVERY-NOTE-0206",
+        "expected": "FILE-NBR-DELIVERY-NOTE-0206"
+      },
+      "id": "decision:operative_source",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "evidence": {
+        "holds": 1,
+        "invoice": "RM-INV-55021",
+        "received": [
+          [
+            "PO-NBR-88120",
+            1,
+            5000
+          ],
+          [
+            "PO-NBR-88120",
+            2,
+            3000
+          ],
+          [
+            "PO-NBR-88120",
+            3,
+            1800
+          ],
+          [
+            "PO-NBR-88120",
+            4,
+            1500
+          ]
+        ]
+      },
+      "id": "erp_state:primary_write",
+      "passed": true,
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "evidence": {
+        "forbidden": false,
+        "secondary": true
+      },
+      "id": "erp_state:secondary_write",
+      "passed": true,
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "evidence": {
+        "changes": 1,
+        "expected_range": "Register!A25:J25"
+      },
+      "id": "erp_state:register",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "evidence": {
+        "decision": "receive_and_hold_variance_lines",
+        "decision_id": "DECISION-erpbench-005",
+        "primary_record": "RM-INV-55021",
+        "rationale": "Current evidence supports receive_and_hold_variance_lines; operative source FILE-NBR-DELIVERY-NOTE-0206.",
+        "source_refs": [
+          "FILE-NBR-DELIVERY-NOTE-0206",
+          "MSG-erpbench-005-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-005"
+      },
+      "id": "erp_state:decision_record",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "evidence": {
+        "draft": true,
+        "numeric_mentions": 5
+      },
+      "id": "handoff:email_draft",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "evidence": {
+        "channel": "#ops-nbr",
+        "post_id": "POST-erpbench-005",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-005",
+        "tenant_code": "NORTHBRIDGE",
+        "text": "erpbench-005: invoice_on_hold / receive_and_hold_variance_lines / RM-INV-55021 — review draft ready."
+      },
+      "id": "handoff:chat_post",
+      "passed": true,
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "evidence": "post-write ERP read",
+      "id": "readback:erp_record",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "evidence": "post-write register and decision reads",
+      "id": "readback:register_and_decision",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "evidence": "post-write communication reads",
+      "id": "readback:communications",
+      "passed": true,
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "evidence": "durable answer readback",
+      "id": "readback:submission",
+      "passed": true,
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "evidence": {
+        "audit_scoped": true,
+        "immutable": true,
+        "tool_errors": false,
+        "unrelated_rows_unchanged": true
+      },
+      "id": "containment:task_scope",
+      "passed": true,
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "evidence": {
+        "forbidden_write": false,
+        "review_status": "draft_for_review"
+      },
+      "id": "containment:review_gate",
+      "passed": true,
+      "points": 2
+    }
+  ],
+  "gradable": true,
+  "metric": "ERPScore",
+  "passed": true,
+  "reward": 1.0,
+  "schema_version": "erpbench.verdict.v1",
+  "score": 100.0,
+  "state_diff_tables": [
+    "purchase_order_lines",
+    "receiving_receipt_requests",
+    "ap_invoices",
+    "invoice_holds",
+    "mail_drafts",
+    "spreadsheets",
+    "sheet_changes",
+    "chat_posts",
+    "decisions",
+    "submissions",
+    "audit_log"
+  ],
+  "successful_tool_calls": 29,
+  "task_id": "erpbench-005",
+  "tool_calls": 29
+}

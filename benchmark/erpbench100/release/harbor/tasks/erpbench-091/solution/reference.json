@@ -1,0 +1,256 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-091"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-091"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-091-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SGI-PO-2026-014'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='SGI-PO-2026-014'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-TRV-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-11780"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SGI-PO-2026-014"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-11780",
+        "CustomerPONumber": "SGI-PO-2026-014",
+        "RequestedFulfillmentOrganizationCode": "TRV1",
+        "SourceTransactionNumber": "FILE-TRV-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 600,
+            "OrderedUOM": "EA",
+            "ProductNumber": "MOD-410-M",
+            "UnitListPrice": 148.0
+          },
+          {
+            "OrderedQuantity": 40,
+            "OrderedUOM": "EA",
+            "ProductNumber": "INV-5K-H",
+            "UnitListPrice": 690.0
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "RAIL-AL-42",
+            "UnitListPrice": 18.5
+          },
+          {
+            "OrderedQuantity": 2400,
+            "OrderedUOM": "EA",
+            "ProductNumber": "CLMP-MID",
+            "UnitListPrice": 1.4
+          },
+          {
+            "OrderedQuantity": 3000,
+            "OrderedUOM": "EA",
+            "ProductNumber": "CABLE-PV-6",
+            "UnitListPrice": 1.1
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "RAIL-AL-42",
+            "UnitListPrice": 18.5
+          }
+        ],
+        "task_id": "erpbench-091"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-TRV-50015"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-091",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-TRV-50015",
+            "import_accepted_lines_and_submit",
+            6,
+            3,
+            7140,
+            143410.0,
+            2,
+            "FILE-TRV-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-TRV-50015",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-TRV-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-TRV-ORDER-BATCH-0209",
+          "MSG-erpbench-091-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-091"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend import_accepted_lines_and_submit (submitted). accepted lines 6; rejected lines 3; imported units 7140; order total 143410.0; duplicate lines 2. Primary record SO-TRV-50015; operative source FILE-TRV-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-091 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-091",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-091",
+        "text": "erpbench-091: submitted / import_accepted_lines_and_submit / SO-TRV-50015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-091"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-091"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-091"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 6,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 7140,
+          "order_total": 143410.0,
+          "primary_record": "SO-TRV-50015",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-TRV-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-091"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-091"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

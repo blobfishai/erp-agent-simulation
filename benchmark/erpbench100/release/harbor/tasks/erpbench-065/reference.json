@@ -1,0 +1,517 @@
+{
+  "expected_answer": {
+    "decision_status": "invoice_validated",
+    "held_lines": 0,
+    "lines_matched": 4,
+    "matched_amount": 33890.0,
+    "payable_amount": 33890.0,
+    "primary_record": "CPM-INV-2026-0207",
+    "recommended_option": "receive_and_validate_invoice",
+    "source_reference": "FILE-CLD-DELIVERY-NOTE-0206",
+    "variance_amount": 0.0
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-065"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-065"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-065-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-CLD-40118"
+      },
+      "tool": "oracle_fusion.purchase_orders.get"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-CLD-40118"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-DELIVERY-NOTE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-AP-MATCH-POLICY"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Cascade Paper Mills'"
+      },
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "OrganizationCode": "CLD1",
+        "ReceiptSourceCode": "VENDOR",
+        "VendorName": "Cascade Paper Mills",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-CLD-40118",
+            "ItemNumber": "BOX-RSC-12",
+            "Quantity": 20000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-CLD-40118",
+            "ItemNumber": "MAIL-PAD-6",
+            "Quantity": 25000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-CLD-40118",
+            "ItemNumber": "TAPE-PP-48",
+            "Quantity": 5400,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-CLD-40118",
+            "ItemNumber": "LBL-THERM-46",
+            "Quantity": 2000,
+            "TransactionType": "RECEIVE"
+          }
+        ],
+        "task_id": "erpbench-065"
+      },
+      "tool": "oracle_fusion.receiving_receipt_requests.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Caldera Converting",
+        "InvoiceAmount": 33890.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceNumber": "CPM-INV-2026-0207",
+        "Supplier": "Cascade Paper Mills",
+        "invoiceLines": [
+          {
+            "ItemNumber": "BOX-RSC-12",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-CLD-40118",
+            "Quantity": 20000,
+            "UnitPrice": 0.57
+          },
+          {
+            "ItemNumber": "MAIL-PAD-6",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-CLD-40118",
+            "Quantity": 25000,
+            "UnitPrice": 0.19
+          },
+          {
+            "ItemNumber": "TAPE-PP-48",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-CLD-40118",
+            "Quantity": 5400,
+            "UnitPrice": 1.1
+          },
+          {
+            "ItemNumber": "LBL-THERM-46",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-CLD-40118",
+            "Quantity": 2000,
+            "UnitPrice": 5.9
+          }
+        ],
+        "task_id": "erpbench-065"
+      },
+      "tool": "oracle_fusion.invoices.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Caldera Converting",
+        "InvoiceNumber": "CPM-INV-2026-0207",
+        "ProcessAction": "Validate",
+        "Supplier": "Cascade Paper Mills",
+        "task_id": "erpbench-065"
+      },
+      "tool": "oracle_fusion.invoices.validate"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "CPM-INV-2026-0207"
+      },
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-065",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "CPM-INV-2026-0207",
+            "receive_and_validate_invoice",
+            4,
+            33890.0,
+            0.0,
+            0,
+            33890.0,
+            "FILE-CLD-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_validate_invoice",
+        "primary_record": "CPM-INV-2026-0207",
+        "rationale": "Current evidence supports receive_and_validate_invoice; operative source FILE-CLD-DELIVERY-NOTE-0206.",
+        "source_refs": [
+          "FILE-CLD-DELIVERY-NOTE-0206",
+          "MSG-erpbench-065-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "invoice_validated",
+        "task_id": "erpbench-065"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend receive_and_validate_invoice (invoice_validated). lines matched 4; matched amount 33890.0; variance amount 0.0; held lines 0; payable amount 33890.0. Primary record CPM-INV-2026-0207; operative source FILE-CLD-DELIVERY-NOTE-0206. Draft for review, not sent.",
+        "subject": "erpbench-065 — Receive the delivery and match the supplier invoice — for review",
+        "task_id": "erpbench-065",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-065",
+        "text": "erpbench-065: invoice_validated / receive_and_validate_invoice / CPM-INV-2026-0207 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-065"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-065"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-065"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "invoice_validated",
+          "held_lines": 0,
+          "lines_matched": 4,
+          "matched_amount": 33890.0,
+          "payable_amount": 33890.0,
+          "primary_record": "CPM-INV-2026-0207",
+          "recommended_option": "receive_and_validate_invoice",
+          "source_reference": "FILE-CLD-DELIVERY-NOTE-0206",
+          "variance_amount": 0.0
+        },
+        "task_id": "erpbench-065"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-065"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order investigation before any controlled write.",
+      "id": "discovery:purchase_order",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order lines investigation before any controlled write.",
+      "id": "discovery:purchase_order_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the delivery note investigation before any controlled write.",
+      "id": "discovery:delivery_note",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the supplier invoice investigation before any controlled write.",
+      "id": "discovery:supplier_invoice",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the invoice mail investigation before any controlled write.",
+      "id": "discovery:invoice_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ap policy investigation before any controlled write.",
+      "id": "discovery:ap_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing ap invoices investigation before any controlled write.",
+      "id": "discovery:existing_ap_invoices",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines matched (4).",
+      "id": "calculation:lines_matched",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded matched amount (33890.0).",
+      "id": "calculation:matched_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded variance amount (0.0).",
+      "id": "calculation:variance_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded held lines (0).",
+      "id": "calculation:held_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded payable amount (33890.0).",
+      "id": "calculation:payable_amount",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option receive_and_validate_invoice.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-CLD-DELIVERY-NOTE-0206 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-065"
+}

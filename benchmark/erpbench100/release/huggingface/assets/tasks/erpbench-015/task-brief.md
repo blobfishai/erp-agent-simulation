@@ -1,0 +1,10 @@
+# erpbench-015 — Receive the delivery and match the supplier invoice
+
+**Harborline Trading Co. · Kaohsiung warehouse · Receiving and three-way match**
+
+Formosa Leaf Estates's invoice for PO-HBL-51877 landed in accounts payable. Receive what the delivery note proves was delivered, match the invoice to the order and the receipt line by line, and settle only what passes our tolerance; anything else has to be held with a reason rather than paid. Log the match in the payables register and get the note to Lin Shu-Fen ready for review.
+
+Use the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.
+
+Tenant: HARBORLINE (Harborline Trading Co.)
+As of: 2026-02-09T09:00:00Z

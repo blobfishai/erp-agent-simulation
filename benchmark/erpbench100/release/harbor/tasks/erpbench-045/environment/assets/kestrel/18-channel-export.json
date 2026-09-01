@@ -1,0 +1,55 @@
+{
+  "channel": "Shopee B2B",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Nexa Robotics",
+      "channel_order_id": "SB-44801",
+      "currency": "USD",
+      "order_total": 9450.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Bluewave Labs",
+      "channel_order_id": "SB-44802",
+      "currency": "USD",
+      "order_total": 3120.6,
+      "status": "paid"
+    },
+    {
+      "buyer": "Cordova Sensors",
+      "channel_order_id": "SB-44803",
+      "currency": "USD",
+      "order_total": 5580.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Meridian Motors",
+      "channel_order_id": "SB-44804",
+      "currency": "USD",
+      "order_total": 12750.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Cordova Sensors",
+      "channel_order_id": "SB-44803",
+      "currency": "USD",
+      "order_total": 5580.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Altair Instruments",
+      "channel_order_id": "SB-44805",
+      "currency": "USD",
+      "order_total": 2280.4,
+      "status": "paid"
+    },
+    {
+      "buyer": "Zenith Controls",
+      "channel_order_id": "SB-44806",
+      "currency": "USD",
+      "order_total": 7660.0,
+      "status": "paid"
+    }
+  ]
+}

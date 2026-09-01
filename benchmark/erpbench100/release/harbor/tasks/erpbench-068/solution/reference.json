@@ -1,0 +1,265 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-068"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-068"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-068-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Amazon Business'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Amazon Business'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-70510"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Pacific Ecom Partners",
+        "CustomerPONumber": "AB-88101",
+        "OrderTotal": 4120.0,
+        "RequestedFulfillmentOrganizationCode": "CLD1",
+        "SourceTransactionNumber": "AB-88101",
+        "SourceTransactionSystem": "Amazon Business",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-068"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Highline Apparel",
+        "CustomerPONumber": "AB-88103",
+        "OrderTotal": 2760.0,
+        "RequestedFulfillmentOrganizationCode": "CLD1",
+        "SourceTransactionNumber": "AB-88103",
+        "SourceTransactionSystem": "Amazon Business",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-068"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Desert Bloom Cosmetics",
+        "CustomerPONumber": "AB-88105",
+        "OrderTotal": 3450.75,
+        "RequestedFulfillmentOrganizationCode": "CLD1",
+        "SourceTransactionNumber": "AB-88105",
+        "SourceTransactionSystem": "Amazon Business",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-068"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Amazon Business'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-068",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Pacific Ecom Partners",
+            "",
+            "ap@pacificecom-sim.example",
+            "TX-91-664120",
+            "Amazon Business"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-068",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-CLD-52007",
+            "create_unsynced_orders_and_capture_customer",
+            8,
+            3,
+            3,
+            2,
+            10330.75,
+            "FILE-CLD-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-CLD-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-CLD-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-CLD-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-068-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-068"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 8; already synced 3; created orders 3; duplicate rows 2; synced value 10330.75. Primary record SO-CLD-52007; operative source FILE-CLD-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-068 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-068",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-068",
+        "text": "erpbench-068: synced / create_unsynced_orders_and_capture_customer / SO-CLD-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-068"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-068"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-068"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 8,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 2,
+          "primary_record": "SO-CLD-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-CLD-CHANNEL-EXPORT-0209",
+          "synced_value": 10330.75
+        },
+        "task_id": "erpbench-068"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-068"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

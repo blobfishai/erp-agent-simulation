@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-023"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-023"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-023-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-30155' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-30155"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-30155'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Meridian Placement Services",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-30155",
+        "ReceiptAmount": 24000.0,
+        "ReceiptDate": "2026-02-07",
+        "ReceiptMethod": "Cheque",
+        "ReceiptNumber": "RCPT-MSS-5502",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 14200.0,
+            "ReferenceNumber": "INV-MSS-40260",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 9800.0,
+            "ReferenceNumber": "INV-MSS-40307",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-023"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-30155'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-023",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-MSS-5502",
+            "apply_receipt_and_escalate_credit_hold",
+            5,
+            24000.0,
+            55000.0,
+            52,
+            45.83,
+            "FILE-MSS-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_escalate_credit_hold",
+        "primary_record": "RCPT-MSS-5502",
+        "rationale": "Current evidence supports apply_receipt_and_escalate_credit_hold; operative source FILE-MSS-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-MSS-REMIT-ADVICE-0206",
+          "MSG-erpbench-023-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "credit_review_required",
+        "task_id": "erpbench-023"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend apply_receipt_and_escalate_credit_hold (credit_review_required). open invoices before 5; receipt amount 24000.0; remaining past due 55000.0; oldest days past due 52; past due pct of limit 45.83. Primary record RCPT-MSS-5502; operative source FILE-MSS-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-023 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-023",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-023",
+        "text": "erpbench-023: credit_review_required / apply_receipt_and_escalate_credit_hold / RCPT-MSS-5502 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-023"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-023"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-023"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "credit_review_required",
+          "oldest_days_past_due": 52,
+          "open_invoices_before": 5,
+          "past_due_pct_of_limit": 45.83,
+          "primary_record": "RCPT-MSS-5502",
+          "receipt_amount": 24000.0,
+          "recommended_option": "apply_receipt_and_escalate_credit_hold",
+          "remaining_past_due": 55000.0,
+          "source_reference": "FILE-MSS-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-023"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-023"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

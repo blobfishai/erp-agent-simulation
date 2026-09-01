@@ -1,0 +1,279 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-038"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-038"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-038-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='SGF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Tokopedia'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Tokopedia'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-40890"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Toko Maju Jaya",
+        "CustomerPONumber": "TK-31002",
+        "OrderTotal": 985.5,
+        "RequestedFulfillmentOrganizationCode": "SGF1",
+        "SourceTransactionNumber": "TK-31002",
+        "SourceTransactionSystem": "Tokopedia",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-038"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Minimart Bahagia",
+        "CustomerPONumber": "TK-31003",
+        "OrderTotal": 620.0,
+        "RequestedFulfillmentOrganizationCode": "SGF1",
+        "SourceTransactionNumber": "TK-31003",
+        "SourceTransactionSystem": "Tokopedia",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-038"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Grosir Makmur",
+        "CustomerPONumber": "TK-31005",
+        "OrderTotal": 1540.0,
+        "RequestedFulfillmentOrganizationCode": "SGF1",
+        "SourceTransactionNumber": "TK-31005",
+        "SourceTransactionSystem": "Tokopedia",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-038"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Warung Ceria",
+        "CustomerPONumber": "TK-31007",
+        "OrderTotal": 710.8,
+        "RequestedFulfillmentOrganizationCode": "SGF1",
+        "SourceTransactionNumber": "TK-31007",
+        "SourceTransactionSystem": "Tokopedia",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-038"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Tokopedia'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-038",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Toko Maju Jaya",
+            "",
+            "order@majujaya-sim.example",
+            "ID-09-330187",
+            "Tokopedia"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-038",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-SGF-52007",
+            "create_unsynced_orders_and_capture_customer",
+            9,
+            3,
+            4,
+            2,
+            3856.3,
+            "FILE-SGF-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-SGF-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-SGF-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-SGF-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-038-REQUEST",
+          "MSG-SGF-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-038"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Sungrove Foods: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 9; already synced 3; created orders 4; duplicate rows 2; synced value 3856.3. Primary record SO-SGF-52007; operative source FILE-SGF-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-038 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-038",
+        "to": "ayu.kartika@sungrove-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-038",
+        "text": "erpbench-038: synced / create_unsynced_orders_and_capture_customer / SO-SGF-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-038"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-038"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "task_id": "erpbench-038"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 9,
+          "created_orders": 4,
+          "decision_status": "synced",
+          "duplicate_rows": 2,
+          "primary_record": "SO-SGF-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-SGF-CHANNEL-EXPORT-0209",
+          "synced_value": 3856.3
+        },
+        "task_id": "erpbench-038"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-038"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "as_of": "2026-02-09T09:00:00Z",
+  "company": "Caldera Packaging",
+  "sealed_gold_values_excluded": true,
+  "systems": [
+    "ERPBench control",
+    "Oracle Fusion (order management, shipping, receivables, inventory, procurement, payables, HCM-shaped)",
+    "Gmail",
+    "Google Drive",
+    "Google Sheets",
+    "Slack"
+  ],
+  "task_id": "erpbench-070",
+  "tenant_code": "CALDERA"
+}

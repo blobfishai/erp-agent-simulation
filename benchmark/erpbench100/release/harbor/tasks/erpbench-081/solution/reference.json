@@ -1,0 +1,250 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-081"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-081"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-081-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='BLF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SCB-PO-3391'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='SCB-PO-3391'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-BLF-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-90418"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SCB-PO-3391"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-90418",
+        "CustomerPONumber": "SCB-PO-3391",
+        "RequestedFulfillmentOrganizationCode": "BLF1",
+        "SourceTransactionNumber": "FILE-BLF-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 120,
+            "OrderedUOM": "EA",
+            "ProductNumber": "IMP-WP-40",
+            "UnitListPrice": 28.0
+          },
+          {
+            "OrderedQuantity": 200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANODE-ZN-2",
+            "UnitListPrice": 19.5
+          },
+          {
+            "OrderedQuantity": 180,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FILT-FUEL-10",
+            "UnitListPrice": 16.8
+          },
+          {
+            "OrderedQuantity": 12,
+            "OrderedUOM": "EA",
+            "ProductNumber": "PROP-AL-13",
+            "UnitListPrice": 210.0
+          },
+          {
+            "OrderedQuantity": 400,
+            "OrderedUOM": "EA",
+            "ProductNumber": "HOSE-BILGE-25",
+            "UnitListPrice": 4.6
+          }
+        ],
+        "task_id": "erpbench-081"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-BLF-50011"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-081",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-BLF-50011",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            912,
+            14644.0,
+            2,
+            "FILE-BLF-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-BLF-50011",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-BLF-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-BLF-ORDER-BATCH-0209",
+          "MSG-erpbench-081-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-081"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend import_accepted_lines_and_submit (submitted). accepted lines 5; rejected lines 3; imported units 912; order total 14644.0; duplicate lines 2. Primary record SO-BLF-50011; operative source FILE-BLF-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-081 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-081",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-081",
+        "text": "erpbench-081: submitted / import_accepted_lines_and_submit / SO-BLF-50011 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-081"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-081"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-081"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 912,
+          "order_total": 14644.0,
+          "primary_record": "SO-BLF-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-BLF-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-081"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-081"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

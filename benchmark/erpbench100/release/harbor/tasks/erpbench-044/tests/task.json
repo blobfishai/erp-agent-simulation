@@ -1,0 +1,816 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "days_late": {
+        "type": "integer"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "requisition_amount": {
+        "multipleOf": 0.01,
+        "type": "number"
+      },
+      "skus_below_reorder": {
+        "type": "integer"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "supplier_lead_time_days": {
+        "type": "integer"
+      },
+      "total_reorder_units": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "skus_below_reorder",
+      "total_reorder_units",
+      "requisition_amount",
+      "supplier_lead_time_days",
+      "days_late"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Kestrel Electronics Assembly",
+  "context_files": [
+    "assets/kestrel/01-consolidated-order-batch.xlsx",
+    "assets/kestrel/02-prior-partial-import.xlsx",
+    "assets/kestrel/03-current-price-list.csv",
+    "assets/kestrel/04-superseded-price-list.csv",
+    "assets/kestrel/05-pick-confirmation.csv",
+    "assets/kestrel/06-remittance-advice.pdf",
+    "assets/kestrel/07-ar-aging.xlsx",
+    "assets/kestrel/08-credit-policy.md",
+    "assets/kestrel/09-reorder-policy.xlsx",
+    "assets/kestrel/10-demand-forecast.csv",
+    "assets/kestrel/11-supplier-invoice.pdf",
+    "assets/kestrel/12-delivery-note.pdf",
+    "assets/kestrel/13-ap-match-policy.md",
+    "assets/kestrel/14-compliance-checklist.xlsx",
+    "assets/kestrel/15-document-alert-log.csv",
+    "assets/kestrel/16-shift-roster.xlsx",
+    "assets/kestrel/17-shift-work-reports.csv",
+    "assets/kestrel/18-channel-export.json",
+    "assets/kestrel/19-customer-capture-chat.json",
+    "assets/kestrel/20-headcount-approval.pdf",
+    "assets/kestrel/21-candidate-register.xlsx",
+    "assets/kestrel/22-wage-table.csv",
+    "assets/kestrel/23-price-batch.csv",
+    "assets/kestrel/24-authority-memo.eml",
+    "assets/kestrel/25-source-map.yaml",
+    "assets/kestrel/26-ops-audit.log",
+    "assets/tasks/erpbench-044/task-brief.md",
+    "assets/tasks/erpbench-044/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "requisition_primary_supplier_and_flag_lateness",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.purchase_requisitions.get",
+  "expected_answer": {
+    "days_late": 4,
+    "decision_status": "requisition_submitted_late_risk",
+    "primary_record": "REQ-KEA-61015",
+    "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+    "requisition_amount": 46168.0,
+    "skus_below_reorder": 3,
+    "source_reference": "FILE-KEA-REORDER-POLICY-R4",
+    "supplier_lead_time_days": 18,
+    "total_reorder_units": 3150
+  },
+  "gold_output": {
+    "answers": {
+      "days_late": 4,
+      "decision_status": "requisition_submitted_late_risk",
+      "primary_record": "REQ-KEA-61015",
+      "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+      "requisition_amount": 46168.0,
+      "skus_below_reorder": 3,
+      "source_reference": "FILE-KEA-REORDER-POLICY-R4",
+      "supplier_lead_time_days": 18,
+      "total_reorder_units": 3150
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "requisition_primary_supplier_and_flag_lateness",
+      "primary_record": "REQ-KEA-61015",
+      "status": "requisition_submitted_late_risk"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "inventory_reorder",
+    "category_label": "Reorder monitoring and requisition",
+    "company": "Kestrel Electronics Assembly",
+    "country": "MY",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Electronics manufacturing services",
+    "nario_grounding": {
+      "archetype": "inventory-query",
+      "production_runs_observed": 17,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "row_exists"
+    },
+    "profile": "contract electronics manufacturer",
+    "reference_tool_calls": 28,
+    "synthetic": true,
+    "tenant": "KESTREL"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-044"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-044-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Shenzhen Board Partners' and Status='Open'"
+      },
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-6601','SUP-6640')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-REORDER-POLICY-R4"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-DEMAND-FORECAST-F06"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Reorder!A1:F12",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "reorder"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Description": "Reorder run KEA1 2026-02-09 under policy FILE-KEA-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Kestrel Assembly",
+        "lines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "Quantity": 1080,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "Quantity": 1400,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "PSU-24V-60",
+            "Quantity": 670,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 13.6
+          }
+        ],
+        "task_id": "erpbench-044"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-KEA-61015",
+        "task_id": "erpbench-044"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-KEA-61015"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-044",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-KEA-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            3150,
+            46168.0,
+            18,
+            4,
+            "FILE-KEA-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "requisition_primary_supplier_and_flag_lateness",
+        "primary_record": "REQ-KEA-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-KEA-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-KEA-REORDER-POLICY-R4",
+          "MSG-erpbench-044-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted_late_risk",
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 3150; requisition amount 46168.0; supplier lead time days 18; days late 4. Primary record REQ-KEA-61015; operative source FILE-KEA-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-044 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-044",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-044",
+        "text": "erpbench-044: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-KEA-61015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-044"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-044"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "days_late": 4,
+          "decision_status": "requisition_submitted_late_risk",
+          "primary_record": "REQ-KEA-61015",
+          "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+          "requisition_amount": 46168.0,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-KEA-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 18,
+          "total_reorder_units": 3150
+        },
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.purchase_requisitions.create",
+  "prompt": "**Kestrel Electronics Assembly · Penang plant · Reorder monitoring and requisition**\n\nPlanning wants the reorder run for the Penang plant done today. Work out which items are genuinely below their reorder point once reservations and open purchase orders are counted, how much each needs to come back to its planned level, and whether Shenzhen Board Partners can deliver inside the 14-day window or whether an expedite option is worth raising. Raise the requisition that current policy supports, log it in the register, and post the planning update for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-044"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-044"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-044-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-KEA-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-kea"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-KEA-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='KEA1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-KEA-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='KEA1'"
+          },
+          "tool": "oracle_fusion.onhand_balances.list"
+        }
+      ],
+      "description": "onhand balances",
+      "id": "onhand_balances"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "Supplier='Shenzhen Board Partners' and Status='Open'"
+          },
+          "tool": "oracle_fusion.purchase_orders.list"
+        }
+      ],
+      "description": "open purchase orders",
+      "id": "open_purchase_orders"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "SupplierNumber in ('SUP-6601','SUP-6640')"
+          },
+          "tool": "oracle_fusion.suppliers.list"
+        }
+      ],
+      "description": "suppliers",
+      "id": "suppliers"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-KEA-REORDER-POLICY-R4"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "reorder policy",
+      "id": "reorder_policy"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-KEA-DEMAND-FORECAST-F06"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "demand forecast",
+      "id": "demand_forecast"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Reorder!A1:F12",
+            "spreadsheetId": "SHEET-KEA-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "reorder tab",
+      "id": "reorder_tab"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "query": "reorder"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "planning thread",
+      "id": "planning_thread"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the onhand balances investigation before any controlled write.",
+      "id": "discovery:onhand_balances",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the open purchase orders investigation before any controlled write.",
+      "id": "discovery:open_purchase_orders",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the suppliers investigation before any controlled write.",
+      "id": "discovery:suppliers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder policy investigation before any controlled write.",
+      "id": "discovery:reorder_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the demand forecast investigation before any controlled write.",
+      "id": "discovery:demand_forecast",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder tab investigation before any controlled write.",
+      "id": "discovery:reorder_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the planning thread investigation before any controlled write.",
+      "id": "discovery:planning_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded skus below reorder (3).",
+      "id": "calculation:skus_below_reorder",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded total reorder units (3150).",
+      "id": "calculation:total_reorder_units",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded requisition amount (46168.0).",
+      "id": "calculation:requisition_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded supplier lead time days (18).",
+      "id": "calculation:supplier_lead_time_days",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded days late (4).",
+      "id": "calculation:days_late",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option requisition_primary_supplier_and_flag_lateness.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-KEA-REORDER-POLICY-R4 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-044",
+  "task_name": "Run the reorder review and raise the requisition",
+  "tenant_code": "KESTREL",
+  "world_id": "fusion-erp-tenants-v1"
+}

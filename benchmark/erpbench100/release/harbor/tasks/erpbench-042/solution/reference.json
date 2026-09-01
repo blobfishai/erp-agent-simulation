@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-042"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-042"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-042-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-KEA-3350'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-KEA-3350'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-KEA-3350'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-KEA-60412"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-KEA-3350"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-KEA-PICK-CONFIRM-0208",
+        "ShipmentLine": 700009,
+        "ShippedQuantity": 970,
+        "task_id": "erpbench-042"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-KEA-3350'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-042",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-KEA-3350",
+            "correct_short_picks_and_hold_over_picks",
+            6,
+            4,
+            1,
+            30,
+            35943.0,
+            "FILE-KEA-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-KEA-3350",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-KEA-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-KEA-PICK-CONFIRM-0208",
+          "MSG-erpbench-042-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-042"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 6; lines matching 4; lines corrected 1; units removed 30; confirmed value 35943.0. Primary record SHP-KEA-3350; operative source FILE-KEA-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-042 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-042",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-042",
+        "text": "erpbench-042: partial_hold / correct_short_picks_and_hold_over_picks / SHP-KEA-3350 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-042"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-042"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-042"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 35943.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 6,
+          "primary_record": "SHP-KEA-3350",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-KEA-PICK-CONFIRM-0208",
+          "units_removed": 30
+        },
+        "task_id": "erpbench-042"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-042"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

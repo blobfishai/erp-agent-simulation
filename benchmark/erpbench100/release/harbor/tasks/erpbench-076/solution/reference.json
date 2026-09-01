@@ -1,0 +1,247 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-076"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-076"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-076-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-076"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400029,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-076"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-076"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "task_id": "erpbench-076"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400094,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-076"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-076",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RVS-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            6,
+            5,
+            1,
+            2,
+            6,
+            "FILE-RVS-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "RVS-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-RVS-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-RVS-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-076-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-076"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 6; unalerted expiring 5; blocked workers 1; checks verified 2; days to earliest expiry 6. Primary record RVS-COMPLIANCE-0209; operative source FILE-RVS-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-076 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-076",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-076",
+        "text": "erpbench-076: placements_blocked / alert_expiring_and_block_failed_checks / RVS-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-076"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-076"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-076"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 6,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 6,
+          "primary_record": "RVS-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-RVS-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 5
+        },
+        "task_id": "erpbench-076"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-076"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-074"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-074"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-074-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Medigrade Manufacturing' and Status='Open'"
+      },
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-9902','SUP-9950')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-REORDER-POLICY-R4"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-DEMAND-FORECAST-F06"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Reorder!A1:F12",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "reorder"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Description": "Reorder run RVS1 2026-02-09 under policy FILE-RVS-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Riverstone Distribution",
+        "lines": [
+          {
+            "ItemNumber": "GLV-NIT-M",
+            "Quantity": 5300,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 5.6
+          },
+          {
+            "ItemNumber": "SYR-5ML-100",
+            "Quantity": 1250,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 8.1
+          },
+          {
+            "ItemNumber": "THERM-IR",
+            "Quantity": 240,
+            "RequestedDeliveryDate": "2026-02-20",
+            "Supplier": "Medigrade Manufacturing",
+            "UOM": "EA",
+            "UnitPrice": 21.5
+          }
+        ],
+        "task_id": "erpbench-074"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-RVS-61015",
+        "task_id": "erpbench-074"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-RVS-61015"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-074",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-RVS-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            6790,
+            44965.0,
+            11,
+            1,
+            "FILE-RVS-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "requisition_primary_supplier_and_flag_lateness",
+        "primary_record": "REQ-RVS-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-RVS-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-RVS-REORDER-POLICY-R4",
+          "MSG-erpbench-074-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted_late_risk",
+        "task_id": "erpbench-074"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 6790; requisition amount 44965.0; supplier lead time days 11; days late 1. Primary record REQ-RVS-61015; operative source FILE-RVS-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-074 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-074",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-074",
+        "text": "erpbench-074: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-RVS-61015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-074"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-074"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-074"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "days_late": 1,
+          "decision_status": "requisition_submitted_late_risk",
+          "primary_record": "REQ-RVS-61015",
+          "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+          "requisition_amount": 44965.0,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-RVS-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 11,
+          "total_reorder_units": 6790
+        },
+        "task_id": "erpbench-074"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-074"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

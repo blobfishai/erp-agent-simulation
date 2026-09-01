@@ -1,0 +1,239 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-036"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-036"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-036-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='SGF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Sungrove Foods'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Sungrove Foods'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-036"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "task_id": "erpbench-036"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-036"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-036"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Sungrove Foods'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-036",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SGF-COMPLIANCE-0209",
+            "alert_expiring_and_verify_pending",
+            5,
+            4,
+            0,
+            2,
+            6,
+            "FILE-SGF-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_verify_pending",
+        "primary_record": "SGF-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_verify_pending; operative source FILE-SGF-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-SGF-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-036-REQUEST",
+          "MSG-SGF-AUTHORITY-0209"
+        ],
+        "status": "compliance_cleared",
+        "task_id": "erpbench-036"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Sungrove Foods: recommend alert_expiring_and_verify_pending (compliance_cleared). expiring within 30 5; unalerted expiring 4; blocked workers 0; checks verified 2; days to earliest expiry 6. Primary record SGF-COMPLIANCE-0209; operative source FILE-SGF-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-036 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-036",
+        "to": "ayu.kartika@sungrove-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-036",
+        "text": "erpbench-036: compliance_cleared / alert_expiring_and_verify_pending / SGF-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-036"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-036"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "task_id": "erpbench-036"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 0,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 6,
+          "decision_status": "compliance_cleared",
+          "expiring_within_30": 5,
+          "primary_record": "SGF-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_verify_pending",
+          "source_reference": "FILE-SGF-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 4
+        },
+        "task_id": "erpbench-036"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-036"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

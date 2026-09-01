@@ -1,0 +1,800 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "accepted_lines": {
+        "type": "integer"
+      },
+      "average_change_pct": {
+        "multipleOf": 0.01,
+        "type": "number"
+      },
+      "batch_lines": {
+        "type": "integer"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "rejected_lines": {
+        "type": "integer"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "superseded_lines": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "batch_lines",
+      "accepted_lines",
+      "rejected_lines",
+      "superseded_lines",
+      "average_change_pct"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Riverstone Medical Supply",
+  "context_files": [
+    "assets/riverstone/01-consolidated-order-batch.xlsx",
+    "assets/riverstone/02-prior-partial-import.xlsx",
+    "assets/riverstone/03-current-price-list.csv",
+    "assets/riverstone/04-superseded-price-list.csv",
+    "assets/riverstone/05-pick-confirmation.csv",
+    "assets/riverstone/06-remittance-advice.pdf",
+    "assets/riverstone/07-ar-aging.xlsx",
+    "assets/riverstone/08-credit-policy.md",
+    "assets/riverstone/09-reorder-policy.xlsx",
+    "assets/riverstone/10-demand-forecast.csv",
+    "assets/riverstone/11-supplier-invoice.pdf",
+    "assets/riverstone/12-delivery-note.pdf",
+    "assets/riverstone/13-ap-match-policy.md",
+    "assets/riverstone/14-compliance-checklist.xlsx",
+    "assets/riverstone/15-document-alert-log.csv",
+    "assets/riverstone/16-shift-roster.xlsx",
+    "assets/riverstone/17-shift-work-reports.csv",
+    "assets/riverstone/18-channel-export.json",
+    "assets/riverstone/19-customer-capture-chat.json",
+    "assets/riverstone/20-headcount-approval.pdf",
+    "assets/riverstone/21-candidate-register.xlsx",
+    "assets/riverstone/22-wage-table.csv",
+    "assets/riverstone/23-price-batch.csv",
+    "assets/riverstone/24-authority-memo.eml",
+    "assets/riverstone/25-source-map.yaml",
+    "assets/riverstone/26-ops-audit.log",
+    "assets/tasks/erpbench-080/task-brief.md",
+    "assets/tasks/erpbench-080/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "apply_policy_compliant_lines",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.items.list",
+  "expected_answer": {
+    "accepted_lines": 3,
+    "average_change_pct": 4.77,
+    "batch_lines": 8,
+    "decision_status": "batch_applied_with_rejections",
+    "primary_record": "PRICE-BATCH-RVS-2026Q2",
+    "recommended_option": "apply_policy_compliant_lines",
+    "rejected_lines": 4,
+    "source_reference": "FILE-RVS-PRICE-BATCH-Q2",
+    "superseded_lines": 1
+  },
+  "gold_output": {
+    "answers": {
+      "accepted_lines": 3,
+      "average_change_pct": 4.77,
+      "batch_lines": 8,
+      "decision_status": "batch_applied_with_rejections",
+      "primary_record": "PRICE-BATCH-RVS-2026Q2",
+      "recommended_option": "apply_policy_compliant_lines",
+      "rejected_lines": 4,
+      "source_reference": "FILE-RVS-PRICE-BATCH-Q2",
+      "superseded_lines": 1
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "apply_policy_compliant_lines",
+      "primary_record": "PRICE-BATCH-RVS-2026Q2",
+      "status": "batch_applied_with_rejections"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "price_list_batch",
+    "category_label": "Effective-dated price batch",
+    "company": "Riverstone Medical Supply",
+    "country": "SG",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Medical consumables distribution",
+    "nario_grounding": {
+      "archetype": "structured-fact-supersession",
+      "production_runs_observed": 26,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "field_equals"
+    },
+    "profile": "medical distributor",
+    "reference_tool_calls": 29,
+    "synthetic": true,
+    "tenant": "RIVERSTONE"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-080"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-080"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-080-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PRICE-BATCH-RVS-2026Q2'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-PRICE-BATCH-Q2"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-PRICE-LIST-CURRENT"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "PricingPolicy!A1:C6",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-PRICING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "price batch"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-02-27",
+        "ItemId": 300010,
+        "ListPrice": 6.4,
+        "task_id": "erpbench-080"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-02-27",
+        "ItemId": 300017,
+        "ListPrice": 12.9,
+        "task_id": "erpbench-080"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-29",
+        "ItemId": 300003,
+        "ListPrice": 9.6,
+        "task_id": "erpbench-080"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-080",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "PRICE-BATCH-RVS-2026Q2",
+            "apply_policy_compliant_lines",
+            8,
+            3,
+            4,
+            1,
+            4.77,
+            "FILE-RVS-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "PRICE-BATCH-RVS-2026Q2",
+        "rationale": "Current evidence supports apply_policy_compliant_lines; operative source FILE-RVS-PRICE-BATCH-Q2.",
+        "source_refs": [
+          "FILE-RVS-PRICE-BATCH-Q2",
+          "MSG-erpbench-080-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-080"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend apply_policy_compliant_lines (batch_applied_with_rejections). batch lines 8; accepted lines 3; rejected lines 4; superseded lines 1; average change pct 4.77. Primary record PRICE-BATCH-RVS-2026Q2; operative source FILE-RVS-PRICE-BATCH-Q2. Draft for review, not sent.",
+        "subject": "erpbench-080 — Apply the quarterly price batch under policy — for review",
+        "task_id": "erpbench-080",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-080",
+        "text": "erpbench-080: batch_applied_with_rejections / apply_policy_compliant_lines / PRICE-BATCH-RVS-2026Q2 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-080"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-080"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-080"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.77,
+          "batch_lines": 8,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "PRICE-BATCH-RVS-2026Q2",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-RVS-PRICE-BATCH-Q2",
+          "superseded_lines": 1
+        },
+        "task_id": "erpbench-080"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-080"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.items.update",
+  "prompt": "**Riverstone Medical Supply · Jurong distribution centre · Effective-dated price batch**\n\nPricing sent the Q2 list-price batch for Riverstone Medical Supply. Apply only the lines that meet policy: items we actually carry, effective dates that are not already past, and changes inside the approved band, and respect a later effective date when one line supersedes an earlier one for the same item. Update the prices we accept, log accepted and rejected lines with reasons in the register, and prepare the notice for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-080"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-080"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-080-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-RVS-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-rvs"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-RVS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='RVS1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "name contains 'PRICE-BATCH-RVS-2026Q2'"
+          },
+          "tool": "google_drive.files.list"
+        }
+      ],
+      "description": "batch search",
+      "id": "batch_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-PRICE-BATCH-Q2"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "price batch",
+      "id": "price_batch"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-PRICE-LIST-CURRENT"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "current prices",
+      "id": "current_prices"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "PricingPolicy!A1:C6",
+            "spreadsheetId": "SHEET-RVS-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "pricing policy",
+      "id": "pricing_policy"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-RVS-PRICING-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "pricing mail",
+      "id": "pricing_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "query": "price batch"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "pricing thread",
+      "id": "pricing_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-RVS-PRICE-BATCH-Q1"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "prior batch",
+      "id": "prior_batch"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch search investigation before any controlled write.",
+      "id": "discovery:batch_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the price batch investigation before any controlled write.",
+      "id": "discovery:price_batch",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the current prices investigation before any controlled write.",
+      "id": "discovery:current_prices",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing policy investigation before any controlled write.",
+      "id": "discovery:pricing_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing mail investigation before any controlled write.",
+      "id": "discovery:pricing_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pricing thread investigation before any controlled write.",
+      "id": "discovery:pricing_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior batch investigation before any controlled write.",
+      "id": "discovery:prior_batch",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded batch lines (8).",
+      "id": "calculation:batch_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded accepted lines (3).",
+      "id": "calculation:accepted_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded rejected lines (4).",
+      "id": "calculation:rejected_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded superseded lines (1).",
+      "id": "calculation:superseded_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded average change pct (4.77).",
+      "id": "calculation:average_change_pct",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option apply_policy_compliant_lines.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-RVS-PRICE-BATCH-Q2 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-080",
+  "task_name": "Apply the quarterly price batch under policy",
+  "tenant_code": "RIVERSTONE",
+  "world_id": "fusion-erp-tenants-v1"
+}

@@ -1,0 +1,265 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-028"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-028"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-028-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Agency portal'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Agency portal'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-30155"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Kaohsiung Care Homes",
+        "CustomerPONumber": "AP-7102",
+        "OrderTotal": 8700.0,
+        "RequestedFulfillmentOrganizationCode": "MSS1",
+        "SourceTransactionNumber": "AP-7102",
+        "SourceTransactionSystem": "Agency portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-028"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Hsinchu Foundry",
+        "CustomerPONumber": "AP-7103",
+        "OrderTotal": 3540.0,
+        "RequestedFulfillmentOrganizationCode": "MSS1",
+        "SourceTransactionNumber": "AP-7103",
+        "SourceTransactionSystem": "Agency portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-028"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Keelung Shipworks",
+        "CustomerPONumber": "AP-7105",
+        "OrderTotal": 6300.0,
+        "RequestedFulfillmentOrganizationCode": "MSS1",
+        "SourceTransactionNumber": "AP-7105",
+        "SourceTransactionSystem": "Agency portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-028"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Agency portal'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-028",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Kaohsiung Care Homes",
+            "",
+            "admin@kh-carehomes-sim.example",
+            "TW-31-556201",
+            "Agency portal"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-028",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-MSS-52007",
+            "create_unsynced_orders_and_capture_customer",
+            6,
+            2,
+            3,
+            1,
+            18540.0,
+            "FILE-MSS-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-MSS-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-MSS-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-MSS-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-028-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-028"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 6; already synced 2; created orders 3; duplicate rows 1; synced value 18540.0. Primary record SO-MSS-52007; operative source FILE-MSS-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-028 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-028",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-028",
+        "text": "erpbench-028: synced / create_unsynced_orders_and_capture_customer / SO-MSS-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-028"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-028"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-028"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 2,
+          "channel_rows": 6,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-MSS-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-MSS-CHANNEL-EXPORT-0209",
+          "synced_value": 18540.0
+        },
+        "task_id": "erpbench-028"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-028"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-047"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-047"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-047-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Kestrel Electronics Assembly' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Kestrel Electronics Assembly'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Night"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Kestrel Electronics Assembly",
+        "endDate": "2026-02-08",
+        "personNumber": "KE-517",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-047"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Kestrel Electronics Assembly",
+        "endDate": "2026-02-08",
+        "personNumber": "KE-518",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-047"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Kestrel Electronics Assembly' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-047",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-KEA-2026-02-08-NIGHT",
+            "post_rollup_and_record_unauthorized_absences",
+            16,
+            14,
+            4,
+            2.58,
+            2,
+            "FILE-KEA-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-KEA-2026-02-08-NIGHT",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-KEA-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-KEA-SHIFT-ROSTER-0208",
+          "MSG-erpbench-047-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-047"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 16; reporting staff 14; late reports 4; overtime hours 2.58; missing staff 2. Primary record ROLLUP-KEA-2026-02-08-NIGHT; operative source FILE-KEA-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-047 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-047",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-047",
+        "text": "erpbench-047: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-KEA-2026-02-08-NIGHT — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-047"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-047"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-047"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 16,
+          "late_reports": 4,
+          "missing_staff": 2,
+          "overtime_hours": 2.58,
+          "primary_record": "ROLLUP-KEA-2026-02-08-NIGHT",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 14,
+          "source_reference": "FILE-KEA-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-047"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-047"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

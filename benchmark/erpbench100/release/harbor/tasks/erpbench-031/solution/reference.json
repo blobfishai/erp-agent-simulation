@@ -1,0 +1,262 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-031"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-031"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-031-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='SGF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'NRG-0209-88'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='NRG-0209-88'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-SGF-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-40890"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "NRG-0209-88"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-40890",
+        "CustomerPONumber": "NRG-0209-88",
+        "RequestedFulfillmentOrganizationCode": "SGF1",
+        "SourceTransactionNumber": "FILE-SGF-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 2400,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SNK-CASSAVA-200",
+            "UnitListPrice": 1.9
+          },
+          {
+            "OrderedQuantity": 1800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SNK-BANANA-150",
+            "UnitListPrice": 2.1
+          },
+          {
+            "OrderedQuantity": 900,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SAUCE-SAMBAL-300",
+            "UnitListPrice": 2.6
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "COF-ROBUSTA-1K",
+            "UnitListPrice": 9.8
+          },
+          {
+            "OrderedQuantity": 600,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TEA-JAS-100",
+            "UnitListPrice": 4.2
+          },
+          {
+            "OrderedQuantity": 700,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SNK-BANANA-150",
+            "UnitListPrice": 2.1
+          },
+          {
+            "OrderedQuantity": 150,
+            "OrderedUOM": "EA",
+            "ProductNumber": "COF-ROBUSTA-1K",
+            "UnitListPrice": 9.8
+          }
+        ],
+        "task_id": "erpbench-031"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-SGF-50011"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-031",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-SGF-50011",
+            "import_accepted_lines_and_submit",
+            7,
+            3,
+            6850,
+            19080.0,
+            2,
+            "FILE-SGF-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-SGF-50011",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-SGF-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-SGF-ORDER-BATCH-0209",
+          "MSG-erpbench-031-REQUEST",
+          "MSG-SGF-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-031"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Sungrove Foods: recommend import_accepted_lines_and_submit (submitted). accepted lines 7; rejected lines 3; imported units 6850; order total 19080.0; duplicate lines 2. Primary record SO-SGF-50011; operative source FILE-SGF-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-031 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-031",
+        "to": "ayu.kartika@sungrove-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-031",
+        "text": "erpbench-031: submitted / import_accepted_lines_and_submit / SO-SGF-50011 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-031"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-031"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "task_id": "erpbench-031"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 7,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 6850,
+          "order_total": 19080.0,
+          "primary_record": "SO-SGF-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-SGF-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-031"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-031"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

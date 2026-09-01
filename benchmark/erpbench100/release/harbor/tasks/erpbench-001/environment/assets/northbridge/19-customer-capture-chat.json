@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-nbr",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Shopify: Oakline Builders, tax id TX-88-402911, orders via orders@oakline-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Marcus Lee",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

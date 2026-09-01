@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-022"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-022"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-022-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-MSS-1180'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-MSS-1180'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-MSS-1180'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-MSS-22019"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-MSS-1180"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-MSS-PICK-CONFIRM-0208",
+        "ShipmentLine": 700009,
+        "ShippedQuantity": 5,
+        "task_id": "erpbench-022"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-MSS-1180'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-022",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-MSS-1180",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            3,
+            1,
+            1,
+            29680.0,
+            "FILE-MSS-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-MSS-1180",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-MSS-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-MSS-PICK-CONFIRM-0208",
+          "MSG-erpbench-022-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-022"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 5; lines matching 3; lines corrected 1; units removed 1; confirmed value 29680.0. Primary record SHP-MSS-1180; operative source FILE-MSS-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-022 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-022",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-022",
+        "text": "erpbench-022: partial_hold / correct_short_picks_and_hold_over_picks / SHP-MSS-1180 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-022"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-022"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-022"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 29680.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 3,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-MSS-1180",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-MSS-PICK-CONFIRM-0208",
+          "units_removed": 1
+        },
+        "task_id": "erpbench-022"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-022"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

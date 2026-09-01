@@ -1,0 +1,265 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-098"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-098"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-098-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Distributor portal'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Distributor portal'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-11780"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Chiang Mai Energy Co",
+        "CustomerPONumber": "DP-12002",
+        "OrderTotal": 14800.0,
+        "RequestedFulfillmentOrganizationCode": "TRV1",
+        "SourceTransactionNumber": "DP-12002",
+        "SourceTransactionSystem": "Distributor portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-098"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Phuket Green Homes",
+        "CustomerPONumber": "DP-12003",
+        "OrderTotal": 7400.0,
+        "RequestedFulfillmentOrganizationCode": "TRV1",
+        "SourceTransactionNumber": "DP-12003",
+        "SourceTransactionSystem": "Distributor portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-098"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Pattaya Resorts Energy",
+        "CustomerPONumber": "DP-12005",
+        "OrderTotal": 18500.0,
+        "RequestedFulfillmentOrganizationCode": "TRV1",
+        "SourceTransactionNumber": "DP-12005",
+        "SourceTransactionSystem": "Distributor portal",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-098"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Distributor portal'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-098",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Chiang Mai Energy Co",
+            "",
+            "purchasing@cmenergy-sim.example",
+            "TH-40-227719",
+            "Distributor portal"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-098",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-TRV-52007",
+            "create_unsynced_orders_and_capture_customer",
+            7,
+            3,
+            3,
+            1,
+            40700.0,
+            "FILE-TRV-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-TRV-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-TRV-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-TRV-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-098-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-098"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 7; already synced 3; created orders 3; duplicate rows 1; synced value 40700.0. Primary record SO-TRV-52007; operative source FILE-TRV-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-098 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-098",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-098",
+        "text": "erpbench-098: synced / create_unsynced_orders_and_capture_customer / SO-TRV-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-098"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-098"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-098"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 7,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-TRV-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-TRV-CHANNEL-EXPORT-0209",
+          "synced_value": 40700.0
+        },
+        "task_id": "erpbench-098"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-098"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-071"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-071"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-071-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'HVC-2026-0201'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='HVC-2026-0201'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-RVS-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-80633"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "HVC-2026-0201"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-80633",
+        "CustomerPONumber": "HVC-2026-0201",
+        "RequestedFulfillmentOrganizationCode": "RVS1",
+        "SourceTransactionNumber": "FILE-RVS-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": false,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 900,
+            "OrderedUOM": "EA",
+            "ProductNumber": "GLV-NIT-M",
+            "UnitListPrice": 8.9
+          },
+          {
+            "OrderedQuantity": 1500,
+            "OrderedUOM": "EA",
+            "ProductNumber": "MSK-SURG-3",
+            "UnitListPrice": 6.2
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SYR-5ML-100",
+            "UnitListPrice": 12.5
+          },
+          {
+            "OrderedQuantity": 450,
+            "OrderedUOM": "EA",
+            "ProductNumber": "GAUZE-4X4",
+            "UnitListPrice": 7.4
+          },
+          {
+            "OrderedQuantity": 60,
+            "OrderedUOM": "EA",
+            "ProductNumber": "THERM-IR",
+            "UnitListPrice": 34.0
+          },
+          {
+            "OrderedQuantity": 500,
+            "OrderedUOM": "EA",
+            "ProductNumber": "MSK-SURG-3",
+            "UnitListPrice": 6.2
+          }
+        ],
+        "task_id": "erpbench-071"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-RVS-50013"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-071",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-RVS-50013",
+            "import_accepted_lines_and_hold_submission",
+            6,
+            3,
+            3710,
+            29530.0,
+            2,
+            "FILE-RVS-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_hold_submission",
+        "primary_record": "SO-RVS-50013",
+        "rationale": "Current evidence supports import_accepted_lines_and_hold_submission; operative source FILE-RVS-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-RVS-ORDER-BATCH-0209",
+          "MSG-erpbench-071-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "awaiting_credit_release",
+        "task_id": "erpbench-071"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend import_accepted_lines_and_hold_submission (awaiting_credit_release). accepted lines 6; rejected lines 3; imported units 3710; order total 29530.0; duplicate lines 2. Primary record SO-RVS-50013; operative source FILE-RVS-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-071 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-071",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-071",
+        "text": "erpbench-071: awaiting_credit_release / import_accepted_lines_and_hold_submission / SO-RVS-50013 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-071"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-071"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-071"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 6,
+          "decision_status": "awaiting_credit_release",
+          "duplicate_lines": 2,
+          "imported_units": 3710,
+          "order_total": 29530.0,
+          "primary_record": "SO-RVS-50013",
+          "recommended_option": "import_accepted_lines_and_hold_submission",
+          "rejected_lines": 3,
+          "source_reference": "FILE-RVS-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-071"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-071"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

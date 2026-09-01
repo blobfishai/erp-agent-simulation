@@ -1,0 +1,232 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-030"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-030"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-030-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PRICE-BATCH-MSS-2026Q2'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-PRICE-BATCH-Q2"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-PRICE-LIST-CURRENT"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "PricingPolicy!A1:C6",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-PRICING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "price batch"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-11",
+        "ItemId": 300010,
+        "ListPrice": 1490.0,
+        "task_id": "erpbench-030"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-11",
+        "ItemId": 300024,
+        "ListPrice": 1150.0,
+        "task_id": "erpbench-030"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-04-25",
+        "ItemId": 300003,
+        "ListPrice": 1260.0,
+        "task_id": "erpbench-030"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-030",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "PRICE-BATCH-MSS-2026Q2",
+            "apply_policy_compliant_lines",
+            8,
+            3,
+            4,
+            1,
+            4.07,
+            "FILE-MSS-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "PRICE-BATCH-MSS-2026Q2",
+        "rationale": "Current evidence supports apply_policy_compliant_lines; operative source FILE-MSS-PRICE-BATCH-Q2.",
+        "source_refs": [
+          "FILE-MSS-PRICE-BATCH-Q2",
+          "MSG-erpbench-030-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-030"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend apply_policy_compliant_lines (batch_applied_with_rejections). batch lines 8; accepted lines 3; rejected lines 4; superseded lines 1; average change pct 4.07. Primary record PRICE-BATCH-MSS-2026Q2; operative source FILE-MSS-PRICE-BATCH-Q2. Draft for review, not sent.",
+        "subject": "erpbench-030 — Apply the quarterly price batch under policy — for review",
+        "task_id": "erpbench-030",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-030",
+        "text": "erpbench-030: batch_applied_with_rejections / apply_policy_compliant_lines / PRICE-BATCH-MSS-2026Q2 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-030"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-030"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-030"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.07,
+          "batch_lines": 8,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "PRICE-BATCH-MSS-2026Q2",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-MSS-PRICE-BATCH-Q2",
+          "superseded_lines": 1
+        },
+        "task_id": "erpbench-030"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-030"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

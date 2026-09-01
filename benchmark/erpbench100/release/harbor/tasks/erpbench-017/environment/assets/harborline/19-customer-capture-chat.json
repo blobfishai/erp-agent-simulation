@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-hbl",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from CyberBiz: Jade Pantry, tax id TW-24-771093, orders via buying@jadepantry-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Wang Po-Wei",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

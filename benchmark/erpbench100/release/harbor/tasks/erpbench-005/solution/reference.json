@@ -1,0 +1,298 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-005"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-005"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-005-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-NBR-88120"
+      },
+      "tool": "oracle_fusion.purchase_orders.get"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-NBR-88120"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-DELIVERY-NOTE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-AP-MATCH-POLICY"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Ridgeway Metals'"
+      },
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "OrganizationCode": "NBR1",
+        "ReceiptSourceCode": "VENDOR",
+        "VendorName": "Ridgeway Metals",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-NBR-88120",
+            "ItemNumber": "FST-M8-40",
+            "Quantity": 5000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-NBR-88120",
+            "ItemNumber": "FST-M10-60",
+            "Quantity": 3000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-NBR-88120",
+            "ItemNumber": "NUT-M8-NYL",
+            "Quantity": 1800,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-NBR-88120",
+            "ItemNumber": "WSH-M10-SS",
+            "Quantity": 1500,
+            "TransactionType": "RECEIVE"
+          }
+        ],
+        "task_id": "erpbench-005"
+      },
+      "tool": "oracle_fusion.receiving_receipt_requests.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Northbridge Manufacturing",
+        "InvoiceAmount": 6098.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceNumber": "RM-INV-55021",
+        "Supplier": "Ridgeway Metals",
+        "invoiceLines": [
+          {
+            "ItemNumber": "FST-M8-40",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-NBR-88120",
+            "Quantity": 5000,
+            "UnitPrice": 0.58
+          },
+          {
+            "ItemNumber": "FST-M10-60",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-NBR-88120",
+            "Quantity": 3000,
+            "UnitPrice": 0.97
+          },
+          {
+            "ItemNumber": "NUT-M8-NYL",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-NBR-88120",
+            "Quantity": 1800,
+            "UnitPrice": 0.11
+          },
+          {
+            "ItemNumber": "WSH-M10-SS",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-NBR-88120",
+            "Quantity": 1500,
+            "UnitPrice": 0.06
+          }
+        ],
+        "task_id": "erpbench-005"
+      },
+      "tool": "oracle_fusion.invoices.create"
+    },
+    {
+      "arguments": {
+        "HoldName": "Price",
+        "HoldReason": "line 2: price variance exceeds tolerance",
+        "InvoiceId": 660015,
+        "task_id": "erpbench-005"
+      },
+      "tool": "oracle_fusion.invoice_holds.create"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "RM-INV-55021"
+      },
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-005",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RM-INV-55021",
+            "receive_and_hold_variance_lines",
+            3,
+            3188.0,
+            180.0,
+            1,
+            3188.0,
+            "FILE-NBR-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_hold_variance_lines",
+        "primary_record": "RM-INV-55021",
+        "rationale": "Current evidence supports receive_and_hold_variance_lines; operative source FILE-NBR-DELIVERY-NOTE-0206.",
+        "source_refs": [
+          "FILE-NBR-DELIVERY-NOTE-0206",
+          "MSG-erpbench-005-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-005"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend receive_and_hold_variance_lines (invoice_on_hold). lines matched 3; matched amount 3188.0; variance amount 180.0; held lines 1; payable amount 3188.0. Primary record RM-INV-55021; operative source FILE-NBR-DELIVERY-NOTE-0206. Draft for review, not sent.",
+        "subject": "erpbench-005 — Receive the delivery and match the supplier invoice — for review",
+        "task_id": "erpbench-005",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-005",
+        "text": "erpbench-005: invoice_on_hold / receive_and_hold_variance_lines / RM-INV-55021 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-005"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-005"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-005"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "invoice_on_hold",
+          "held_lines": 1,
+          "lines_matched": 3,
+          "matched_amount": 3188.0,
+          "payable_amount": 3188.0,
+          "primary_record": "RM-INV-55021",
+          "recommended_option": "receive_and_hold_variance_lines",
+          "source_reference": "FILE-NBR-DELIVERY-NOTE-0206",
+          "variance_amount": 180.0
+        },
+        "task_id": "erpbench-005"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-005"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

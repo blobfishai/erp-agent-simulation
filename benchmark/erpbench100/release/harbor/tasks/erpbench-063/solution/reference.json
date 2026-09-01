@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-063"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-063-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-70510' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-70510"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-70510'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Caldera Converting",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-70510",
+        "ReceiptAmount": 77100.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "ACH",
+        "ReceiptNumber": "RCPT-CLD-4402",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 52300.0,
+            "ReferenceNumber": "INV-CLD-11220",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 24800.0,
+            "ReferenceNumber": "INV-CLD-11276",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-063"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-70510'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-063",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-CLD-4402",
+            "apply_receipt_and_continue_collections",
+            6,
+            77100.0,
+            17650.0,
+            8,
+            8.83,
+            "FILE-CLD-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_continue_collections",
+        "primary_record": "RCPT-CLD-4402",
+        "rationale": "Current evidence supports apply_receipt_and_continue_collections; operative source FILE-CLD-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-CLD-REMIT-ADVICE-0206",
+          "MSG-erpbench-063-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "collections_in_progress",
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend apply_receipt_and_continue_collections (collections_in_progress). open invoices before 6; receipt amount 77100.0; remaining past due 17650.0; oldest days past due 8; past due pct of limit 8.83. Primary record RCPT-CLD-4402; operative source FILE-CLD-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-063 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-063",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-063",
+        "text": "erpbench-063: collections_in_progress / apply_receipt_and_continue_collections / RCPT-CLD-4402 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-063"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-063"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "collections_in_progress",
+          "oldest_days_past_due": 8,
+          "open_invoices_before": 6,
+          "past_due_pct_of_limit": 8.83,
+          "primary_record": "RCPT-CLD-4402",
+          "receipt_amount": 77100.0,
+          "recommended_option": "apply_receipt_and_continue_collections",
+          "remaining_past_due": 17650.0,
+          "source_reference": "FILE-CLD-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

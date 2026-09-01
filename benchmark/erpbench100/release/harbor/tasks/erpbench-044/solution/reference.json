@@ -1,0 +1,248 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-044"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-044-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Shenzhen Board Partners' and Status='Open'"
+      },
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-6601','SUP-6640')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-REORDER-POLICY-R4"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-DEMAND-FORECAST-F06"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Reorder!A1:F12",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "reorder"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Description": "Reorder run KEA1 2026-02-09 under policy FILE-KEA-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Kestrel Assembly",
+        "lines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "Quantity": 1080,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "Quantity": 1400,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "PSU-24V-60",
+            "Quantity": 670,
+            "RequestedDeliveryDate": "2026-02-27",
+            "Supplier": "Shenzhen Board Partners",
+            "UOM": "EA",
+            "UnitPrice": 13.6
+          }
+        ],
+        "task_id": "erpbench-044"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-KEA-61015",
+        "task_id": "erpbench-044"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-KEA-61015"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-044",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-KEA-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            3150,
+            46168.0,
+            18,
+            4,
+            "FILE-KEA-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "requisition_primary_supplier_and_flag_lateness",
+        "primary_record": "REQ-KEA-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-KEA-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-KEA-REORDER-POLICY-R4",
+          "MSG-erpbench-044-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted_late_risk",
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 3150; requisition amount 46168.0; supplier lead time days 18; days late 4. Primary record REQ-KEA-61015; operative source FILE-KEA-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-044 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-044",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-044",
+        "text": "erpbench-044: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-KEA-61015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-044"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-044"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "days_late": 4,
+          "decision_status": "requisition_submitted_late_risk",
+          "primary_record": "REQ-KEA-61015",
+          "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+          "requisition_amount": 46168.0,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-KEA-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 18,
+          "total_reorder_units": 3150
+        },
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-044"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

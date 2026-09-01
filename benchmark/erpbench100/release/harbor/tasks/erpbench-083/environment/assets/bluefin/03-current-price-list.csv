@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from
+IMP-WP-40,Water pump impeller 40 mm,28.00,Active,2026-01-01
+ANODE-ZN-2,Zinc anode 2 kg,19.50,Active,2026-01-01
+FILT-FUEL-10,Fuel filter 10 micron,16.80,Active,2026-01-01
+PROP-AL-13,Aluminium propeller 13 in,210.00,Active,2026-01-01
+HOSE-BILGE-25,Bilge hose 25 mm (per metre),4.60,Active,2026-01-01
+IMP-WP-35-OLD,Impeller 35 mm (superseded),24.00,Inactive,2026-01-01

@@ -1,0 +1,816 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "days_late": {
+        "type": "integer"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "requisition_amount": {
+        "multipleOf": 0.01,
+        "type": "number"
+      },
+      "skus_below_reorder": {
+        "type": "integer"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "supplier_lead_time_days": {
+        "type": "integer"
+      },
+      "total_reorder_units": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "skus_below_reorder",
+      "total_reorder_units",
+      "requisition_amount",
+      "supplier_lead_time_days",
+      "days_late"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Northbridge Fastener Works",
+  "context_files": [
+    "assets/northbridge/01-consolidated-order-batch.xlsx",
+    "assets/northbridge/02-prior-partial-import.xlsx",
+    "assets/northbridge/03-current-price-list.csv",
+    "assets/northbridge/04-superseded-price-list.csv",
+    "assets/northbridge/05-pick-confirmation.csv",
+    "assets/northbridge/06-remittance-advice.pdf",
+    "assets/northbridge/07-ar-aging.xlsx",
+    "assets/northbridge/08-credit-policy.md",
+    "assets/northbridge/09-reorder-policy.xlsx",
+    "assets/northbridge/10-demand-forecast.csv",
+    "assets/northbridge/11-supplier-invoice.pdf",
+    "assets/northbridge/12-delivery-note.pdf",
+    "assets/northbridge/13-ap-match-policy.md",
+    "assets/northbridge/14-compliance-checklist.xlsx",
+    "assets/northbridge/15-document-alert-log.csv",
+    "assets/northbridge/16-shift-roster.xlsx",
+    "assets/northbridge/17-shift-work-reports.csv",
+    "assets/northbridge/18-channel-export.json",
+    "assets/northbridge/19-customer-capture-chat.json",
+    "assets/northbridge/20-headcount-approval.pdf",
+    "assets/northbridge/21-candidate-register.xlsx",
+    "assets/northbridge/22-wage-table.csv",
+    "assets/northbridge/23-price-batch.csv",
+    "assets/northbridge/24-authority-memo.eml",
+    "assets/northbridge/25-source-map.yaml",
+    "assets/northbridge/26-ops-audit.log",
+    "assets/tasks/erpbench-004/task-brief.md",
+    "assets/tasks/erpbench-004/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "requisition_primary_supplier",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.purchase_requisitions.get",
+  "expected_answer": {
+    "days_late": 0,
+    "decision_status": "requisition_submitted",
+    "primary_record": "REQ-NBR-61015",
+    "recommended_option": "requisition_primary_supplier",
+    "requisition_amount": 3671.1,
+    "skus_below_reorder": 3,
+    "source_reference": "FILE-NBR-REORDER-POLICY-R4",
+    "supplier_lead_time_days": 9,
+    "total_reorder_units": 6880
+  },
+  "gold_output": {
+    "answers": {
+      "days_late": 0,
+      "decision_status": "requisition_submitted",
+      "primary_record": "REQ-NBR-61015",
+      "recommended_option": "requisition_primary_supplier",
+      "requisition_amount": 3671.1,
+      "skus_below_reorder": 3,
+      "source_reference": "FILE-NBR-REORDER-POLICY-R4",
+      "supplier_lead_time_days": 9,
+      "total_reorder_units": 6880
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "requisition_primary_supplier",
+      "primary_record": "REQ-NBR-61015",
+      "status": "requisition_submitted"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "inventory_reorder",
+    "category_label": "Reorder monitoring and requisition",
+    "company": "Northbridge Fastener Works",
+    "country": "US",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Industrial fasteners",
+    "nario_grounding": {
+      "archetype": "inventory-query",
+      "production_runs_observed": 17,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "row_exists"
+    },
+    "profile": "discrete manufacturer",
+    "reference_tool_calls": 28,
+    "synthetic": true,
+    "tenant": "NORTHBRIDGE"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-004"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-004"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-004-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Ridgeway Metals' and Status='Open'"
+      },
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-2201','SUP-2377')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-REORDER-POLICY-R4"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-DEMAND-FORECAST-F06"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Reorder!A1:F12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "reorder"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Description": "Reorder run NBR1 2026-02-09 under policy FILE-NBR-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Northbridge Manufacturing",
+        "lines": [
+          {
+            "ItemNumber": "FST-M8-40",
+            "Quantity": 3700,
+            "RequestedDeliveryDate": "2026-02-18",
+            "Supplier": "Ridgeway Metals",
+            "UOM": "EA",
+            "UnitPrice": 0.58
+          },
+          {
+            "ItemNumber": "NUT-M8-NYL",
+            "Quantity": 2450,
+            "RequestedDeliveryDate": "2026-02-18",
+            "Supplier": "Ridgeway Metals",
+            "UOM": "EA",
+            "UnitPrice": 0.11
+          },
+          {
+            "ItemNumber": "ANC-12-100",
+            "Quantity": 730,
+            "RequestedDeliveryDate": "2026-02-18",
+            "Supplier": "Ridgeway Metals",
+            "UOM": "EA",
+            "UnitPrice": 1.72
+          }
+        ],
+        "task_id": "erpbench-004"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-NBR-61015",
+        "task_id": "erpbench-004"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-NBR-61015"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-004",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-NBR-61015",
+            "requisition_primary_supplier",
+            3,
+            6880,
+            3671.1,
+            9,
+            0,
+            "FILE-NBR-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "requisition_primary_supplier",
+        "primary_record": "REQ-NBR-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier; operative source FILE-NBR-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-NBR-REORDER-POLICY-R4",
+          "MSG-erpbench-004-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted",
+        "task_id": "erpbench-004"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend requisition_primary_supplier (requisition_submitted). skus below reorder 3; total reorder units 6880; requisition amount 3671.1; supplier lead time days 9; days late 0. Primary record REQ-NBR-61015; operative source FILE-NBR-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-004 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-004",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-004",
+        "text": "erpbench-004: requisition_submitted / requisition_primary_supplier / REQ-NBR-61015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-004"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-004"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-004"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "days_late": 0,
+          "decision_status": "requisition_submitted",
+          "primary_record": "REQ-NBR-61015",
+          "recommended_option": "requisition_primary_supplier",
+          "requisition_amount": 3671.1,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-NBR-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 9,
+          "total_reorder_units": 6880
+        },
+        "task_id": "erpbench-004"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-004"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.purchase_requisitions.create",
+  "prompt": "**Northbridge Fastener Works · Toledo plant · Reorder monitoring and requisition**\n\nPlanning wants the reorder run for the Toledo plant done today. Work out which items are genuinely below their reorder point once reservations and open purchase orders are counted, how much each needs to come back to its planned level, and whether Ridgeway Metals can deliver inside the 10-day window or whether an expedite option is worth raising. Raise the requisition that current policy supports, log it in the register, and post the planning update for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-004"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-004"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-004-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-NBR-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-nbr"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-NBR-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='NBR1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='NBR1'"
+          },
+          "tool": "oracle_fusion.onhand_balances.list"
+        }
+      ],
+      "description": "onhand balances",
+      "id": "onhand_balances"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "Supplier='Ridgeway Metals' and Status='Open'"
+          },
+          "tool": "oracle_fusion.purchase_orders.list"
+        }
+      ],
+      "description": "open purchase orders",
+      "id": "open_purchase_orders"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "SupplierNumber in ('SUP-2201','SUP-2377')"
+          },
+          "tool": "oracle_fusion.suppliers.list"
+        }
+      ],
+      "description": "suppliers",
+      "id": "suppliers"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-REORDER-POLICY-R4"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "reorder policy",
+      "id": "reorder_policy"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-NBR-DEMAND-FORECAST-F06"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "demand forecast",
+      "id": "demand_forecast"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Reorder!A1:F12",
+            "spreadsheetId": "SHEET-NBR-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "reorder tab",
+      "id": "reorder_tab"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "query": "reorder"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "planning thread",
+      "id": "planning_thread"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the onhand balances investigation before any controlled write.",
+      "id": "discovery:onhand_balances",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the open purchase orders investigation before any controlled write.",
+      "id": "discovery:open_purchase_orders",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the suppliers investigation before any controlled write.",
+      "id": "discovery:suppliers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder policy investigation before any controlled write.",
+      "id": "discovery:reorder_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the demand forecast investigation before any controlled write.",
+      "id": "discovery:demand_forecast",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder tab investigation before any controlled write.",
+      "id": "discovery:reorder_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the planning thread investigation before any controlled write.",
+      "id": "discovery:planning_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded skus below reorder (3).",
+      "id": "calculation:skus_below_reorder",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded total reorder units (6880).",
+      "id": "calculation:total_reorder_units",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded requisition amount (3671.1).",
+      "id": "calculation:requisition_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded supplier lead time days (9).",
+      "id": "calculation:supplier_lead_time_days",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded days late (0).",
+      "id": "calculation:days_late",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option requisition_primary_supplier.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-NBR-REORDER-POLICY-R4 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-004",
+  "task_name": "Run the reorder review and raise the requisition",
+  "tenant_code": "NORTHBRIDGE",
+  "world_id": "fusion-erp-tenants-v1"
+}

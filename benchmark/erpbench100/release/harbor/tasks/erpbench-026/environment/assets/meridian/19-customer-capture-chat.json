@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-mss",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Agency portal: Kaohsiung Care Homes, tax id TW-31-556201, orders via admin@kh-carehomes-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Kao Li-Wen",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

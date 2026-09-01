@@ -1,0 +1,279 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-018"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-018"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-018-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='HBL1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'CyberBiz'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='CyberBiz'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-20077"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Jade Pantry",
+        "CustomerPONumber": "CB-55802",
+        "OrderTotal": 2140.4,
+        "RequestedFulfillmentOrganizationCode": "HBL1",
+        "SourceTransactionNumber": "CB-55802",
+        "SourceTransactionSystem": "CyberBiz",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-018"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Sunrise Foods",
+        "CustomerPONumber": "CB-55803",
+        "OrderTotal": 860.2,
+        "RequestedFulfillmentOrganizationCode": "HBL1",
+        "SourceTransactionNumber": "CB-55803",
+        "SourceTransactionSystem": "CyberBiz",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-018"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Bamboo Kitchen",
+        "CustomerPONumber": "CB-55805",
+        "OrderTotal": 1910.75,
+        "RequestedFulfillmentOrganizationCode": "HBL1",
+        "SourceTransactionNumber": "CB-55805",
+        "SourceTransactionSystem": "CyberBiz",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-018"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Orchid Deli",
+        "CustomerPONumber": "CB-55807",
+        "OrderTotal": 2275.5,
+        "RequestedFulfillmentOrganizationCode": "HBL1",
+        "SourceTransactionNumber": "CB-55807",
+        "SourceTransactionSystem": "CyberBiz",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-018"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='CyberBiz'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-018",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Jade Pantry",
+            "",
+            "buying@jadepantry-sim.example",
+            "TW-24-771093",
+            "CyberBiz"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-018",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-HBL-52007",
+            "create_unsynced_orders_and_capture_customer",
+            8,
+            3,
+            4,
+            1,
+            7186.85,
+            "FILE-HBL-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-HBL-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-HBL-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-HBL-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-018-REQUEST",
+          "MSG-HBL-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-018"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Harborline Trading Co.: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 8; already synced 3; created orders 4; duplicate rows 1; synced value 7186.85. Primary record SO-HBL-52007; operative source FILE-HBL-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-018 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-018",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-018",
+        "text": "erpbench-018: synced / create_unsynced_orders_and_capture_customer / SO-HBL-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-018"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-018"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-018"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 8,
+          "created_orders": 4,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-HBL-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-HBL-CHANNEL-EXPORT-0209",
+          "synced_value": 7186.85
+        },
+        "task_id": "erpbench-018"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-018"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

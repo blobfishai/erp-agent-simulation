@@ -1,0 +1,2419 @@
+{
+  "absences": [
+    {
+      "absence_id": 1,
+      "absence_status": "APPROVED",
+      "absence_type": "Approved leave",
+      "created_by": "hr_lead",
+      "employer": "Alderwood Furniture",
+      "end_date": "2026-02-08",
+      "last_task_id": null,
+      "person_number": "AL-617",
+      "start_date": "2026-02-08",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "absence_id": 2,
+      "absence_status": "APPROVED",
+      "absence_type": "Approved leave",
+      "created_by": "hr_lead",
+      "employer": "Alderwood Furniture",
+      "end_date": "2026-02-08",
+      "last_task_id": null,
+      "person_number": "AL-618",
+      "start_date": "2026-02-08",
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "ap_invoices": [],
+  "audit_log": [],
+  "channel_orders": [
+    {
+      "buyer": "Casa Verde Interiors",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20901",
+      "order_total": 6840.0,
+      "row_id": 1,
+      "synced_order_number": "SO-ALD-45003",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Northwind Homes",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20902",
+      "order_total": 3960.0,
+      "row_id": 2,
+      "synced_order_number": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Elm Street Design",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20903",
+      "order_total": 2520.0,
+      "row_id": 3,
+      "synced_order_number": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Harbor House",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20904",
+      "order_total": 5100.0,
+      "row_id": 4,
+      "synced_order_number": "SO-ALD-45012",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Northwind Homes",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20902",
+      "order_total": 3960.0,
+      "row_id": 5,
+      "synced_order_number": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Maple & Co",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20905",
+      "order_total": 1890.0,
+      "row_id": 6,
+      "synced_order_number": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Fernway Rentals",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20906",
+      "order_total": 4380.0,
+      "row_id": 7,
+      "synced_order_number": "SO-ALD-45021",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "buyer": "Loft 27",
+      "channel": "Wayfair",
+      "channel_order_id": "WF-20907",
+      "order_total": 2310.0,
+      "row_id": 8,
+      "synced_order_number": null,
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "chat_messages": [
+    {
+      "author": "sales-inbox",
+      "channel": "#customers-ald",
+      "message_id": "CHAT-ALD-CAPTURE-1",
+      "posted_at": "2026-02-09T06:30:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "New buyer from Wayfair: Northwind Homes, tax id VN-15-908233, orders via buyers@northwind-sim.example. Needs a master record before invoicing.",
+      "thread_id": "THREAD-ALD-CAPTURE"
+    },
+    {
+      "author": "Nguyen Thanh Tam",
+      "channel": "#customers-ald",
+      "message_id": "CHAT-ALD-CAPTURE-2",
+      "posted_at": "2026-02-09T06:35:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order.",
+      "thread_id": "THREAD-ALD-CAPTURE"
+    },
+    {
+      "author": "Tran Minh Chau",
+      "channel": "#hr-ald",
+      "message_id": "CHAT-ALD-HR",
+      "posted_at": "2026-02-06T09:00:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Compliance audit next week; document alerts, failed checks and the hiring round all need closing this week.",
+      "thread_id": "THREAD-ALD-HR"
+    },
+    {
+      "author": "Nguyen Thanh Tam",
+      "channel": "#planning-ald",
+      "message_id": "CHAT-ALD-PLANNING",
+      "posted_at": "2026-02-09T07:45:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Reorder run today: use policy R4 (open POs count as supply) and the 10-day need window; Mekong Hardwood Mills lead time is 12 days.",
+      "thread_id": "THREAD-ALD-PLAN"
+    },
+    {
+      "author": "pricing",
+      "channel": "#pricing-ald",
+      "message_id": "CHAT-ALD-PRICING",
+      "posted_at": "2026-02-09T08:20:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Price batch PRICE-BATCH-ALD-2026Q2 is out; policy tab in the ops register applies.",
+      "thread_id": "THREAD-ALD-PRICE"
+    },
+    {
+      "author": "Nguyen Thanh Tam",
+      "channel": "#ops-ald",
+      "message_id": "CHAT-ALD-PRIOR-IMPORT",
+      "posted_at": "2026-02-03T10:20:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Partial import for HLS-PO-2026-031 went in on 2026-02-03 as SO-ALD-40039; the rest of the lines are still pending.",
+      "thread_id": "THREAD-ALD-IMPORT"
+    },
+    {
+      "author": "Vo Van Duc",
+      "channel": "#shift-ald",
+      "message_id": "CHAT-ALD-SHIFT",
+      "posted_at": "2026-02-08T21:00:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "Day shift 2026-02-08: reports due by 17:15; overtime is measured from shift end.",
+      "thread_id": "THREAD-ALD-SHIFT"
+    },
+    {
+      "author": "Vo Van Duc",
+      "channel": "#warehouse-ald",
+      "message_id": "CHAT-ALD-WAREHOUSE",
+      "posted_at": "2026-02-08T22:10:00Z",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "text": "SHP-ALD-7702 picked; the pick confirmation is uploaded, a couple of lines did not match the requested quantity.",
+      "thread_id": "THREAD-ALD-WH"
+    },
+    {
+      "author": "Nguyen Thanh Tam",
+      "channel": "#ops-ald",
+      "message_id": "CHAT-erpbench-054-1",
+      "posted_at": "2026-02-09T09:00:00Z",
+      "task_id": "erpbench-054",
+      "tenant_code": "ALDERWOOD",
+      "text": "Please resolve erpbench-054 against the current February authority; keep the handoff in review.",
+      "thread_id": "THREAD-erpbench-054"
+    },
+    {
+      "author": "controls",
+      "channel": "#ops-ald",
+      "message_id": "CHAT-erpbench-054-2",
+      "posted_at": "2026-02-09T09:00:00Z",
+      "task_id": "erpbench-054",
+      "tenant_code": "ALDERWOOD",
+      "text": "Operative sources are listed in the source map file; superseded versions stay in Drive for reference only.",
+      "thread_id": "THREAD-erpbench-054"
+    }
+  ],
+  "chat_posts": [],
+  "customers": [
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 0,
+      "credit_limit": 140000.0,
+      "customer_number": "CUST-60244",
+      "name": "Homestead Living Stores",
+      "payment_terms": "Net 30",
+      "source_message_id": "MSG-ALD-CUSTOMER-SETUP",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 0,
+      "credit_limit": 40000.0,
+      "customer_number": "CUST-ALD-DECOY1",
+      "name": "Wood Outlet Co.",
+      "payment_terms": "Net 30",
+      "source_message_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "created_by": "sales_ops",
+      "credit_hold": 1,
+      "credit_limit": 55000.0,
+      "customer_number": "CUST-ALD-DECOY2",
+      "name": "Northern Regional Buyers",
+      "payment_terms": "Net 45",
+      "source_message_id": null,
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "decisions": [],
+  "document_records": [
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-02-19",
+      "document_record_id": 400003,
+      "document_type": "Woodworking safety card",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1001",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 1,
+      "date_to": "2026-03-07",
+      "document_record_id": 400016,
+      "document_type": "Health check",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1002",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-03-14",
+      "document_record_id": 400029,
+      "document_type": "Forklift licence",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1003",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-02-28",
+      "document_record_id": 400042,
+      "document_type": "Work permit",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1004",
+      "status": "ALERTED",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "fail",
+      "check_pending": 0,
+      "date_to": "2026-03-05",
+      "document_record_id": 400055,
+      "document_type": "Woodworking safety card",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1005",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 0,
+      "date_to": "2026-05-08",
+      "document_record_id": 400068,
+      "document_type": "Health check",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1006",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    },
+    {
+      "check_outcome": "pass",
+      "check_pending": 1,
+      "date_to": "2026-02-24",
+      "document_record_id": 400081,
+      "document_type": "Safety induction",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "person_number": "ALD-P1007",
+      "status": "ACTIVE",
+      "tenant_code": "ALDERWOOD",
+      "verified_flag": 0
+    }
+  ],
+  "drive_files": [
+    {
+      "content": "# Alderwood Furniture three-way match policy\n\n- Price tolerance: 2.0% of the purchase-order unit price per line.\n- Invoiced quantity may never exceed the received quantity.\n- Lines outside tolerance are entered and placed on hold with the reason; matched lines are validated for payment.\n- Payment release is authorized by Le Thi Hong after the analyst's match note.\n",
+      "file_id": "FILE-ALD-AP-MATCH-POLICY",
+      "is_current": 1,
+      "logical_name": "ap-match-policy",
+      "mime_type": "text/markdown",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "13-ap-match-policy.md",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Invoice,Amount,Due date,Days past due,Status\r\nINV-ALD-90020,41200.0,2025-12-27,44,open\r\nINV-ALD-90077,18600.0,2026-01-11,29,open\r\nINV-ALD-90130,27400.0,2026-01-29,11,open\r\nINV-ALD-90188,12900.0,2026-02-13,0,open\r\nINV-ALD-90241,19800.0,2026-02-25,0,open\r\n",
+      "file_id": "FILE-ALD-AR-AGING-0209",
+      "is_current": 1,
+      "logical_name": "ar-aging",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "07-ar-aging.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "From: nguyen.thanh.tam@alderwood-sim.example\nTo: analyst@alderwood-sim.example\nSubject: Alderwood Furniture operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+      "file_id": "FILE-ALD-AUTHORITY-MEMO-0209",
+      "is_current": 1,
+      "logical_name": "authority-memo",
+      "mime_type": "message/rfc822",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "24-authority-memo.eml",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Candidate,Candidate id,Permit expiry,Background check,Grade\r\nLe Van Sang,ALD-C201,2028-04-19,passed,B\r\nNguyen Thi Bich,ALD-C202,2026-12-06,passed,B\r\nTran Quoc Bao,ALD-C203,2028-11-05,passed,B\r\nPham Thi Lan,ALD-C204,2028-09-16,passed,B\r\nHoang Duc Anh,ALD-C205,2028-01-10,not passed,B\r\n",
+      "file_id": "FILE-ALD-CANDIDATE-REGISTER",
+      "is_current": 1,
+      "logical_name": "candidate-register",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "21-candidate-register.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "{\n  \"channel\": \"Wayfair\",\n  \"exported_at\": \"2026-02-02T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Casa Verde Interiors\",\n      \"channel_order_id\": \"WF-20901\",\n      \"order_total\": 6840.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Harbor House\",\n      \"channel_order_id\": \"WF-20904\",\n      \"order_total\": 5100.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Fernway Rentals\",\n      \"channel_order_id\": \"WF-20906\",\n      \"order_total\": 4380.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+      "file_id": "FILE-ALD-CHANNEL-EXPORT-0202",
+      "is_current": 0,
+      "logical_name": "channel-export",
+      "mime_type": "application/json",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "Wayfair-export-2026-02-02.json",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "{\n  \"channel\": \"Wayfair\",\n  \"exported_at\": \"2026-02-09T06:00:00Z\",\n  \"orders\": [\n    {\n      \"buyer\": \"Casa Verde Interiors\",\n      \"channel_order_id\": \"WF-20901\",\n      \"currency\": \"USD\",\n      \"order_total\": 6840.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Northwind Homes\",\n      \"channel_order_id\": \"WF-20902\",\n      \"currency\": \"USD\",\n      \"order_total\": 3960.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Elm Street Design\",\n      \"channel_order_id\": \"WF-20903\",\n      \"currency\": \"USD\",\n      \"order_total\": 2520.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Harbor House\",\n      \"channel_order_id\": \"WF-20904\",\n      \"currency\": \"USD\",\n      \"order_total\": 5100.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Northwind Homes\",\n      \"channel_order_id\": \"WF-20902\",\n      \"currency\": \"USD\",\n      \"order_total\": 3960.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Maple & Co\",\n      \"channel_order_id\": \"WF-20905\",\n      \"currency\": \"USD\",\n      \"order_total\": 1890.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Fernway Rentals\",\n      \"channel_order_id\": \"WF-20906\",\n      \"currency\": \"USD\",\n      \"order_total\": 4380.0,\n      \"status\": \"paid\"\n    },\n    {\n      \"buyer\": \"Loft 27\",\n      \"channel_order_id\": \"WF-20907\",\n      \"currency\": \"USD\",\n      \"order_total\": 2310.0,\n      \"status\": \"paid\"\n    }\n  ]\n}",
+      "file_id": "FILE-ALD-CHANNEL-EXPORT-0209",
+      "is_current": 1,
+      "logical_name": "channel-export",
+      "mime_type": "application/json",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "18-channel-export.json",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Person,Person number,Document,Expires,Days remaining\nDang Van Hung,ALD-P1001,Woodworking safety card,2026-02-19,24\nBui Thi Ngoc,ALD-P1002,Health check,2026-03-07,40\nHoang Van Nam,ALD-P1003,Forklift licence,2026-03-14,47\nLy Thi Thu,ALD-P1004,Work permit,2026-02-28,33\nDo Minh Tuan,ALD-P1005,Woodworking safety card,2026-03-05,38\nVu Thi Hanh,ALD-P1006,Health check,2026-05-08,102\nNgo Van Phuc,ALD-P1007,Safety induction,2026-02-24,29\n",
+      "file_id": "FILE-ALD-COMPLIANCE-CHECKLIST-0126",
+      "is_current": 0,
+      "logical_name": "compliance-checklist",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "compliance-checklist-2026-01-26.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "Person,Person number,Document,Expires,Days remaining,Mandatory check,Check pending\r\nDang Van Hung,ALD-P1001,Woodworking safety card,2026-02-19,10,pass,no\r\nBui Thi Ngoc,ALD-P1002,Health check,2026-03-07,26,pass,yes\r\nHoang Van Nam,ALD-P1003,Forklift licence,2026-03-14,33,pass,no\r\nLy Thi Thu,ALD-P1004,Work permit,2026-02-28,19,pass,no\r\nDo Minh Tuan,ALD-P1005,Woodworking safety card,2026-03-05,24,fail,no\r\nVu Thi Hanh,ALD-P1006,Health check,2026-05-08,88,pass,no\r\nNgo Van Phuc,ALD-P1007,Safety induction,2026-02-24,15,pass,yes\r\n",
+      "file_id": "FILE-ALD-COMPLIANCE-CHECKLIST-0209",
+      "is_current": 1,
+      "logical_name": "compliance-checklist",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "14-compliance-checklist.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "# Alderwood Furniture credit policy (revision 6, effective 2026-01-15)\n\n- Credit limit for Homestead Living Stores: 140000.00 USD.\n- Recommend a credit hold when past-due receivables exceed 30% of the credit limit after all identified receipts are applied.\n- Credit holds are approved only by Le Thi Hong; analysts recommend, they do not apply holds.\n- Receipts are applied only to the invoices named on the customer's remittance advice.\n",
+      "file_id": "FILE-ALD-CREDIT-POLICY-R6",
+      "is_current": 1,
+      "logical_name": "credit-policy",
+      "mime_type": "text/markdown",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "08-credit-policy.md",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "{\n  \"channel\": \"#customers-ald\",\n  \"messages\": [\n    {\n      \"author\": \"sales-inbox\",\n      \"text\": \"New buyer from Wayfair: Northwind Homes, tax id VN-15-908233, orders via buyers@northwind-sim.example. Needs a master record before invoicing.\"\n    },\n    {\n      \"author\": \"Nguyen Thanh Tam\",\n      \"text\": \"Capture it in the customer master tab, not as a note; check the channel export for their first order.\"\n    }\n  ]\n}",
+      "file_id": "FILE-ALD-CUSTOMER-CAPTURE-0209",
+      "is_current": 1,
+      "logical_name": "customer-capture-chat",
+      "mime_type": "application/json",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "19-customer-capture-chat.json",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Mekong Hardwood Mills — delivery note DN-ALD-0206 for PO-ALD-20940\nDelivered to Binh Duong factory on 2026-02-06, signed by receiving clerk.\nLine 1: CHR-OAK-DIN  ordered 300  delivered 300\nLine 2: TBL-OAK-180  ordered 60  delivered 60\nLine 3: STL-BAR-75  ordered 200  delivered 180\nLine 4: BNCH-TEAK-120  ordered 40  delivered 40\nQuantities below the ordered amount are back-ordered, not short-shipped.\n",
+      "file_id": "FILE-ALD-DELIVERY-NOTE-0206",
+      "is_current": 1,
+      "logical_name": "delivery-note",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "12-delivery-note.pdf",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "item,weekly_demand,need_window_days,forecast_revision\nCHR-OAK-DIN,100,10,F-2026-06\nTBL-OAK-180,20,10,F-2026-06\nSTL-BAR-75,75,10,F-2026-06\nSHF-WAL-5,25,10,F-2026-06\nBNCH-TEAK-120,15,10,F-2026-06\nCHR-PINE-OLD,1,10,F-2026-06\n",
+      "file_id": "FILE-ALD-DEMAND-FORECAST-F06",
+      "is_current": 1,
+      "logical_name": "demand-forecast",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "10-demand-forecast.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "person_number,document,alerted_on,alerted_by\nALD-P1004,Work permit,2026-01-28,Tran Minh Chau\n",
+      "file_id": "FILE-ALD-DOCUMENT-ALERT-LOG",
+      "is_current": 1,
+      "logical_name": "document-alert-log",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "15-document-alert-log.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Alderwood Furniture headcount approval 2025 (superseded)\nPosition: finishing technician   Approved headcount: 8\nApproved monthly wage: 488.80\nSuperseded by the 2026 approval.\n",
+      "file_id": "FILE-ALD-HEADCOUNT-APPROVAL-2025",
+      "is_current": 0,
+      "logical_name": "headcount-approval",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "headcount-approval-2025.pdf",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "Alderwood Furniture headcount approval 2026 (revision 2)\nPosition: finishing technician   Approved headcount: 6   Standard contract: 24 months\nApproved monthly wage: 520.00 USD\nApproved by Tran Minh Chau on 2026-01-20. Supersedes the 2025 approval.\nOnly candidates with passed background checks and work permits valid beyond the contract end may be hired.\n",
+      "file_id": "FILE-ALD-HEADCOUNT-APPROVAL-2026",
+      "is_current": 1,
+      "logical_name": "headcount-approval",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "20-headcount-approval.pdf",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "2026-02-03T10:12:00Z ALD partial import created SO-ALD-40039 from an earlier copy of HLS-PO-2026-031\n2026-02-06T15:40:00Z ALD delivery note DN-ALD-0206 received at Binh Duong factory\n2026-02-08T22:05:00Z ALD pick confirmation posted for SHP-ALD-7702\n2026-02-09T06:00:00Z ALD Wayfair export generated\n",
+      "file_id": "FILE-ALD-OPS-AUDIT-LOG",
+      "is_current": 1,
+      "logical_name": "ops-audit",
+      "mime_type": "text/plain",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "26-ops-audit.log",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Line,Customer PO,Item,Quantity,Imported order,Imported on\r\n6,HLS-PO-2026-031,CHR-OAK-DIN,80,SO-ALD-40039,2026-02-03\r\n8,HLS-PO-2026-031,STL-BAR-75,40,SO-ALD-40039,2026-02-03\r\n",
+      "file_id": "FILE-ALD-ORDER-BATCH-0203",
+      "is_current": 0,
+      "logical_name": "prior-partial-import",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-03T10:00:00Z",
+      "name": "02-prior-partial-import.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Line,Customer PO,Item,Description,Quantity,Unit price (customer sheet)\r\n1,HLS-PO-2026-031,CHR-OAK-DIN,Oak dining chair,240,99.84\r\n2,HLS-PO-2026-031,TBL-OAK-180,Oak dining table 180 cm,60,436.8\r\n3,HLS-PO-2026-031,STL-BAR-75,Bar stool 75 cm,120,74.88\r\n4,HLS-PO-2026-031,SHF-WAL-5,Walnut shelf 5-tier,45,218.4\r\n5,HLS-PO-2026-031,BNCH-TEAK-120,Teak bench 120 cm,30,171.6\r\n6,HLS-PO-2026-031,CHR-OAK-DIN,Oak dining chair,80,99.84\r\n7,HLS-PO-2026-031,CHR-PINE-OLD,Pine chair (discontinued),50,56.16\r\n8,HLS-PO-2026-031,STL-BAR-75,Bar stool 75 cm,40,74.88\r\n",
+      "file_id": "FILE-ALD-ORDER-BATCH-0209",
+      "is_current": 1,
+      "logical_name": "consolidated-order-batch",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "01-consolidated-order-batch.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-ALD-7702,1,CHR-OAK-DIN,200,200,WH-11,2026-02-05T20:11:00Z\nSHP-ALD-7702,2,TBL-OAK-180,50,50,WH-12,2026-02-05T20:12:00Z\nSHP-ALD-7702,3,STL-BAR-75,100,100,WH-13,2026-02-05T20:13:00Z\nSHP-ALD-7702,4,SHF-WAL-5,40,40,WH-14,2026-02-05T20:14:00Z\nSHP-ALD-7702,5,BNCH-TEAK-120,24,24,WH-15,2026-02-05T20:15:00Z\n",
+      "file_id": "FILE-ALD-PICK-CONFIRM-0205",
+      "is_current": 0,
+      "logical_name": "pick-confirmation",
+      "mime_type": "text/csv",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "SHP-ALD-7702-pick-confirmation-2026-02-05.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "shipment,line,item,requested,picked,picker,confirmed_at\nSHP-ALD-7702,1,CHR-OAK-DIN,200,200,WH-11,2026-02-08T21:11:00Z\nSHP-ALD-7702,2,TBL-OAK-180,50,48,WH-12,2026-02-08T21:12:00Z\nSHP-ALD-7702,3,STL-BAR-75,100,100,WH-13,2026-02-08T21:13:00Z\nSHP-ALD-7702,4,SHF-WAL-5,40,40,WH-14,2026-02-08T21:14:00Z\nSHP-ALD-7702,5,BNCH-TEAK-120,24,26,WH-15,2026-02-08T21:15:00Z\n",
+      "file_id": "FILE-ALD-PICK-CONFIRM-0208",
+      "is_current": 1,
+      "logical_name": "pick-confirmation",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "05-pick-confirmation.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-ALD-2026Q1,1,CHR-OAK-DIN,96.00,2026-01-01\nPRICE-BATCH-ALD-2026Q1,2,TBL-OAK-180,420.00,2026-01-01\nPRICE-BATCH-ALD-2026Q1,3,STL-BAR-75,72.00,2026-01-01\nPRICE-BATCH-ALD-2026Q1,4,SHF-WAL-5,210.00,2026-01-01\nPRICE-BATCH-ALD-2026Q1,5,BNCH-TEAK-120,165.00,2026-01-01\nPRICE-BATCH-ALD-2026Q1,6,CHR-PINE-OLD,54.00,2026-01-01\n",
+      "file_id": "FILE-ALD-PRICE-BATCH-Q1",
+      "is_current": 0,
+      "logical_name": "price-batch",
+      "mime_type": "text/csv",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "PRICE-BATCH-ALD-2026Q1.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "batch,line,item,new_list_price,effective_date\nPRICE-BATCH-ALD-2026Q2,1,CHR-OAK-DIN,99.00,2026-02-24\nPRICE-BATCH-ALD-2026Q2,2,TBL-OAK-180,445.00,2026-02-24\nPRICE-BATCH-ALD-2026Q2,3,STL-BAR-75,84.00,2026-02-24\nPRICE-BATCH-ALD-2026Q2,4,SHF-WAL-5,215.00,2026-01-30\nPRICE-BATCH-ALD-2026Q2,5,BNCH-TEAK-120,172.00,2026-02-24\nPRICE-BATCH-ALD-2026Q2,6,CHR-OAK-DIN,102.00,2026-03-26\nPRICE-BATCH-ALD-2026Q2,7,TBL-OAK-220,520.00,2026-02-24\nPRICE-BATCH-ALD-2026Q2,8,CHR-PINE-OLD,56.00,2026-02-24\n",
+      "file_id": "FILE-ALD-PRICE-BATCH-Q2",
+      "is_current": 1,
+      "logical_name": "price-batch",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "23-price-batch.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "item,description,list_price,status,effective_from,superseded\nCHR-OAK-DIN,Oak dining chair,91.20,Active,2025-07-01,true\nTBL-OAK-180,Oak dining table 180 cm,399.00,Active,2025-07-01,true\nSTL-BAR-75,Bar stool 75 cm,68.40,Active,2025-07-01,true\nSHF-WAL-5,Walnut shelf 5-tier,199.50,Active,2025-07-01,true\nBNCH-TEAK-120,Teak bench 120 cm,156.75,Active,2025-07-01,true\nCHR-PINE-OLD,Pine chair (discontinued),51.30,Active,2025-07-01,true\n",
+      "file_id": "FILE-ALD-PRICE-LIST-2025H2",
+      "is_current": 0,
+      "logical_name": "superseded-price-list",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-03T10:00:00Z",
+      "name": "04-superseded-price-list.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "item,description,list_price,status,effective_from\nCHR-OAK-DIN,Oak dining chair,96.00,Active,2026-01-01\nTBL-OAK-180,Oak dining table 180 cm,420.00,Active,2026-01-01\nSTL-BAR-75,Bar stool 75 cm,72.00,Active,2026-01-01\nSHF-WAL-5,Walnut shelf 5-tier,210.00,Active,2026-01-01\nBNCH-TEAK-120,Teak bench 120 cm,165.00,Active,2026-01-01\nCHR-PINE-OLD,Pine chair (discontinued),54.00,Inactive,2026-01-01\n",
+      "file_id": "FILE-ALD-PRICE-LIST-CURRENT",
+      "is_current": 1,
+      "logical_name": "current-price-list",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "03-current-price-list.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Homestead Living Stores — remittance advice\nPayee: Alderwood Furniture\nPayment date: 2026-02-05   Method: Wire\nAmount paid: 41200.00 USD\nInvoices covered by this payment:\n  INV-ALD-90020  41200.00\nInvoices not included in this remittance are disputed or scheduled separately.\n",
+      "file_id": "FILE-ALD-REMIT-ADVICE-0206",
+      "is_current": 1,
+      "logical_name": "remittance-advice",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "06-remittance-advice.pdf",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Item,Reorder point,Planned maximum,Count open POs as supply,Policy revision\nCHR-OAK-DIN,200,1200,no,R3\nTBL-OAK-180,0,220,no,R3\nSTL-BAR-75,100,800,no,R3\nSHF-WAL-5,0,260,no,R3\nBNCH-TEAK-120,0,180,no,R3\nCHR-PINE-OLD,0,0,no,R3\n",
+      "file_id": "FILE-ALD-REORDER-POLICY-R3",
+      "is_current": 0,
+      "logical_name": "reorder-policy",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-01-26T09:00:00Z",
+      "name": "reorder-policy-R3.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 1
+    },
+    {
+      "content": "Item,Reorder point,Planned maximum,Count open POs as supply,Policy revision\r\nCHR-OAK-DIN,400,1200,yes,R4\r\nTBL-OAK-180,80,220,yes,R4\r\nSTL-BAR-75,300,800,yes,R4\r\nSHF-WAL-5,100,260,yes,R4\r\nBNCH-TEAK-120,60,180,yes,R4\r\nCHR-PINE-OLD,0,0,yes,R4\r\n",
+      "file_id": "FILE-ALD-REORDER-POLICY-R4",
+      "is_current": 1,
+      "logical_name": "reorder-policy",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "09-reorder-policy.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "staff_code,shift_date,submitted_at,minutes_over_shift_end\nAL-601,2026-02-08,17:01,0\nAL-602,2026-02-08,17:03,0\nAL-603,2026-02-08,17:18,40\nAL-604,2026-02-08,17:06,0\nAL-605,2026-02-08,17:10,0\nAL-606,2026-02-08,17:02,0\nAL-607,2026-02-08,17:26,0\nAL-608,2026-02-08,17:08,20\nAL-609,2026-02-08,17:04,0\nAL-610,2026-02-08,17:12,0\nAL-611,2026-02-08,17:09,0\nAL-612,2026-02-08,17:35,60\nAL-613,2026-02-08,17:00,0\nAL-614,2026-02-08,17:07,0\nAL-615,2026-02-08,17:11,0\nAL-616,2026-02-08,17:05,0\n",
+      "file_id": "FILE-ALD-SHIFT-REPORTS-0208",
+      "is_current": 1,
+      "logical_name": "shift-work-reports",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "17-shift-work-reports.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Staff code,Shift,Date,Approved leave\r\nAL-601,Day,2026-02-08,no\r\nAL-602,Day,2026-02-08,no\r\nAL-603,Day,2026-02-08,no\r\nAL-604,Day,2026-02-08,no\r\nAL-605,Day,2026-02-08,no\r\nAL-606,Day,2026-02-08,no\r\nAL-607,Day,2026-02-08,no\r\nAL-608,Day,2026-02-08,no\r\nAL-609,Day,2026-02-08,no\r\nAL-610,Day,2026-02-08,no\r\nAL-611,Day,2026-02-08,no\r\nAL-612,Day,2026-02-08,no\r\nAL-613,Day,2026-02-08,no\r\nAL-614,Day,2026-02-08,no\r\nAL-615,Day,2026-02-08,no\r\nAL-616,Day,2026-02-08,no\r\nAL-617,Day,2026-02-08,yes\r\nAL-618,Day,2026-02-08,yes\r\nAL-619,Day,2026-02-08,no\r\nAL-620,Day,2026-02-08,no\r\n",
+      "file_id": "FILE-ALD-SHIFT-ROSTER-0208",
+      "is_current": 1,
+      "logical_name": "shift-roster",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "16-shift-roster.xlsx",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "tenant: ALDERWOOD\norder_batch: FILE-ALD-ORDER-BATCH-0209\npick_confirmation: FILE-ALD-PICK-CONFIRM-0208\nremittance_advice: FILE-ALD-REMIT-ADVICE-0206\nreorder_policy: FILE-ALD-REORDER-POLICY-R4\ndelivery_note: FILE-ALD-DELIVERY-NOTE-0206\ncompliance_checklist: FILE-ALD-COMPLIANCE-CHECKLIST-0209\nshift_roster: FILE-ALD-SHIFT-ROSTER-0208\nchannel_export: FILE-ALD-CHANNEL-EXPORT-0209\nheadcount_approval: FILE-ALD-HEADCOUNT-APPROVAL-2026\nprice_batch: FILE-ALD-PRICE-BATCH-Q2\n",
+      "file_id": "FILE-ALD-SOURCE-MAP",
+      "is_current": 1,
+      "logical_name": "source-map",
+      "mime_type": "application/yaml",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "25-source-map.yaml",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "Mekong Hardwood Mills — tax invoice MHM-INV-3308\nBill to: Alderwood Furniture (Alderwood Production)\nPurchase order: PO-ALD-20940   Invoice date: 2026-02-07\nLine 1: CHR-OAK-DIN  qty 300  @ 58.00\nLine 2: TBL-OAK-180  qty 60  @ 255.00\nLine 3: STL-BAR-75  qty 180  @ 44.00\nLine 4: BNCH-TEAK-120  qty 40  @ 99.00\nInvoice total: 44580.00 USD\n",
+      "file_id": "FILE-ALD-SUPPLIER-INVOICE-0207",
+      "is_current": 1,
+      "logical_name": "supplier-invoice",
+      "mime_type": "application/pdf",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "11-supplier-invoice.pdf",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    },
+    {
+      "content": "position,monthly_wage,contract_months,approved_from\nfinishing technician,520.00,24,2026-01-20\n",
+      "file_id": "FILE-ALD-WAGE-TABLE",
+      "is_current": 1,
+      "logical_name": "wage-table",
+      "mime_type": "text/csv",
+      "modified_time": "2026-02-09T06:00:00Z",
+      "name": "22-wage-table.csv",
+      "tenant_code": "ALDERWOOD",
+      "version": 2
+    }
+  ],
+  "invoice_holds": [],
+  "items": [
+    {
+      "description": "Oak dining chair",
+      "item_id": 300003,
+      "item_number": "CHR-OAK-DIN",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 96.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 58.0
+    },
+    {
+      "description": "Oak dining table 180 cm",
+      "item_id": 300010,
+      "item_number": "TBL-OAK-180",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 420.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 255.0
+    },
+    {
+      "description": "Bar stool 75 cm",
+      "item_id": 300017,
+      "item_number": "STL-BAR-75",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 72.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 44.0
+    },
+    {
+      "description": "Walnut shelf 5-tier",
+      "item_id": 300024,
+      "item_number": "SHF-WAL-5",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 210.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 128.0
+    },
+    {
+      "description": "Teak bench 120 cm",
+      "item_id": 300031,
+      "item_number": "BNCH-TEAK-120",
+      "item_status": "Active",
+      "last_task_id": null,
+      "list_price": 165.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 99.0
+    },
+    {
+      "description": "Pine chair (discontinued)",
+      "item_id": 300038,
+      "item_number": "CHR-PINE-OLD",
+      "item_status": "Inactive",
+      "last_task_id": null,
+      "list_price": 54.0,
+      "organization_code": "ALD1",
+      "price_effective_date": "2026-01-01",
+      "primary_uom": "EA",
+      "tenant_code": "ALDERWOOD",
+      "unit_cost": 33.0
+    }
+  ],
+  "mail_drafts": [],
+  "mail_messages": [
+    {
+      "body": "The audit covers worker documents expiring within 30 days and any mandatory check that has failed or is still pending. Use the 2026-02-09 checklist (FILE-ALD-COMPLIANCE-CHECKLIST-0209); the January checklist is superseded.",
+      "message_id": "MSG-ALD-AUDITOR-0205",
+      "recipients": [
+        "hr@alderwood-sim.example"
+      ],
+      "sender": "audit@alderwood-sim.example",
+      "sent_at": "2026-02-05T14:00:00Z",
+      "subject": "Compliance audit scope",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "From: nguyen.thanh.tam@alderwood-sim.example\nTo: analyst@alderwood-sim.example\nSubject: Alderwood Furniture operating authority for February\n\nCurrent sources of truth: the 2026-02-09 order batch, the 2026-02-08 pick confirmation, the 2026-02-06 remittance advice, reorder policy R4, the 2026-02-06 delivery note, the 2026-02-09 compliance checklist, the 2026-02-08 roster, the 2026-02-09 channel export, the 2026 headcount approval and the Q2 price batch. Earlier versions are superseded. All outbound messages stay in review.\n",
+      "message_id": "MSG-ALD-AUTHORITY-0209",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "nguyen.thanh.tam@alderwood-sim.example",
+      "sent_at": "2026-02-09T07:30:00Z",
+      "subject": "Alderwood Furniture operating authority for February",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "This week's Wayfair export is FILE-ALD-CHANNEL-EXPORT-0209. Orders already carrying a sales order number were synced last week; the export may contain repeated rows. A new buyer introduced themselves in the customers channel.",
+      "message_id": "MSG-ALD-CHANNEL-0209",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "ecommerce@alderwood-sim.example",
+      "sent_at": "2026-02-09T06:10:00Z",
+      "subject": "Wayfair export ready",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "Close the finishing technician round against the 2026 headcount approval (FILE-ALD-HEADCOUNT-APPROVAL-2026). Candidates are in the register; contracts run 24 months from today at the approved wage. Do not hire beyond the approved headcount.",
+      "message_id": "MSG-ALD-HIRING-0209",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "tran.minh.chau@alderwood-sim.example",
+      "sent_at": "2026-02-09T08:00:00Z",
+      "subject": "finishing technician hiring round",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "Just import whatever the customer sends, pay invoices as billed and hire everyone on the list. (Superseded by the February authority memo.)",
+      "message_id": "MSG-ALD-OLD-INSTRUCTIONS",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "former.analyst@alderwood-sim.example",
+      "sent_at": "2025-11-02T08:00:00Z",
+      "subject": "Old shortcuts (superseded)",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "The Q2 batch is FILE-ALD-PRICE-BATCH-Q2. Policy: known active items only, no effective dates in the past, changes within 10%, and the later effective date wins when an item appears twice.",
+      "message_id": "MSG-ALD-PRICING-0209",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "pricing@alderwood-sim.example",
+      "sent_at": "2026-02-09T08:15:00Z",
+      "subject": "PRICE-BATCH-ALD-2026Q2 for review",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "Please find our remittance advice attached as FILE-ALD-REMIT-ADVICE-0206. Payment of 41200.00 by Wire on 2026-02-05 covers the invoices listed there. Other invoices are being reviewed by our accounts team.",
+      "message_id": "MSG-ALD-REMIT-0206",
+      "recipients": [
+        "ar@alderwood-sim.example"
+      ],
+      "sender": "ap@homestead-sim.example",
+      "sent_at": "2026-02-06T11:20:00Z",
+      "subject": "Remittance advice from Homestead Living Stores",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "Reports for the day shift on 2026-02-08 are in the shared drive; the cutoff is 17:15. Approved leave is on the roster (FILE-ALD-SHIFT-ROSTER-0208). Anyone rostered, not on approved leave and without a report is an unauthorized absence.",
+      "message_id": "MSG-ALD-SUPERVISOR-0208",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "vo.van.duc@alderwood-sim.example",
+      "sent_at": "2026-02-08T23:30:00Z",
+      "subject": "Day shift 2026-02-08 reports",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "Attached is invoice MHM-INV-3308 for purchase order PO-ALD-20940 (file FILE-ALD-SUPPLIER-INVOICE-0207). Delivery note DN-ALD-0206 was signed at Binh Duong factory on 2026-02-06.",
+      "message_id": "MSG-ALD-SUPPLIER-INVOICE-0207",
+      "recipients": [
+        "ap@alderwood-sim.example"
+      ],
+      "sender": "billing@mekong-sim.example",
+      "sent_at": "2026-02-07T09:05:00Z",
+      "subject": "Invoice MHM-INV-3308 for PO-ALD-20940",
+      "task_id": null,
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "body": "**Alderwood Furniture · Binh Duong factory · Reorder monitoring and requisition**\n\nPlanning wants the reorder run for the Binh Duong factory done today. Work out which items are genuinely below their reorder point once reservations and open purchase orders are counted, how much each needs to come back to its planned level, and whether Mekong Hardwood Mills can deliver inside the 10-day window or whether an expedite option is worth raising. Raise the requisition that current policy supports, log it in the register, and post the planning update for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+      "message_id": "MSG-erpbench-054-REQUEST",
+      "recipients": [
+        "analyst@alderwood-sim.example"
+      ],
+      "sender": "pham.quang.huy@alderwood-sim.example",
+      "sent_at": "2026-02-09T09:00:00Z",
+      "subject": "erpbench-054 operating request",
+      "task_id": "erpbench-054",
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "onhand_balances": [
+    {
+      "balance_id": 100,
+      "item_number": "CHR-OAK-DIN",
+      "onhand_quantity": 520,
+      "organization_code": "ALD1",
+      "reserved_quantity": 240,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "balance_id": 101,
+      "item_number": "TBL-OAK-180",
+      "onhand_quantity": 90,
+      "organization_code": "ALD1",
+      "reserved_quantity": 40,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "balance_id": 102,
+      "item_number": "STL-BAR-75",
+      "onhand_quantity": 310,
+      "organization_code": "ALD1",
+      "reserved_quantity": 60,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "balance_id": 103,
+      "item_number": "SHF-WAL-5",
+      "onhand_quantity": 140,
+      "organization_code": "ALD1",
+      "reserved_quantity": 20,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "balance_id": 104,
+      "item_number": "BNCH-TEAK-120",
+      "onhand_quantity": 75,
+      "organization_code": "ALD1",
+      "reserved_quantity": 30,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "balance_id": 105,
+      "item_number": "CHR-PINE-OLD",
+      "onhand_quantity": 8,
+      "organization_code": "ALD1",
+      "reserved_quantity": 0,
+      "subinventory": "MAIN",
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "purchase_order_lines": [
+    {
+      "item_number": "CHR-OAK-DIN",
+      "last_task_id": null,
+      "line_number": 1,
+      "po_line_id": 8800271,
+      "po_number": "PO-ALD-20940",
+      "promised_date": "2026-02-06",
+      "quantity": 300,
+      "received_quantity": 0,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 58.0
+    },
+    {
+      "item_number": "TBL-OAK-180",
+      "last_task_id": null,
+      "line_number": 2,
+      "po_line_id": 8800272,
+      "po_number": "PO-ALD-20940",
+      "promised_date": "2026-02-06",
+      "quantity": 60,
+      "received_quantity": 0,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 255.0
+    },
+    {
+      "item_number": "STL-BAR-75",
+      "last_task_id": null,
+      "line_number": 3,
+      "po_line_id": 8800273,
+      "po_number": "PO-ALD-20940",
+      "promised_date": "2026-02-06",
+      "quantity": 200,
+      "received_quantity": 0,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 44.0
+    },
+    {
+      "item_number": "BNCH-TEAK-120",
+      "last_task_id": null,
+      "line_number": 4,
+      "po_line_id": 8800274,
+      "po_number": "PO-ALD-20940",
+      "promised_date": "2026-02-06",
+      "quantity": 40,
+      "received_quantity": 0,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 99.0
+    },
+    {
+      "item_number": "TBL-OAK-180",
+      "last_task_id": null,
+      "line_number": 1,
+      "po_line_id": 8800281,
+      "po_number": "PO-ALD-OPEN-SUPPLY",
+      "promised_date": "2026-02-14",
+      "quantity": 30,
+      "received_quantity": 0,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 255.0
+    }
+  ],
+  "purchase_orders": [
+    {
+      "buyer": "buyer",
+      "order_date": "2026-01-26",
+      "po_id": 880027,
+      "po_number": "PO-ALD-20940",
+      "status": "Open",
+      "supplier": "Mekong Hardwood Mills",
+      "supplier_number": "SUP-7702",
+      "tenant_code": "ALDERWOOD",
+      "total_amount": 44580.0
+    },
+    {
+      "buyer": "buyer",
+      "order_date": "2025-12-10",
+      "po_id": 880029,
+      "po_number": "PO-ALD-CLOSED",
+      "status": "Closed",
+      "supplier": "Mekong Hardwood Mills",
+      "supplier_number": "SUP-7702",
+      "tenant_code": "ALDERWOOD",
+      "total_amount": 980.0
+    },
+    {
+      "buyer": "buyer",
+      "order_date": "2026-02-01",
+      "po_id": 880028,
+      "po_number": "PO-ALD-OPEN-SUPPLY",
+      "status": "Open",
+      "supplier": "Mekong Hardwood Mills",
+      "supplier_number": "SUP-7702",
+      "tenant_code": "ALDERWOOD",
+      "total_amount": 7650.0
+    }
+  ],
+  "purchase_requisitions": [],
+  "receivables_invoices": [
+    {
+      "balance_due": 41200.0,
+      "bill_to_customer_number": "CUST-60244",
+      "customer_transaction_id": 900003,
+      "due_date": "2025-12-27",
+      "entered_amount": 41200.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-ALD-90020"
+    },
+    {
+      "balance_due": 18600.0,
+      "bill_to_customer_number": "CUST-60244",
+      "customer_transaction_id": 900014,
+      "due_date": "2026-01-11",
+      "entered_amount": 18600.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-ALD-90077"
+    },
+    {
+      "balance_due": 27400.0,
+      "bill_to_customer_number": "CUST-60244",
+      "customer_transaction_id": 900025,
+      "due_date": "2026-01-29",
+      "entered_amount": 27400.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-ALD-90130"
+    },
+    {
+      "balance_due": 12900.0,
+      "bill_to_customer_number": "CUST-60244",
+      "customer_transaction_id": 900036,
+      "due_date": "2026-02-13",
+      "entered_amount": 12900.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-ALD-90188"
+    },
+    {
+      "balance_due": 19800.0,
+      "bill_to_customer_number": "CUST-60244",
+      "customer_transaction_id": 900047,
+      "due_date": "2026-02-25",
+      "entered_amount": 19800.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-05",
+      "transaction_number": "INV-ALD-90241"
+    },
+    {
+      "balance_due": 3200.0,
+      "bill_to_customer_number": "CUST-ALD-DECOY1",
+      "customer_transaction_id": 999003,
+      "due_date": "2026-02-19",
+      "entered_amount": 3200.0,
+      "invoice_status": "Open",
+      "last_task_id": null,
+      "tenant_code": "ALDERWOOD",
+      "transaction_date": "2026-01-20",
+      "transaction_number": "INV-ALD-DECOY"
+    }
+  ],
+  "receiving_receipt_requests": [],
+  "sales_orders": [
+    {
+      "buying_party_name": "Homestead Living Stores",
+      "buying_party_number": "CUST-60244",
+      "created_at": "2026-02-03T10:12:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "HLS-PO-2026-031",
+      "last_task_id": null,
+      "lines": [
+        {
+          "OrderedQuantity": 80,
+          "OrderedUOM": "EA",
+          "ProductNumber": "CHR-OAK-DIN",
+          "UnitListPrice": 96.0
+        },
+        {
+          "OrderedQuantity": 40,
+          "OrderedUOM": "EA",
+          "ProductNumber": "STL-BAR-75",
+          "UnitListPrice": 72.0
+        }
+      ],
+      "order_number": "SO-ALD-40039",
+      "order_total": 10560.0,
+      "organization_code": "ALD1",
+      "source_message_id": "MSG-ALD-ORDER-0203",
+      "source_transaction_number": "FILE-ALD-ORDER-BATCH-0203",
+      "source_transaction_system": "OPS",
+      "status": "Awaiting Shipping",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Casa Verde Interiors",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "WF-20901",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-ALD-45003",
+      "order_total": 6840.0,
+      "organization_code": "ALD1",
+      "source_message_id": null,
+      "source_transaction_number": "WF-20901",
+      "source_transaction_system": "Wayfair",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Harbor House",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "WF-20904",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-ALD-45012",
+      "order_total": 5100.0,
+      "organization_code": "ALD1",
+      "source_message_id": null,
+      "source_transaction_number": "WF-20904",
+      "source_transaction_system": "Wayfair",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Fernway Rentals",
+      "buying_party_number": null,
+      "created_at": "2026-02-02T08:00:00Z",
+      "created_by": "channel_sync",
+      "customer_po_number": "WF-20906",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-ALD-45021",
+      "order_total": 4380.0,
+      "organization_code": "ALD1",
+      "source_message_id": null,
+      "source_transaction_number": "WF-20906",
+      "source_transaction_system": "Wayfair",
+      "status": "Booked",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Homestead Living Stores",
+      "buying_party_number": "CUST-60244",
+      "created_at": "2026-01-30T09:00:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "HLS-PO-2026-031-B",
+      "last_task_id": null,
+      "lines": [
+        {
+          "OrderedQuantity": 200,
+          "OrderedUOM": "EA",
+          "ProductNumber": "CHR-OAK-DIN",
+          "UnitListPrice": 96.0
+        },
+        {
+          "OrderedQuantity": 50,
+          "OrderedUOM": "EA",
+          "ProductNumber": "TBL-OAK-180",
+          "UnitListPrice": 420.0
+        },
+        {
+          "OrderedQuantity": 100,
+          "OrderedUOM": "EA",
+          "ProductNumber": "STL-BAR-75",
+          "UnitListPrice": 72.0
+        },
+        {
+          "OrderedQuantity": 40,
+          "OrderedUOM": "EA",
+          "ProductNumber": "SHF-WAL-5",
+          "UnitListPrice": 210.0
+        },
+        {
+          "OrderedQuantity": 24,
+          "OrderedUOM": "EA",
+          "ProductNumber": "BNCH-TEAK-120",
+          "UnitListPrice": 165.0
+        }
+      ],
+      "order_number": "SO-ALD-71033",
+      "order_total": 54960.0,
+      "organization_code": "ALD1",
+      "source_message_id": "MSG-ALD-ORDER-0130",
+      "source_transaction_number": "MSG-ALD-ORDER-0130",
+      "source_transaction_system": "OPS",
+      "status": "Awaiting Shipping",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    },
+    {
+      "buying_party_name": "Wood Outlet Co.",
+      "buying_party_number": "CUST-ALD-DECOY1",
+      "created_at": "2026-01-12T09:00:00Z",
+      "created_by": "ops_lead",
+      "customer_po_number": "OUTLET-118",
+      "last_task_id": null,
+      "lines": [],
+      "order_number": "SO-ALD-DECOY",
+      "order_total": 1280.0,
+      "organization_code": "ALD1",
+      "source_message_id": null,
+      "source_transaction_number": "MANUAL-2026-01",
+      "source_transaction_system": "OPS",
+      "status": "Closed",
+      "submitted_flag": 1,
+      "tenant_code": "ALDERWOOD",
+      "transaction_type": "Standard Orders"
+    }
+  ],
+  "sheet_changes": [],
+  "shipment_lines": [
+    {
+      "comments": null,
+      "item_number": "CHR-OAK-DIN",
+      "last_task_id": null,
+      "line_number": 1,
+      "line_status": "Shipped",
+      "requested_quantity": 40,
+      "shipment": "SHP-ALD-DECOY",
+      "shipment_line_id": 700003,
+      "shipped_quantity": 40,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 96.0
+    },
+    {
+      "comments": null,
+      "item_number": "CHR-OAK-DIN",
+      "last_task_id": null,
+      "line_number": 1,
+      "line_status": "Staged",
+      "requested_quantity": 200,
+      "shipment": "SHP-ALD-7702",
+      "shipment_line_id": 700006,
+      "shipped_quantity": 200,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 96.0
+    },
+    {
+      "comments": null,
+      "item_number": "TBL-OAK-180",
+      "last_task_id": null,
+      "line_number": 2,
+      "line_status": "Staged",
+      "requested_quantity": 50,
+      "shipment": "SHP-ALD-7702",
+      "shipment_line_id": 700009,
+      "shipped_quantity": 50,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 420.0
+    },
+    {
+      "comments": null,
+      "item_number": "STL-BAR-75",
+      "last_task_id": null,
+      "line_number": 3,
+      "line_status": "Staged",
+      "requested_quantity": 100,
+      "shipment": "SHP-ALD-7702",
+      "shipment_line_id": 700012,
+      "shipped_quantity": 100,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 72.0
+    },
+    {
+      "comments": null,
+      "item_number": "SHF-WAL-5",
+      "last_task_id": null,
+      "line_number": 4,
+      "line_status": "Staged",
+      "requested_quantity": 40,
+      "shipment": "SHP-ALD-7702",
+      "shipment_line_id": 700015,
+      "shipped_quantity": 40,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 210.0
+    },
+    {
+      "comments": null,
+      "item_number": "BNCH-TEAK-120",
+      "last_task_id": null,
+      "line_number": 5,
+      "line_status": "Staged",
+      "requested_quantity": 24,
+      "shipment": "SHP-ALD-7702",
+      "shipment_line_id": 700018,
+      "shipped_quantity": 24,
+      "tenant_code": "ALDERWOOD",
+      "unit_price": 165.0
+    }
+  ],
+  "shipments": [
+    {
+      "order_number": "SO-ALD-71033",
+      "organization_code": "ALD1",
+      "planned_ship_date": "2026-02-09",
+      "ship_to_customer": "Homestead Living Stores",
+      "shipment": "SHP-ALD-7702",
+      "shipment_status": "Staged",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "order_number": "SO-ALD-DECOY",
+      "organization_code": "ALD1",
+      "planned_ship_date": "2026-01-14",
+      "ship_to_customer": "Wood Outlet Co.",
+      "shipment": "SHP-ALD-DECOY",
+      "shipment_status": "Shipped",
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "spreadsheets": [
+    {
+      "ranges": {
+        "Aging!A1:E12": [
+          [
+            "Invoice",
+            "Amount",
+            "Due",
+            "Days past due",
+            "Status"
+          ],
+          [
+            "INV-ALD-90020",
+            41200.0,
+            "2025-12-27",
+            44,
+            "open"
+          ],
+          [
+            "INV-ALD-90077",
+            18600.0,
+            "2026-01-11",
+            29,
+            "open"
+          ],
+          [
+            "INV-ALD-90130",
+            27400.0,
+            "2026-01-29",
+            11,
+            "open"
+          ],
+          [
+            "INV-ALD-90188",
+            12900.0,
+            "2026-02-13",
+            0,
+            "open"
+          ],
+          [
+            "INV-ALD-90241",
+            19800.0,
+            "2026-02-25",
+            0,
+            "open"
+          ]
+        ],
+        "Compliance!A1:G14": [
+          [
+            "Person",
+            "Person number",
+            "Document",
+            "Expires",
+            "Days",
+            "Check",
+            "Alerted"
+          ],
+          [
+            "Dang Van Hung",
+            "ALD-P1001",
+            "Woodworking safety card",
+            "2026-02-19",
+            10,
+            "pass",
+            "no"
+          ],
+          [
+            "Bui Thi Ngoc",
+            "ALD-P1002",
+            "Health check",
+            "2026-03-07",
+            26,
+            "pass",
+            "no"
+          ],
+          [
+            "Hoang Van Nam",
+            "ALD-P1003",
+            "Forklift licence",
+            "2026-03-14",
+            33,
+            "pass",
+            "no"
+          ],
+          [
+            "Ly Thi Thu",
+            "ALD-P1004",
+            "Work permit",
+            "2026-02-28",
+            19,
+            "pass",
+            "yes"
+          ],
+          [
+            "Do Minh Tuan",
+            "ALD-P1005",
+            "Woodworking safety card",
+            "2026-03-05",
+            24,
+            "fail",
+            "no"
+          ],
+          [
+            "Vu Thi Hanh",
+            "ALD-P1006",
+            "Health check",
+            "2026-05-08",
+            88,
+            "pass",
+            "no"
+          ],
+          [
+            "Ngo Van Phuc",
+            "ALD-P1007",
+            "Safety induction",
+            "2026-02-24",
+            15,
+            "pass",
+            "no"
+          ]
+        ],
+        "Customers!A1:E12": [
+          [
+            "Customer",
+            "Number",
+            "Email",
+            "Tax id",
+            "Channel"
+          ],
+          [
+            "Homestead Living Stores",
+            "CUST-60244",
+            "ap@homestead-sim.example",
+            "TX-ALD-0001",
+            "direct"
+          ],
+          [
+            "Wood Outlet Co.",
+            "CUST-ALD-DECOY1",
+            "buyer@outlet-sim.example",
+            "TX-ALD-0002",
+            "direct"
+          ]
+        ],
+        "Headcount!A1:E12": [
+          [
+            "Position",
+            "Approved",
+            "Current",
+            "Open",
+            "Revision"
+          ],
+          [
+            "finishing technician",
+            6,
+            3,
+            "",
+            "2026-R2"
+          ]
+        ],
+        "PriceList!A1:E12": [
+          [
+            "Item",
+            "Description",
+            "List price",
+            "Status",
+            "Effective"
+          ],
+          [
+            "CHR-OAK-DIN",
+            "Oak dining chair",
+            96.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "TBL-OAK-180",
+            "Oak dining table 180 cm",
+            420.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "STL-BAR-75",
+            "Bar stool 75 cm",
+            72.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "SHF-WAL-5",
+            "Walnut shelf 5-tier",
+            210.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "BNCH-TEAK-120",
+            "Teak bench 120 cm",
+            165.0,
+            "Active",
+            "2026-01-01"
+          ],
+          [
+            "CHR-PINE-OLD",
+            "Pine chair (discontinued)",
+            54.0,
+            "Inactive",
+            "2026-01-01"
+          ]
+        ],
+        "PricingPolicy!A1:C6": [
+          [
+            "Rule",
+            "Value",
+            "Note"
+          ],
+          [
+            "Maximum change pct",
+            10.0,
+            "per line versus current list price"
+          ],
+          [
+            "Past effective dates",
+            "reject",
+            ""
+          ],
+          [
+            "Unknown or inactive items",
+            "reject",
+            ""
+          ],
+          [
+            "Same item twice",
+            "later effective date wins",
+            "earlier line superseded"
+          ]
+        ],
+        "Register!A1:H40": [
+          [
+            "Record",
+            "Option",
+            "Values",
+            "",
+            "",
+            "",
+            "",
+            "Source"
+          ],
+          [
+            "SO-ALD-DECOY",
+            "closed_manual_order",
+            1,
+            0,
+            1280.0,
+            0,
+            0,
+            "MANUAL-2026-01"
+          ]
+        ],
+        "Reorder!A1:F12": [
+          [
+            "Item",
+            "Reorder point",
+            "Planned maximum",
+            "Open POs count",
+            "Revision",
+            "Need window"
+          ],
+          [
+            "CHR-OAK-DIN",
+            400,
+            1200,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "TBL-OAK-180",
+            80,
+            220,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "STL-BAR-75",
+            300,
+            800,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "SHF-WAL-5",
+            100,
+            260,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "BNCH-TEAK-120",
+            60,
+            180,
+            "yes",
+            "R4",
+            10
+          ],
+          [
+            "CHR-PINE-OLD",
+            0,
+            0,
+            "yes",
+            "R4",
+            10
+          ]
+        ],
+        "Shifts!A1:F30": [
+          [
+            "Staff",
+            "Shift",
+            "Date",
+            "Approved leave",
+            "Reported",
+            "Late"
+          ],
+          [
+            "AL-601",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-602",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-603",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-604",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-605",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-606",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-607",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-608",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-609",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-610",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-611",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-612",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-613",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-614",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-615",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-616",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-617",
+            "Day",
+            "2026-02-08",
+            "yes",
+            "",
+            ""
+          ],
+          [
+            "AL-618",
+            "Day",
+            "2026-02-08",
+            "yes",
+            "",
+            ""
+          ],
+          [
+            "AL-619",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ],
+          [
+            "AL-620",
+            "Day",
+            "2026-02-08",
+            "no",
+            "",
+            ""
+          ]
+        ],
+        "Shipping!A1:F20": [
+          [
+            "Shipment",
+            "Order",
+            "Status",
+            "Lines",
+            "Value",
+            "Verified"
+          ],
+          [
+            "SHP-ALD-DECOY",
+            "SO-ALD-DECOY",
+            "Shipped",
+            1,
+            3840.0,
+            "yes"
+          ],
+          [
+            "SHP-ALD-7702",
+            "SO-ALD-71033",
+            "Staged",
+            5,
+            "",
+            "no"
+          ]
+        ]
+      },
+      "spreadsheet_id": "SHEET-ALD-OPS",
+      "tenant_code": "ALDERWOOD",
+      "title": "Alderwood Furniture operations register"
+    }
+  ],
+  "standard_receipts": [
+    {
+      "business_unit": "Alderwood Production",
+      "created_by": "ar_clerk",
+      "currency": "USD",
+      "customer_account_number": "CUST-60244",
+      "last_task_id": null,
+      "receipt_amount": 4400.0,
+      "receipt_date": "2026-01-22",
+      "receipt_method": "Wire",
+      "receipt_number": "RCPT-ALD-PRIOR",
+      "receipt_status": "Applied",
+      "remittance_references": [
+        {
+          "ApplyAmount": 4400.0,
+          "ReferenceNumber": "INV-ALD-PRIOR",
+          "ReferenceType": "INVOICE"
+        }
+      ],
+      "standard_receipt_id": 930003,
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "submissions": [],
+  "suppliers": [
+    {
+      "expedite_premium_pct": 0.0,
+      "lead_time_days": 12,
+      "name": "Mekong Hardwood Mills",
+      "supplier_number": "SUP-7702",
+      "supplier_status": "Active",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "expedite_premium_pct": 14.0,
+      "lead_time_days": 5,
+      "name": "Saigon Timber Express",
+      "supplier_number": "SUP-7745",
+      "supplier_status": "Active",
+      "tenant_code": "ALDERWOOD"
+    },
+    {
+      "expedite_premium_pct": 0.0,
+      "lead_time_days": 30,
+      "name": "Legacy Components Ltd.",
+      "supplier_number": "SUP-ALD-DECOY",
+      "supplier_status": "Inactive",
+      "tenant_code": "ALDERWOOD"
+    }
+  ],
+  "tenants": [
+    {
+      "as_of": "2026-02-09T09:00:00Z",
+      "business_unit": "Alderwood Production",
+      "code": "ALDERWOOD",
+      "company": "Alderwood Furniture",
+      "country": "VN",
+      "currency": "USD",
+      "org": "ALD1",
+      "profile": "furniture manufacturer"
+    }
+  ],
+  "users": [
+    {
+      "approval_limit": 0.0,
+      "email": "analyst@alderwood-sim.example",
+      "name": "Operations analyst",
+      "role": "analyst",
+      "tenant_code": "ALDERWOOD",
+      "user_id": "analyst"
+    },
+    {
+      "approval_limit": 250000.0,
+      "email": "le.thi.hong@alderwood-sim.example",
+      "name": "Le Thi Hong",
+      "role": "finance lead",
+      "tenant_code": "ALDERWOOD",
+      "user_id": "finance_lead"
+    },
+    {
+      "approval_limit": 50000.0,
+      "email": "tran.minh.chau@alderwood-sim.example",
+      "name": "Tran Minh Chau",
+      "role": "hr lead",
+      "tenant_code": "ALDERWOOD",
+      "user_id": "hr_lead"
+    },
+    {
+      "approval_limit": 25000.0,
+      "email": "nguyen.thanh.tam@alderwood-sim.example",
+      "name": "Nguyen Thanh Tam",
+      "role": "operations lead",
+      "tenant_code": "ALDERWOOD",
+      "user_id": "ops_lead"
+    }
+  ],
+  "workers": [
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-601",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-601",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-602",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-602",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-603",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-603",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-604",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-604",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-605",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-605",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-606",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-606",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-607",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-607",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-608",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-608",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-609",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-609",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-610",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-610",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-611",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-611",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-612",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-612",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-613",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-613",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-614",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-614",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-615",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-615",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-616",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-616",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-617",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-617",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-618",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-618",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-619",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-619",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Shift staff AL-620",
+      "hire_date": "2025-09-01",
+      "job_code": "shift operator",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "AL-620",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Dang Van Hung",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1001",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Bui Thi Ngoc",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1002",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Hoang Van Nam",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1003",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Ly Thi Thu",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1004",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Do Minh Tuan",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1005",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Vu Thi Hanh",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1006",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Ngo Van Phuc",
+      "hire_date": "2025-06-01",
+      "job_code": "plant operative",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": null,
+      "person_number": "ALD-P1007",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 1",
+      "hire_date": "2025-03-01",
+      "job_code": "finishing technician",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": 520.0,
+      "person_number": "ALD-P3001",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 2",
+      "hire_date": "2025-03-01",
+      "job_code": "finishing technician",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": 520.0,
+      "person_number": "ALD-P3002",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    },
+    {
+      "candidate_id": null,
+      "contract_end_date": null,
+      "created_by": "hr_lead",
+      "display_name": "Incumbent 3",
+      "hire_date": "2025-03-01",
+      "job_code": "finishing technician",
+      "last_task_id": null,
+      "legal_employer_name": "Alderwood Furniture",
+      "monthly_salary": 520.0,
+      "person_number": "ALD-P3003",
+      "tenant_code": "ALDERWOOD",
+      "worker_status": "Active"
+    }
+  ]
+}

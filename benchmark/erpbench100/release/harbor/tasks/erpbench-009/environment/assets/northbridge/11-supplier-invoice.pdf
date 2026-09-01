@@ -1,0 +1,52 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 431 >>
+stream
+BT
+/F1 10 Tf
+54 750 Td
+12 TL
+(Ridgeway Metals ? tax invoice RM-INV-55021) Tj
+T*
+(Bill to: Northbridge Fastener Works \(Northbridge Manufacturing\)) Tj
+T*
+(Purchase order: PO-NBR-88120   Invoice date: 2026-02-07) Tj
+T*
+(Line 1: FST-M8-40  qty 5000  @ 0.58) Tj
+T*
+(Line 2: FST-M10-60  qty 3000  @ 0.97) Tj
+T*
+(Line 3: NUT-M8-NYL  qty 1800  @ 0.11) Tj
+T*
+(Line 4: WSH-M10-SS  qty 1500  @ 0.06) Tj
+T*
+(Invoice total: 6098.00 USD) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000729 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+799
+%%EOF

@@ -1,0 +1,229 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-057"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-057"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-057-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Alderwood Furniture' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Alderwood Furniture'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Day"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Alderwood Furniture",
+        "endDate": "2026-02-08",
+        "personNumber": "AL-619",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-057"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Alderwood Furniture",
+        "endDate": "2026-02-08",
+        "personNumber": "AL-620",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-057"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Alderwood Furniture' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-057",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-ALD-2026-02-08-DAY",
+            "post_rollup_and_record_unauthorized_absences",
+            18,
+            16,
+            3,
+            2.0,
+            2,
+            "FILE-ALD-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-ALD-2026-02-08-DAY",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-ALD-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-ALD-SHIFT-ROSTER-0208",
+          "MSG-erpbench-057-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-057"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 18; reporting staff 16; late reports 3; overtime hours 2.0; missing staff 2. Primary record ROLLUP-ALD-2026-02-08-DAY; operative source FILE-ALD-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-057 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-057",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-057",
+        "text": "erpbench-057: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-ALD-2026-02-08-DAY — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-057"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-057"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-057"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 18,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 2.0,
+          "primary_record": "ROLLUP-ALD-2026-02-08-DAY",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 16,
+          "source_reference": "FILE-ALD-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-057"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-057"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

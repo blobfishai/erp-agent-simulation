@@ -1,0 +1,55 @@
+{
+  "channel": "Shopify",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Riverbend Hardware",
+      "channel_order_id": "SHP-90211",
+      "currency": "USD",
+      "order_total": 1840.5,
+      "status": "paid"
+    },
+    {
+      "buyer": "Oakline Builders",
+      "channel_order_id": "SHP-90212",
+      "currency": "USD",
+      "order_total": 2310.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Summit DIY",
+      "channel_order_id": "SHP-90213",
+      "currency": "USD",
+      "order_total": 655.2,
+      "status": "paid"
+    },
+    {
+      "buyer": "Harlow Contracting",
+      "channel_order_id": "SHP-90214",
+      "currency": "USD",
+      "order_total": 3120.75,
+      "status": "paid"
+    },
+    {
+      "buyer": "Harlow Contracting",
+      "channel_order_id": "SHP-90214",
+      "currency": "USD",
+      "order_total": 3120.75,
+      "status": "paid"
+    },
+    {
+      "buyer": "Pinecrest Supply",
+      "channel_order_id": "SHP-90215",
+      "currency": "USD",
+      "order_total": 980.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Delta Fixings",
+      "channel_order_id": "SHP-90216",
+      "currency": "USD",
+      "order_total": 1475.3,
+      "status": "paid"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-013"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-013"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-013-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='HBL1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-20077' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-20077"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-20077'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Harborline Distribution",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-20077",
+        "ReceiptAmount": 21150.0,
+        "ReceiptDate": "2026-02-05",
+        "ReceiptMethod": "Bank transfer",
+        "ReceiptNumber": "RCPT-HBL-3319",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 12850.0,
+            "ReferenceNumber": "INV-HBL-70358",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 8300.0,
+            "ReferenceNumber": "INV-HBL-70402",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-013"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-20077'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-013",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-HBL-3319",
+            "apply_receipt_and_escalate_credit_hold",
+            6,
+            21150.0,
+            42100.0,
+            41,
+            44.32,
+            "FILE-HBL-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_escalate_credit_hold",
+        "primary_record": "RCPT-HBL-3319",
+        "rationale": "Current evidence supports apply_receipt_and_escalate_credit_hold; operative source FILE-HBL-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-HBL-REMIT-ADVICE-0206",
+          "MSG-erpbench-013-REQUEST",
+          "MSG-HBL-AUTHORITY-0209"
+        ],
+        "status": "credit_review_required",
+        "task_id": "erpbench-013"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Harborline Trading Co.: recommend apply_receipt_and_escalate_credit_hold (credit_review_required). open invoices before 6; receipt amount 21150.0; remaining past due 42100.0; oldest days past due 41; past due pct of limit 44.32. Primary record RCPT-HBL-3319; operative source FILE-HBL-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-013 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-013",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-013",
+        "text": "erpbench-013: credit_review_required / apply_receipt_and_escalate_credit_hold / RCPT-HBL-3319 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-013"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-013"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-013"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "credit_review_required",
+          "oldest_days_past_due": 41,
+          "open_invoices_before": 6,
+          "past_due_pct_of_limit": 44.32,
+          "primary_record": "RCPT-HBL-3319",
+          "receipt_amount": 21150.0,
+          "recommended_option": "apply_receipt_and_escalate_credit_hold",
+          "remaining_past_due": 42100.0,
+          "source_reference": "FILE-HBL-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-013"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-013"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "artifact_bytes_before_release_report": 102431800,
+  "artifact_file_count_before_release_report": 7147,
+  "assets_per_task": {
+    "max": 28,
+    "min": 28
+  },
+  "benchmark": "ERPBench-100",
+  "catalog_sha256": "452ffe3c9fd55bdd5c56a6cf5a5fc2fb877868e854c4eb6bc8a5051f893f7cde",
+  "criteria_per_task": {
+    "max": 34,
+    "min": 34
+  },
+  "family_count": 10,
+  "harbor_root_sha256": "71cd621743b8e056f65e3b20d89fb9cf4ec1dfcb737536d0d1da717956bad1b7",
+  "harbor_task_bytes": 70454374,
+  "harbor_task_files": 5500,
+  "huggingface_commit": null,
+  "huggingface_payload_manifest_sha256": null,
+  "mcp_pin": {
+    "package": "erpbench100",
+    "protocol_version": "2025-06-18",
+    "server_name": "erpbench",
+    "version": "1.0.0"
+  },
+  "metric": "ERPScore",
+  "negative_control_families": 6,
+  "oracle_calls_per_task": {
+    "max": 32,
+    "min": 27
+  },
+  "pre_satisfied_tasks": [],
+  "qualification_passed": true,
+  "root_sha256_before_release_report": "e4e596e01a609cc447cf113103df79ea3d86c59df10e2d6b8a37bd2e5265e936",
+  "rows_per_task_snapshot": 146,
+  "schema_version": "erpbench.build.v1",
+  "source_asset_count": 460,
+  "table_count": 31,
+  "task_count": 100,
+  "tenant_count": 10,
+  "tool_count": 52,
+  "verifier": {
+    "deterministic": true,
+    "llm_judge_calls": 0
+  },
+  "version": "1.0.0",
+  "website_data": "/Users/samuelchien/dev/erp-agent-simulation/benchmark/erpbench100/release/website/erpbench-data.json",
+  "world_count": 10
+}

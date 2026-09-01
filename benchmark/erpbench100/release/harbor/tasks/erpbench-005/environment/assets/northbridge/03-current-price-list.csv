@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from
+FST-M8-40,M8 x 40 hex bolt, zinc,0.84,Active,2026-01-01
+FST-M10-60,M10 x 60 hex bolt, zinc,1.32,Active,2026-01-01
+NUT-M8-NYL,M8 nylon lock nut,0.19,Active,2026-01-01
+WSH-M10-SS,M10 flat washer, stainless,0.11,Active,2026-01-01
+ANC-12-100,12 x 100 wedge anchor,2.45,Active,2026-01-01
+FST-M6-20-OLD,M6 x 20 hex bolt (discontinued),0.52,Inactive,2026-01-01

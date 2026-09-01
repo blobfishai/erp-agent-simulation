@@ -1,0 +1,255 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-096"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-096"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-096-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Terravane Solar Components'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Terravane Solar Components'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400016,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400094,
+        "Status": "ALERTED",
+        "task_id": "erpbench-096"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Terravane Solar Components'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-096",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "TRV-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            7,
+            6,
+            1,
+            2,
+            5,
+            "FILE-TRV-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "TRV-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-TRV-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-TRV-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-096-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-096"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 7; unalerted expiring 6; blocked workers 1; checks verified 2; days to earliest expiry 5. Primary record TRV-COMPLIANCE-0209; operative source FILE-TRV-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-096 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-096",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-096",
+        "text": "erpbench-096: placements_blocked / alert_expiring_and_block_failed_checks / TRV-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-096"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-096"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-096"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 5,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 7,
+          "primary_record": "TRV-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-TRV-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 6
+        },
+        "task_id": "erpbench-096"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-096"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

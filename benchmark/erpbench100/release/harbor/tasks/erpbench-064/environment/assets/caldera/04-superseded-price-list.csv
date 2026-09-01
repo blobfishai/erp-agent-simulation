@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from,superseded
+BOX-RSC-12,12 x 12 x 12 RSC carton,0.87,Active,2025-07-01,true
+MAIL-PAD-6,Padded mailer #6,0.32,Active,2025-07-01,true
+FILM-STR-18,Stretch film 18 in roll,11.02,Active,2025-07-01,true
+TAPE-PP-48,PP tape 48 mm x 100 m,1.76,Active,2025-07-01,true
+LBL-THERM-46,Thermal label 4 x 6 roll,8.93,Active,2025-07-01,true
+BOX-RSC-10-OLD,10 x 10 x 10 RSC (retired),0.74,Active,2025-07-01,true

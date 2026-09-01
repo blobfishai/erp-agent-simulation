@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-ald",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Wayfair: Northwind Homes, tax id VN-15-908233, orders via buyers@northwind-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Nguyen Thanh Tam",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

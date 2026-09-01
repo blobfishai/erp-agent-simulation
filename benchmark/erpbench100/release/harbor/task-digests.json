@@ -1,0 +1,605 @@
+{
+  "schema_version": "erpbench.harbor-digests.v1",
+  "tasks": [
+    {
+      "bytes": 704285,
+      "digest": "sha256:690418340f042fccf6afbc609de13563242482b4bcdd73139fc698fdc4c8c935",
+      "files": 55,
+      "task_id": "erpbench-001"
+    },
+    {
+      "bytes": 701203,
+      "digest": "sha256:d6aa51524ee64b877903cea42eb88873d5ea15c9376e94f9a0cb31825184f340",
+      "files": 55,
+      "task_id": "erpbench-002"
+    },
+    {
+      "bytes": 704013,
+      "digest": "sha256:7f52e5484da36364e77a2b86f415509b6eeea8be213ba9ef682b5ad63cd8d565",
+      "files": 55,
+      "task_id": "erpbench-003"
+    },
+    {
+      "bytes": 705126,
+      "digest": "sha256:ee3d80611787f29e895130ca5893b053d7550fa20a106f0366180df164759591",
+      "files": 55,
+      "task_id": "erpbench-004"
+    },
+    {
+      "bytes": 708583,
+      "digest": "sha256:3cf29fdc319ea676ff814b081028bf905fa677f865aa90b516c999e392faa65f",
+      "files": 55,
+      "task_id": "erpbench-005"
+    },
+    {
+      "bytes": 703184,
+      "digest": "sha256:fe6be96babb5cfc77fafe84db308425847b164c87bca17a49c833eec6509121b",
+      "files": 55,
+      "task_id": "erpbench-006"
+    },
+    {
+      "bytes": 702657,
+      "digest": "sha256:ab46ed34ad48eff4b203f7185280efe46355dee068b882a79439ce03e73a375f",
+      "files": 55,
+      "task_id": "erpbench-007"
+    },
+    {
+      "bytes": 705693,
+      "digest": "sha256:9b1daccb95eb47c105defac6b684acb09dc3e8dfc4130ebfa05e1c981cd5ee0e",
+      "files": 55,
+      "task_id": "erpbench-008"
+    },
+    {
+      "bytes": 703824,
+      "digest": "sha256:9de10f90b48b91fd03d9a347010db7ba200fb297254addf9a7139c60db3ab488",
+      "files": 55,
+      "task_id": "erpbench-009"
+    },
+    {
+      "bytes": 702181,
+      "digest": "sha256:613f8d409c82b2397a15980e1f76361177c97a1ecb47e1b98c9467b0ec629d13",
+      "files": 55,
+      "task_id": "erpbench-010"
+    },
+    {
+      "bytes": 704880,
+      "digest": "sha256:4cf9e1f4c559c1fb77bbf607a69b0b4a281632d95696c69733d7907870a94ba7",
+      "files": 55,
+      "task_id": "erpbench-011"
+    },
+    {
+      "bytes": 700111,
+      "digest": "sha256:9b28392621066f24524bc8ad8182f965d3dd41824578659f565ed43fb80f31ce",
+      "files": 55,
+      "task_id": "erpbench-012"
+    },
+    {
+      "bytes": 703063,
+      "digest": "sha256:cbd2b43088a624f2b73fad582f49b3fd54fcdf33285841fdd08e6b8c9ec1e2ce",
+      "files": 55,
+      "task_id": "erpbench-013"
+    },
+    {
+      "bytes": 704247,
+      "digest": "sha256:4355294de48d1efbb653ad9005a4719efebab30a603fedb4961426f2798d1b48",
+      "files": 55,
+      "task_id": "erpbench-014"
+    },
+    {
+      "bytes": 707889,
+      "digest": "sha256:5a4713ba7394aa61643e247626f2bc23132503b1d7520b90f6ec78488092fc30",
+      "files": 55,
+      "task_id": "erpbench-015"
+    },
+    {
+      "bytes": 702197,
+      "digest": "sha256:b856a0b11974a50207ed62c993638dc96e529aab63f92e8b526775ef4824c3b7",
+      "files": 55,
+      "task_id": "erpbench-016"
+    },
+    {
+      "bytes": 700520,
+      "digest": "sha256:49243dc91cca01b86c5a811398b31fe210ecd3df5d8c7b2c23f2f6a800475630",
+      "files": 55,
+      "task_id": "erpbench-017"
+    },
+    {
+      "bytes": 706111,
+      "digest": "sha256:5adf9e7b0e7d95bfb1320b63102d57fffdcd7ebb381c3012707c9acade736e46",
+      "files": 55,
+      "task_id": "erpbench-018"
+    },
+    {
+      "bytes": 701965,
+      "digest": "sha256:36306474c9d22dd46850fa8200abb966369692892a8a92b6d63c4957d4c58726",
+      "files": 55,
+      "task_id": "erpbench-019"
+    },
+    {
+      "bytes": 701203,
+      "digest": "sha256:e323518527ddf767b5082e913db81314727e53d2bf7b886a12155fa9e36f8e74",
+      "files": 55,
+      "task_id": "erpbench-020"
+    },
+    {
+      "bytes": 704858,
+      "digest": "sha256:0ffc3eee95ba7bbde51ce304f33a70177e7ac00460bc7d2e336b5c280469d8f6",
+      "files": 55,
+      "task_id": "erpbench-021"
+    },
+    {
+      "bytes": 701195,
+      "digest": "sha256:7484ec4239864fe1f13b292888b5d953bb6b44d0ecb3fad7dec716f65a1f9626",
+      "files": 55,
+      "task_id": "erpbench-022"
+    },
+    {
+      "bytes": 704012,
+      "digest": "sha256:4001b17804feb75fbf27456c795afb7815060c87e6f8978b253233a1996c4c1b",
+      "files": 55,
+      "task_id": "erpbench-023"
+    },
+    {
+      "bytes": 705259,
+      "digest": "sha256:d3c2efe319360e689f0886fd6f82f4db202ccdfe839807bc9d12c3c308bea42d",
+      "files": 55,
+      "task_id": "erpbench-024"
+    },
+    {
+      "bytes": 707352,
+      "digest": "sha256:4e230edd65b208c9d77c949886a35ab86e6c444e6023582c793bde0bc6f47123",
+      "files": 55,
+      "task_id": "erpbench-025"
+    },
+    {
+      "bytes": 704373,
+      "digest": "sha256:02f87a0d03f16dd36ac9e57f95fd798e6eb14761ab86b34c7db8670d3c92f650",
+      "files": 55,
+      "task_id": "erpbench-026"
+    },
+    {
+      "bytes": 702628,
+      "digest": "sha256:b1182495f596f75e1f328c0be8224e9310b447e2a196f31093b5766d65d4a3d7",
+      "files": 55,
+      "task_id": "erpbench-027"
+    },
+    {
+      "bytes": 705865,
+      "digest": "sha256:3d2ce6570507f14bbf0ab07af3b9f74d05a2a0c45a81545404d57f81f2461799",
+      "files": 55,
+      "task_id": "erpbench-028"
+    },
+    {
+      "bytes": 703914,
+      "digest": "sha256:66edc3a4c1732320ce1681e03d6032223eb8b37a286df464cfe4605bb5712ac4",
+      "files": 55,
+      "task_id": "erpbench-029"
+    },
+    {
+      "bytes": 702197,
+      "digest": "sha256:26099e534698f511f1034ce3501aaae97fb4f1795d29a647f10647580f1b1782",
+      "files": 55,
+      "task_id": "erpbench-030"
+    },
+    {
+      "bytes": 706662,
+      "digest": "sha256:9482dee152a1ea78d62166c0704e3c11c154378d9caaf8d8d488cea0b0c42401",
+      "files": 55,
+      "task_id": "erpbench-031"
+    },
+    {
+      "bytes": 702501,
+      "digest": "sha256:fd13bd90a55232c64bc9105deecef5c4fe26608bc871519d21909ec9d0e985c5",
+      "files": 55,
+      "task_id": "erpbench-032"
+    },
+    {
+      "bytes": 704836,
+      "digest": "sha256:30e581fdd33fd9d82f989e6ebd42ccc1aa1e9d7fb147e383629df6ae32e4aaed",
+      "files": 55,
+      "task_id": "erpbench-033"
+    },
+    {
+      "bytes": 706595,
+      "digest": "sha256:eac44dbfff8325456caaef07fcf79674b532e09278c549112a0249012295db43",
+      "files": 55,
+      "task_id": "erpbench-034"
+    },
+    {
+      "bytes": 710161,
+      "digest": "sha256:f59b5a64ff3e664001120bc48cbf64da48be16c485ed748c054115cf66390793",
+      "files": 55,
+      "task_id": "erpbench-035"
+    },
+    {
+      "bytes": 704196,
+      "digest": "sha256:4e5db678052f018ba6b550120834510cdf017462769147b40dafd9eef9ba2b39",
+      "files": 55,
+      "task_id": "erpbench-036"
+    },
+    {
+      "bytes": 702774,
+      "digest": "sha256:f67a4df637406e5e870a41f70fbdb1c55a28bb9c961aea14119bbfa2430b46d6",
+      "files": 55,
+      "task_id": "erpbench-037"
+    },
+    {
+      "bytes": 708391,
+      "digest": "sha256:e4b3add8fabc3167dc5165d0985f1570c6d2b51041fc8d6bea007e2cfbcd7511",
+      "files": 55,
+      "task_id": "erpbench-038"
+    },
+    {
+      "bytes": 705273,
+      "digest": "sha256:ff5a06ba166917bcae4b942a74e25b1b91f829eb7598ffba09d67a2b0e9afc57",
+      "files": 55,
+      "task_id": "erpbench-039"
+    },
+    {
+      "bytes": 703416,
+      "digest": "sha256:3e9dbe303841dd9933b22d3482d47ffb318dec696a30404b57dbe789e6b7ab2c",
+      "files": 55,
+      "task_id": "erpbench-040"
+    },
+    {
+      "bytes": 706260,
+      "digest": "sha256:0cba23484f6e00245544f6a9a008402428b1d00d9cf041bc5dad1957460458b9",
+      "files": 55,
+      "task_id": "erpbench-041"
+    },
+    {
+      "bytes": 702173,
+      "digest": "sha256:0d3bca92ee5cc3c14f412e4e02ee48703d4b44fd06c22508fbb4dab3d192b3b0",
+      "files": 55,
+      "task_id": "erpbench-042"
+    },
+    {
+      "bytes": 704923,
+      "digest": "sha256:a0d90e88d6b00c8e088a9baaa84259e84312e77a1db33a4269d63c76a21365c8",
+      "files": 55,
+      "task_id": "erpbench-043"
+    },
+    {
+      "bytes": 706920,
+      "digest": "sha256:7578b97599677d7a91490c4dabc77559b7d8636dc6cd7dc206ffbd5bbe51f5a1",
+      "files": 55,
+      "task_id": "erpbench-044"
+    },
+    {
+      "bytes": 709672,
+      "digest": "sha256:8692083bc4d3375206ead0a4ee50594c699d5617ccede4c231f2f62a6a97dd3b",
+      "files": 55,
+      "task_id": "erpbench-045"
+    },
+    {
+      "bytes": 704758,
+      "digest": "sha256:450fde816285f59223f26fe9bc0726f6753d02c23de73ba2cde2dcd5e64a5e34",
+      "files": 55,
+      "task_id": "erpbench-046"
+    },
+    {
+      "bytes": 703690,
+      "digest": "sha256:0ee03cf227936db999198be1044d69a394625635e22985ebb57db50c2726662b",
+      "files": 55,
+      "task_id": "erpbench-047"
+    },
+    {
+      "bytes": 706705,
+      "digest": "sha256:c3671e00ef0960ec78f448e5ce71b3f9b0fe3049f6fdff66dc8d51e5504e4d3e",
+      "files": 55,
+      "task_id": "erpbench-048"
+    },
+    {
+      "bytes": 704869,
+      "digest": "sha256:4cf8d2ded74934436131905931dad3db2fffc54d0c3ec877978d3e7071122fc2",
+      "files": 55,
+      "task_id": "erpbench-049"
+    },
+    {
+      "bytes": 703143,
+      "digest": "sha256:fcfc3f8ff33f299ea9ebf21133d22d6687e3a90d249626b75c78090e73fd978a",
+      "files": 55,
+      "task_id": "erpbench-050"
+    },
+    {
+      "bytes": 705566,
+      "digest": "sha256:cf7c660a5bd73a7ad29c28ca6ec0d3991df3e1a5ee35ba6f3e9786623a061bda",
+      "files": 55,
+      "task_id": "erpbench-051"
+    },
+    {
+      "bytes": 702407,
+      "digest": "sha256:5830ca991867f76a507ada5c52e348b2b12fd4970de5219f0edb18be10712224",
+      "files": 55,
+      "task_id": "erpbench-052"
+    },
+    {
+      "bytes": 704723,
+      "digest": "sha256:9835fddbb467fc6edf03b82ab041b97792f83c62fe5a9abf3b6418820509c78b",
+      "files": 55,
+      "task_id": "erpbench-053"
+    },
+    {
+      "bytes": 707913,
+      "digest": "sha256:eddf671f6dbfaed322beeccfdf99291b69c52e8881811769625c9a2436431e4b",
+      "files": 55,
+      "task_id": "erpbench-054"
+    },
+    {
+      "bytes": 709901,
+      "digest": "sha256:1f5626656e6fa5b3560287ca37170d34fb60b8a3587c18d71113f560117963cb",
+      "files": 55,
+      "task_id": "erpbench-055"
+    },
+    {
+      "bytes": 704295,
+      "digest": "sha256:f2d1b96baa82f91bff82d3929768b10cff750426ecf9f66aac41aaaecdefa495",
+      "files": 55,
+      "task_id": "erpbench-056"
+    },
+    {
+      "bytes": 703674,
+      "digest": "sha256:074f1b33de075b9a13483363eaec45260eed2dc449c26a944e4e2262fee7f21b",
+      "files": 55,
+      "task_id": "erpbench-057"
+    },
+    {
+      "bytes": 708234,
+      "digest": "sha256:92ec07b2b023d483aaacbbde9ab289d886e271d634693c38ac81b61b03076963",
+      "files": 55,
+      "task_id": "erpbench-058"
+    },
+    {
+      "bytes": 704956,
+      "digest": "sha256:951a507ad281851fc18674cde2d00120fe794482c6499f1c5a8c9a05f153203e",
+      "files": 55,
+      "task_id": "erpbench-059"
+    },
+    {
+      "bytes": 703322,
+      "digest": "sha256:c221ac4896975303a9f800ded6130847e1bca0ee17ffcd542f8016f6439f3eb6",
+      "files": 55,
+      "task_id": "erpbench-060"
+    },
+    {
+      "bytes": 705434,
+      "digest": "sha256:670142046d97b2f9fdb885a75ca82c7c6cdd7a10439c5f8d45819ea836ab897d",
+      "files": 55,
+      "task_id": "erpbench-061"
+    },
+    {
+      "bytes": 701339,
+      "digest": "sha256:fbac4bc3e212dcda7d6b13e89b2ac504c597a9ffb9e17316d9b96e70d7e79152",
+      "files": 55,
+      "task_id": "erpbench-062"
+    },
+    {
+      "bytes": 704052,
+      "digest": "sha256:2aaddb77dfb36a89e8e6ab9ba0d723cea7f2e410bfe99942a9387f484b6fcf33",
+      "files": 55,
+      "task_id": "erpbench-063"
+    },
+    {
+      "bytes": 705975,
+      "digest": "sha256:c047df20fd0c915af50379f143c3aa0da589699f5e2a9bd5a38d93ae4af71ccd",
+      "files": 55,
+      "task_id": "erpbench-064"
+    },
+    {
+      "bytes": 708933,
+      "digest": "sha256:96db371b2a9ba8e09386f1d9a52e5cd15c5df29d65629739f0c35d8b02e90746",
+      "files": 55,
+      "task_id": "erpbench-065"
+    },
+    {
+      "bytes": 703743,
+      "digest": "sha256:f901c385c20b53db3b9f1f939e23af36b2fe1b8e50bfe65681d0647755380dab",
+      "files": 55,
+      "task_id": "erpbench-066"
+    },
+    {
+      "bytes": 702609,
+      "digest": "sha256:2a1bd653fad58afbfd3c9b52bf2db7585d8a637bd980081ea40db47155f3829d",
+      "files": 55,
+      "task_id": "erpbench-067"
+    },
+    {
+      "bytes": 706073,
+      "digest": "sha256:f0d8dd5ac8d73dbc1f32f44a6f12340e3710adee6c5a9202b47b121ec1beafde",
+      "files": 55,
+      "task_id": "erpbench-068"
+    },
+    {
+      "bytes": 702508,
+      "digest": "sha256:968159c280b6bed787289a46b2559f982546ed1b88dcb2feb50913d4459c1eb8",
+      "files": 55,
+      "task_id": "erpbench-069"
+    },
+    {
+      "bytes": 702849,
+      "digest": "sha256:e214cd61958a35f6b93b2ebb28b4689153882e7a9680d963889d2b787fd64486",
+      "files": 55,
+      "task_id": "erpbench-070"
+    },
+    {
+      "bytes": 705058,
+      "digest": "sha256:7d41ce5597301d01ccb780523a381e76f9ef02431907ead51aef65c957991191",
+      "files": 55,
+      "task_id": "erpbench-071"
+    },
+    {
+      "bytes": 700947,
+      "digest": "sha256:998a45c08b3ae5b9f318164b38b164a6447e6ab9d95006d989d7649aa73bbeda",
+      "files": 55,
+      "task_id": "erpbench-072"
+    },
+    {
+      "bytes": 703734,
+      "digest": "sha256:6879328ae43d08b0eefc678cdd0eee5d470bb7dce39eb5f8262e8320b427a22a",
+      "files": 55,
+      "task_id": "erpbench-073"
+    },
+    {
+      "bytes": 705793,
+      "digest": "sha256:9380cb1e63d2a1a39bb7a348268a13bb91a469a10a7039d19520551e8dbe9d7e",
+      "files": 55,
+      "task_id": "erpbench-074"
+    },
+    {
+      "bytes": 708460,
+      "digest": "sha256:af6b80b33a42d31685bcdc1dd023b414d5a89e05f978b62aa29b08eeba64651f",
+      "files": 55,
+      "task_id": "erpbench-075"
+    },
+    {
+      "bytes": 703500,
+      "digest": "sha256:a94bff316f357ec2acf9e08e1cd9e515fe2707e707254ec3da95010e6ce738e3",
+      "files": 55,
+      "task_id": "erpbench-076"
+    },
+    {
+      "bytes": 702387,
+      "digest": "sha256:774c306a64e94b1826a5d22aac5677d0ab8a7ba735c3212bfdbbfc2e3bc9d7b8",
+      "files": 55,
+      "task_id": "erpbench-077"
+    },
+    {
+      "bytes": 705423,
+      "digest": "sha256:cc0fcc80727a7cb1ca28c505658ce76f11195f2d06ab610b8f35b6e0a4db7288",
+      "files": 55,
+      "task_id": "erpbench-078"
+    },
+    {
+      "bytes": 702235,
+      "digest": "sha256:bc2d18802cd19fca982edfd35661b349c65ad0650c4e25c7c2c979f92cd8c97f",
+      "files": 55,
+      "task_id": "erpbench-079"
+    },
+    {
+      "bytes": 701916,
+      "digest": "sha256:ab68a362eb9cc20d17cf057350b61eb6dd4658d6281a21c2565cf2116c7dd4a4",
+      "files": 55,
+      "task_id": "erpbench-080"
+    },
+    {
+      "bytes": 702388,
+      "digest": "sha256:dcca2ae0c460a2555c7ebee472dc362ef5d15aaa35a877dc903751ee3431d0aa",
+      "files": 55,
+      "task_id": "erpbench-081"
+    },
+    {
+      "bytes": 699312,
+      "digest": "sha256:c4eb02a060b4f8d7197fce1f0b4cc787815fbad471fce5d6a49e82eada8f6b6a",
+      "files": 55,
+      "task_id": "erpbench-082"
+    },
+    {
+      "bytes": 702090,
+      "digest": "sha256:c280bd232cf61b5ef81a37c23db3e44429ddb15a609c081d885b63ecd1930aae",
+      "files": 55,
+      "task_id": "erpbench-083"
+    },
+    {
+      "bytes": 704074,
+      "digest": "sha256:85edc13cd936a736e656a747e832af732f9238e9af4a0aaae1628ca5535967d6",
+      "files": 55,
+      "task_id": "erpbench-084"
+    },
+    {
+      "bytes": 706780,
+      "digest": "sha256:5b0af170c82a9bb82dda511dfe838c581e9c41d92fc669b1e94cdb07843a96e5",
+      "files": 55,
+      "task_id": "erpbench-085"
+    },
+    {
+      "bytes": 701798,
+      "digest": "sha256:1c51faeba54e7aaa4c7fd68997051a4cd95e61e24813a3ee2e080904ba185fa2",
+      "files": 55,
+      "task_id": "erpbench-086"
+    },
+    {
+      "bytes": 699517,
+      "digest": "sha256:0b8d53960c51585449396f72966451c2af988ef26236ce24bae55d325c2f1854",
+      "files": 55,
+      "task_id": "erpbench-087"
+    },
+    {
+      "bytes": 703937,
+      "digest": "sha256:e9774288109745965281eac02784eee169e4cb2068375f9ab50d3670249f9b63",
+      "files": 55,
+      "task_id": "erpbench-088"
+    },
+    {
+      "bytes": 700531,
+      "digest": "sha256:ec899f65227f0ec57e51c1933aa16e22183ffcb517389066f592e897fdc9d4be",
+      "files": 55,
+      "task_id": "erpbench-089"
+    },
+    {
+      "bytes": 700237,
+      "digest": "sha256:c1f7b7be2c9a997b302d189ad57d3d00542f46a32b658178ecca151edbe0695f",
+      "files": 55,
+      "task_id": "erpbench-090"
+    },
+    {
+      "bytes": 707887,
+      "digest": "sha256:cbc13e1ab21554dbf85c50a0fe3cdaeb3069caae6bbf288b24397ba0b7b0517e",
+      "files": 55,
+      "task_id": "erpbench-091"
+    },
+    {
+      "bytes": 704230,
+      "digest": "sha256:f93b53a727c41160450ebae7ad657af68bf706cb6a290afcd9bfe4bc927a0262",
+      "files": 55,
+      "task_id": "erpbench-092"
+    },
+    {
+      "bytes": 707001,
+      "digest": "sha256:d35802e95eead21217ad13d5698f9c17793162f44525d02e11924e635632f0be",
+      "files": 55,
+      "task_id": "erpbench-093"
+    },
+    {
+      "bytes": 708929,
+      "digest": "sha256:531150b1f74a3ded488250ec352afb1c0f2c8f5b4546e6defb2014206f602b20",
+      "files": 55,
+      "task_id": "erpbench-094"
+    },
+    {
+      "bytes": 711788,
+      "digest": "sha256:84b69d42bd7006038db1b3b189ef2acb8b8e0e53226a2f19c8776f6bdfcd139b",
+      "files": 55,
+      "task_id": "erpbench-095"
+    },
+    {
+      "bytes": 707377,
+      "digest": "sha256:bd9ec647798c675a66a0578cbc3698ca1f0e82a6dfd4bd8999a6770694bb5056",
+      "files": 55,
+      "task_id": "erpbench-096"
+    },
+    {
+      "bytes": 705700,
+      "digest": "sha256:fc37da4b93905c9f51218b04c295b6ff604289d5c6b579ff3a506f096cb175ec",
+      "files": 55,
+      "task_id": "erpbench-097"
+    },
+    {
+      "bytes": 709080,
+      "digest": "sha256:e8c8014803ea66fb5b204b88a829b6ad61f7908429cd24b284b4d433ad1a106b",
+      "files": 55,
+      "task_id": "erpbench-098"
+    },
+    {
+      "bytes": 706074,
+      "digest": "sha256:7abbd6d239b186f6110ceeab2da08c0bc06a31f4384459f53256c7a5be83f078",
+      "files": 55,
+      "task_id": "erpbench-099"
+    },
+    {
+      "bytes": 705179,
+      "digest": "sha256:76e1ec9c2b0149e2fa0ce0d4aa0164ae8a53d18aab03fbafc2e0106cbb09ff16",
+      "files": 55,
+      "task_id": "erpbench-100"
+    }
+  ]
+}

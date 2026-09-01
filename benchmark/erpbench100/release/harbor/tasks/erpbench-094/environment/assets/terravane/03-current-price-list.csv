@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from
+MOD-410-M,410 W mono module,148.00,Active,2026-01-01
+INV-5K-H,5 kW hybrid inverter,690.00,Active,2026-01-01
+RAIL-AL-42,Aluminium rail 4.2 m,18.50,Active,2026-01-01
+CLMP-MID,Mid clamp,1.40,Active,2026-01-01
+CABLE-PV-6,PV cable 6 mm2 (per metre),1.10,Active,2026-01-01
+MOD-380-OLD,380 W module (EOL),132.00,Inactive,2026-01-01

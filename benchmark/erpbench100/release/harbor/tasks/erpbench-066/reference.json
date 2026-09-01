@@ -1,0 +1,465 @@
+{
+  "expected_answer": {
+    "blocked_workers": 1,
+    "checks_verified": 2,
+    "days_to_earliest_expiry": 2,
+    "decision_status": "placements_blocked",
+    "expiring_within_30": 6,
+    "primary_record": "CLD-COMPLIANCE-0209",
+    "recommended_option": "alert_expiring_and_block_failed_checks",
+    "source_reference": "FILE-CLD-COMPLIANCE-CHECKLIST-0209",
+    "unalerted_expiring": 5
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-066"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-066"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-066-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-COMPLIANCE-CHECKLIST-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-DOCUMENT-ALERT-LOG"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Compliance!A1:G14",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "compliance"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUDITOR-0205"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400003,
+        "Status": "ALERTED",
+        "task_id": "erpbench-066"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400029,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-066"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400055,
+        "Status": "ALERTED",
+        "task_id": "erpbench-066"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400068,
+        "Status": "ALERTED",
+        "task_id": "erpbench-066"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "DocumentRecordId": 400081,
+        "Status": "ALERTED",
+        "VerifiedFlag": true,
+        "task_id": "erpbench-066"
+      },
+      "tool": "oracle_fusion.document_records.update"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging'"
+      },
+      "tool": "oracle_fusion.document_records.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-066",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "CLD-COMPLIANCE-0209",
+            "alert_expiring_and_block_failed_checks",
+            6,
+            5,
+            1,
+            2,
+            2,
+            "FILE-CLD-COMPLIANCE-CHECKLIST-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "alert_expiring_and_block_failed_checks",
+        "primary_record": "CLD-COMPLIANCE-0209",
+        "rationale": "Current evidence supports alert_expiring_and_block_failed_checks; operative source FILE-CLD-COMPLIANCE-CHECKLIST-0209.",
+        "source_refs": [
+          "FILE-CLD-COMPLIANCE-CHECKLIST-0209",
+          "MSG-erpbench-066-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "placements_blocked",
+        "task_id": "erpbench-066"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend alert_expiring_and_block_failed_checks (placements_blocked). expiring within 30 6; unalerted expiring 5; blocked workers 1; checks verified 2; days to earliest expiry 2. Primary record CLD-COMPLIANCE-0209; operative source FILE-CLD-COMPLIANCE-CHECKLIST-0209. Draft for review, not sent.",
+        "subject": "erpbench-066 — Clear the document expiry and dossier backlog — for review",
+        "task_id": "erpbench-066",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-066",
+        "text": "erpbench-066: placements_blocked / alert_expiring_and_block_failed_checks / CLD-COMPLIANCE-0209 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A26:J26",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-066"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-066"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-066"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "blocked_workers": 1,
+          "checks_verified": 2,
+          "days_to_earliest_expiry": 2,
+          "decision_status": "placements_blocked",
+          "expiring_within_30": 6,
+          "primary_record": "CLD-COMPLIANCE-0209",
+          "recommended_option": "alert_expiring_and_block_failed_checks",
+          "source_reference": "FILE-CLD-COMPLIANCE-CHECKLIST-0209",
+          "unalerted_expiring": 5
+        },
+        "task_id": "erpbench-066"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-066"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the workers investigation before any controlled write.",
+      "id": "discovery:workers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the document records investigation before any controlled write.",
+      "id": "discovery:document_records",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the checklist investigation before any controlled write.",
+      "id": "discovery:checklist",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the alert log investigation before any controlled write.",
+      "id": "discovery:alert_log",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the compliance tab investigation before any controlled write.",
+      "id": "discovery:compliance_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the hr thread investigation before any controlled write.",
+      "id": "discovery:hr_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the auditor mail investigation before any controlled write.",
+      "id": "discovery:auditor_mail",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded expiring within 30 (6).",
+      "id": "calculation:expiring_within_30",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded unalerted expiring (5).",
+      "id": "calculation:unalerted_expiring",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded blocked workers (1).",
+      "id": "calculation:blocked_workers",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded checks verified (2).",
+      "id": "calculation:checks_verified",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded days to earliest expiry (2).",
+      "id": "calculation:days_to_earliest_expiry",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option alert_expiring_and_block_failed_checks.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-CLD-COMPLIANCE-CHECKLIST-0209 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-066"
+}

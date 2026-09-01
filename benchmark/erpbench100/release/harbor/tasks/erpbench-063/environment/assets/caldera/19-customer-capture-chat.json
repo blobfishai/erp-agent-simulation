@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-cld",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Amazon Business: Pacific Ecom Partners, tax id TX-91-664120, orders via ap@pacificecom-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Alicia Romero",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

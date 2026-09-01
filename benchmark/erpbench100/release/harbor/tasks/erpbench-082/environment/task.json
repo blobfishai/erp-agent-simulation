@@ -1,0 +1,782 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "confirmed_value": {
+        "multipleOf": 0.01,
+        "type": "number"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "lines_corrected": {
+        "type": "integer"
+      },
+      "lines_matching": {
+        "type": "integer"
+      },
+      "lines_reviewed": {
+        "type": "integer"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "units_removed": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "lines_reviewed",
+      "lines_matching",
+      "lines_corrected",
+      "units_removed",
+      "confirmed_value"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Bluefin Marine Parts",
+  "context_files": [
+    "assets/bluefin/01-consolidated-order-batch.xlsx",
+    "assets/bluefin/02-prior-partial-import.xlsx",
+    "assets/bluefin/03-current-price-list.csv",
+    "assets/bluefin/04-superseded-price-list.csv",
+    "assets/bluefin/05-pick-confirmation.csv",
+    "assets/bluefin/06-remittance-advice.pdf",
+    "assets/bluefin/07-ar-aging.xlsx",
+    "assets/bluefin/08-credit-policy.md",
+    "assets/bluefin/09-reorder-policy.xlsx",
+    "assets/bluefin/10-demand-forecast.csv",
+    "assets/bluefin/11-supplier-invoice.pdf",
+    "assets/bluefin/12-delivery-note.pdf",
+    "assets/bluefin/13-ap-match-policy.md",
+    "assets/bluefin/14-compliance-checklist.xlsx",
+    "assets/bluefin/15-document-alert-log.csv",
+    "assets/bluefin/16-shift-roster.xlsx",
+    "assets/bluefin/17-shift-work-reports.csv",
+    "assets/bluefin/18-channel-export.json",
+    "assets/bluefin/19-customer-capture-chat.json",
+    "assets/bluefin/20-headcount-approval.pdf",
+    "assets/bluefin/21-candidate-register.xlsx",
+    "assets/bluefin/22-wage-table.csv",
+    "assets/bluefin/23-price-batch.csv",
+    "assets/bluefin/24-authority-memo.eml",
+    "assets/bluefin/25-source-map.yaml",
+    "assets/bluefin/26-ops-audit.log",
+    "assets/tasks/erpbench-082/task-brief.md",
+    "assets/tasks/erpbench-082/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "correct_short_picks_and_hold_over_picks",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.shipment_lines.list",
+  "expected_answer": {
+    "confirmed_value": 11972.0,
+    "decision_status": "partial_hold",
+    "lines_corrected": 1,
+    "lines_matching": 4,
+    "lines_reviewed": 6,
+    "primary_record": "SHP-BLF-8801",
+    "recommended_option": "correct_short_picks_and_hold_over_picks",
+    "source_reference": "FILE-BLF-PICK-CONFIRM-0208",
+    "units_removed": 4
+  },
+  "gold_output": {
+    "answers": {
+      "confirmed_value": 11972.0,
+      "decision_status": "partial_hold",
+      "lines_corrected": 1,
+      "lines_matching": 4,
+      "lines_reviewed": 6,
+      "primary_record": "SHP-BLF-8801",
+      "recommended_option": "correct_short_picks_and_hold_over_picks",
+      "source_reference": "FILE-BLF-PICK-CONFIRM-0208",
+      "units_removed": 4
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "correct_short_picks_and_hold_over_picks",
+      "primary_record": "SHP-BLF-8801",
+      "status": "partial_hold"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "shipment_verification",
+    "category_label": "Shipment verification",
+    "company": "Bluefin Marine Parts",
+    "country": "AU",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Marine spare parts distribution",
+    "nario_grounding": {
+      "archetype": "ship-verify",
+      "production_runs_observed": 44,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "state_transition"
+    },
+    "profile": "parts distributor",
+    "reference_tool_calls": 27,
+    "synthetic": true,
+    "tenant": "BLUEFIN"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-082"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-082"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-082-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='BLF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-BLF-8801'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-BLF-8801'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-BLF-8801'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-BLF-13355"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-BLF-8801"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-BLF-PICK-CONFIRM-0208",
+        "ShipmentLine": 700009,
+        "ShippedQuantity": 176,
+        "task_id": "erpbench-082"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-BLF-8801'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-082",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-BLF-8801",
+            "correct_short_picks_and_hold_over_picks",
+            6,
+            4,
+            1,
+            4,
+            11972.0,
+            "FILE-BLF-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-BLF-8801",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-BLF-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-BLF-PICK-CONFIRM-0208",
+          "MSG-erpbench-082-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-082"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 6; lines matching 4; lines corrected 1; units removed 4; confirmed value 11972.0. Primary record SHP-BLF-8801; operative source FILE-BLF-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-082 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-082",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-082",
+        "text": "erpbench-082: partial_hold / correct_short_picks_and_hold_over_picks / SHP-BLF-8801 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-082"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-082"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-082"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 11972.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 6,
+          "primary_record": "SHP-BLF-8801",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-BLF-PICK-CONFIRM-0208",
+          "units_removed": 4
+        },
+        "task_id": "erpbench-082"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-082"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.shipment_lines.update",
+  "prompt": "**Bluefin Marine Parts · Fremantle depot · Shipment verification**\n\nShipment SHP-BLF-8801 for Southern Cross Boatworks is staged for tonight's truck, but the warehouse pick confirmation and the shipment lines in the system do not agree everywhere. Reconcile them line by line, correct what the pick confirmation proves was actually picked, hold anything that looks over-picked instead of shipping it, and confirm the value we can honestly ship. Record it in the shipping register and leave the update for Callum Reid ready for review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-082"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-082"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-082-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-BLF-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-blf"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-BLF-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='BLF1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-BLF-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "Shipment='SHP-BLF-8801'"
+          },
+          "tool": "oracle_fusion.shipments.list"
+        }
+      ],
+      "description": "shipment header",
+      "id": "shipment_header"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "Shipment='SHP-BLF-8801'"
+          },
+          "tool": "oracle_fusion.shipment_lines.list"
+        }
+      ],
+      "description": "shipment lines",
+      "id": "shipment_lines"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "name contains 'SHP-BLF-8801'"
+          },
+          "tool": "google_drive.files.list"
+        }
+      ],
+      "description": "pick search",
+      "id": "pick_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-BLF-PICK-CONFIRM-0208"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "pick confirmation",
+      "id": "pick_confirmation"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "OrderKey": "SO-BLF-13355"
+          },
+          "tool": "oracle_fusion.sales_orders.get"
+        }
+      ],
+      "description": "sales order",
+      "id": "sales_order"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Shipping!A1:F20",
+            "spreadsheetId": "SHEET-BLF-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "shipping register",
+      "id": "shipping_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "query": "SHP-BLF-8801"
+          },
+          "tool": "slack.search_messages"
+        }
+      ],
+      "description": "warehouse thread",
+      "id": "warehouse_thread"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipment header investigation before any controlled write.",
+      "id": "discovery:shipment_header",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipment lines investigation before any controlled write.",
+      "id": "discovery:shipment_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pick search investigation before any controlled write.",
+      "id": "discovery:pick_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pick confirmation investigation before any controlled write.",
+      "id": "discovery:pick_confirmation",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the sales order investigation before any controlled write.",
+      "id": "discovery:sales_order",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipping register investigation before any controlled write.",
+      "id": "discovery:shipping_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the warehouse thread investigation before any controlled write.",
+      "id": "discovery:warehouse_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines reviewed (6).",
+      "id": "calculation:lines_reviewed",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines matching (4).",
+      "id": "calculation:lines_matching",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines corrected (1).",
+      "id": "calculation:lines_corrected",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded units removed (4).",
+      "id": "calculation:units_removed",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded confirmed value (11972.0).",
+      "id": "calculation:confirmed_value",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option correct_short_picks_and_hold_over_picks.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-BLF-PICK-CONFIRM-0208 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-082",
+  "task_name": "Reconcile the staged shipment before confirmation",
+  "tenant_code": "BLUEFIN",
+  "world_id": "fusion-erp-tenants-v1"
+}

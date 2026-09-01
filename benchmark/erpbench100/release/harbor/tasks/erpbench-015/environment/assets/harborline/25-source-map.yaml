@@ -1,0 +1,11 @@
+tenant: HARBORLINE
+order_batch: FILE-HBL-ORDER-BATCH-0209
+pick_confirmation: FILE-HBL-PICK-CONFIRM-0208
+remittance_advice: FILE-HBL-REMIT-ADVICE-0206
+reorder_policy: FILE-HBL-REORDER-POLICY-R4
+delivery_note: FILE-HBL-DELIVERY-NOTE-0206
+compliance_checklist: FILE-HBL-COMPLIANCE-CHECKLIST-0209
+shift_roster: FILE-HBL-SHIFT-ROSTER-0208
+channel_export: FILE-HBL-CHANNEL-EXPORT-0209
+headcount_approval: FILE-HBL-HEADCOUNT-APPROVAL-2026
+price_batch: FILE-HBL-PRICE-BATCH-Q2

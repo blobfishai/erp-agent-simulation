@@ -1,0 +1,868 @@
+{
+  "benchmark": "ERPBench-100",
+  "determinism": {
+    "exact_episode_matches": 100,
+    "mismatches": 0,
+    "replays": 100
+  },
+  "executions": 800,
+  "metric": "ERPScore",
+  "negative_controls": {
+    "noop": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 4.0,
+      "strict_passes": 0
+    },
+    "overprocess": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 89.54,
+      "strict_passes": 0
+    },
+    "shortcut": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 46.0,
+      "strict_passes": 0
+    },
+    "state_only": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 85.0,
+      "strict_passes": 0
+    },
+    "wrong_source": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 87.1,
+      "strict_passes": 0
+    },
+    "wrong_target": {
+      "executions": 100,
+      "false_accepts": 0,
+      "mean_score": 82.51,
+      "strict_passes": 0
+    }
+  },
+  "oracle": {
+    "mean_score": 100.0,
+    "passes": 100
+  },
+  "pre_satisfied_gate": {
+    "pre_satisfied_tasks": [],
+    "tasks_checked": 100
+  },
+  "qualification_passed": true,
+  "results": [
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "mean_score": 100.0,
+      "policy": "oracle",
+      "strict_passes": 100,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 0.0,
+        "containment": 60.0,
+        "decision": 0.0,
+        "discovery": 6.67,
+        "erp_state": 0.0,
+        "handoff": 0.0,
+        "readback": 0.0
+      },
+      "mean_score": 4.0,
+      "policy": "noop",
+      "strict_passes": 0,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 60.0,
+        "decision": 100.0,
+        "discovery": 6.67,
+        "erp_state": 0.0,
+        "handoff": 0.0,
+        "readback": 20.0
+      },
+      "mean_score": 46.0,
+      "policy": "shortcut",
+      "strict_passes": 0,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 100.0,
+        "decision": 100.0,
+        "discovery": 0.0,
+        "erp_state": 100.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "mean_score": 85.0,
+      "policy": "state_only",
+      "strict_passes": 0,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 82.0,
+        "decision": 66.67,
+        "discovery": 93.33,
+        "erp_state": 70.0,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "mean_score": 87.1,
+      "policy": "wrong_source",
+      "strict_passes": 0,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 42.0,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 35.0,
+        "handoff": 100.0,
+        "readback": 84.1
+      },
+      "mean_score": 82.51,
+      "policy": "wrong_target",
+      "strict_passes": 0,
+      "task_count": 100
+    },
+    {
+      "category_scores": {
+        "calculation": 100.0,
+        "containment": 51.6,
+        "decision": 100.0,
+        "discovery": 100.0,
+        "erp_state": 59.8,
+        "handoff": 100.0,
+        "readback": 100.0
+      },
+      "mean_score": 89.54,
+      "policy": "overprocess",
+      "strict_passes": 0,
+      "task_count": 100
+    }
+  ],
+  "schema_version": "erpbench.qualification.v1",
+  "task_count": 100,
+  "task_results": [
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-001"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-002"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-003"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-004"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-005"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-006"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-007"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-008"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-009"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-010"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-011"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-012"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-013"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-014"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-015"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-016"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-017"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-018"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-019"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-020"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-021"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-022"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-023"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-024"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-025"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 32,
+      "task_id": "erpbench-026"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-027"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-028"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-029"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-030"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-031"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-032"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-033"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-034"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-035"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-036"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-037"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-038"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-039"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-040"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-041"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-042"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-043"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-044"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-045"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-046"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-047"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-048"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-049"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-050"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-051"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-052"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-053"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-054"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-055"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-056"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-057"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-058"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-059"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-060"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-061"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-062"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-063"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-064"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-065"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-066"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-067"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-068"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-069"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-070"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-071"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-072"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-073"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-074"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-075"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-076"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-077"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-078"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-079"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-080"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-081"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-082"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-083"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-084"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-085"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 31,
+      "task_id": "erpbench-086"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-087"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-088"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-089"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-090"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-091"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-092"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 27,
+      "task_id": "erpbench-093"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-094"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-095"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 32,
+      "task_id": "erpbench-096"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-097"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 30,
+      "task_id": "erpbench-098"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 28,
+      "task_id": "erpbench-099"
+    },
+    {
+      "deterministic_match": true,
+      "oracle_passed": true,
+      "oracle_score": 100.0,
+      "oracle_tool_calls": 29,
+      "task_id": "erpbench-100"
+    }
+  ]
+}

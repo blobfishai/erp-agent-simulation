@@ -1,0 +1,55 @@
+{
+  "channel": "Distributor portal",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Bangkok Rooftop Solar",
+      "channel_order_id": "DP-12001",
+      "currency": "USD",
+      "order_total": 29600.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Chiang Mai Energy Co",
+      "channel_order_id": "DP-12002",
+      "currency": "USD",
+      "order_total": 14800.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Phuket Green Homes",
+      "channel_order_id": "DP-12003",
+      "currency": "USD",
+      "order_total": 7400.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Khon Kaen Farms Power",
+      "channel_order_id": "DP-12004",
+      "currency": "USD",
+      "order_total": 22200.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Phuket Green Homes",
+      "channel_order_id": "DP-12003",
+      "currency": "USD",
+      "order_total": 7400.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Pattaya Resorts Energy",
+      "channel_order_id": "DP-12005",
+      "currency": "USD",
+      "order_total": 18500.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Hua Hin Solar",
+      "channel_order_id": "DP-12006",
+      "currency": "USD",
+      "order_total": 9250.0,
+      "status": "paid"
+    }
+  ]
+}

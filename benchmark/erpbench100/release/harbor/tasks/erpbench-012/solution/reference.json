@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-012"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-012-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='HBL1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-HBL-2210'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-HBL-41022"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-HBL-2210"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-HBL-PICK-CONFIRM-0208",
+        "ShipmentLine": 700012,
+        "ShippedQuantity": 288,
+        "task_id": "erpbench-012"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-HBL-2210'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-012",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-HBL-2210",
+            "correct_short_picks_and_confirm",
+            5,
+            4,
+            1,
+            12,
+            14983.2,
+            "FILE-HBL-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_confirm",
+        "primary_record": "SHP-HBL-2210",
+        "rationale": "Current evidence supports correct_short_picks_and_confirm; operative source FILE-HBL-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-HBL-PICK-CONFIRM-0208",
+          "MSG-erpbench-012-REQUEST",
+          "MSG-HBL-AUTHORITY-0209"
+        ],
+        "status": "ready_to_confirm",
+        "task_id": "erpbench-012"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Harborline Trading Co.: recommend correct_short_picks_and_confirm (ready_to_confirm). lines reviewed 5; lines matching 4; lines corrected 1; units removed 12; confirmed value 14983.2. Primary record SHP-HBL-2210; operative source FILE-HBL-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-012 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-012",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-012",
+        "text": "erpbench-012: ready_to_confirm / correct_short_picks_and_confirm / SHP-HBL-2210 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-012"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-012"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 14983.2,
+          "decision_status": "ready_to_confirm",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-HBL-2210",
+          "recommended_option": "correct_short_picks_and_confirm",
+          "source_reference": "FILE-HBL-PICK-CONFIRM-0208",
+          "units_removed": 12
+        },
+        "task_id": "erpbench-012"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-012"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

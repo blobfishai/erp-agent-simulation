@@ -1,0 +1,833 @@
+{
+  "allowed_write_tools": [
+    "oracle_fusion.sales_orders.create",
+    "oracle_fusion.shipment_lines.update",
+    "oracle_fusion.standard_receipts.create",
+    "oracle_fusion.purchase_requisitions.create",
+    "oracle_fusion.purchase_requisitions.submit",
+    "oracle_fusion.receiving_receipt_requests.create",
+    "oracle_fusion.invoices.create",
+    "oracle_fusion.invoices.validate",
+    "oracle_fusion.invoice_holds.create",
+    "oracle_fusion.document_records.update",
+    "oracle_fusion.absences.create",
+    "oracle_fusion.workers.create",
+    "oracle_fusion.items.update",
+    "google_sheets.spreadsheets.values.update",
+    "google_sheets.spreadsheets.values.append",
+    "gmail.drafts.create",
+    "slack.chat_postMessage",
+    "erpbench.record_decision",
+    "erpbench.submit_answer"
+  ],
+  "answer_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "already_synced": {
+        "type": "integer"
+      },
+      "channel_rows": {
+        "type": "integer"
+      },
+      "created_orders": {
+        "type": "integer"
+      },
+      "decision_status": {
+        "type": "string"
+      },
+      "duplicate_rows": {
+        "type": "integer"
+      },
+      "primary_record": {
+        "type": "string"
+      },
+      "recommended_option": {
+        "type": "string"
+      },
+      "source_reference": {
+        "type": "string"
+      },
+      "synced_value": {
+        "multipleOf": 0.01,
+        "type": "number"
+      }
+    },
+    "required": [
+      "recommended_option",
+      "decision_status",
+      "source_reference",
+      "primary_record",
+      "channel_rows",
+      "already_synced",
+      "created_orders",
+      "duplicate_rows",
+      "synced_value"
+    ],
+    "type": "object"
+  },
+  "benchmark": "ERPBench-100",
+  "benchmark_version": "1.0.0",
+  "company": "Kestrel Electronics Assembly",
+  "context_files": [
+    "assets/kestrel/01-consolidated-order-batch.xlsx",
+    "assets/kestrel/02-prior-partial-import.xlsx",
+    "assets/kestrel/03-current-price-list.csv",
+    "assets/kestrel/04-superseded-price-list.csv",
+    "assets/kestrel/05-pick-confirmation.csv",
+    "assets/kestrel/06-remittance-advice.pdf",
+    "assets/kestrel/07-ar-aging.xlsx",
+    "assets/kestrel/08-credit-policy.md",
+    "assets/kestrel/09-reorder-policy.xlsx",
+    "assets/kestrel/10-demand-forecast.csv",
+    "assets/kestrel/11-supplier-invoice.pdf",
+    "assets/kestrel/12-delivery-note.pdf",
+    "assets/kestrel/13-ap-match-policy.md",
+    "assets/kestrel/14-compliance-checklist.xlsx",
+    "assets/kestrel/15-document-alert-log.csv",
+    "assets/kestrel/16-shift-roster.xlsx",
+    "assets/kestrel/17-shift-work-reports.csv",
+    "assets/kestrel/18-channel-export.json",
+    "assets/kestrel/19-customer-capture-chat.json",
+    "assets/kestrel/20-headcount-approval.pdf",
+    "assets/kestrel/21-candidate-register.xlsx",
+    "assets/kestrel/22-wage-table.csv",
+    "assets/kestrel/23-price-batch.csv",
+    "assets/kestrel/24-authority-memo.eml",
+    "assets/kestrel/25-source-map.yaml",
+    "assets/kestrel/26-ops-audit.log",
+    "assets/tasks/erpbench-048/task-brief.md",
+    "assets/tasks/erpbench-048/starting-snapshot.json"
+  ],
+  "decision_options": [
+    {
+      "id": "create_unsynced_orders_and_capture_customer",
+      "label": "Policy-supported path",
+      "reason": "Matches the operative source, the recomputed quantities and the tenant's approval policy.",
+      "selected": true
+    },
+    {
+      "id": "process_everything_as_received",
+      "label": "Process the batch as received",
+      "reason": "Ignores duplicates, tolerance, expiry, quota or supersession rules and writes unsupported state.",
+      "selected": false
+    },
+    {
+      "id": "escalate_without_executing",
+      "label": "Stop and escalate everything",
+      "reason": "Fails to distinguish the controlled work the analyst is authorized to complete from the items that need approval.",
+      "selected": false
+    }
+  ],
+  "erp_readback_tool": "oracle_fusion.sales_orders.list",
+  "expected_answer": {
+    "already_synced": 3,
+    "channel_rows": 7,
+    "created_orders": 3,
+    "decision_status": "synced",
+    "duplicate_rows": 1,
+    "primary_record": "SO-KEA-52007",
+    "recommended_option": "create_unsynced_orders_and_capture_customer",
+    "source_reference": "FILE-KEA-CHANNEL-EXPORT-0209",
+    "synced_value": 17310.4
+  },
+  "gold_output": {
+    "answers": {
+      "already_synced": 3,
+      "channel_rows": 7,
+      "created_orders": 3,
+      "decision_status": "synced",
+      "duplicate_rows": 1,
+      "primary_record": "SO-KEA-52007",
+      "recommended_option": "create_unsynced_orders_and_capture_customer",
+      "source_reference": "FILE-KEA-CHANNEL-EXPORT-0209",
+      "synced_value": 17310.4
+    },
+    "required_state": {
+      "communication_status": "draft_for_review",
+      "decision": "create_unsynced_orders_and_capture_customer",
+      "primary_record": "SO-KEA-52007",
+      "status": "synced"
+    }
+  },
+  "metadata": {
+    "as_of": "2026-02-09T09:00:00Z",
+    "category": "channel_order_sync",
+    "category_label": "Channel order sync and customer capture",
+    "company": "Kestrel Electronics Assembly",
+    "country": "MY",
+    "difficulty": "L4",
+    "estimated_human_hours": 2.0,
+    "industry": "Electronics manufacturing services",
+    "nario_grounding": {
+      "archetype": "cyberbiz-order-import",
+      "production_runs_observed": 309,
+      "values": "synthetic at production shape; no customer content reused",
+      "verifier_vocabulary": "row_absent+row_exists"
+    },
+    "profile": "contract electronics manufacturer",
+    "reference_tool_calls": 30,
+    "synthetic": true,
+    "tenant": "KESTREL"
+  },
+  "metric": "ERPScore",
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-048"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-048"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-048-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Shopee B2B'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Shopee B2B'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-50321"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Nexa Robotics",
+        "CustomerPONumber": "SB-44801",
+        "OrderTotal": 9450.0,
+        "RequestedFulfillmentOrganizationCode": "KEA1",
+        "SourceTransactionNumber": "SB-44801",
+        "SourceTransactionSystem": "Shopee B2B",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-048"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Cordova Sensors",
+        "CustomerPONumber": "SB-44803",
+        "OrderTotal": 5580.0,
+        "RequestedFulfillmentOrganizationCode": "KEA1",
+        "SourceTransactionNumber": "SB-44803",
+        "SourceTransactionSystem": "Shopee B2B",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-048"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Altair Instruments",
+        "CustomerPONumber": "SB-44805",
+        "OrderTotal": 2280.4,
+        "RequestedFulfillmentOrganizationCode": "KEA1",
+        "SourceTransactionNumber": "SB-44805",
+        "SourceTransactionSystem": "Shopee B2B",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-048"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Shopee B2B'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-048",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Nexa Robotics",
+            "",
+            "procurement@nexa-sim.example",
+            "MY-77-120548",
+            "Shopee B2B"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-048",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-KEA-52007",
+            "create_unsynced_orders_and_capture_customer",
+            7,
+            3,
+            3,
+            1,
+            17310.4,
+            "FILE-KEA-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-KEA-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-KEA-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-KEA-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-048-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-048"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 7; already synced 3; created orders 3; duplicate rows 1; synced value 17310.4. Primary record SO-KEA-52007; operative source FILE-KEA-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-048 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-048",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-048",
+        "text": "erpbench-048: synced / create_unsynced_orders_and_capture_customer / SO-KEA-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-048"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-048"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-048"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 7,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-KEA-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-KEA-CHANNEL-EXPORT-0209",
+          "synced_value": 17310.4
+        },
+        "task_id": "erpbench-048"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-048"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "primary_write_tool": "oracle_fusion.sales_orders.create",
+  "prompt": "**Kestrel Electronics Assembly · Penang plant · Channel order sync and customer capture**\n\nThis week's Shopee B2B export is in the shared drive and a new buyer sent their details over chat. Bring the orders that are not yet in the system across without creating duplicates, capture the new customer as a proper master record instead of a chat message, and confirm the value that was synced. Log the sync in the register and prepare the update for Daniel Tan to review.\n\nUse the evidence available in the connected systems. Leave unrelated records and other tenants unchanged, keep outbound communication in review status, and do not claim completion until the durable state and readbacks agree.",
+  "required_investigations": [
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "task_id": "erpbench-048"
+          },
+          "tool": "erpbench.get_task"
+        }
+      ],
+      "description": "task contract",
+      "id": "task_contract"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "erpbench-048"
+          },
+          "tool": "gmail.messages.list"
+        }
+      ],
+      "description": "request mail search",
+      "id": "request_mail_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-erpbench-048-REQUEST"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "request mail",
+      "id": "request_mail"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-KEA-AUTHORITY-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "authority memo",
+      "id": "authority_memo"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#ops-kea"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "control thread",
+      "id": "control_thread"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Register!A1:H40",
+            "spreadsheetId": "SHEET-KEA-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "ops register",
+      "id": "ops_register"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "OrganizationCode='KEA1'"
+          },
+          "tool": "oracle_fusion.items.list"
+        }
+      ],
+      "description": "item master",
+      "id": "item_master"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-KEA-SOURCE-MAP"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "source map",
+      "id": "source_map"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "name contains 'Shopee B2B'"
+          },
+          "tool": "google_drive.files.list"
+        }
+      ],
+      "description": "export search",
+      "id": "export_search"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "fileId": "FILE-KEA-CHANNEL-EXPORT-0209"
+          },
+          "tool": "google_drive.files.download"
+        }
+      ],
+      "description": "channel export",
+      "id": "channel_export"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "q": "SourceTransactionSystem='Shopee B2B'"
+          },
+          "tool": "oracle_fusion.sales_orders.list"
+        }
+      ],
+      "description": "synced orders",
+      "id": "synced_orders"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "channel": "#customers-kea"
+          },
+          "tool": "slack.conversations_history"
+        }
+      ],
+      "description": "customer capture",
+      "id": "customer_capture"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "range": "Customers!A1:E12",
+            "spreadsheetId": "SHEET-KEA-OPS"
+          },
+          "tool": "google_sheets.spreadsheets.values.get"
+        }
+      ],
+      "description": "customer master tab",
+      "id": "customer_master_tab"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "AccountId": "CUST-50321"
+          },
+          "tool": "oracle_fusion.customer_account_activities.get"
+        }
+      ],
+      "description": "customer account",
+      "id": "customer_account"
+    },
+    {
+      "any_of": [
+        {
+          "arguments": {
+            "id": "MSG-KEA-CHANNEL-0209"
+          },
+          "tool": "gmail.messages.get"
+        }
+      ],
+      "description": "sync mail",
+      "id": "sync_mail"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the export search investigation before any controlled write.",
+      "id": "discovery:export_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the channel export investigation before any controlled write.",
+      "id": "discovery:channel_export",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the synced orders investigation before any controlled write.",
+      "id": "discovery:synced_orders",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer capture investigation before any controlled write.",
+      "id": "discovery:customer_capture",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer master tab investigation before any controlled write.",
+      "id": "discovery:customer_master_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer account investigation before any controlled write.",
+      "id": "discovery:customer_account",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the sync mail investigation before any controlled write.",
+      "id": "discovery:sync_mail",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded channel rows (7).",
+      "id": "calculation:channel_rows",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded already synced (3).",
+      "id": "calculation:already_synced",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded created orders (3).",
+      "id": "calculation:created_orders",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded duplicate rows (1).",
+      "id": "calculation:duplicate_rows",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded synced value (17310.4).",
+      "id": "calculation:synced_value",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option create_unsynced_orders_and_capture_customer.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-KEA-CHANNEL-EXPORT-0209 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "schema_version": "erpbench.task.v1",
+  "task_id": "erpbench-048",
+  "task_name": "Sync the channel orders without duplicates",
+  "tenant_code": "KESTREL",
+  "world_id": "fusion-erp-tenants-v1"
+}

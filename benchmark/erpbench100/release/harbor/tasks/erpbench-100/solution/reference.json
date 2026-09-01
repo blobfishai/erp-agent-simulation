@@ -1,0 +1,232 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-100"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-100-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PRICE-BATCH-TRV-2026Q2'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q2"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-LIST-CURRENT"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "PricingPolicy!A1:C6",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-PRICING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "price batch"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-01",
+        "ItemId": 300010,
+        "ListPrice": 705.0,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-31",
+        "ItemId": 300003,
+        "ListPrice": 155.0,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-04-30",
+        "ItemId": 300031,
+        "ListPrice": 1.18,
+        "task_id": "erpbench-100"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-100",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "PRICE-BATCH-TRV-2026Q2",
+            "apply_policy_compliant_lines",
+            9,
+            3,
+            4,
+            2,
+            4.72,
+            "FILE-TRV-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "PRICE-BATCH-TRV-2026Q2",
+        "rationale": "Current evidence supports apply_policy_compliant_lines; operative source FILE-TRV-PRICE-BATCH-Q2.",
+        "source_refs": [
+          "FILE-TRV-PRICE-BATCH-Q2",
+          "MSG-erpbench-100-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend apply_policy_compliant_lines (batch_applied_with_rejections). batch lines 9; accepted lines 3; rejected lines 4; superseded lines 2; average change pct 4.72. Primary record PRICE-BATCH-TRV-2026Q2; operative source FILE-TRV-PRICE-BATCH-Q2. Draft for review, not sent.",
+        "subject": "erpbench-100 — Apply the quarterly price batch under policy — for review",
+        "task_id": "erpbench-100",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-100",
+        "text": "erpbench-100: batch_applied_with_rejections / apply_policy_compliant_lines / PRICE-BATCH-TRV-2026Q2 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-100"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-100"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 4.72,
+          "batch_lines": 9,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "PRICE-BATCH-TRV-2026Q2",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-TRV-PRICE-BATCH-Q2",
+          "superseded_lines": 2
+        },
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-100"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

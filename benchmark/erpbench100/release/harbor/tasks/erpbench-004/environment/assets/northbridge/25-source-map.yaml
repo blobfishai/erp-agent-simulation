@@ -1,0 +1,11 @@
+tenant: NORTHBRIDGE
+order_batch: FILE-NBR-ORDER-BATCH-0209
+pick_confirmation: FILE-NBR-PICK-CONFIRM-0208
+remittance_advice: FILE-NBR-REMIT-ADVICE-0206
+reorder_policy: FILE-NBR-REORDER-POLICY-R4
+delivery_note: FILE-NBR-DELIVERY-NOTE-0206
+compliance_checklist: FILE-NBR-COMPLIANCE-CHECKLIST-0209
+shift_roster: FILE-NBR-SHIFT-ROSTER-0208
+channel_export: FILE-NBR-CHANNEL-EXPORT-0209
+headcount_approval: FILE-NBR-HEADCOUNT-APPROVAL-2026
+price_batch: FILE-NBR-PRICE-BATCH-Q2

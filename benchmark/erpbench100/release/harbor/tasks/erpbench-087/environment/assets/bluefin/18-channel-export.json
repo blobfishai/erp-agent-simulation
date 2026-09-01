@@ -1,0 +1,55 @@
+{
+  "channel": "eBay Motors",
+  "exported_at": "2026-02-09T06:00:00Z",
+  "orders": [
+    {
+      "buyer": "Rottnest Charters",
+      "channel_order_id": "EB-70301",
+      "currency": "USD",
+      "order_total": 2380.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Albany Fishing Co",
+      "channel_order_id": "EB-70302",
+      "currency": "USD",
+      "order_total": 1140.5,
+      "status": "paid"
+    },
+    {
+      "buyer": "Mandurah Marine",
+      "channel_order_id": "EB-70303",
+      "currency": "USD",
+      "order_total": 3210.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Dunsborough Divers",
+      "channel_order_id": "EB-70304",
+      "currency": "USD",
+      "order_total": 675.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Mandurah Marine",
+      "channel_order_id": "EB-70303",
+      "currency": "USD",
+      "order_total": 3210.0,
+      "status": "paid"
+    },
+    {
+      "buyer": "Broome Pearl Boats",
+      "channel_order_id": "EB-70305",
+      "currency": "USD",
+      "order_total": 4460.25,
+      "status": "paid"
+    },
+    {
+      "buyer": "Esperance Tackle",
+      "channel_order_id": "EB-70306",
+      "currency": "USD",
+      "order_total": 980.0,
+      "status": "paid"
+    }
+  ]
+}

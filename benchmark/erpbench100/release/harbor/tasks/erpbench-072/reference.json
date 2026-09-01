@@ -1,0 +1,432 @@
+{
+  "expected_answer": {
+    "confirmed_value": 22319.0,
+    "decision_status": "partial_hold",
+    "lines_corrected": 1,
+    "lines_matching": 4,
+    "lines_reviewed": 6,
+    "primary_record": "SHP-RVS-5580",
+    "recommended_option": "correct_short_picks_and_hold_over_picks",
+    "source_reference": "FILE-RVS-PICK-CONFIRM-0208",
+    "units_removed": 30
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-072"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-072"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-072-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-RVS-5580'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-RVS-5580'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-RVS-5580'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-RVS-92210"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-RVS-5580"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-RVS-PICK-CONFIRM-0208",
+        "ShipmentLine": 700009,
+        "ShippedQuantity": 1170,
+        "task_id": "erpbench-072"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-RVS-5580'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-072",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-RVS-5580",
+            "correct_short_picks_and_hold_over_picks",
+            6,
+            4,
+            1,
+            30,
+            22319.0,
+            "FILE-RVS-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-RVS-5580",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-RVS-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-RVS-PICK-CONFIRM-0208",
+          "MSG-erpbench-072-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-072"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 6; lines matching 4; lines corrected 1; units removed 30; confirmed value 22319.0. Primary record SHP-RVS-5580; operative source FILE-RVS-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-072 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-072",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-072",
+        "text": "erpbench-072: partial_hold / correct_short_picks_and_hold_over_picks / SHP-RVS-5580 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-072"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-072"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-072"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 22319.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 4,
+          "lines_reviewed": 6,
+          "primary_record": "SHP-RVS-5580",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-RVS-PICK-CONFIRM-0208",
+          "units_removed": 30
+        },
+        "task_id": "erpbench-072"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-072"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipment header investigation before any controlled write.",
+      "id": "discovery:shipment_header",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipment lines investigation before any controlled write.",
+      "id": "discovery:shipment_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pick search investigation before any controlled write.",
+      "id": "discovery:pick_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the pick confirmation investigation before any controlled write.",
+      "id": "discovery:pick_confirmation",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the sales order investigation before any controlled write.",
+      "id": "discovery:sales_order",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the shipping register investigation before any controlled write.",
+      "id": "discovery:shipping_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the warehouse thread investigation before any controlled write.",
+      "id": "discovery:warehouse_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines reviewed (6).",
+      "id": "calculation:lines_reviewed",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines matching (4).",
+      "id": "calculation:lines_matching",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines corrected (1).",
+      "id": "calculation:lines_corrected",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded units removed (30).",
+      "id": "calculation:units_removed",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded confirmed value (22319.0).",
+      "id": "calculation:confirmed_value",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option correct_short_picks_and_hold_over_picks.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-RVS-PICK-CONFIRM-0208 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-072"
+}

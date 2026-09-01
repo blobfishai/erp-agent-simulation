@@ -1,0 +1,256 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-021"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-021"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-021-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-MSS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='MSS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'EF-LAB-2026-07'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-MSS-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='EF-LAB-2026-07'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-MSS-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-30155"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "EF-LAB-2026-07"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-30155",
+        "CustomerPONumber": "EF-LAB-2026-07",
+        "RequestedFulfillmentOrganizationCode": "MSS1",
+        "SourceTransactionNumber": "FILE-MSS-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 12,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-FACT-OP",
+            "UnitListPrice": 1180.0
+          },
+          {
+            "OrderedQuantity": 6,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-CONSTR",
+            "UnitListPrice": 1260.0
+          },
+          {
+            "OrderedQuantity": 4,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-CARE-LIVEIN",
+            "UnitListPrice": 1450.0
+          },
+          {
+            "OrderedQuantity": 9,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-RENEW",
+            "UnitListPrice": 380.0
+          },
+          {
+            "OrderedQuantity": 3,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-DOM-HELP",
+            "UnitListPrice": 1120.0
+          },
+          {
+            "OrderedQuantity": 4,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SVC-CONSTR",
+            "UnitListPrice": 1260.0
+          }
+        ],
+        "task_id": "erpbench-021"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-MSS-50014"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-MSS-OPS",
+        "task_id": "erpbench-021",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-MSS-50014",
+            "import_accepted_lines_and_submit",
+            6,
+            2,
+            38,
+            39340.0,
+            1,
+            "FILE-MSS-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-MSS-50014",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-MSS-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-MSS-ORDER-BATCH-0209",
+          "MSG-erpbench-021-REQUEST",
+          "MSG-MSS-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-021"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Meridian Staffing Services: recommend import_accepted_lines_and_submit (submitted). accepted lines 6; rejected lines 2; imported units 38; order total 39340.0; duplicate lines 1. Primary record SO-MSS-50014; operative source FILE-MSS-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-021 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-021",
+        "to": "kao.li-wen@meridian-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-021",
+        "text": "erpbench-021: submitted / import_accepted_lines_and_submit / SO-MSS-50014 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-MSS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-021"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-021"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-mss",
+        "task_id": "erpbench-021"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 6,
+          "decision_status": "submitted",
+          "duplicate_lines": 1,
+          "imported_units": 38,
+          "order_total": 39340.0,
+          "primary_record": "SO-MSS-50014",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 2,
+          "source_reference": "FILE-MSS-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-021"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-021"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

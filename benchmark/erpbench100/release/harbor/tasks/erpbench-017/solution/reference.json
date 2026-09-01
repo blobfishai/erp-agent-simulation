@@ -1,0 +1,217 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-017"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-017"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-017-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='HBL1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Harborline Trading Co.' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Harborline Trading Co.'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Day"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Harborline Trading Co.",
+        "endDate": "2026-02-08",
+        "personNumber": "HB-210",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-017"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Harborline Trading Co.' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-017",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-HBL-2026-02-08-DAY",
+            "post_rollup_and_record_unauthorized_absences",
+            8,
+            7,
+            2,
+            1.42,
+            1,
+            "FILE-HBL-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-HBL-2026-02-08-DAY",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-HBL-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-HBL-SHIFT-ROSTER-0208",
+          "MSG-erpbench-017-REQUEST",
+          "MSG-HBL-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-017"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Harborline Trading Co.: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 8; reporting staff 7; late reports 2; overtime hours 1.42; missing staff 1. Primary record ROLLUP-HBL-2026-02-08-DAY; operative source FILE-HBL-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-017 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-017",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-017",
+        "text": "erpbench-017: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-HBL-2026-02-08-DAY — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-017"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-017"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-017"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 8,
+          "late_reports": 2,
+          "missing_staff": 1,
+          "overtime_hours": 1.42,
+          "primary_record": "ROLLUP-HBL-2026-02-08-DAY",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 7,
+          "source_reference": "FILE-HBL-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-017"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-017"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

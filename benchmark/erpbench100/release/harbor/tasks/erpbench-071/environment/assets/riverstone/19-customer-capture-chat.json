@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-rvs",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Lazada: Clementi Family Clinic, tax id SG-20-441870, orders via orders@clementifc-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Ryan Teo",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

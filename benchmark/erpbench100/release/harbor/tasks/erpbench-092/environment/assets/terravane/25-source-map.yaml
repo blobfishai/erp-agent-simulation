@@ -1,0 +1,11 @@
+tenant: TERRAVANE
+order_batch: FILE-TRV-ORDER-BATCH-0209
+pick_confirmation: FILE-TRV-PICK-CONFIRM-0208
+remittance_advice: FILE-TRV-REMIT-ADVICE-0206
+reorder_policy: FILE-TRV-REORDER-POLICY-R4
+delivery_note: FILE-TRV-DELIVERY-NOTE-0206
+compliance_checklist: FILE-TRV-COMPLIANCE-CHECKLIST-0209
+shift_roster: FILE-TRV-SHIFT-ROSTER-0208
+channel_export: FILE-TRV-CHANNEL-EXPORT-0209
+headcount_approval: FILE-TRV-HEADCOUNT-APPROVAL-2026
+price_batch: FILE-TRV-PRICE-BATCH-Q2

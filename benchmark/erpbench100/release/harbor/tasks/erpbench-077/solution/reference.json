@@ -1,0 +1,229 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-077"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-077"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-077-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='RVS1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-RVS-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Riverstone Medical Supply' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Riverstone Medical Supply'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Day"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-RVS-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Riverstone Medical Supply",
+        "endDate": "2026-02-08",
+        "personNumber": "RV-810",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-077"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Riverstone Medical Supply",
+        "endDate": "2026-02-08",
+        "personNumber": "RV-811",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-077"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Riverstone Medical Supply' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-RVS-OPS",
+        "task_id": "erpbench-077",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-RVS-2026-02-08-DAY",
+            "post_rollup_and_record_unauthorized_absences",
+            10,
+            8,
+            3,
+            1.0,
+            2,
+            "FILE-RVS-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-RVS-2026-02-08-DAY",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-RVS-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-RVS-SHIFT-ROSTER-0208",
+          "MSG-erpbench-077-REQUEST",
+          "MSG-RVS-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-077"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Riverstone Medical Supply: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 10; reporting staff 8; late reports 3; overtime hours 1.0; missing staff 2. Primary record ROLLUP-RVS-2026-02-08-DAY; operative source FILE-RVS-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-077 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-077",
+        "to": "ryan.teo@riverstone-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-077",
+        "text": "erpbench-077: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-RVS-2026-02-08-DAY — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-RVS-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-077"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-077"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-rvs",
+        "task_id": "erpbench-077"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 10,
+          "late_reports": 3,
+          "missing_staff": 2,
+          "overtime_hours": 1.0,
+          "primary_record": "ROLLUP-RVS-2026-02-08-DAY",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 8,
+          "source_reference": "FILE-RVS-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-077"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-077"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-060"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-060"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-060-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PRICE-BATCH-ALD-2026Q2'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-PRICE-BATCH-Q2"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-PRICE-LIST-CURRENT"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "PricingPolicy!A1:C6",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-PRICING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "price batch"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-PRICE-BATCH-Q1"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-02-24",
+        "ItemId": 300010,
+        "ListPrice": 445.0,
+        "task_id": "erpbench-060"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-02-24",
+        "ItemId": 300031,
+        "ListPrice": 172.0,
+        "task_id": "erpbench-060"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "EffectiveDate": "2026-03-26",
+        "ItemId": 300003,
+        "ListPrice": 102.0,
+        "task_id": "erpbench-060"
+      },
+      "tool": "oracle_fusion.items.update"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-060",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "PRICE-BATCH-ALD-2026Q2",
+            "apply_policy_compliant_lines",
+            8,
+            3,
+            4,
+            1,
+            5.48,
+            "FILE-ALD-PRICE-BATCH-Q2"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_policy_compliant_lines",
+        "primary_record": "PRICE-BATCH-ALD-2026Q2",
+        "rationale": "Current evidence supports apply_policy_compliant_lines; operative source FILE-ALD-PRICE-BATCH-Q2.",
+        "source_refs": [
+          "FILE-ALD-PRICE-BATCH-Q2",
+          "MSG-erpbench-060-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "batch_applied_with_rejections",
+        "task_id": "erpbench-060"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend apply_policy_compliant_lines (batch_applied_with_rejections). batch lines 8; accepted lines 3; rejected lines 4; superseded lines 1; average change pct 5.48. Primary record PRICE-BATCH-ALD-2026Q2; operative source FILE-ALD-PRICE-BATCH-Q2. Draft for review, not sent.",
+        "subject": "erpbench-060 — Apply the quarterly price batch under policy — for review",
+        "task_id": "erpbench-060",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-060",
+        "text": "erpbench-060: batch_applied_with_rejections / apply_policy_compliant_lines / PRICE-BATCH-ALD-2026Q2 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A20:J20",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-060"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-060"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-060"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 3,
+          "average_change_pct": 5.48,
+          "batch_lines": 8,
+          "decision_status": "batch_applied_with_rejections",
+          "primary_record": "PRICE-BATCH-ALD-2026Q2",
+          "recommended_option": "apply_policy_compliant_lines",
+          "rejected_lines": 4,
+          "source_reference": "FILE-ALD-PRICE-BATCH-Q2",
+          "superseded_lines": 1
+        },
+        "task_id": "erpbench-060"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-060"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-sgf",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from Tokopedia: Toko Maju Jaya, tax id ID-09-330187, orders via order@majujaya-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Ayu Kartika",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

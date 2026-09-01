@@ -1,0 +1,11 @@
+tenant: RIVERSTONE
+order_batch: FILE-RVS-ORDER-BATCH-0209
+pick_confirmation: FILE-RVS-PICK-CONFIRM-0208
+remittance_advice: FILE-RVS-REMIT-ADVICE-0206
+reorder_policy: FILE-RVS-REORDER-POLICY-R4
+delivery_note: FILE-RVS-DELIVERY-NOTE-0206
+compliance_checklist: FILE-RVS-COMPLIANCE-CHECKLIST-0209
+shift_roster: FILE-RVS-SHIFT-ROSTER-0208
+channel_export: FILE-RVS-CHANNEL-EXPORT-0209
+headcount_approval: FILE-RVS-HEADCOUNT-APPROVAL-2026
+price_batch: FILE-RVS-PRICE-BATCH-Q2

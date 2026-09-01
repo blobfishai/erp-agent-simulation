@@ -1,0 +1,448 @@
+{
+  "expected_answer": {
+    "decision_status": "collections_in_progress",
+    "oldest_days_past_due": 8,
+    "open_invoices_before": 6,
+    "past_due_pct_of_limit": 8.83,
+    "primary_record": "RCPT-CLD-4402",
+    "receipt_amount": 77100.0,
+    "recommended_option": "apply_receipt_and_continue_collections",
+    "remaining_past_due": 17650.0,
+    "source_reference": "FILE-CLD-REMIT-ADVICE-0206"
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-063"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-063-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-70510' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-70510"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-70510'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Caldera Converting",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-70510",
+        "ReceiptAmount": 77100.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "ACH",
+        "ReceiptNumber": "RCPT-CLD-4402",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 52300.0,
+            "ReferenceNumber": "INV-CLD-11220",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 24800.0,
+            "ReferenceNumber": "INV-CLD-11276",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-063"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-70510'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-063",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-CLD-4402",
+            "apply_receipt_and_continue_collections",
+            6,
+            77100.0,
+            17650.0,
+            8,
+            8.83,
+            "FILE-CLD-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_continue_collections",
+        "primary_record": "RCPT-CLD-4402",
+        "rationale": "Current evidence supports apply_receipt_and_continue_collections; operative source FILE-CLD-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-CLD-REMIT-ADVICE-0206",
+          "MSG-erpbench-063-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "collections_in_progress",
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend apply_receipt_and_continue_collections (collections_in_progress). open invoices before 6; receipt amount 77100.0; remaining past due 17650.0; oldest days past due 8; past due pct of limit 8.83. Primary record RCPT-CLD-4402; operative source FILE-CLD-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-063 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-063",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-063",
+        "text": "erpbench-063: collections_in_progress / apply_receipt_and_continue_collections / RCPT-CLD-4402 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-063"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-063"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "collections_in_progress",
+          "oldest_days_past_due": 8,
+          "open_invoices_before": 6,
+          "past_due_pct_of_limit": 8.83,
+          "primary_record": "RCPT-CLD-4402",
+          "receipt_amount": 77100.0,
+          "recommended_option": "apply_receipt_and_continue_collections",
+          "remaining_past_due": 17650.0,
+          "source_reference": "FILE-CLD-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-063"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the open invoices investigation before any controlled write.",
+      "id": "discovery:open_invoices",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer account investigation before any controlled write.",
+      "id": "discovery:customer_account",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing receipts investigation before any controlled write.",
+      "id": "discovery:existing_receipts",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the remittance mail investigation before any controlled write.",
+      "id": "discovery:remittance_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the remittance advice investigation before any controlled write.",
+      "id": "discovery:remittance_advice",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the credit policy investigation before any controlled write.",
+      "id": "discovery:credit_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ar aging tab investigation before any controlled write.",
+      "id": "discovery:ar_aging_tab",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded open invoices before (6).",
+      "id": "calculation:open_invoices_before",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded receipt amount (77100.0).",
+      "id": "calculation:receipt_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded remaining past due (17650.0).",
+      "id": "calculation:remaining_past_due",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded oldest days past due (8).",
+      "id": "calculation:oldest_days_past_due",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded past due pct of limit (8.83).",
+      "id": "calculation:past_due_pct_of_limit",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option apply_receipt_and_continue_collections.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-CLD-REMIT-ADVICE-0206 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-063"
+}

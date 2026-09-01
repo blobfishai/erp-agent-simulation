@@ -1,0 +1,265 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-008"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-008"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-008-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'Shopify'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Shopify'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Oakline Builders",
+        "CustomerPONumber": "SHP-90212",
+        "OrderTotal": 2310.0,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "SHP-90212",
+        "SourceTransactionSystem": "Shopify",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-008"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Harlow Contracting",
+        "CustomerPONumber": "SHP-90214",
+        "OrderTotal": 3120.75,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "SHP-90214",
+        "SourceTransactionSystem": "Shopify",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-008"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Pinecrest Supply",
+        "CustomerPONumber": "SHP-90215",
+        "OrderTotal": 980.0,
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "SHP-90215",
+        "SourceTransactionSystem": "Shopify",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-008"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='Shopify'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-008",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Oakline Builders",
+            "",
+            "orders@oakline-sim.example",
+            "TX-88-402911",
+            "Shopify"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-008",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-NBR-52007",
+            "create_unsynced_orders_and_capture_customer",
+            7,
+            3,
+            3,
+            1,
+            6410.75,
+            "FILE-NBR-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-NBR-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-NBR-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-NBR-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-008-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-008"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 7; already synced 3; created orders 3; duplicate rows 1; synced value 6410.75. Primary record SO-NBR-52007; operative source FILE-NBR-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-008 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-008",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-008",
+        "text": "erpbench-008: synced / create_unsynced_orders_and_capture_customer / SO-NBR-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-008"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-008"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-008"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 7,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-NBR-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-NBR-CHANNEL-EXPORT-0209",
+          "synced_value": 6410.75
+        },
+        "task_id": "erpbench-008"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-008"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

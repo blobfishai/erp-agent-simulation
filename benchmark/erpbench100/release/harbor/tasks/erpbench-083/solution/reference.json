@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-083"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-083"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-083-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='BLF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-90418' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-90418"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-90418'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Bluefin Parts",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-90418",
+        "ReceiptAmount": 26050.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "EFT",
+        "ReceiptNumber": "RCPT-BLF-7719",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 17800.0,
+            "ReferenceNumber": "INV-BLF-15100",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 8250.0,
+            "ReferenceNumber": "INV-BLF-15155",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-083"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-90418'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-083",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-BLF-7719",
+            "apply_receipt_and_continue_collections",
+            5,
+            26050.0,
+            12600.0,
+            13,
+            11.45,
+            "FILE-BLF-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_continue_collections",
+        "primary_record": "RCPT-BLF-7719",
+        "rationale": "Current evidence supports apply_receipt_and_continue_collections; operative source FILE-BLF-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-BLF-REMIT-ADVICE-0206",
+          "MSG-erpbench-083-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "collections_in_progress",
+        "task_id": "erpbench-083"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend apply_receipt_and_continue_collections (collections_in_progress). open invoices before 5; receipt amount 26050.0; remaining past due 12600.0; oldest days past due 13; past due pct of limit 11.45. Primary record RCPT-BLF-7719; operative source FILE-BLF-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-083 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-083",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-083",
+        "text": "erpbench-083: collections_in_progress / apply_receipt_and_continue_collections / RCPT-BLF-7719 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-083"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-083"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-083"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "collections_in_progress",
+          "oldest_days_past_due": 13,
+          "open_invoices_before": 5,
+          "past_due_pct_of_limit": 11.45,
+          "primary_record": "RCPT-BLF-7719",
+          "receipt_amount": 26050.0,
+          "recommended_option": "apply_receipt_and_continue_collections",
+          "remaining_past_due": 12600.0,
+          "source_reference": "FILE-BLF-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-083"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-083"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

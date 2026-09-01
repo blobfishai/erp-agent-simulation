@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-032"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-032"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-032-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-SGF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='SGF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-SGF-6630'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-SGF-6630'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-SGF-6630'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-SGF-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-SGF-51840"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-SGF-6630"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-SGF-PICK-CONFIRM-0208",
+        "ShipmentLine": 700012,
+        "ShippedQuantity": 776,
+        "task_id": "erpbench-032"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-SGF-6630'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-SGF-OPS",
+        "task_id": "erpbench-032",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-SGF-6630",
+            "correct_short_picks_and_hold_over_picks",
+            7,
+            5,
+            1,
+            24,
+            14357.6,
+            "FILE-SGF-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-SGF-6630",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-SGF-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-SGF-PICK-CONFIRM-0208",
+          "MSG-erpbench-032-REQUEST",
+          "MSG-SGF-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-032"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Sungrove Foods: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 7; lines matching 5; lines corrected 1; units removed 24; confirmed value 14357.6. Primary record SHP-SGF-6630; operative source FILE-SGF-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-032 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-032",
+        "to": "ayu.kartika@sungrove-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-032",
+        "text": "erpbench-032: partial_hold / correct_short_picks_and_hold_over_picks / SHP-SGF-6630 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-SGF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-032"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-032"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-sgf",
+        "task_id": "erpbench-032"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 14357.6,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 5,
+          "lines_reviewed": 7,
+          "primary_record": "SHP-SGF-6630",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-SGF-PICK-CONFIRM-0208",
+          "units_removed": 24
+        },
+        "task_id": "erpbench-032"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-032"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-007"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-007"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-007-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SHIFT-REPORTS-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SHIFT-ROSTER-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "employer='Northbridge Fastener Works' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Northbridge Fastener Works'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Shifts!A1:F30",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "Night"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-SUPERVISOR-0208"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Northbridge Fastener Works",
+        "endDate": "2026-02-08",
+        "personNumber": "NB-111",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-007"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "absenceStatusCd": "SUBMITTED",
+        "absenceType": "Unauthorized absence",
+        "employer": "Northbridge Fastener Works",
+        "endDate": "2026-02-08",
+        "personNumber": "NB-112",
+        "startDate": "2026-02-08",
+        "task_id": "erpbench-007"
+      },
+      "tool": "oracle_fusion.absences.create"
+    },
+    {
+      "arguments": {
+        "q": "employer='Northbridge Fastener Works' and startDate='2026-02-08'"
+      },
+      "tool": "oracle_fusion.absences.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-007",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "ROLLUP-NBR-2026-02-08-NIGHT",
+            "post_rollup_and_record_unauthorized_absences",
+            11,
+            9,
+            2,
+            2.5,
+            2,
+            "FILE-NBR-SHIFT-ROSTER-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "post_rollup_and_record_unauthorized_absences",
+        "primary_record": "ROLLUP-NBR-2026-02-08-NIGHT",
+        "rationale": "Current evidence supports post_rollup_and_record_unauthorized_absences; operative source FILE-NBR-SHIFT-ROSTER-0208.",
+        "source_refs": [
+          "FILE-NBR-SHIFT-ROSTER-0208",
+          "MSG-erpbench-007-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "absences_recorded",
+        "task_id": "erpbench-007"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend post_rollup_and_record_unauthorized_absences (absences_recorded). expected staff 11; reporting staff 9; late reports 2; overtime hours 2.5; missing staff 2. Primary record ROLLUP-NBR-2026-02-08-NIGHT; operative source FILE-NBR-SHIFT-ROSTER-0208. Draft for review, not sent.",
+        "subject": "erpbench-007 — Roll up the shift reports and record the gaps — for review",
+        "task_id": "erpbench-007",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-007",
+        "text": "erpbench-007: absences_recorded / post_rollup_and_record_unauthorized_absences / ROLLUP-NBR-2026-02-08-NIGHT — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A27:J27",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-007"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-007"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-007"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "absences_recorded",
+          "expected_staff": 11,
+          "late_reports": 2,
+          "missing_staff": 2,
+          "overtime_hours": 2.5,
+          "primary_record": "ROLLUP-NBR-2026-02-08-NIGHT",
+          "recommended_option": "post_rollup_and_record_unauthorized_absences",
+          "reporting_staff": 9,
+          "source_reference": "FILE-NBR-SHIFT-ROSTER-0208"
+        },
+        "task_id": "erpbench-007"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-007"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

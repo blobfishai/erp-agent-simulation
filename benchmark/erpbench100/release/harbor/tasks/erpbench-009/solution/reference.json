@@ -1,0 +1,247 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-009"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-009"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-009-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-HEADCOUNT-APPROVAL-2026"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Northbridge Fastener Works' and JobCode='machine operator'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-CANDIDATE-REGISTER"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-WAGE-TABLE"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Headcount!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-HIRING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "hiring"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "CandidateId": "NBR-C201",
+        "ContractEndDate": "2028-01-30",
+        "DisplayName": "Luis Ortega",
+        "HireDate": "2026-02-09",
+        "JobCode": "machine operator",
+        "LegalEmployerName": "Northbridge Fastener Works",
+        "MonthlySalary": 3450.0,
+        "PersonNumber": "NBR-P2001",
+        "task_id": "erpbench-009"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "CandidateId": "NBR-C204",
+        "ContractEndDate": "2028-01-30",
+        "DisplayName": "Grace Adeyemi",
+        "HireDate": "2026-02-09",
+        "JobCode": "machine operator",
+        "LegalEmployerName": "Northbridge Fastener Works",
+        "MonthlySalary": 3450.0,
+        "PersonNumber": "NBR-P2002",
+        "task_id": "erpbench-009"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "CandidateId": "NBR-C205",
+        "ContractEndDate": "2028-01-30",
+        "DisplayName": "Viktor Novak",
+        "HireDate": "2026-02-09",
+        "JobCode": "machine operator",
+        "LegalEmployerName": "Northbridge Fastener Works",
+        "MonthlySalary": 3450.0,
+        "PersonNumber": "NBR-P2003",
+        "task_id": "erpbench-009"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Northbridge Fastener Works' and JobCode='machine operator'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-009",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "NBR-P2001",
+            "hire_eligible_within_quota",
+            3,
+            3,
+            3,
+            10350.0,
+            24,
+            "FILE-NBR-HEADCOUNT-APPROVAL-2026"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "hire_eligible_within_quota",
+        "primary_record": "NBR-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-NBR-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-NBR-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-009-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-009"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend hire_eligible_within_quota (quota_filled). open headcount 3; eligible candidates 3; hires 3; monthly wage total 10350.0; contract months 24. Primary record NBR-P2001; operative source FILE-NBR-HEADCOUNT-APPROVAL-2026. Draft for review, not sent.",
+        "subject": "erpbench-009 — Close the hiring round within quota — for review",
+        "task_id": "erpbench-009",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-009",
+        "text": "erpbench-009: quota_filled / hire_eligible_within_quota / NBR-P2001 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-009"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-009"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-009"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "contract_months": 24,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 3,
+          "hires": 3,
+          "monthly_wage_total": 10350.0,
+          "open_headcount": 3,
+          "primary_record": "NBR-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-NBR-HEADCOUNT-APPROVAL-2026"
+        },
+        "task_id": "erpbench-009"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-009"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

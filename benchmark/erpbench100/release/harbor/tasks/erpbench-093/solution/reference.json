@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-093"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-093"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-093-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-11780' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-11780"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-11780'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Terravane Manufacturing",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-11780",
+        "ReceiptAmount": 78100.0,
+        "ReceiptDate": "2026-02-05",
+        "ReceiptMethod": "Wire",
+        "ReceiptNumber": "RCPT-TRV-3320",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 46200.0,
+            "ReferenceNumber": "INV-TRV-17388",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 31900.0,
+            "ReferenceNumber": "INV-TRV-17441",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-093"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-11780'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-093",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-TRV-3320",
+            "apply_receipt_and_escalate_credit_hold",
+            6,
+            78100.0,
+            145700.0,
+            43,
+            48.57,
+            "FILE-TRV-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_escalate_credit_hold",
+        "primary_record": "RCPT-TRV-3320",
+        "rationale": "Current evidence supports apply_receipt_and_escalate_credit_hold; operative source FILE-TRV-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-TRV-REMIT-ADVICE-0206",
+          "MSG-erpbench-093-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "credit_review_required",
+        "task_id": "erpbench-093"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend apply_receipt_and_escalate_credit_hold (credit_review_required). open invoices before 6; receipt amount 78100.0; remaining past due 145700.0; oldest days past due 43; past due pct of limit 48.57. Primary record RCPT-TRV-3320; operative source FILE-TRV-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-093 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-093",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-093",
+        "text": "erpbench-093: credit_review_required / apply_receipt_and_escalate_credit_hold / RCPT-TRV-3320 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-093"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-093"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-093"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "credit_review_required",
+          "oldest_days_past_due": 43,
+          "open_invoices_before": 6,
+          "past_due_pct_of_limit": 48.57,
+          "primary_record": "RCPT-TRV-3320",
+          "receipt_amount": 78100.0,
+          "recommended_option": "apply_receipt_and_escalate_credit_hold",
+          "remaining_past_due": 145700.0,
+          "source_reference": "FILE-TRV-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-093"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-093"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

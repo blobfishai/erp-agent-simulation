@@ -1,0 +1,230 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-043"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-043"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-043-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "BillToCustomerNumber='CUST-50321' and InvoiceStatus='Open'"
+      },
+      "tool": "oracle_fusion.receivables_invoices.list"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-50321"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-50321'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-REMIT-0206"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-REMIT-ADVICE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-CREDIT-POLICY-R6"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Aging!A1:E12",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Kestrel Assembly",
+        "Currency": "USD",
+        "CustomerAccountNumber": "CUST-50321",
+        "ReceiptAmount": 61000.0,
+        "ReceiptDate": "2026-02-06",
+        "ReceiptMethod": "Wire",
+        "ReceiptNumber": "RCPT-KEA-9921",
+        "remittanceReferences": [
+          {
+            "ApplyAmount": 18400.0,
+            "ReferenceNumber": "INV-KEA-81119",
+            "ReferenceType": "INVOICE"
+          },
+          {
+            "ApplyAmount": 42600.0,
+            "ReferenceNumber": "INV-KEA-81177",
+            "ReferenceType": "INVOICE"
+          }
+        ],
+        "task_id": "erpbench-043"
+      },
+      "tool": "oracle_fusion.standard_receipts.create"
+    },
+    {
+      "arguments": {
+        "q": "CustomerAccountNumber='CUST-50321'"
+      },
+      "tool": "oracle_fusion.standard_receipts.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-043",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "RCPT-KEA-9921",
+            "apply_receipt_and_escalate_credit_hold",
+            6,
+            61000.0,
+            96000.0,
+            47,
+            38.4,
+            "FILE-KEA-REMIT-ADVICE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "apply_receipt_and_escalate_credit_hold",
+        "primary_record": "RCPT-KEA-9921",
+        "rationale": "Current evidence supports apply_receipt_and_escalate_credit_hold; operative source FILE-KEA-REMIT-ADVICE-0206.",
+        "source_refs": [
+          "FILE-KEA-REMIT-ADVICE-0206",
+          "MSG-erpbench-043-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "credit_review_required",
+        "task_id": "erpbench-043"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend apply_receipt_and_escalate_credit_hold (credit_review_required). open invoices before 6; receipt amount 61000.0; remaining past due 96000.0; oldest days past due 47; past due pct of limit 38.4. Primary record RCPT-KEA-9921; operative source FILE-KEA-REMIT-ADVICE-0206. Draft for review, not sent.",
+        "subject": "erpbench-043 — Apply the customer's remittance and size the exposure — for review",
+        "task_id": "erpbench-043",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-043",
+        "text": "erpbench-043: credit_review_required / apply_receipt_and_escalate_credit_hold / RCPT-KEA-9921 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A23:J23",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-043"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-043"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-043"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "credit_review_required",
+          "oldest_days_past_due": 47,
+          "open_invoices_before": 6,
+          "past_due_pct_of_limit": 38.4,
+          "primary_record": "RCPT-KEA-9921",
+          "receipt_amount": 61000.0,
+          "recommended_option": "apply_receipt_and_escalate_credit_hold",
+          "remaining_past_due": 96000.0,
+          "source_reference": "FILE-KEA-REMIT-ADVICE-0206"
+        },
+        "task_id": "erpbench-043"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-043"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

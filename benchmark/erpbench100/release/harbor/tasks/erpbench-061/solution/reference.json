@@ -1,0 +1,262 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-061"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-061"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-061-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SF-PO-51188'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='SF-PO-51188'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-CLD-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-70510"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SF-PO-51188"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-70510",
+        "CustomerPONumber": "SF-PO-51188",
+        "RequestedFulfillmentOrganizationCode": "CLD1",
+        "SourceTransactionNumber": "FILE-CLD-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 8000,
+            "OrderedUOM": "EA",
+            "ProductNumber": "BOX-RSC-12",
+            "UnitListPrice": 0.92
+          },
+          {
+            "OrderedQuantity": 12000,
+            "OrderedUOM": "EA",
+            "ProductNumber": "MAIL-PAD-6",
+            "UnitListPrice": 0.34
+          },
+          {
+            "OrderedQuantity": 400,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FILM-STR-18",
+            "UnitListPrice": 11.6
+          },
+          {
+            "OrderedQuantity": 2400,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TAPE-PP-48",
+            "UnitListPrice": 1.85
+          },
+          {
+            "OrderedQuantity": 600,
+            "OrderedUOM": "EA",
+            "ProductNumber": "LBL-THERM-46",
+            "UnitListPrice": 9.4
+          },
+          {
+            "OrderedQuantity": 3000,
+            "OrderedUOM": "EA",
+            "ProductNumber": "MAIL-PAD-6",
+            "UnitListPrice": 0.34
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TAPE-PP-48",
+            "UnitListPrice": 1.85
+          }
+        ],
+        "task_id": "erpbench-061"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-CLD-50011"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-061",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-CLD-50011",
+            "import_accepted_lines_and_submit",
+            7,
+            2,
+            27200,
+            28660.0,
+            1,
+            "FILE-CLD-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-CLD-50011",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-CLD-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-CLD-ORDER-BATCH-0209",
+          "MSG-erpbench-061-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-061"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend import_accepted_lines_and_submit (submitted). accepted lines 7; rejected lines 2; imported units 27200; order total 28660.0; duplicate lines 1. Primary record SO-CLD-50011; operative source FILE-CLD-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-061 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-061",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-061",
+        "text": "erpbench-061: submitted / import_accepted_lines_and_submit / SO-CLD-50011 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-061"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-061"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-061"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 7,
+          "decision_status": "submitted",
+          "duplicate_lines": 1,
+          "imported_units": 27200,
+          "order_total": 28660.0,
+          "primary_record": "SO-CLD-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 2,
+          "source_reference": "FILE-CLD-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-061"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-061"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

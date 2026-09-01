@@ -1,0 +1,265 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-088"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-088"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-088-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='BLF1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'eBay Motors'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-BLF-CHANNEL-EXPORT-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='eBay Motors'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "channel": "#customers-blf"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-90418"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-BLF-CHANNEL-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Rottnest Charters",
+        "CustomerPONumber": "EB-70301",
+        "OrderTotal": 2380.0,
+        "RequestedFulfillmentOrganizationCode": "BLF1",
+        "SourceTransactionNumber": "EB-70301",
+        "SourceTransactionSystem": "eBay Motors",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-088"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Mandurah Marine",
+        "CustomerPONumber": "EB-70303",
+        "OrderTotal": 3210.0,
+        "RequestedFulfillmentOrganizationCode": "BLF1",
+        "SourceTransactionNumber": "EB-70303",
+        "SourceTransactionSystem": "eBay Motors",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-088"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "BuyingPartyName": "Broome Pearl Boats",
+        "CustomerPONumber": "EB-70305",
+        "OrderTotal": 4460.25,
+        "RequestedFulfillmentOrganizationCode": "BLF1",
+        "SourceTransactionNumber": "EB-70305",
+        "SourceTransactionSystem": "eBay Motors",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "task_id": "erpbench-088"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "q": "SourceTransactionSystem='eBay Motors'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "range": "Customers!A1:E12",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-088",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "Rottnest Charters",
+            "",
+            "office@rottnestcharters-sim.example",
+            "AU-52-310877",
+            "eBay Motors"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.append"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-BLF-OPS",
+        "task_id": "erpbench-088",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-BLF-52007",
+            "create_unsynced_orders_and_capture_customer",
+            7,
+            3,
+            3,
+            1,
+            10050.25,
+            "FILE-BLF-CHANNEL-EXPORT-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "create_unsynced_orders_and_capture_customer",
+        "primary_record": "SO-BLF-52007",
+        "rationale": "Current evidence supports create_unsynced_orders_and_capture_customer; operative source FILE-BLF-CHANNEL-EXPORT-0209.",
+        "source_refs": [
+          "FILE-BLF-CHANNEL-EXPORT-0209",
+          "MSG-erpbench-088-REQUEST",
+          "MSG-BLF-AUTHORITY-0209"
+        ],
+        "status": "synced",
+        "task_id": "erpbench-088"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Bluefin Marine Parts: recommend create_unsynced_orders_and_capture_customer (synced). channel rows 7; already synced 3; created orders 3; duplicate rows 1; synced value 10050.25. Primary record SO-BLF-52007; operative source FILE-BLF-CHANNEL-EXPORT-0209. Draft for review, not sent.",
+        "subject": "erpbench-088 — Sync the channel orders without duplicates — for review",
+        "task_id": "erpbench-088",
+        "to": "callum.reid@bluefin-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-088",
+        "text": "erpbench-088: synced / create_unsynced_orders_and_capture_customer / SO-BLF-52007 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A28:J28",
+        "spreadsheetId": "SHEET-BLF-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-088"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-088"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-blf",
+        "task_id": "erpbench-088"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "already_synced": 3,
+          "channel_rows": 7,
+          "created_orders": 3,
+          "decision_status": "synced",
+          "duplicate_rows": 1,
+          "primary_record": "SO-BLF-52007",
+          "recommended_option": "create_unsynced_orders_and_capture_customer",
+          "source_reference": "FILE-BLF-CHANNEL-EXPORT-0209",
+          "synced_value": 10050.25
+        },
+        "task_id": "erpbench-088"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-088"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

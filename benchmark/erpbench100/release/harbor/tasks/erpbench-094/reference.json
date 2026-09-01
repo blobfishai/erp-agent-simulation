@@ -1,0 +1,466 @@
+{
+  "expected_answer": {
+    "days_late": 4,
+    "decision_status": "requisition_submitted_late_risk",
+    "primary_record": "REQ-TRV-61015",
+    "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+    "requisition_amount": 275340.0,
+    "skus_below_reorder": 3,
+    "source_reference": "FILE-TRV-REORDER-POLICY-R4",
+    "supplier_lead_time_days": 16,
+    "total_reorder_units": 15000
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-094"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-094"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-094-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-TRV-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='TRV1'"
+      },
+      "tool": "oracle_fusion.onhand_balances.list"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Chonburi Cell Works' and Status='Open'"
+      },
+      "tool": "oracle_fusion.purchase_orders.list"
+    },
+    {
+      "arguments": {
+        "q": "SupplierNumber in ('SUP-1250','SUP-1288')"
+      },
+      "tool": "oracle_fusion.suppliers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-REORDER-POLICY-R4"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-TRV-DEMAND-FORECAST-F06"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Reorder!A1:F12",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "reorder"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Description": "Reorder run TRV1 2026-02-09 under policy FILE-TRV-REORDER-POLICY-R4",
+        "Justification": "3 items at or below reorder point after reservations and open supply",
+        "Preparer": "analyst",
+        "RequisitioningBU": "Terravane Manufacturing",
+        "lines": [
+          {
+            "ItemNumber": "MOD-410-M",
+            "Quantity": 2200,
+            "RequestedDeliveryDate": "2026-02-25",
+            "Supplier": "Chonburi Cell Works",
+            "UOM": "EA",
+            "UnitPrice": 104.0
+          },
+          {
+            "ItemNumber": "RAIL-AL-42",
+            "Quantity": 3300,
+            "RequestedDeliveryDate": "2026-02-25",
+            "Supplier": "Chonburi Cell Works",
+            "UOM": "EA",
+            "UnitPrice": 11.8
+          },
+          {
+            "ItemNumber": "CLMP-MID",
+            "Quantity": 9500,
+            "RequestedDeliveryDate": "2026-02-25",
+            "Supplier": "Chonburi Cell Works",
+            "UOM": "EA",
+            "UnitPrice": 0.8
+          }
+        ],
+        "task_id": "erpbench-094"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.create"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-TRV-61015",
+        "task_id": "erpbench-094"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.submit"
+    },
+    {
+      "arguments": {
+        "purchaseRequisitionsUniqID": "REQ-TRV-61015"
+      },
+      "tool": "oracle_fusion.purchase_requisitions.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-TRV-OPS",
+        "task_id": "erpbench-094",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "REQ-TRV-61015",
+            "requisition_primary_supplier_and_flag_lateness",
+            3,
+            15000,
+            275340.0,
+            16,
+            4,
+            "FILE-TRV-REORDER-POLICY-R4"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "requisition_primary_supplier_and_flag_lateness",
+        "primary_record": "REQ-TRV-61015",
+        "rationale": "Current evidence supports requisition_primary_supplier_and_flag_lateness; operative source FILE-TRV-REORDER-POLICY-R4.",
+        "source_refs": [
+          "FILE-TRV-REORDER-POLICY-R4",
+          "MSG-erpbench-094-REQUEST",
+          "MSG-TRV-AUTHORITY-0209"
+        ],
+        "status": "requisition_submitted_late_risk",
+        "task_id": "erpbench-094"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Terravane Solar Components: recommend requisition_primary_supplier_and_flag_lateness (requisition_submitted_late_risk). skus below reorder 3; total reorder units 15000; requisition amount 275340.0; supplier lead time days 16; days late 4. Primary record REQ-TRV-61015; operative source FILE-TRV-REORDER-POLICY-R4. Draft for review, not sent.",
+        "subject": "erpbench-094 — Run the reorder review and raise the requisition — for review",
+        "task_id": "erpbench-094",
+        "to": "nattapong.chai@terravane-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-094",
+        "text": "erpbench-094: requisition_submitted_late_risk / requisition_primary_supplier_and_flag_lateness / REQ-TRV-61015 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A24:J24",
+        "spreadsheetId": "SHEET-TRV-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-094"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-094"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-trv",
+        "task_id": "erpbench-094"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "days_late": 4,
+          "decision_status": "requisition_submitted_late_risk",
+          "primary_record": "REQ-TRV-61015",
+          "recommended_option": "requisition_primary_supplier_and_flag_lateness",
+          "requisition_amount": 275340.0,
+          "skus_below_reorder": 3,
+          "source_reference": "FILE-TRV-REORDER-POLICY-R4",
+          "supplier_lead_time_days": 16,
+          "total_reorder_units": 15000
+        },
+        "task_id": "erpbench-094"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-094"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the onhand balances investigation before any controlled write.",
+      "id": "discovery:onhand_balances",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the open purchase orders investigation before any controlled write.",
+      "id": "discovery:open_purchase_orders",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the suppliers investigation before any controlled write.",
+      "id": "discovery:suppliers",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder policy investigation before any controlled write.",
+      "id": "discovery:reorder_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the demand forecast investigation before any controlled write.",
+      "id": "discovery:demand_forecast",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the reorder tab investigation before any controlled write.",
+      "id": "discovery:reorder_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the planning thread investigation before any controlled write.",
+      "id": "discovery:planning_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded skus below reorder (3).",
+      "id": "calculation:skus_below_reorder",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded total reorder units (15000).",
+      "id": "calculation:total_reorder_units",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded requisition amount (275340.0).",
+      "id": "calculation:requisition_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded supplier lead time days (16).",
+      "id": "calculation:supplier_lead_time_days",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded days late (4).",
+      "id": "calculation:days_late",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option requisition_primary_supplier_and_flag_lateness.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-TRV-REORDER-POLICY-R4 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-094"
+}

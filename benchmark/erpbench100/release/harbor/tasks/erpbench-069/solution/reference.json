@@ -1,0 +1,233 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-069"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-069"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-069-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='CLD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-HEADCOUNT-APPROVAL-2026"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging' and JobCode='corrugator operator'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-CANDIDATE-REGISTER"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-CLD-WAGE-TABLE"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "range": "Headcount!A1:E12",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-CLD-HIRING-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "query": "hiring"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "CandidateId": "CLD-C201",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Miguel Santos",
+        "HireDate": "2026-02-09",
+        "JobCode": "corrugator operator",
+        "LegalEmployerName": "Caldera Packaging",
+        "MonthlySalary": 3980.0,
+        "PersonNumber": "CLD-P2001",
+        "task_id": "erpbench-069"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "CandidateId": "CLD-C203",
+        "ContractEndDate": "2027-02-04",
+        "DisplayName": "Andre Bell",
+        "HireDate": "2026-02-09",
+        "JobCode": "corrugator operator",
+        "LegalEmployerName": "Caldera Packaging",
+        "MonthlySalary": 3980.0,
+        "PersonNumber": "CLD-P2002",
+        "task_id": "erpbench-069"
+      },
+      "tool": "oracle_fusion.workers.create"
+    },
+    {
+      "arguments": {
+        "q": "LegalEmployerName='Caldera Packaging' and JobCode='corrugator operator'"
+      },
+      "tool": "oracle_fusion.workers.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-CLD-OPS",
+        "task_id": "erpbench-069",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "CLD-P2001",
+            "hire_eligible_within_quota",
+            2,
+            3,
+            2,
+            7960.0,
+            12,
+            "FILE-CLD-HEADCOUNT-APPROVAL-2026"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "hire_eligible_within_quota",
+        "primary_record": "CLD-P2001",
+        "rationale": "Current evidence supports hire_eligible_within_quota; operative source FILE-CLD-HEADCOUNT-APPROVAL-2026.",
+        "source_refs": [
+          "FILE-CLD-HEADCOUNT-APPROVAL-2026",
+          "MSG-erpbench-069-REQUEST",
+          "MSG-CLD-AUTHORITY-0209"
+        ],
+        "status": "quota_filled",
+        "task_id": "erpbench-069"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Caldera Packaging: recommend hire_eligible_within_quota (quota_filled). open headcount 2; eligible candidates 3; hires 2; monthly wage total 7960.0; contract months 12. Primary record CLD-P2001; operative source FILE-CLD-HEADCOUNT-APPROVAL-2026. Draft for review, not sent.",
+        "subject": "erpbench-069 — Close the hiring round within quota — for review",
+        "task_id": "erpbench-069",
+        "to": "alicia.romero@caldera-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-069",
+        "text": "erpbench-069: quota_filled / hire_eligible_within_quota / CLD-P2001 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A29:J29",
+        "spreadsheetId": "SHEET-CLD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-069"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-069"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-cld",
+        "task_id": "erpbench-069"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "contract_months": 12,
+          "decision_status": "quota_filled",
+          "eligible_candidates": 3,
+          "hires": 2,
+          "monthly_wage_total": 7960.0,
+          "open_headcount": 2,
+          "primary_record": "CLD-P2001",
+          "recommended_option": "hire_eligible_within_quota",
+          "source_reference": "FILE-CLD-HEADCOUNT-APPROVAL-2026"
+        },
+        "task_id": "erpbench-069"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-069"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

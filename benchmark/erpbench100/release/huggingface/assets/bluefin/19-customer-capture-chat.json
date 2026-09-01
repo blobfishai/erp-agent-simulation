@@ -1,0 +1,13 @@
+{
+  "channel": "#customers-blf",
+  "messages": [
+    {
+      "author": "sales-inbox",
+      "text": "New buyer from eBay Motors: Rottnest Charters, tax id AU-52-310877, orders via office@rottnestcharters-sim.example. Needs a master record before invoicing."
+    },
+    {
+      "author": "Callum Reid",
+      "text": "Capture it in the customer master tab, not as a note; check the channel export for their first order."
+    }
+  ]
+}

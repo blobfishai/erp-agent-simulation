@@ -1,0 +1,250 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-001"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-001-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-NBR-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='NBR1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'CA-PO-77310'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-NBR-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='CA-PO-77310'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-NBR-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-10412"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "CA-PO-77310"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-10412",
+        "CustomerPONumber": "CA-PO-77310",
+        "RequestedFulfillmentOrganizationCode": "NBR1",
+        "SourceTransactionNumber": "FILE-NBR-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": true,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 1200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M8-40",
+            "UnitListPrice": 0.84
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "FST-M10-60",
+            "UnitListPrice": 1.32
+          },
+          {
+            "OrderedQuantity": 640,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NUT-M8-NYL",
+            "UnitListPrice": 0.19
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "WSH-M10-SS",
+            "UnitListPrice": 0.11
+          },
+          {
+            "OrderedQuantity": 220,
+            "OrderedUOM": "EA",
+            "ProductNumber": "ANC-12-100",
+            "UnitListPrice": 2.45
+          }
+        ],
+        "task_id": "erpbench-001"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-NBR-50011"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-NBR-OPS",
+        "task_id": "erpbench-001",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-NBR-50011",
+            "import_accepted_lines_and_submit",
+            5,
+            3,
+            3160,
+            2757.6,
+            2,
+            "FILE-NBR-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_submit",
+        "primary_record": "SO-NBR-50011",
+        "rationale": "Current evidence supports import_accepted_lines_and_submit; operative source FILE-NBR-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-NBR-ORDER-BATCH-0209",
+          "MSG-erpbench-001-REQUEST",
+          "MSG-NBR-AUTHORITY-0209"
+        ],
+        "status": "submitted",
+        "task_id": "erpbench-001"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Northbridge Fastener Works: recommend import_accepted_lines_and_submit (submitted). accepted lines 5; rejected lines 3; imported units 3160; order total 2757.6; duplicate lines 2. Primary record SO-NBR-50011; operative source FILE-NBR-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-001 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-001",
+        "to": "marcus.lee@northbridge-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-001",
+        "text": "erpbench-001: submitted / import_accepted_lines_and_submit / SO-NBR-50011 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-NBR-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-001"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-nbr",
+        "task_id": "erpbench-001"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 5,
+          "decision_status": "submitted",
+          "duplicate_lines": 2,
+          "imported_units": 3160,
+          "order_total": 2757.6,
+          "primary_record": "SO-NBR-50011",
+          "recommended_option": "import_accepted_lines_and_submit",
+          "rejected_lines": 3,
+          "source_reference": "FILE-NBR-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-001"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-001"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

@@ -1,0 +1,516 @@
+{
+  "expected_answer": {
+    "decision_status": "invoice_on_hold",
+    "held_lines": 1,
+    "lines_matched": 3,
+    "matched_amount": 41620.0,
+    "payable_amount": 41620.0,
+    "primary_record": "SBP-INV-77120",
+    "recommended_option": "receive_and_hold_variance_lines",
+    "source_reference": "FILE-KEA-DELIVERY-NOTE-0206",
+    "variance_amount": 600.0
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-045"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-045-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='KEA1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "tool": "oracle_fusion.purchase_orders.get"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-KEA-90581"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-DELIVERY-NOTE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-KEA-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-KEA-AP-MATCH-POLICY"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Shenzhen Board Partners'"
+      },
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "OrganizationCode": "KEA1",
+        "ReceiptSourceCode": "VENDOR",
+        "VendorName": "Shenzhen Board Partners",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "PCB-CTRL-A7",
+            "Quantity": 1000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "HARN-12P",
+            "Quantity": 3000,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "ENC-ALU-S",
+            "Quantity": 900,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-KEA-90581",
+            "ItemNumber": "SENS-TEMP-K",
+            "Quantity": 2000,
+            "TransactionType": "RECEIVE"
+          }
+        ],
+        "task_id": "erpbench-045"
+      },
+      "tool": "oracle_fusion.receiving_receipt_requests.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Kestrel Assembly",
+        "InvoiceAmount": 54600.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceNumber": "SBP-INV-77120",
+        "Supplier": "Shenzhen Board Partners",
+        "invoiceLines": [
+          {
+            "ItemNumber": "PCB-CTRL-A7",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 1000,
+            "UnitPrice": 24.2
+          },
+          {
+            "ItemNumber": "HARN-12P",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 3000,
+            "UnitPrice": 4.3
+          },
+          {
+            "ItemNumber": "ENC-ALU-S",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 900,
+            "UnitPrice": 7.8
+          },
+          {
+            "ItemNumber": "SENS-TEMP-K",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-KEA-90581",
+            "Quantity": 2000,
+            "UnitPrice": 5.24
+          }
+        ],
+        "task_id": "erpbench-045"
+      },
+      "tool": "oracle_fusion.invoices.create"
+    },
+    {
+      "arguments": {
+        "HoldName": "Price",
+        "HoldReason": "line 2: price variance exceeds tolerance",
+        "InvoiceId": 660015,
+        "task_id": "erpbench-045"
+      },
+      "tool": "oracle_fusion.invoice_holds.create"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "SBP-INV-77120"
+      },
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-KEA-OPS",
+        "task_id": "erpbench-045",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SBP-INV-77120",
+            "receive_and_hold_variance_lines",
+            3,
+            41620.0,
+            600.0,
+            1,
+            41620.0,
+            "FILE-KEA-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_hold_variance_lines",
+        "primary_record": "SBP-INV-77120",
+        "rationale": "Current evidence supports receive_and_hold_variance_lines; operative source FILE-KEA-DELIVERY-NOTE-0206.",
+        "source_refs": [
+          "FILE-KEA-DELIVERY-NOTE-0206",
+          "MSG-erpbench-045-REQUEST",
+          "MSG-KEA-AUTHORITY-0209"
+        ],
+        "status": "invoice_on_hold",
+        "task_id": "erpbench-045"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Kestrel Electronics Assembly: recommend receive_and_hold_variance_lines (invoice_on_hold). lines matched 3; matched amount 41620.0; variance amount 600.0; held lines 1; payable amount 41620.0. Primary record SBP-INV-77120; operative source FILE-KEA-DELIVERY-NOTE-0206. Draft for review, not sent.",
+        "subject": "erpbench-045 — Receive the delivery and match the supplier invoice — for review",
+        "task_id": "erpbench-045",
+        "to": "daniel.tan@kestrel-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-045",
+        "text": "erpbench-045: invoice_on_hold / receive_and_hold_variance_lines / SBP-INV-77120 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-KEA-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-045"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-kea",
+        "task_id": "erpbench-045"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "invoice_on_hold",
+          "held_lines": 1,
+          "lines_matched": 3,
+          "matched_amount": 41620.0,
+          "payable_amount": 41620.0,
+          "primary_record": "SBP-INV-77120",
+          "recommended_option": "receive_and_hold_variance_lines",
+          "source_reference": "FILE-KEA-DELIVERY-NOTE-0206",
+          "variance_amount": 600.0
+        },
+        "task_id": "erpbench-045"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-045"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order investigation before any controlled write.",
+      "id": "discovery:purchase_order",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the purchase order lines investigation before any controlled write.",
+      "id": "discovery:purchase_order_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the delivery note investigation before any controlled write.",
+      "id": "discovery:delivery_note",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the supplier invoice investigation before any controlled write.",
+      "id": "discovery:supplier_invoice",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the invoice mail investigation before any controlled write.",
+      "id": "discovery:invoice_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ap policy investigation before any controlled write.",
+      "id": "discovery:ap_policy",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing ap invoices investigation before any controlled write.",
+      "id": "discovery:existing_ap_invoices",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded lines matched (3).",
+      "id": "calculation:lines_matched",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded matched amount (41620.0).",
+      "id": "calculation:matched_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded variance amount (600.0).",
+      "id": "calculation:variance_amount",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded held lines (1).",
+      "id": "calculation:held_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded payable amount (41620.0).",
+      "id": "calculation:payable_amount",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option receive_and_hold_variance_lines.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-KEA-DELIVERY-NOTE-0206 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-045"
+}

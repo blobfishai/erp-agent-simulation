@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from,superseded
+TEA-OOL-500,Oolong tea 500 g tin,13.78,Active,2025-07-01,true
+RICE-JAS-5K,Jasmine rice 5 kg,11.21,Active,2025-07-01,true
+SOY-PRM-1L,Premium soy sauce 1 L,6.08,Active,2025-07-01,true
+NDL-DRY-1K,Dried noodles 1 kg,4.66,Active,2025-07-01,true
+CHL-OIL-250,Chili oil 250 ml,5.32,Active,2025-07-01,true
+MCH-GIFT-OLD,Mochi gift box (retired),11.40,Active,2025-07-01,true

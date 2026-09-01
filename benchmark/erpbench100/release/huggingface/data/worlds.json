@@ -1,0 +1,84 @@
+{
+  "synthetic": true,
+  "systems": [
+    "erpbench",
+    "oracle_fusion",
+    "gmail",
+    "google_drive",
+    "google_sheets",
+    "slack"
+  ],
+  "tenants": [
+    {
+      "code": "NORTHBRIDGE",
+      "company": "Northbridge Fastener Works",
+      "country": "US",
+      "industry": "Industrial fasteners",
+      "profile": "discrete manufacturer"
+    },
+    {
+      "code": "HARBORLINE",
+      "company": "Harborline Trading Co.",
+      "country": "TW",
+      "industry": "Food import and export",
+      "profile": "trading company"
+    },
+    {
+      "code": "MERIDIAN",
+      "company": "Meridian Staffing Services",
+      "country": "TW",
+      "industry": "Workforce placement",
+      "profile": "staffing and placement agency"
+    },
+    {
+      "code": "SUNGROVE",
+      "company": "Sungrove Foods",
+      "country": "ID",
+      "industry": "Snack and beverage processing",
+      "profile": "food processing plant"
+    },
+    {
+      "code": "KESTREL",
+      "company": "Kestrel Electronics Assembly",
+      "country": "MY",
+      "industry": "Electronics manufacturing services",
+      "profile": "contract electronics manufacturer"
+    },
+    {
+      "code": "ALDERWOOD",
+      "company": "Alderwood Furniture",
+      "country": "VN",
+      "industry": "Wood furniture manufacturing",
+      "profile": "furniture manufacturer"
+    },
+    {
+      "code": "CALDERA",
+      "company": "Caldera Packaging",
+      "country": "US",
+      "industry": "Corrugated and flexible packaging",
+      "profile": "packaging converter"
+    },
+    {
+      "code": "RIVERSTONE",
+      "company": "Riverstone Medical Supply",
+      "country": "SG",
+      "industry": "Medical consumables distribution",
+      "profile": "medical distributor"
+    },
+    {
+      "code": "BLUEFIN",
+      "company": "Bluefin Marine Parts",
+      "country": "AU",
+      "industry": "Marine spare parts distribution",
+      "profile": "parts distributor"
+    },
+    {
+      "code": "TERRAVANE",
+      "company": "Terravane Solar Components",
+      "country": "TH",
+      "industry": "Solar module manufacturing",
+      "profile": "solar component maker"
+    }
+  ],
+  "world_id": "fusion-erp-tenants-v1"
+}

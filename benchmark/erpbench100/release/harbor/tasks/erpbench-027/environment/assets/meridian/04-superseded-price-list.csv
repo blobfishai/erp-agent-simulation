@@ -1,0 +1,7 @@
+item,description,list_price,status,effective_from,superseded
+SVC-FACT-OP,Factory operator placement,1121.00,Active,2025-07-01,true
+SVC-CARE-LIVEIN,Live-in caregiver placement,1377.50,Active,2025-07-01,true
+SVC-CONSTR,Construction worker placement,1197.00,Active,2025-07-01,true
+SVC-DOM-HELP,Domestic helper placement,1064.00,Active,2025-07-01,true
+SVC-RENEW,Contract renewal service,361.00,Active,2025-07-01,true
+SVC-TRAIN-OLD,Pre-departure training (retired),247.00,Active,2025-07-01,true

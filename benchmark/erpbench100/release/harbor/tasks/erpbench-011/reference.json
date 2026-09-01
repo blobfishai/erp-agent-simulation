@@ -1,0 +1,480 @@
+{
+  "expected_answer": {
+    "accepted_lines": 7,
+    "decision_status": "awaiting_credit_release",
+    "duplicate_lines": 1,
+    "imported_units": 2620,
+    "order_total": 21184.0,
+    "primary_record": "SO-HBL-50012",
+    "recommended_option": "import_accepted_lines_and_hold_submission",
+    "rejected_lines": 2,
+    "source_reference": "FILE-HBL-ORDER-BATCH-0209"
+  },
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-011"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-011"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-011-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-HBL-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='HBL1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'PG-2026-0442'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-HBL-ORDER-BATCH-0209"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "CustomerPONumber='PG-2026-0442'"
+      },
+      "tool": "oracle_fusion.sales_orders.list"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-HBL-40039"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "AccountId": "CUST-20077"
+      },
+      "tool": "oracle_fusion.customer_account_activities.get"
+    },
+    {
+      "arguments": {
+        "range": "PriceList!A1:E12",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "PG-2026-0442"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "BuyingPartyNumber": "CUST-20077",
+        "CustomerPONumber": "PG-2026-0442",
+        "RequestedFulfillmentOrganizationCode": "HBL1",
+        "SourceTransactionNumber": "FILE-HBL-ORDER-BATCH-0209",
+        "SourceTransactionSystem": "OPS",
+        "SubmittedFlag": false,
+        "TransactionType": "Standard Orders",
+        "lines": [
+          {
+            "OrderedQuantity": 240,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TEA-OOL-500",
+            "UnitListPrice": 14.5
+          },
+          {
+            "OrderedQuantity": 600,
+            "OrderedUOM": "EA",
+            "ProductNumber": "RICE-JAS-5K",
+            "UnitListPrice": 11.8
+          },
+          {
+            "OrderedQuantity": 360,
+            "OrderedUOM": "EA",
+            "ProductNumber": "SOY-PRM-1L",
+            "UnitListPrice": 6.4
+          },
+          {
+            "OrderedQuantity": 800,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NDL-DRY-1K",
+            "UnitListPrice": 4.9
+          },
+          {
+            "OrderedQuantity": 300,
+            "OrderedUOM": "EA",
+            "ProductNumber": "CHL-OIL-250",
+            "UnitListPrice": 5.6
+          },
+          {
+            "OrderedQuantity": 120,
+            "OrderedUOM": "EA",
+            "ProductNumber": "TEA-OOL-500",
+            "UnitListPrice": 14.5
+          },
+          {
+            "OrderedQuantity": 200,
+            "OrderedUOM": "EA",
+            "ProductNumber": "NDL-DRY-1K",
+            "UnitListPrice": 4.9
+          }
+        ],
+        "task_id": "erpbench-011"
+      },
+      "tool": "oracle_fusion.sales_orders.create"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-HBL-50012"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-HBL-OPS",
+        "task_id": "erpbench-011",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SO-HBL-50012",
+            "import_accepted_lines_and_hold_submission",
+            7,
+            2,
+            2620,
+            21184.0,
+            1,
+            "FILE-HBL-ORDER-BATCH-0209"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "import_accepted_lines_and_hold_submission",
+        "primary_record": "SO-HBL-50012",
+        "rationale": "Current evidence supports import_accepted_lines_and_hold_submission; operative source FILE-HBL-ORDER-BATCH-0209.",
+        "source_refs": [
+          "FILE-HBL-ORDER-BATCH-0209",
+          "MSG-erpbench-011-REQUEST",
+          "MSG-HBL-AUTHORITY-0209"
+        ],
+        "status": "awaiting_credit_release",
+        "task_id": "erpbench-011"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Harborline Trading Co.: recommend import_accepted_lines_and_hold_submission (awaiting_credit_release). accepted lines 7; rejected lines 2; imported units 2620; order total 21184.0; duplicate lines 1. Primary record SO-HBL-50012; operative source FILE-HBL-ORDER-BATCH-0209. Draft for review, not sent.",
+        "subject": "erpbench-011 — Import the customer's consolidated order — for review",
+        "task_id": "erpbench-011",
+        "to": "wang.po-wei@harborline-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-011",
+        "text": "erpbench-011: awaiting_credit_release / import_accepted_lines_and_hold_submission / SO-HBL-50012 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A21:J21",
+        "spreadsheetId": "SHEET-HBL-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-011"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-011"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-hbl",
+        "task_id": "erpbench-011"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "accepted_lines": 7,
+          "decision_status": "awaiting_credit_release",
+          "duplicate_lines": 1,
+          "imported_units": 2620,
+          "order_total": 21184.0,
+          "primary_record": "SO-HBL-50012",
+          "recommended_option": "import_accepted_lines_and_hold_submission",
+          "rejected_lines": 2,
+          "source_reference": "FILE-HBL-ORDER-BATCH-0209"
+        },
+        "task_id": "erpbench-011"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-011"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ],
+  "rubric": [
+    {
+      "category": "discovery",
+      "description": "Complete the task contract investigation before any controlled write.",
+      "id": "discovery:task_contract",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail search investigation before any controlled write.",
+      "id": "discovery:request_mail_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the request mail investigation before any controlled write.",
+      "id": "discovery:request_mail",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the authority memo investigation before any controlled write.",
+      "id": "discovery:authority_memo",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the control thread investigation before any controlled write.",
+      "id": "discovery:control_thread",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the ops register investigation before any controlled write.",
+      "id": "discovery:ops_register",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the item master investigation before any controlled write.",
+      "id": "discovery:item_master",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the source map investigation before any controlled write.",
+      "id": "discovery:source_map",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch search investigation before any controlled write.",
+      "id": "discovery:batch_search",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the batch file investigation before any controlled write.",
+      "id": "discovery:batch_file",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the existing orders investigation before any controlled write.",
+      "id": "discovery:existing_orders",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior order lines investigation before any controlled write.",
+      "id": "discovery:prior_order_lines",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the customer account investigation before any controlled write.",
+      "id": "discovery:customer_account",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the price list tab investigation before any controlled write.",
+      "id": "discovery:price_list_tab",
+      "points": 1
+    },
+    {
+      "category": "discovery",
+      "description": "Complete the prior import thread investigation before any controlled write.",
+      "id": "discovery:prior_import_thread",
+      "points": 1
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded accepted lines (7).",
+      "id": "calculation:accepted_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded rejected lines (2).",
+      "id": "calculation:rejected_lines",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded imported units (2620).",
+      "id": "calculation:imported_units",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded order total (21184.0).",
+      "id": "calculation:order_total",
+      "points": 5
+    },
+    {
+      "category": "calculation",
+      "description": "Submit the exact evidence-grounded duplicate lines (1).",
+      "id": "calculation:duplicate_lines",
+      "points": 5
+    },
+    {
+      "category": "decision",
+      "description": "Select the policy-supported option import_accepted_lines_and_hold_submission.",
+      "id": "decision:recommended_option",
+      "points": 10
+    },
+    {
+      "category": "decision",
+      "description": "Ground the decision in the operative source FILE-HBL-ORDER-BATCH-0209 rather than a superseded version.",
+      "id": "decision:operative_source",
+      "points": 5
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the primary ERP transaction with the exact provider-critical values.",
+      "id": "erp_state:primary_write",
+      "points": 10
+    },
+    {
+      "category": "erp_state",
+      "description": "Persist the workflow-specific secondary ERP state (submission, hold, validation, alerts, or absence records) and nothing that policy forbids.",
+      "id": "erp_state:secondary_write",
+      "points": 4
+    },
+    {
+      "category": "erp_state",
+      "description": "Write the exact task row to the controlled ops register range.",
+      "id": "erp_state:register",
+      "points": 3
+    },
+    {
+      "category": "erp_state",
+      "description": "Record the decision with status, primary record, rationale and source references.",
+      "id": "erp_state:decision_record",
+      "points": 3
+    },
+    {
+      "category": "handoff",
+      "description": "Save a review-only email draft that states the option, the key figures and the primary record.",
+      "id": "handoff:email_draft",
+      "points": 5
+    },
+    {
+      "category": "handoff",
+      "description": "Post the review handoff to the ops channel with the decision status.",
+      "id": "handoff:chat_post",
+      "points": 5
+    },
+    {
+      "category": "readback",
+      "description": "Read the ERP record back after the primary write.",
+      "id": "readback:erp_record",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the register row and the decision record after committing them.",
+      "id": "readback:register_and_decision",
+      "points": 3
+    },
+    {
+      "category": "readback",
+      "description": "Read back the email draft and channel history before submission.",
+      "id": "readback:communications",
+      "points": 2
+    },
+    {
+      "category": "readback",
+      "description": "Read back the durable task submission.",
+      "id": "readback:submission",
+      "points": 2
+    },
+    {
+      "category": "containment",
+      "description": "Leave every unrelated tenant record unchanged and make no rejected calls.",
+      "id": "containment:task_scope",
+      "points": 3
+    },
+    {
+      "category": "containment",
+      "description": "Keep outbound communication in review status and never apply an unauthorized credit, hire or price change.",
+      "id": "containment:review_gate",
+      "points": 2
+    }
+  ],
+  "task_id": "erpbench-011"
+}

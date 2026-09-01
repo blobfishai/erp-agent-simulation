@@ -1,0 +1,299 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-055"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-055"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-055-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-ALD-20940"
+      },
+      "tool": "oracle_fusion.purchase_orders.get"
+    },
+    {
+      "arguments": {
+        "purchaseOrdersUniqID": "PO-ALD-20940"
+      },
+      "tool": "oracle_fusion.purchase_order_lines.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-DELIVERY-NOTE-0206"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-SUPPLIER-INVOICE-0207"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-AP-MATCH-POLICY"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Supplier='Mekong Hardwood Mills'"
+      },
+      "tool": "oracle_fusion.invoices.list"
+    },
+    {
+      "arguments": {
+        "OrganizationCode": "ALD1",
+        "ReceiptSourceCode": "VENDOR",
+        "VendorName": "Mekong Hardwood Mills",
+        "lines": [
+          {
+            "DocumentLineNumber": 1,
+            "DocumentNumber": "PO-ALD-20940",
+            "ItemNumber": "CHR-OAK-DIN",
+            "Quantity": 300,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 2,
+            "DocumentNumber": "PO-ALD-20940",
+            "ItemNumber": "TBL-OAK-180",
+            "Quantity": 60,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 3,
+            "DocumentNumber": "PO-ALD-20940",
+            "ItemNumber": "STL-BAR-75",
+            "Quantity": 180,
+            "TransactionType": "RECEIVE"
+          },
+          {
+            "DocumentLineNumber": 4,
+            "DocumentNumber": "PO-ALD-20940",
+            "ItemNumber": "BNCH-TEAK-120",
+            "Quantity": 40,
+            "TransactionType": "RECEIVE"
+          }
+        ],
+        "task_id": "erpbench-055"
+      },
+      "tool": "oracle_fusion.receiving_receipt_requests.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Alderwood Production",
+        "InvoiceAmount": 44580.0,
+        "InvoiceCurrency": "USD",
+        "InvoiceDate": "2026-02-07",
+        "InvoiceNumber": "MHM-INV-3308",
+        "Supplier": "Mekong Hardwood Mills",
+        "invoiceLines": [
+          {
+            "ItemNumber": "CHR-OAK-DIN",
+            "LineNumber": 1,
+            "PurchaseOrderLineNumber": 1,
+            "PurchaseOrderNumber": "PO-ALD-20940",
+            "Quantity": 300,
+            "UnitPrice": 58.0
+          },
+          {
+            "ItemNumber": "TBL-OAK-180",
+            "LineNumber": 2,
+            "PurchaseOrderLineNumber": 2,
+            "PurchaseOrderNumber": "PO-ALD-20940",
+            "Quantity": 60,
+            "UnitPrice": 255.0
+          },
+          {
+            "ItemNumber": "STL-BAR-75",
+            "LineNumber": 3,
+            "PurchaseOrderLineNumber": 3,
+            "PurchaseOrderNumber": "PO-ALD-20940",
+            "Quantity": 180,
+            "UnitPrice": 44.0
+          },
+          {
+            "ItemNumber": "BNCH-TEAK-120",
+            "LineNumber": 4,
+            "PurchaseOrderLineNumber": 4,
+            "PurchaseOrderNumber": "PO-ALD-20940",
+            "Quantity": 40,
+            "UnitPrice": 99.0
+          }
+        ],
+        "task_id": "erpbench-055"
+      },
+      "tool": "oracle_fusion.invoices.create"
+    },
+    {
+      "arguments": {
+        "BusinessUnit": "Alderwood Production",
+        "InvoiceNumber": "MHM-INV-3308",
+        "ProcessAction": "Validate",
+        "Supplier": "Mekong Hardwood Mills",
+        "task_id": "erpbench-055"
+      },
+      "tool": "oracle_fusion.invoices.validate"
+    },
+    {
+      "arguments": {
+        "invoicesUniqID": "MHM-INV-3308"
+      },
+      "tool": "oracle_fusion.invoices.get"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-055",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "MHM-INV-3308",
+            "receive_and_validate_invoice",
+            4,
+            44580.0,
+            0.0,
+            0,
+            44580.0,
+            "FILE-ALD-DELIVERY-NOTE-0206"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "receive_and_validate_invoice",
+        "primary_record": "MHM-INV-3308",
+        "rationale": "Current evidence supports receive_and_validate_invoice; operative source FILE-ALD-DELIVERY-NOTE-0206.",
+        "source_refs": [
+          "FILE-ALD-DELIVERY-NOTE-0206",
+          "MSG-erpbench-055-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "invoice_validated",
+        "task_id": "erpbench-055"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend receive_and_validate_invoice (invoice_validated). lines matched 4; matched amount 44580.0; variance amount 0.0; held lines 0; payable amount 44580.0. Primary record MHM-INV-3308; operative source FILE-ALD-DELIVERY-NOTE-0206. Draft for review, not sent.",
+        "subject": "erpbench-055 — Receive the delivery and match the supplier invoice — for review",
+        "task_id": "erpbench-055",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-055",
+        "text": "erpbench-055: invoice_validated / receive_and_validate_invoice / MHM-INV-3308 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A25:J25",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-055"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-055"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-055"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "decision_status": "invoice_validated",
+          "held_lines": 0,
+          "lines_matched": 4,
+          "matched_amount": 44580.0,
+          "payable_amount": 44580.0,
+          "primary_record": "MHM-INV-3308",
+          "recommended_option": "receive_and_validate_invoice",
+          "source_reference": "FILE-ALD-DELIVERY-NOTE-0206",
+          "variance_amount": 0.0
+        },
+        "task_id": "erpbench-055"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-055"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}

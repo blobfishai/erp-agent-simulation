@@ -1,0 +1,214 @@
+{
+  "oracle_steps": [
+    {
+      "arguments": {
+        "task_id": "erpbench-052"
+      },
+      "tool": "erpbench.get_task"
+    },
+    {
+      "arguments": {
+        "q": "erpbench-052"
+      },
+      "tool": "gmail.messages.list"
+    },
+    {
+      "arguments": {
+        "id": "MSG-erpbench-052-REQUEST"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "id": "MSG-ALD-AUTHORITY-0209"
+      },
+      "tool": "gmail.messages.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "range": "Register!A1:H40",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "q": "OrganizationCode='ALD1'"
+      },
+      "tool": "oracle_fusion.items.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-SOURCE-MAP"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-ALD-7702'"
+      },
+      "tool": "oracle_fusion.shipments.list"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-ALD-7702'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "q": "name contains 'SHP-ALD-7702'"
+      },
+      "tool": "google_drive.files.list"
+    },
+    {
+      "arguments": {
+        "fileId": "FILE-ALD-PICK-CONFIRM-0208"
+      },
+      "tool": "google_drive.files.download"
+    },
+    {
+      "arguments": {
+        "OrderKey": "SO-ALD-71033"
+      },
+      "tool": "oracle_fusion.sales_orders.get"
+    },
+    {
+      "arguments": {
+        "range": "Shipping!A1:F20",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "query": "SHP-ALD-7702"
+      },
+      "tool": "slack.search_messages"
+    },
+    {
+      "arguments": {
+        "Comments": "Corrected to pick confirmation FILE-ALD-PICK-CONFIRM-0208",
+        "ShipmentLine": 700009,
+        "ShippedQuantity": 48,
+        "task_id": "erpbench-052"
+      },
+      "tool": "oracle_fusion.shipment_lines.update"
+    },
+    {
+      "arguments": {
+        "q": "Shipment='SHP-ALD-7702'"
+      },
+      "tool": "oracle_fusion.shipment_lines.list"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-ALD-OPS",
+        "task_id": "erpbench-052",
+        "valueInputOption": "RAW",
+        "values": [
+          [
+            "SHP-ALD-7702",
+            "correct_short_picks_and_hold_over_picks",
+            5,
+            3,
+            1,
+            2,
+            54960.0,
+            "FILE-ALD-PICK-CONFIRM-0208"
+          ]
+        ]
+      },
+      "tool": "google_sheets.spreadsheets.values.update"
+    },
+    {
+      "arguments": {
+        "decision": "correct_short_picks_and_hold_over_picks",
+        "primary_record": "SHP-ALD-7702",
+        "rationale": "Current evidence supports correct_short_picks_and_hold_over_picks; operative source FILE-ALD-PICK-CONFIRM-0208.",
+        "source_refs": [
+          "FILE-ALD-PICK-CONFIRM-0208",
+          "MSG-erpbench-052-REQUEST",
+          "MSG-ALD-AUTHORITY-0209"
+        ],
+        "status": "partial_hold",
+        "task_id": "erpbench-052"
+      },
+      "tool": "erpbench.record_decision"
+    },
+    {
+      "arguments": {
+        "body": "Alderwood Furniture: recommend correct_short_picks_and_hold_over_picks (partial_hold). lines reviewed 5; lines matching 3; lines corrected 1; units removed 2; confirmed value 54960.0. Primary record SHP-ALD-7702; operative source FILE-ALD-PICK-CONFIRM-0208. Draft for review, not sent.",
+        "subject": "erpbench-052 — Reconcile the staged shipment before confirmation — for review",
+        "task_id": "erpbench-052",
+        "to": "nguyen.thanh.tam@alderwood-sim.example"
+      },
+      "tool": "gmail.drafts.create"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "review_status": "draft_for_review",
+        "task_id": "erpbench-052",
+        "text": "erpbench-052: partial_hold / correct_short_picks_and_hold_over_picks / SHP-ALD-7702 — review draft ready."
+      },
+      "tool": "slack.chat_postMessage"
+    },
+    {
+      "arguments": {
+        "range": "Register!A22:J22",
+        "spreadsheetId": "SHEET-ALD-OPS"
+      },
+      "tool": "google_sheets.spreadsheets.values.get"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-052"
+      },
+      "tool": "erpbench.get_decision"
+    },
+    {
+      "arguments": {
+        "id": "DRAFT-erpbench-052"
+      },
+      "tool": "gmail.drafts.get"
+    },
+    {
+      "arguments": {
+        "channel": "#ops-ald",
+        "task_id": "erpbench-052"
+      },
+      "tool": "slack.conversations_history"
+    },
+    {
+      "arguments": {
+        "answers": {
+          "confirmed_value": 54960.0,
+          "decision_status": "partial_hold",
+          "lines_corrected": 1,
+          "lines_matching": 3,
+          "lines_reviewed": 5,
+          "primary_record": "SHP-ALD-7702",
+          "recommended_option": "correct_short_picks_and_hold_over_picks",
+          "source_reference": "FILE-ALD-PICK-CONFIRM-0208",
+          "units_removed": 2
+        },
+        "task_id": "erpbench-052"
+      },
+      "tool": "erpbench.submit_answer"
+    },
+    {
+      "arguments": {
+        "task_id": "erpbench-052"
+      },
+      "tool": "erpbench.get_submission"
+    }
+  ]
+}
